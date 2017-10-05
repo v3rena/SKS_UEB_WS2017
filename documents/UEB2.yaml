@@ -1,0 +1,185 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Parcel Logistics Service
+  contact:
+    name: DI(FH) Maximilian Knor
+    email: knor@technikum-wien.at
+    url: 'http://blog.knor.net/'
+basePath: /api
+responses:
+  '500':
+    description: The operation failed due to an error.
+    schema:
+      $ref: '#/definitions/error'
+paths:
+  /parcel:
+    post:
+      description: |
+        Submit a new parcel to the logistics service.
+      parameters:
+        - name: newParcel
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/parcel'
+      responses:
+        '200':
+          description: Successfully submitted the new parcel
+          schema:
+            properties:
+              trackingId:
+                type: string
+                description: The tracking ID of the parcel.
+        '500':
+          $ref: '#/responses/500'
+  '/parcel/{trackingId}':
+    get:
+      description: |
+        Track a parcel with its ID.
+      parameters:
+        - name: trackingId
+          in: path
+          required: true
+          type: string
+          description: The tracking ID of the parcel.
+      responses:
+        '200':
+          description: 'Parcel exists, here''s the tracking information.'
+        '404':
+          description: Parcel does not exist with this tracking ID.
+  '/parcel/{trackingId}/reportHop/{code}':
+    post:
+      description: |
+        Report that a 'Parcel' has arrived at a certain hop either 'Warehouse'
+        or 'Truck'
+      parameters:
+        - name: trackingId
+          in: path
+          required: true
+          type: string
+          description: The tracking ID of the parcel.
+        - name: code
+          in: path
+          required: true
+          type: string
+          description: The 'Code' of the Hop ('Warehouse' or 'Truck')
+      responses:
+        '200':
+          description: Successfully reported hop.
+        '500':
+          description: An error occured.
+          schema:
+            $ref: '#/definitions/error'
+  /warehouse:
+    post:
+      description: |
+        Create the hierarchy of `Warehouse` and `Truck` objects.
+      parameters:
+        - name: warehouseRoot
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/warehouse'
+      responses:
+        '200':
+          description: Successfully loaded.
+        '500':
+          $ref: '#/responses/500'
+    get:
+      description: |
+        Gets the hierarchy of `Warehouse` and `Truck` objects.
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/warehouse'
+        '404':
+          description: No hierarchy loaded yet.
+        '500':
+          description: An error occurred loading.
+          schema:
+            $ref: '#/definitions/error'
+produces:
+  - application/json
+consumes:
+  - application/json
+definitions:
+  parcel:
+    type: object
+    allOf:
+      - $ref: '#/definitions/receipient'
+      - properties:
+          weight:
+            type: number
+    required:
+      - weight
+  receipient:
+    type: object
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+      street:
+        type: string
+      postalCode:
+        type: string
+      city:
+        type: string
+    required:
+      - firstName
+      - lastName
+      - street
+      - postalCode
+      - city
+  warehouse:
+    type: object
+    properties:
+      code:
+        type: string
+      description:
+        type: string
+      duration:
+        type: number
+      nextHops:
+        type: array
+        items:
+          $ref: '#/definitions/warehouse'
+      trucks:
+        type: array
+        items:
+          $ref: '#/definitions/truck'
+    required:
+      - code
+      - description
+      - duration
+  error:
+    properties:
+      errorMessage:
+        type: string
+        description: The error message.
+    required:
+      - errorMessage
+  truck:
+    type: object
+    properties:
+      code:
+        type: string
+      numberPlate:
+        type: string
+      latitude:
+        type: number
+      longitude:
+        type: number
+      radius:
+        type: number
+      duration:
+        type: number
+    required:
+      - code
+      - numberPlate
+      - latitude
+      - longitude
+      - radius
+      - duration
