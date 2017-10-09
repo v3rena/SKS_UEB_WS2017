@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace ParcelLogisticsService
+namespace PLS.SKS.Package.Services
 {
     public class Program
     {

@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace ParcelLogisticsService
+namespace PLS.SKS.Package.Services
 {
     public class Startup
     {
