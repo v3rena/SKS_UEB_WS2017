@@ -2,80 +2,92 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Net.Http;
 using PLS.SKS.Package.Services;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.TestHost;
+using Microsoft.AspNetCore.Hosting;
 
 namespace PLS.SKS.Package.Services.Tests
 {
-    [TestClass]
+	[TestClass]
     public class IntegrationTests
     {
-        [TestMethod]
+		private readonly TestServer _server;
+		private readonly HttpClient _client;
+		public IntegrationTests()
+		{
+			// Arrange
+			_server = new TestServer(new WebHostBuilder()
+				.UseStartup<Startup>());
+			_client = _server.CreateClient();
+		}
+
+		[TestMethod]
         public async Task GetWarehouse()
         {
-			//Arrange
-			HttpClient client = new HttpClient();
+			// Act
+			var response = await _client.GetAsync("/api/warehouse");
+			response.EnsureSuccessStatusCode();
 
-			//Act
-			var response = client.GetStringAsync("http://localhost/api/warehouse");
-			string content = await response;
+			var responseString = await response.Content.ReadAsStringAsync();
 
-			//Assert
-			Assert.AreEqual(content, "404");
+			// Assert
+			Assert.AreEqual("",
+				responseString);
 		}
 
 		[TestMethod]
 		public async Task PostWarehouse()
 		{
-			//Arrange
-			HttpClient client = new HttpClient();
+			// Act
+			var response = await _client.GetAsync("/api/warehouse");
+			response.EnsureSuccessStatusCode();
 
-			//Act
-			var response = client.GetStringAsync("");
-			string content = await response;
+			var responseString = await response.Content.ReadAsStringAsync();
 
-			//Assert
-			Assert.AreEqual(content, "404");
+			// Assert
+			Assert.AreEqual("",
+				responseString);
 		}
 
 		[TestMethod]
 		public async Task PostParcel()
 		{
-			//Arrange
-			HttpClient client = new HttpClient();
+			// Act
+			var response = await _client.GetAsync("/api/parcel");
+			response.EnsureSuccessStatusCode();
 
-			//Act
-			var response = client.GetStringAsync("");
-			string content = await response;
+			var responseString = await response.Content.ReadAsStringAsync();
 
-			//Assert
-			Assert.AreEqual(content, "404");
+			// Assert
+			Assert.AreEqual("",
+				responseString);
 		}
 
 		[TestMethod]
 		public async Task GetParcel()
 		{
-			//Arrange
-			HttpClient client = new HttpClient();
+			// Act
+			var response = await _client.GetAsync("/api/parcel/{trackingId}");
+			response.EnsureSuccessStatusCode();
 
-			//Act
-			var response = client.GetStringAsync("");
-			string content = await response;
+			var responseString = await response.Content.ReadAsStringAsync();
 
-			//Assert
-			Assert.AreEqual(content, "404");
+			// Assert
+			Assert.AreEqual("",
+				responseString);
 		}
 
 		[TestMethod]
 		public async Task PostReportHop()
 		{
-			//Arrange
-			HttpClient client = new HttpClient();
+			// Act
+			var response = await _client.GetAsync("/api/parcel/{trackingId}/reportHop/{code}");
+			response.EnsureSuccessStatusCode();
 
-			//Act
-			var response = client.GetStringAsync("");
-			string content = await response;
+			var responseString = await response.Content.ReadAsStringAsync();
 
-			//Assert
-			Assert.AreEqual(content, "404");
+			// Assert
+			Assert.AreEqual("",
+				responseString);
 		}
 	}
 }
