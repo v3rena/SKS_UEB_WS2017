@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PLS.SKS.Package.Services.In
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PLS.SKS.Package.Services.DTOs", "PLS.SKS.Package.Services.DTOs\PLS.SKS.Package.Services.DTOs.csproj", "{43446FC2-188E-4229-B694-FD6883CED71C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PLS.SKS.Package.Services.Tests", "PLS.SKS.Package.Services.Tests\PLS.SKS.Package.Services.Tests.csproj", "{CDA675EF-E21F-4DD1-9F5D-9FC1DD59CB41}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{43446FC2-188E-4229-B694-FD6883CED71C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43446FC2-188E-4229-B694-FD6883CED71C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43446FC2-188E-4229-B694-FD6883CED71C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDA675EF-E21F-4DD1-9F5D-9FC1DD59CB41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDA675EF-E21F-4DD1-9F5D-9FC1DD59CB41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDA675EF-E21F-4DD1-9F5D-9FC1DD59CB41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDA675EF-E21F-4DD1-9F5D-9FC1DD59CB41}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
