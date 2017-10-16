@@ -65,6 +65,8 @@ namespace PLS.SKS.Package.Services.Tests
 		[TestMethod]
 		public async Task GetParcel()
 		{
+			//new Parcel() bauen und so weiter
+
 			// Act
 			var response = await _client.GetAsync("/api/parcel/{trackingId}");
 			response.EnsureSuccessStatusCode();
