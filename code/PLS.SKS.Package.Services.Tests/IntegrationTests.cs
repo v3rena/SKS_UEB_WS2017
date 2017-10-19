@@ -4,6 +4,7 @@ using PLS.SKS.Package.Services;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.AspNetCore.Hosting;
+using IO.Swagger.Models;
 
 namespace PLS.SKS.Package.Services.Tests
 {
@@ -12,6 +13,7 @@ namespace PLS.SKS.Package.Services.Tests
     {
 		private readonly TestServer _server;
 		private readonly HttpClient _client;
+
 		public IntegrationTests()
 		{
 			// Arrange
@@ -66,9 +68,11 @@ namespace PLS.SKS.Package.Services.Tests
 		public async Task GetParcel()
 		{
 			//new Parcel() bauen und so weiter
+			var parcel = new Parcel(12, new Receipient("Tobias", "Test", "Testgasse 7", "1160", "Wien"));
+			//HttpContent body = null;
 
 			// Act
-			var response = await _client.GetAsync("/api/parcel/{trackingId}");
+			var response = await _client.GetAsync("/api/parcel/");
 			response.EnsureSuccessStatusCode();
 
 			var responseString = await response.Content.ReadAsStringAsync();
