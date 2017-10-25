@@ -12,8 +12,8 @@ namespace PLS.SKS.Package.BusinessLogic.Entities
             this.recipient = recipient;
         }
 
-        private int weight;
+        public int weight;
 
-        private Recipient recipient;
+        public Recipient recipient;
     }
 }
