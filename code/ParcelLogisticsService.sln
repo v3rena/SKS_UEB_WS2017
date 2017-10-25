@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PLS.SKS.Package.Services", "ParcelLogisticsService\PLS.SKS.Package.Services.csproj", "{054B8554-6346-41FA-9B27-BBD8087DBCFF}"
 EndProject
@@ -17,11 +17,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BusinessLogic", "BusinessLo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", "{439B6556-C165-4DFE-A937-C21BC07DD49C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PLS.SKS.Package.BusinessLogic", "PLS.SKS.Package.BusinessLogic\PLS.SKS.Package.BusinessLogic.csproj", "{0EC8C38D-F206-4911-A549-AE9210E5D723}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PLS.SKS.Package.BusinessLogic", "PLS.SKS.Package.BusinessLogic\PLS.SKS.Package.BusinessLogic.csproj", "{0EC8C38D-F206-4911-A549-AE9210E5D723}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PLS.SKS.Package.BusinessLogic.Entities", "PLS.SKS.Package.BusinessLogic.Entities\PLS.SKS.Package.BusinessLogic.Entities.csproj", "{2ED46316-F0D4-4A15-9A42-797D82629DE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PLS.SKS.Package.BusinessLogic.Entities", "PLS.SKS.Package.BusinessLogic.Entities\PLS.SKS.Package.BusinessLogic.Entities.csproj", "{2ED46316-F0D4-4A15-9A42-797D82629DE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PLS.SKS.Package.BusinessLogic.Interfaces", "PLS.SKS.Package.BusinessLogic.Interfaces\PLS.SKS.Package.BusinessLogic.Interfaces.csproj", "{60B503C1-90FE-4747-9097-8F45FA2C3666}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PLS.SKS.Package.BusinessLogic.Interfaces", "PLS.SKS.Package.BusinessLogic.Interfaces\PLS.SKS.Package.BusinessLogic.Interfaces.csproj", "{60B503C1-90FE-4747-9097-8F45FA2C3666}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PLS.SKS.Package.BusinessLogic.Tests", "PLS.SKS.Package.BusinessLogic.Tests\PLS.SKS.Package.BusinessLogic.Tests.csproj", "{1866B94A-A3D7-4420-A4A4-8243583F92A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{60B503C1-90FE-4747-9097-8F45FA2C3666}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60B503C1-90FE-4747-9097-8F45FA2C3666}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60B503C1-90FE-4747-9097-8F45FA2C3666}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1866B94A-A3D7-4420-A4A4-8243583F92A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1866B94A-A3D7-4420-A4A4-8243583F92A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1866B94A-A3D7-4420-A4A4-8243583F92A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1866B94A-A3D7-4420-A4A4-8243583F92A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +75,7 @@ Global
 		{0EC8C38D-F206-4911-A549-AE9210E5D723} = {E5E268D2-6984-4BC9-9363-D247149FEDA6}
 		{2ED46316-F0D4-4A15-9A42-797D82629DE1} = {E5E268D2-6984-4BC9-9363-D247149FEDA6}
 		{60B503C1-90FE-4747-9097-8F45FA2C3666} = {E5E268D2-6984-4BC9-9363-D247149FEDA6}
+		{1866B94A-A3D7-4420-A4A4-8243583F92A4} = {E5E268D2-6984-4BC9-9363-D247149FEDA6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B303BF79-71FE-4F7F-B140-151ED058CF19}
