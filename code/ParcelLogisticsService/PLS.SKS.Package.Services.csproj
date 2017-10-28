@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="6.1.1" />
+    <PackageReference Include="FluentValidation" Version="7.2.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="2.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
@@ -19,6 +20,11 @@
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PLS.SKS.Package.BusinessLogic.Entities\PLS.SKS.Package.BusinessLogic.Entities.csproj" />
+    <ProjectReference Include="..\PLS.SKS.Package.BusinessLogic.Interfaces\PLS.SKS.Package.BusinessLogic.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>

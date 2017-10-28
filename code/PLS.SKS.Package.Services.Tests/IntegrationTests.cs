@@ -61,7 +61,7 @@ namespace PLS.SKS.Package.Services.Tests
 		public async Task PostParcel()
 		{
 			//Assert
-			var parcel = new Parcel(12, new Receipient("Tobias", "Test", "Testgasse 7", "1160", "Wien"));
+			var parcel = new Parcel(12, new Recipient("Tobias", "Test", "Testgasse 7", "1160", "Wien"));
 			var stringContent = new StringContent(JsonConvert.SerializeObject(parcel), Encoding.UTF8, "application/json");
 
 			// Act
@@ -93,7 +93,7 @@ namespace PLS.SKS.Package.Services.Tests
 		public async Task PostReportHop()
 		{
 			//Assert
-			var parcel = new Parcel(12, new Receipient("Tobias", "Test", "Testgasse 7", "1160", "Wien"));
+			var parcel = new Parcel(12, new Recipient("Tobias", "Test", "Testgasse 7", "1160", "Wien"));
 			var warehouse = new Warehouse("EX1234", "Test", 12, new List<Warehouse> { new Warehouse("EX1234", "Test", 12, new List<Warehouse>(), new List<Truck>()) }, new List<Truck>());
 			var stringContent = new StringContent(JsonConvert.SerializeObject(parcel), Encoding.UTF8, "application/json");
 

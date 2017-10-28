@@ -6,6 +6,10 @@ namespace PLS.SKS.Package.BusinessLogic.Entities
 {
     public class Recipient
     {
+        public Recipient()
+        {
+
+        }
         public Recipient(string firstName, string lastName, string street, string postalCode, string city)
         {
             this.firstName = firstName;
@@ -15,11 +19,11 @@ namespace PLS.SKS.Package.BusinessLogic.Entities
             this.city = city;
         }
 
-        private string firstName;
-        private string lastName;
-        private string street;
-        private string postalCode;
-        private string city;
+        public string firstName;
+		public string lastName;
+		public string street;
+		public string postalCode;
+		public string city;
 
     }
 }

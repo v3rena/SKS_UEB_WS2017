@@ -6,23 +6,23 @@ namespace PLS.SKS.Package.BusinessLogic.Entities
 {
     public class TrackingInformation
     {
-        public TrackingInformation(string state, List<hopArrival> futureHops)
+        public TrackingInformation(string state, List<HopArrival> futureHops)
         {
             this.state = state;
             this.futureHops = futureHops;
-            visitedHops = new List<hopArrival>();
+            visitedHops = new List<HopArrival>();
         }
 
-        private string state { get; set; }
-        private List<hopArrival> visitedHops;
-        private List<hopArrival> futureHops;
+		public string state { get; set; }
+		public List<HopArrival> visitedHops;
+		public List<HopArrival> futureHops;
 
-        public void addVisited(hopArrival visited)
+        public void addVisited(HopArrival visited)
         {
 
         }
 
-        public void removeFuture(hopArrival future)
+        public void removeFuture(HopArrival future)
         {
 
         }
