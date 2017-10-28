@@ -4,15 +4,15 @@ using System.Text;
 
 namespace PLS.SKS.Package.BusinessLogic.Entities
 {
-    public class hopArrival
+    public class HopArrival
     {
-        public hopArrival(string code, DateTime dateTime)
+        public HopArrival(string code, DateTime dateTime)
         {
             this.code = code;
             this.dateTime = dateTime;
         }
 
-        private string code;
-        private DateTime dateTime;
+        public string code;
+        public DateTime dateTime;
     }
 }

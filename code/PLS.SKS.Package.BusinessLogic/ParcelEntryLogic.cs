@@ -1,6 +1,8 @@
-﻿using System;
+﻿using FluentValidation.Results;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using static PLS.SKS.Package.BusinessLogic.Validator;
 
 namespace PLS.SKS.Package.BusinessLogic
 {
@@ -21,9 +23,16 @@ namespace PLS.SKS.Package.BusinessLogic
 
         public void addParcel(Entities.Parcel parcel)
         {
+			ParcelValidator validator = new ParcelValidator();
+			ValidationResult results = validator.Validate(parcel);
 
         }
 
         public AutoMapper.IMapper Mapper { get; set; }
+
+      bool validationSucceeded = results.IsValid;
+			IList<ValidationFailure> failures = results.Errors;
+
+
     }
-}
+  }

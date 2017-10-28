@@ -62,9 +62,14 @@ namespace IO.Swagger.Controllers
         [Route("/api/warehouse")]
         [SwaggerOperation("ImportWarehouses")]
         public virtual void ImportWarehouses([FromBody]Warehouse warehouseRoot)
-        { 
-            throw new NotImplementedException();
-        }
+        {
+			string exampleJson = null;
+
+			var example = exampleJson != null
+			? JsonConvert.DeserializeObject<InlineResponse200>(exampleJson)
+			: default(InlineResponse200);
+
+		}
 
 
         /// <summary>
@@ -79,9 +84,13 @@ namespace IO.Swagger.Controllers
         [Route("/api/parcel/{trackingId}/reportHop/{code}")]
         [SwaggerOperation("ReportParcelHop")]
         public virtual void ReportParcelHop([FromRoute]string trackingId, [FromRoute]string code)
-        { 
-            throw new NotImplementedException();
-        }
+        {
+			string exampleJson = null;
+
+			var example = exampleJson != null
+			? JsonConvert.DeserializeObject<InlineResponse200>(exampleJson)
+			: default(InlineResponse200);
+		}
 
 
         /// <summary>

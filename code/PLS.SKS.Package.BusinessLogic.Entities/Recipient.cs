@@ -19,11 +19,19 @@ namespace PLS.SKS.Package.BusinessLogic.Entities
             this.City = city;
         }
 
+<<<<<<< HEAD
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Street { get; set; }
         public string PostalCode { get; set; }
         public string City { get; set; }
+=======
+        public string firstName;
+		public string lastName;
+		public string street;
+		public string postalCode;
+		public string city;
+>>>>>>> development
 
     }
 }

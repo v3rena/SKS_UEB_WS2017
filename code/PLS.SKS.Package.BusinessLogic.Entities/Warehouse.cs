@@ -11,10 +11,10 @@ namespace PLS.SKS.Package.BusinessLogic.Entities
 
         }
 
-        private string code;
-        private string description;
-        private decimal duration;
-        private List<Warehouse> nextHops;
-        private List<Truck> trucks;
+		public string code;
+		public string description;
+		public decimal duration;
+		public List<Warehouse> nextHops;
+		public List<Truck> trucks;
     }
 }
