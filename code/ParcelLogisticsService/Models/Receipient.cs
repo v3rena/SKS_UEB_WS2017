@@ -9,7 +9,6 @@
  */
 
 using System;
-using System.Linq;
 using System.IO;
 using System.Text;
 using System.Collections;
@@ -25,7 +24,7 @@ namespace IO.Swagger.Models
     /// 
     /// </summary>
     [DataContract]
-    public partial class Receipient :  IEquatable<Receipient>
+    public partial class Recipient :  IEquatable<Recipient>
     {
 
         /// <summary>
@@ -36,7 +35,7 @@ namespace IO.Swagger.Models
         /// <param name="Street">Street (required).</param>
         /// <param name="PostalCode">PostalCode (required).</param>
         /// <param name="City">City (required).</param>
-        public Receipient(string FirstName = default(string), string LastName = default(string), string Street = default(string), string PostalCode = default(string), string City = default(string))
+        public Recipient(string FirstName = default(string), string LastName = default(string), string Street = default(string), string PostalCode = default(string), string City = default(string))
         {
             // to ensure "FirstName" is required (not null)
             if (FirstName == null)
@@ -148,15 +147,15 @@ namespace IO.Swagger.Models
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != GetType()) return false;
-            return Equals((Receipient)obj);
+            return Equals((Recipient)obj);
         }
 
         /// <summary>
-        /// Returns true if Receipient instances are equal
+        /// Returns true if Recipient instances are equal
         /// </summary>
-        /// <param name="other">Instance of Receipient to be compared</param>
+        /// <param name="other">Instance of Recipient to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Receipient other)
+        public bool Equals(Recipient other)
         {
 
             if (ReferenceEquals(null, other)) return false;
@@ -217,12 +216,12 @@ namespace IO.Swagger.Models
 
         #region Operators
 
-        public static bool operator ==(Receipient left, Receipient right)
+        public static bool operator ==(Recipient left, Recipient right)
         {
             return Equals(left, right);
         }
 
-        public static bool operator !=(Receipient left, Receipient right)
+        public static bool operator !=(Recipient left, Recipient right)
         {
             return !Equals(left, right);
         }

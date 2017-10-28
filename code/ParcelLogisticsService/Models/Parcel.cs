@@ -32,8 +32,8 @@ namespace IO.Swagger.Models
         /// Initializes a new instance of the <see cref="Parcel" /> class.
         /// </summary>
         /// <param name="Weight">Weight (required).</param>
-        /// <param name="Receipient">Receipient (required).</param>
-        public Parcel(float? Weight = default(float?), Receipient Receipient = default(Receipient))
+        /// <param name="Recipient">Recipient (required).</param>
+        public Parcel(float? Weight = default(float?), Recipient Recipient = default(Recipient))
         {
             // to ensure "Weight" is required (not null)
             if (Weight == null)
@@ -44,14 +44,14 @@ namespace IO.Swagger.Models
             {
                 this.Weight = Weight;
             }
-            // to ensure "Receipient" is required (not null)
-            if (Receipient == null)
+            // to ensure "Recipient" is required (not null)
+            if (Recipient == null)
             {
                 throw new InvalidDataException("Receipient is a required property for Parcel and cannot be null");
             }
             else
             {
-                this.Receipient = Receipient;
+                this.Recipient = Recipient;
             }
             
         }
@@ -62,10 +62,10 @@ namespace IO.Swagger.Models
         [DataMember(Name="weight")]
         public float? Weight { get; set; }
         /// <summary>
-        /// Gets or Sets Receipient
+        /// Gets or Sets Recipient
         /// </summary>
-        [DataMember(Name="receipient")]
-        public Receipient Receipient { get; set; }
+        [DataMember(Name="recipient")]
+        public Recipient Recipient { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -76,7 +76,7 @@ namespace IO.Swagger.Models
             var sb = new StringBuilder();
             sb.Append("class Parcel {\n");
             sb.Append("  Weight: ").Append(Weight).Append("\n");
-            sb.Append("  Receipient: ").Append(Receipient).Append("\n");
+            sb.Append("  Recipient: ").Append(Recipient).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -121,9 +121,9 @@ namespace IO.Swagger.Models
                     this.Weight.Equals(other.Weight)
                 ) && 
                 (
-                    this.Receipient == other.Receipient ||
-                    this.Receipient != null &&
-                    this.Receipient.Equals(other.Receipient)
+                    this.Recipient == other.Recipient ||
+                    this.Recipient != null &&
+                    this.Recipient.Equals(other.Recipient)
                 );
         }
 
@@ -140,8 +140,8 @@ namespace IO.Swagger.Models
                 // Suitable nullity checks etc, of course :)
                     if (this.Weight != null)
                     hash = hash * 59 + this.Weight.GetHashCode();
-                    if (this.Receipient != null)
-                    hash = hash * 59 + this.Receipient.GetHashCode();
+                    if (this.Recipient != null)
+                    hash = hash * 59 + this.Recipient.GetHashCode();
                 return hash;
             }
         }

@@ -6,14 +6,19 @@ namespace PLS.SKS.Package.BusinessLogic.Entities
 {
     public class Parcel
     {
-        public Parcel(int weight, Recipient recipient)
+        public Parcel()
         {
-            this.weight = weight;
-            this.recipient = recipient;
+            Recipient = new Recipient();
         }
 
-        private int weight;
+        public Parcel(int weight, Recipient recipient)
+        {
+            this.Weight = weight;
+            this.Recipient = recipient;
+        }
 
-        private Recipient recipient;
+        public int Weight { get; set; }
+
+        public Recipient Recipient { get; set; }
     }
 }
