@@ -26,13 +26,10 @@ namespace PLS.SKS.Package.BusinessLogic
 			ParcelValidator validator = new ParcelValidator();
 			ValidationResult results = validator.Validate(parcel);
 
+            bool validationSucceeded = results.IsValid;
+            IList<ValidationFailure> failures = results.Errors;
         }
 
         public AutoMapper.IMapper Mapper { get; set; }
-
-        bool validationSucceeded = results.IsValid;
-		IList<ValidationFailure> failures = results.Errors;
-
-
     }
   }
