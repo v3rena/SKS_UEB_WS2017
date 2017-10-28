@@ -12,26 +12,18 @@ namespace PLS.SKS.Package.BusinessLogic.Entities
         }
         public Recipient(string firstName, string lastName, string street, string postalCode, string city)
         {
-            this.FirstName = firstName;
-            this.LastName = lastName;
-            this.Street = street;
-            this.PostalCode = postalCode;
-            this.City = city;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.street = street;
+            this.postalCode = postalCode;
+            this.city = city;
         }
 
-<<<<<<< HEAD
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Street { get; set; }
-        public string PostalCode { get; set; }
-        public string City { get; set; }
-=======
         public string firstName;
 		public string lastName;
 		public string street;
 		public string postalCode;
 		public string city;
->>>>>>> development
 
     }
 }

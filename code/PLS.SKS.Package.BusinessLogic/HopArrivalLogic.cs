@@ -10,7 +10,15 @@ namespace PLS.SKS.Package.BusinessLogic
     {
         public HopArrivalLogic()
         {
+            var config = new AutoMapper.MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<IO.Swagger.Models.Recipient, PLS.SKS.Package.BusinessLogic.Entities.Recipient>();
+                cfg.CreateMap<IO.Swagger.Models.Parcel, PLS.SKS.Package.BusinessLogic.Entities.Parcel>();
+            }
+            );
 
+            config.AssertConfigurationIsValid();
+            Mapper = config.CreateMapper();
         }
 
         public void scanParcel(Entities.Parcel parcel, string code)
@@ -22,5 +30,7 @@ namespace PLS.SKS.Package.BusinessLogic
 			IList<ValidationFailure> failures = results.Errors;
 
 		}
+
+        public AutoMapper.IMapper Mapper;
     }
 }

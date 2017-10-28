@@ -30,8 +30,8 @@ namespace PLS.SKS.Package.BusinessLogic
 
         public AutoMapper.IMapper Mapper { get; set; }
 
-      bool validationSucceeded = results.IsValid;
-			IList<ValidationFailure> failures = results.Errors;
+        bool validationSucceeded = results.IsValid;
+		IList<ValidationFailure> failures = results.Errors;
 
 
     }
