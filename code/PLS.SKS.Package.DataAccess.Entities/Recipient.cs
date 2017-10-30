@@ -6,6 +6,7 @@ namespace PLS.SKS.Package.DataAccess.Entities
 {
     public class Recipient
     {
+        public int id { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
         public string street { get; set; }

@@ -6,6 +6,7 @@ namespace PLS.SKS.Package.DataAccess.Entities
 {
     public class TrackingInformation
     {
+        public int id { get; set; }
         public string state { get; set; }
         public List<HopArrival> visitedHops = new List<HopArrival>();
         public List<HopArrival> futureHops = new List<HopArrival>();
