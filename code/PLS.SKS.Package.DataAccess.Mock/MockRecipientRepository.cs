@@ -2,6 +2,7 @@
 using PLS.SKS.Package.DataAccess.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PLS.SKS.Package.DataAccess.Mock
 {
@@ -14,25 +15,27 @@ namespace PLS.SKS.Package.DataAccess.Mock
 
         }
 
-        public int Create(Recipient p)
+        public int Create(Recipient r)
         {
-            recipients.Add(p);
+            recipients.Add(r);
             return 0;
         }
 
         public void Delete(int id)
         {
-            recipients.Remove(Recipient r => r.)
+            Recipient r = recipients.SingleOrDefault(item => item.id == id);
+            recipients.Remove(r);
         }
 
         public Recipient GetById(int id)
         {
-            throw new NotImplementedException();
+            return recipients.SingleOrDefault(item => item.id == id);
         }
 
-        public void Update(Recipient p)
+        public void Update(Recipient r)
         {
-            throw new NotImplementedException();
+            Recipient r2 = recipients.Find(item => item.id == r.id);
+            r = r2;
         }
     }
 }

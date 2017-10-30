@@ -6,7 +6,11 @@ namespace PLS.SKS.Package.DataAccess.Entities
 {
     public class Warehouse : Hop
     {
-        public int id { get; set; }
+        public Warehouse()
+        {
+
+        }
+
         public string description { get; set; }
         public List<Warehouse> nextHops { get; set; }
         public List<Truck> trucks { get; set; }
