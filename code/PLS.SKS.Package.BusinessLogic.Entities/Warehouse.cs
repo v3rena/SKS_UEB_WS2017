@@ -11,10 +11,10 @@ namespace PLS.SKS.Package.BusinessLogic.Entities
 
         }
 
-		public string code;
-		public string description;
-		public decimal duration;
-		public List<Warehouse> nextHops;
-		public List<Truck> trucks;
+		public string code { get; set; }
+		public string description { get; set; }
+		public decimal duration { get; set; }
+		public List<Warehouse> nextHops { get; set; }
+		public List<Truck> trucks { get; set; }
     }
 }

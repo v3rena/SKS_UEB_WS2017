@@ -16,11 +16,11 @@ namespace PLS.SKS.Package.BusinessLogic.Entities
             this.duration = duration;
         }
 
-        public string code;
-		public string numberPlate;
-		public decimal latitude;
-		public decimal longitude;
-		public decimal radius;
-		public decimal duration;
+        public string code { get; set; }
+		public string numberPlate { get; set; }
+		public decimal latitude { get; set; }
+		public decimal longitude { get; set; }
+		public decimal radius { get; set; }
+		public decimal duration { get; set; }
     }
 }
