@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PLS.SKS.Package.DataAccess.Entities\PLS.SKS.Package.DataAccess.Entities.csproj" />
+  </ItemGroup>
+
 </Project>

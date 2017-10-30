@@ -6,6 +6,8 @@ namespace PLS.SKS.Package.BusinessLogic.Entities
 {
     public class TrackingInformation
     {
+        public TrackingInformation() { }
+
         public TrackingInformation(string state, List<HopArrival> futureHops)
         {
             this.state = state;
