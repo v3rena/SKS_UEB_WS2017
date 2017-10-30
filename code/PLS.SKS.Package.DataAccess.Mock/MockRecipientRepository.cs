@@ -12,12 +12,14 @@ namespace PLS.SKS.Package.DataAccess.Mock
 
         public MockRecipientRepository()
         {
-
+            Create(new Recipient("Peter", "Pilz", "Waldweg 15", "1120", "Wien"));
+            Create(new Recipient("Hans Peter", "Doskozil", "Industriestrasse 39", "1210", "Wien"));
+            Create(new Recipient("August", "Wöginger", "Sonnenhang 7", "4779", "Andorf"));
         }
 
         public int Create(Recipient r)
         {
-            recipients.Add(r);
+			recipients.Add(r);
             return 0;
         }
 
