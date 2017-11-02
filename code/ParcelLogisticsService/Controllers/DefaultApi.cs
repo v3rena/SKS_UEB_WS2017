@@ -133,7 +133,8 @@ namespace IO.Swagger.Controllers
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<TrackingInformation>(exampleJson)
             : default(TrackingInformation);
-            return new ObjectResult(example);
-        }
+			return new ObjectResult(new TrackingInformation());
+
+		}
     }
 }
