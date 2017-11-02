@@ -6,6 +6,5 @@ namespace PLS.SKS.Package.BusinessLogic.Interfaces
     {
         void addParcel(Parcel parcel);
 
-        AutoMapper.IMapper Mapper { get; set; }
     }
 }

@@ -3,23 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using static PLS.SKS.Package.BusinessLogic.Validator;
+using PLS.SKS.Package;
 
 namespace PLS.SKS.Package.BusinessLogic
 {
     public class HopArrivalLogic : Interfaces.IHopArrivalLogic
     {
-        public HopArrivalLogic()
-        {
-            var config = new AutoMapper.MapperConfiguration(cfg =>
-            {
-                cfg.CreateMap<IO.Swagger.Models.Recipient, PLS.SKS.Package.BusinessLogic.Entities.Recipient>();
-                cfg.CreateMap<IO.Swagger.Models.Parcel, PLS.SKS.Package.BusinessLogic.Entities.Parcel>();
-            }
-            );
-
-            config.AssertConfigurationIsValid();
-            Mapper = config.CreateMapper();
-        }
 
         public void scanParcel(Entities.Parcel parcel, string code)
         {
@@ -31,6 +20,5 @@ namespace PLS.SKS.Package.BusinessLogic
 
 		}
 
-        public AutoMapper.IMapper Mapper;
     }
 }
