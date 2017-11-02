@@ -6,6 +6,8 @@ namespace PLS.SKS.Package.BusinessLogic.Entities
 {
     public class Truck
     {
+        public Truck() { }
+
         public Truck(string code, string numberPlate, decimal latitude, decimal longitude, decimal radius, decimal duration)
         {
             this.code = code;

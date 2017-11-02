@@ -2,7 +2,7 @@
 
 namespace PLS.SKS.Package.DataAccess.Sql
 {
-    public class Class1
+    public class SqlRecipientRepository
     {
     }
 }

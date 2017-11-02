@@ -6,6 +6,8 @@ namespace PLS.SKS.Package.BusinessLogic.Entities
 {
     public class HopArrival
     {
+        public HopArrival() { }
+
         public HopArrival(string code, DateTime dateTime)
         {
             this.code = code;
