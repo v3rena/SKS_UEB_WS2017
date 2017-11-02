@@ -11,13 +11,13 @@ namespace PLS.SKS.Package.BusinessLogic.Entities
             recipient = new Recipient();
         }
 
-        public Parcel(int weight, Recipient recipient)
+        public Parcel(float weight, Recipient recipient)
         {
             this.weight = weight;
             this.recipient = recipient;
         }
 
-        public int weight { get; set; }
+        public float weight { get; set; }
         public Recipient recipient { get; set; }
     }
 }
