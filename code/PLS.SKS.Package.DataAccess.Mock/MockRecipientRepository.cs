@@ -9,18 +9,21 @@ namespace PLS.SKS.Package.DataAccess.Mock
     public class MockRecipientRepository : IRecipientRepository
     {
         public List<Recipient> recipients = new List<Recipient>();
+		int r_id = 0;
 
         public MockRecipientRepository()
         {
-            Create(new Recipient("Peter", "Pilz", "Waldweg 15", "1120", "Wien"));
-            Create(new Recipient("Hans Peter", "Doskozil", "Industriestrasse 39", "1210", "Wien"));
-            Create(new Recipient("August", "Wöginger", "Sonnenhang 7", "4779", "Andorf"));
+            //Create(new Recipient("Peter", "Pilz", "Waldweg 15", "1120", "Wien"));
+            //Create(new Recipient("Hans Peter", "Doskozil", "Industriestrasse 39", "1210", "Wien"));
+            //Create(new Recipient("August", "Wöginger", "Sonnenhang 7", "4779", "Andorf"));
         }
 
         public int Create(Recipient r)
         {
+			r.id = r_id;
+			r_id++;
 			recipients.Add(r);
-            return 0;
+			return r.id;
         }
 
         public void Delete(int id)
