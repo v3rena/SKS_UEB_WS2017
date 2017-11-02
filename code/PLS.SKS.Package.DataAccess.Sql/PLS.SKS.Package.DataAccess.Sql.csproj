@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PLS.SKS.Package.DataAccess.Interfaces\PLS.SKS.Package.DataAccess.Interfaces.csproj" />
+  </ItemGroup>
+
 </Project>
