@@ -11,7 +11,7 @@ namespace PLS.SKS.Package.BusinessLogic
 
         }
 
-        public void trackPackage(string trackingID)
+        public void trackParcel(string trackingID)
         {
 
         }

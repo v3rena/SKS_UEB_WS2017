@@ -2,6 +2,6 @@
 {
     public interface ITrackingLogic
     {
-        void trackPackage(string trackingID);
+        void trackParcel(string trackingID);
     }
 }
