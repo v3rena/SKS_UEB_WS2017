@@ -22,5 +22,7 @@ namespace PLS.SKS.Package.DataAccess.Entities
         public decimal latitude { get; set; }
         public decimal longitude { get; set; }
         public decimal radius { get; set; }
-    }
+		//public int? test { get; set; }
+
+	}
 }

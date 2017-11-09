@@ -17,7 +17,7 @@ namespace PLS.SKS.Package.DataAccess.Entities
             this.trucks = trucks;
         }
 
-        public string description { get; set; }
+		public string description { get; set; }
         public List<Warehouse> nextHops { get; set; }
         public List<Truck> trucks { get; set; }
     }

@@ -12,6 +12,10 @@ namespace PLS.SKS.Package.DataAccess.Sql
         {
 		}
 
+		public ParcelLogisticsDBContext() : base()
+        {
+		}
+
 		public DbSet<Recipient> Recipients { get; set; }
 		public DbSet<Parcel> Parcels { get; set; }
 		public DbSet<TrackingInformation> TrackingInformations { get; set; }
