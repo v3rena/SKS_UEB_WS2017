@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PLS.SKS.Package.DataAccess.Entities
 {
-    public class Hop
+    public abstract class Hop
     {
         public Hop() { }
 

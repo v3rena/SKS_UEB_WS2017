@@ -15,7 +15,9 @@ namespace PLS.SKS.Package.DataAccess.Entities
         }
 
         public int id { get; set; }
-        public string code { get; set; }
+        public string code { get; set; } //Code of Warehouse or Truck
         public DateTime dateTime { get; set; }
+		public int trackingInformationId { get; set; }
+		public TrackingInformation trackingInformation { get; set; }
     }
 }
