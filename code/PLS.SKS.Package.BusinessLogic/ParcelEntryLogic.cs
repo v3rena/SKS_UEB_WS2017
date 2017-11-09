@@ -9,15 +9,19 @@ namespace PLS.SKS.Package.BusinessLogic
 {
     public class ParcelEntryLogic : Interfaces.IParcelEntryLogic
     {
-        public void addParcel(Entities.Parcel parcel)
+		DataAccess.Sql.SqlParcelRepository parcelRepo = new DataAccess.Sql.SqlParcelRepository();
+
+        public void addParcel(DataAccess.Entities.Parcel parcel)
         {
-			ParcelValidator validator = new ParcelValidator();
+			/*ParcelValidator validator = new ParcelValidator();
 			ValidationResult results = validator.Validate(parcel);
 
             bool validationSucceeded = results.IsValid;
-            IList<ValidationFailure> failures = results.Errors;
+            IList<ValidationFailure> failures = results.Errors;*/
 
+			string trackingNumber = "Test123";
 
+			parcelRepo.Create(parcel);
         }
     }
   }
