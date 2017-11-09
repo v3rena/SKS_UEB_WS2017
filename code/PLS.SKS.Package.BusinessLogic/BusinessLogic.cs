@@ -10,6 +10,7 @@ namespace PLS.SKS.Package.BusinessLogic
     {
         public BusinessLogic()
         {
+			parcelRepo = new DataAccess.Sql.SqlParcelRepository();
             hopArrivalLogic = new HopArrivalLogic();
             parcelEntryLogic = new ParcelEntryLogic();
             trackingLogic = new TrackingLogic();
@@ -21,9 +22,11 @@ namespace PLS.SKS.Package.BusinessLogic
             hopArrivalLogic.scanParcel(new Entities.Parcel(), "test");
         }
 
-        public void addParcel()
+        public void addParcel(IO.Swagger.Models.Parcel parcel)
         {
-            parcelEntryLogic.addParcel(new Entities.Parcel());
+			Entities.Parcel blParcel = Mapper.Map<Entities.Parcel>(parcel);
+			DataAccess.Entities.Parcel dalParcel = Mapper.Map<DataAccess.Entities.Parcel>(blParcel);
+			parcelEntryLogic.addParcel(dalParcel);
         }
 
         public void trackParcel()
@@ -60,5 +63,6 @@ namespace PLS.SKS.Package.BusinessLogic
         private HopArrivalLogic hopArrivalLogic;
         private ParcelEntryLogic parcelEntryLogic;
         private TrackingLogic trackingLogic;
+		private DataAccess.Interfaces.IParcelRepository parcelRepo;
     }
 }

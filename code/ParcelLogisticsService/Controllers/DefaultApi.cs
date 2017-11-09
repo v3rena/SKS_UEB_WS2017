@@ -20,23 +20,26 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Swashbuckle.SwaggerGen.Annotations;
 using IO.Swagger.Models;
+using PLS.SKS.Package;
 
 namespace IO.Swagger.Controllers
-{ 
+{
+
     /// <summary>
     /// 
     /// </summary>
     public class DefaultApiController : Controller
-    { 
+    {
+		PLS.SKS.Package.BusinessLogic.BusinessLogic bl = new PLS.SKS.Package.BusinessLogic.BusinessLogic();
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>Exports the hierarchy of &#x60;Warehouse&#x60; and &#x60;Truck&#x60; objects. </remarks>
-        /// <response code="200">Successful response</response>
-        /// <response code="404">No hierarchy loaded yet.</response>
-        /// <response code="500">An error occurred loading.</response>
-        [HttpGet]
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <remarks>Exports the hierarchy of &#x60;Warehouse&#x60; and &#x60;Truck&#x60; objects. </remarks>
+		/// <response code="200">Successful response</response>
+		/// <response code="404">No hierarchy loaded yet.</response>
+		/// <response code="500">An error occurred loading.</response>
+		[HttpGet]
         [Route("/api/warehouse")]
         [SwaggerOperation("ExportWarehouses")]
         [SwaggerResponse(200, type: typeof(Warehouse))]
@@ -105,7 +108,12 @@ namespace IO.Swagger.Controllers
         [SwaggerOperation("SubmitParcel")]
         [SwaggerResponse(200, type: typeof(InlineResponse200))]
         public virtual IActionResult SubmitParcel([FromBody]Parcel newParcel)
-        { 
+        {
+			Recipient recipient = new Recipient("Tobias", "Test", "Teststrasse 1", "1010", "Teststadt");
+			Parcel parcel = new Parcel(12, recipient);
+			bl.addParcel(parcel);
+
+
             string exampleJson = null;
             
             var example = exampleJson != null

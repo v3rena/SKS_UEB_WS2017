@@ -8,9 +8,19 @@ namespace PLS.SKS.Package.DataAccess.Sql
 {
 	public class SqlParcelRepository : IParcelRepository
 	{
+		private readonly ParcelLogisticsDBContext _context;
+
+		public SqlParcelRepository() { }
+
+		public SqlParcelRepository(ParcelLogisticsDBContext context)
+		{
+			_context = context;
+		}
+
 		public int Create(Parcel p)
 		{
-			throw new NotImplementedException();
+			_context.Add(p);
+			return p.id;
 		}
 
 		public void Delete(int id)
