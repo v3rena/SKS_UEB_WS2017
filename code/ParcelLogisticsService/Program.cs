@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
+using PLS.SKS.Package.DataAccess.Sql;
 
 namespace PLS.SKS.Package.Services
 {
@@ -24,7 +25,7 @@ namespace PLS.SKS.Package.Services
 				try
 				{
 					var context = services.GetRequiredService <DataAccess.Sql.ParcelLogisticsDBContext> ();
-					//DbInitializer.Initialize(context);
+					DBInitializer.Initialize(context);
 				}
 				catch (Exception ex)
 				{

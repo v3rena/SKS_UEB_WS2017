@@ -16,5 +16,7 @@ namespace PLS.SKS.Package.BusinessLogic.Entities
 
         public string code { get; set; }
         public DateTime dateTime { get; set; }
-    }
+		public TrackingInformation trackingInformation { get; set; }
+
+	}
 }

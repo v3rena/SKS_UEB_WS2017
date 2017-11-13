@@ -3,23 +3,24 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using PLS.SKS.Package.DataAccess.Entities;
+using System.Linq;
 
 namespace PLS.SKS.Package.DataAccess.Sql
 {
 	public class SqlParcelRepository : IParcelRepository
 	{
-		private readonly ParcelLogisticsDBContext _context;
+		private readonly ParcelLogisticsDBContext db = new ParcelLogisticsDBContext();
 
 		public SqlParcelRepository() { }
 
 		public SqlParcelRepository(ParcelLogisticsDBContext context)
 		{
-			_context = context;
+			db = context;
 		}
 
 		public int Create(Parcel p)
 		{
-			_context.Add(p);
+			db.Add(p);
 			return p.id;
 		}
 
@@ -35,7 +36,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 		public Parcel GetById(int id)
 		{
-			throw new NotImplementedException();
+			return db.Parcels.Find(id);
 		}
 
 		public IEnumerable<Parcel> GetByLengthRanking(int top)

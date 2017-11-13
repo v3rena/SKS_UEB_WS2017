@@ -18,6 +18,8 @@ namespace PLS.SKS.Package.BusinessLogic.Entities
         }
 
         public float weight { get; set; }
-        public Recipient recipient { get; set; }
+		public string trackingNumber { get; set; } //generated in business logic after parcel is successfully posted
+		public Recipient recipient { get; set; }
+		public TrackingInformation trackingInformation { get; set; }
     }
 }

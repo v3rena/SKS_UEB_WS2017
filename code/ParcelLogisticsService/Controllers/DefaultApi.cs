@@ -30,7 +30,17 @@ namespace IO.Swagger.Controllers
     /// </summary>
     public class DefaultApiController : Controller
     {
-		PLS.SKS.Package.BusinessLogic.BusinessLogic bl = new PLS.SKS.Package.BusinessLogic.BusinessLogic();
+		PLS.SKS.Package.BusinessLogic.BusinessLogic bl;
+
+		public DefaultApiController()
+		{
+			bl = new PLS.SKS.Package.BusinessLogic.BusinessLogic();
+		}
+
+		/*public DefaultApiController(PLS.SKS.Package.BusinessLogic.BusinessLogic businessLogic)
+		{
+			bl = businessLogic;
+		}*/
 
 		/// <summary>
 		/// 
@@ -133,14 +143,16 @@ namespace IO.Swagger.Controllers
         [HttpGet]
         [Route("/api/parcel/{trackingId}")]
         [SwaggerOperation("TrackParcel")]
-        [SwaggerResponse(200, type: typeof(TrackingInformation))]
+        [SwaggerResponse(200, type: typeof(Parcel))] //TrackingInformation ist der Rückgabewert!!!
         public virtual IActionResult TrackParcel([FromRoute]string trackingId)
         { 
             string exampleJson = null;
+
+			Parcel sParcel = bl.trackParcel(trackingId);
             
             var example = exampleJson != null
-            ? JsonConvert.DeserializeObject<TrackingInformation>(exampleJson)
-            : default(TrackingInformation);
+            ? JsonConvert.DeserializeObject<Parcel>(sParcel.ToString())
+            : default(Parcel);
 			return new ObjectResult(example);
 
 		}

@@ -20,33 +20,48 @@ namespace PLS.SKS.Package.BusinessLogic
             createMaps();
         }
 
-        public void scanParcel()
+		/*public BusinessLogic(DataAccess.Sql.SqlParcelRepository sqlParcelRepository)
+		{
+			parcelRepo = sqlParcelRepository;
+			hopArrivalLogic = new HopArrivalLogic();
+			parcelEntryLogic = new ParcelEntryLogic();
+			trackingLogic = new TrackingLogic();
+			createMaps();
+		}*/
+
+		public void scanParcel()
         {
-            hopArrivalLogic.scanParcel(new Entities.Parcel(), "test");
+            //hopArrivalLogic.scanParcel(new Entities.Parcel(), "test");
         }
 
         public void addParcel(IO.Swagger.Models.Parcel parcel)
         {
-			Entities.Parcel blParcel = Mapper.Map<Entities.Parcel>(parcel);
-			DataAccess.Entities.Parcel dalParcel = Mapper.Map<DataAccess.Entities.Parcel>(blParcel);
-			parcelEntryLogic.addParcel(dalParcel);
+			//Entities.Parcel blParcel = Mapper.Map<Entities.Parcel>(parcel);
+			//DataAccess.Entities.Parcel dalParcel = Mapper.Map<DataAccess.Entities.Parcel>(blParcel);
+			//parcelEntryLogic.addParcel(dalParcel);
         }
 
-        public void trackParcel()
+        public IO.Swagger.Models.Parcel trackParcel(string trackingNumber)
         {
-            trackingLogic.trackParcel("test");
-        }
+			int nr = Convert.ToInt32(trackingNumber);
+			DataAccess.Entities.Parcel dalParcel = parcelRepo.GetById(nr);
 
-        private void createMaps()
+			Entities.Parcel blParcel = Mapper.Map<Entities.Parcel>(dalParcel);
+			IO.Swagger.Models.Parcel sParcel = Mapper.Map<IO.Swagger.Models.Parcel>(blParcel);
+
+			return sParcel;
+		}
+
+		private void createMaps()
         {
             var config = new AutoMapper.MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<IO.Swagger.Models.Recipient, Entities.Recipient>();
-                cfg.CreateMap<IO.Swagger.Models.Parcel, Entities.Parcel>();
+                cfg.CreateMap<IO.Swagger.Models.Parcel, Entities.Parcel>().ForMember(model => model.trackingInformation, option => option.Ignore()).ForMember(model => model.trackingNumber, option => option.Ignore());
                 cfg.CreateMap<IO.Swagger.Models.Warehouse, Entities.Warehouse>();
-                cfg.CreateMap<IO.Swagger.Models.Truck, Entities.Truck>();
-                cfg.CreateMap<IO.Swagger.Models.TrackingInformation, Entities.TrackingInformation>();
-                cfg.CreateMap<IO.Swagger.Models.HopArrival, Entities.HopArrival>();
+				cfg.CreateMap<IO.Swagger.Models.Truck, Entities.Truck>(); //.ForMember(model => model.test, option => option.Ignore());
+				cfg.CreateMap<IO.Swagger.Models.TrackingInformation, Entities.TrackingInformation>();
+                cfg.CreateMap<IO.Swagger.Models.HopArrival, Entities.HopArrival>().ForMember(model => model.trackingInformation, option => option.Ignore());
 
                 cfg.CreateMap<DataAccess.Entities.Recipient, Entities.Recipient>();
                 cfg.CreateMap<DataAccess.Entities.Parcel, Entities.Parcel>();

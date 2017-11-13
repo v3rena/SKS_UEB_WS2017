@@ -28,6 +28,10 @@ namespace PLS.SKS.Package.Services
 			services.AddDbContext<DataAccess.Sql.ParcelLogisticsDBContext>(options =>
 			options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+			services.AddScoped<DataAccess.Interfaces.IParcelRepository, DataAccess.Sql.SqlParcelRepository>();
+			services.AddScoped<BusinessLogic.BusinessLogic>();
+			services.AddScoped(typeof(DataAccess.Interfaces.IParcelRepository), typeof(DataAccess.Sql.SqlParcelRepository));
+
 			services.AddMvc();
         }
 
