@@ -147,14 +147,15 @@ namespace IO.Swagger.Controllers
         [SwaggerResponse(200, type: typeof(Parcel))] //TrackingInformation ist der Rückgabewert!!!
         public virtual IActionResult TrackParcel([FromRoute]string trackingId)
         { 
-            string exampleJson = null;
-
 			Parcel sParcel = bl.trackParcel(trackingId);
-            
-            var example = exampleJson != null
-            ? JsonConvert.DeserializeObject<Parcel>(sParcel.ToString())
-            : default(Parcel);
-			return new ObjectResult(example);
+
+			//string exampleJson = null;
+			//var example = exampleJson != null
+            //? JsonConvert.DeserializeObject<Parcel>(sParcel.ToString())
+            //: default(Parcel);
+
+			//TrackingInformation soll zurückgegeben werden!
+			return new ObjectResult(sParcel);
 
 		}
     }

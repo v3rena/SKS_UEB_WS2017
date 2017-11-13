@@ -11,8 +11,6 @@ namespace PLS.SKS.Package.DataAccess.Sql
 	{
 		private readonly DBContext db;
 
-		//public SqlParcelRepository() { }
-
 		public SqlParcelRepository(DBContext context)
 		{
 			db = context;
