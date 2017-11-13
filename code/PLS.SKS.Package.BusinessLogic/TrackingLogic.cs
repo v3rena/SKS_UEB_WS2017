@@ -7,7 +7,7 @@ namespace PLS.SKS.Package.BusinessLogic
 {
     public class TrackingLogic : Interfaces.ITrackingLogic
     {
-		DataAccess.Sql.SqlParcelRepository parcelRepo = new DataAccess.Sql.SqlParcelRepository();
+		//DataAccess.Sql.SqlParcelRepository parcelRepo = new DataAccess.Sql.SqlParcelRepository();
 
 		public TrackingLogic()
         {

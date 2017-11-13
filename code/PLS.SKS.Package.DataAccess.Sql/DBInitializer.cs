@@ -9,7 +9,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 {
     public class DBInitializer
     {
-		public static void Initialize(ParcelLogisticsDBContext context)
+		public static void Initialize(DBContext context)
 		{
 			context.Database.EnsureCreated();
 

@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using System.Text;
 using PLS.SKS.Package;
-
+using PLS.SKS.Package.DataAccess.Sql;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace PLS.SKS.Package.BusinessLogic
 {
     public class BusinessLogic
     {
-        public BusinessLogic()
+        public BusinessLogic(IServiceProvider serviceProvider)
         {
-			parcelRepo = new DataAccess.Sql.SqlParcelRepository();
+			parcelRepo = new DataAccess.Sql.SqlParcelRepository(serviceProvider.GetRequiredService<DBContext>());
             hopArrivalLogic = new HopArrivalLogic();
-            parcelEntryLogic = new ParcelEntryLogic();
+            //parcelEntryLogic = new ParcelEntryLogic(serviceProvider.GetRequiredService<DBContext>());
             trackingLogic = new TrackingLogic();
 
 

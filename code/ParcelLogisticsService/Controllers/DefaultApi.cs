@@ -21,6 +21,7 @@ using Newtonsoft.Json;
 using Swashbuckle.SwaggerGen.Annotations;
 using IO.Swagger.Models;
 using PLS.SKS.Package;
+using PLS.SKS.Package.BusinessLogic;
 
 namespace IO.Swagger.Controllers
 {
@@ -32,9 +33,9 @@ namespace IO.Swagger.Controllers
     {
 		PLS.SKS.Package.BusinessLogic.BusinessLogic bl;
 
-		public DefaultApiController()
+		public DefaultApiController(BusinessLogic bl) //ItrackingLogic, IMapper
 		{
-			bl = new PLS.SKS.Package.BusinessLogic.BusinessLogic();
+			this.bl = bl;
 		}
 
 		/*public DefaultApiController(PLS.SKS.Package.BusinessLogic.BusinessLogic businessLogic)
