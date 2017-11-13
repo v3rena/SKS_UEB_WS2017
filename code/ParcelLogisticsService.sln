@@ -25,13 +25,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PLS.SKS.Package.BusinessLog
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PLS.SKS.Package.BusinessLogic.Tests", "PLS.SKS.Package.BusinessLogic.Tests\PLS.SKS.Package.BusinessLogic.Tests.csproj", "{1866B94A-A3D7-4420-A4A4-8243583F92A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PLS.SKS.Package.DataAccess.Sql", "PLS.SKS.Package.DataAccess.Sql\PLS.SKS.Package.DataAccess.Sql.csproj", "{524F5432-C936-4511-BCC5-EA9FF9605D82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PLS.SKS.Package.DataAccess.Sql", "PLS.SKS.Package.DataAccess.Sql\PLS.SKS.Package.DataAccess.Sql.csproj", "{524F5432-C936-4511-BCC5-EA9FF9605D82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PLS.SKS.Package.DataAccess.Interfaces", "PLS.SKS.Package.DataAccess.Interfaces\PLS.SKS.Package.DataAccess.Interfaces.csproj", "{F8CA412B-FF34-4F7B-AE93-DE4A85FC75D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PLS.SKS.Package.DataAccess.Interfaces", "PLS.SKS.Package.DataAccess.Interfaces\PLS.SKS.Package.DataAccess.Interfaces.csproj", "{F8CA412B-FF34-4F7B-AE93-DE4A85FC75D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PLS.SKS.Package.DataAccess.Entities", "PLS.SKS.Package.DataAccess.Entities\PLS.SKS.Package.DataAccess.Entities.csproj", "{2641A617-F4DA-4266-BB87-5F8CF57F001D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PLS.SKS.Package.DataAccess.Entities", "PLS.SKS.Package.DataAccess.Entities\PLS.SKS.Package.DataAccess.Entities.csproj", "{2641A617-F4DA-4266-BB87-5F8CF57F001D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PLS.SKS.Package.DataAccess.Mock", "PLS.SKS.Package.DataAccess.Mock\PLS.SKS.Package.DataAccess.Mock.csproj", "{20E35C46-DC90-4C95-BC60-A4F9C2ECF295}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PLS.SKS.Package.DataAccess.Mock", "PLS.SKS.Package.DataAccess.Mock\PLS.SKS.Package.DataAccess.Mock.csproj", "{20E35C46-DC90-4C95-BC60-A4F9C2ECF295}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PLS.SKS.Package.DataAccess", "PLS.SKS.Package.DataAccess\PLS.SKS.Package.DataAccess.csproj", "{B57374F5-5A8C-4522-A415-A33359790B4A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +89,10 @@ Global
 		{20E35C46-DC90-4C95-BC60-A4F9C2ECF295}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20E35C46-DC90-4C95-BC60-A4F9C2ECF295}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20E35C46-DC90-4C95-BC60-A4F9C2ECF295}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B57374F5-5A8C-4522-A415-A33359790B4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B57374F5-5A8C-4522-A415-A33359790B4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B57374F5-5A8C-4522-A415-A33359790B4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B57374F5-5A8C-4522-A415-A33359790B4A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -104,6 +110,7 @@ Global
 		{F8CA412B-FF34-4F7B-AE93-DE4A85FC75D9} = {439B6556-C165-4DFE-A937-C21BC07DD49C}
 		{2641A617-F4DA-4266-BB87-5F8CF57F001D} = {439B6556-C165-4DFE-A937-C21BC07DD49C}
 		{20E35C46-DC90-4C95-BC60-A4F9C2ECF295} = {439B6556-C165-4DFE-A937-C21BC07DD49C}
+		{B57374F5-5A8C-4522-A415-A33359790B4A} = {439B6556-C165-4DFE-A937-C21BC07DD49C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B303BF79-71FE-4F7F-B140-151ED058CF19}

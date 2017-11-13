@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PLS.SKS.Package.DataAccess.Entities\PLS.SKS.Package.DataAccess.Entities.csproj" />
+    <ProjectReference Include="..\PLS.SKS.Package.DataAccess.Interfaces\PLS.SKS.Package.DataAccess.Interfaces.csproj" />
+    <ProjectReference Include="..\PLS.SKS.Package.DataAccess.Mock\PLS.SKS.Package.DataAccess.Mock.csproj" />
+    <ProjectReference Include="..\PLS.SKS.Package.DataAccess.Sql\PLS.SKS.Package.DataAccess.Sql.csproj" />
+  </ItemGroup>
+
+</Project>
