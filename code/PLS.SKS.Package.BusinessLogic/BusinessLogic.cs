@@ -77,6 +77,16 @@ namespace PLS.SKS.Package.BusinessLogic
 			warehouseLogic.ImportWarehouses(dalWarehouse);
 		}
 
+        public void Test()
+        {
+            Entities.Recipient blRec = new Entities.Recipient("fName", "lName", "testStreet", "1234", "testCity");
+            Entities.Parcel blParcel = new Entities.Parcel(2.0f, blRec);
+
+            IO.Swagger.Models.Parcel swParcel = Mapper.Map<IO.Swagger.Models.Parcel>(blParcel);
+
+            return;
+        }
+
 		private void createMaps()
         {
             var config = new AutoMapper.MapperConfiguration(cfg =>
@@ -94,6 +104,10 @@ namespace PLS.SKS.Package.BusinessLogic
                 cfg.CreateMap<DataAccess.Entities.Truck, Entities.Truck>();
                 cfg.CreateMap<DataAccess.Entities.TrackingInformation, Entities.TrackingInformation>();
                 cfg.CreateMap<DataAccess.Entities.HopArrival, Entities.HopArrival>();
+
+                cfg.CreateMap<Entities.Parcel, IO.Swagger.Models.Parcel>();
+                cfg.CreateMap<Entities.Recipient, IO.Swagger.Models.Recipient>();
+
             }
             );
 

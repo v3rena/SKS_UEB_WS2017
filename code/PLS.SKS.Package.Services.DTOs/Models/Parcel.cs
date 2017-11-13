@@ -33,7 +33,7 @@ namespace IO.Swagger.Models
         /// </summary>
         /// <param name="Weight">Weight (required).</param>
         /// <param name="Recipient">Recipient (required).</param>
-        public Parcel(float? Weight = default(float?), Recipient Recipient = default(Recipient))
+        public Parcel(float? Weight, Recipient Recipient)
         {
             // to ensure "Weight" is required (not null)
             if (Weight == null)
@@ -55,6 +55,7 @@ namespace IO.Swagger.Models
             }
             
         }
+
 
         /// <summary>
         /// Gets or Sets Weight

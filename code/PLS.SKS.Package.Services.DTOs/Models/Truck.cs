@@ -37,7 +37,7 @@ namespace IO.Swagger.Models
         /// <param name="Longitude">Longitude (required).</param>
         /// <param name="Radius">Radius (required).</param>
         /// <param name="Duration">Duration (required).</param>
-        public Truck(string Code = default(string), string NumberPlate = default(string), decimal? Latitude = default(decimal?), decimal? Longitude = default(decimal?), decimal? Radius = default(decimal?), decimal? Duration = default(decimal?))
+        public Truck(string Code, string NumberPlate, decimal? Latitude, decimal? Longitude, decimal? Radius, decimal? Duration)
         {
             // to ensure "Code" is required (not null)
             if (Code == null)

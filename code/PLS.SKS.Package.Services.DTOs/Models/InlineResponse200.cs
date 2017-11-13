@@ -32,7 +32,7 @@ namespace IO.Swagger.Models
         /// Initializes a new instance of the <see cref="InlineResponse200" /> class.
         /// </summary>
         /// <param name="TrackingId">The tracking ID of the parcel..</param>
-        public InlineResponse200(string TrackingId = default(string))
+        public InlineResponse200(string TrackingId)
         {
             this.TrackingId = TrackingId;
             

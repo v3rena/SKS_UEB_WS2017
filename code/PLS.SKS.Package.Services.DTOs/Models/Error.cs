@@ -32,7 +32,7 @@ namespace IO.Swagger.Models
         /// Initializes a new instance of the <see cref="Error" /> class.
         /// </summary>
         /// <param name="ErrorMessage">The error message. (required).</param>
-        public Error(string ErrorMessage = default(string))
+        public Error(string ErrorMessage)
         {
             // to ensure "ErrorMessage" is required (not null)
             if (ErrorMessage == null)
