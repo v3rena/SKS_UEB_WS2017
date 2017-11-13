@@ -47,6 +47,11 @@ namespace PLS.SKS.Package.DataAccess.Mock
 			throw new NotImplementedException();
 		}
 
+		public Parcel GetByTrackingNumber(string trackingNumber)
+		{
+			throw new NotImplementedException();
+		}
+
 		public void Update(Parcel p)
 		{
 			Parcel p2 = parcels.Find(item => item.Id == p.Id);

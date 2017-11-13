@@ -5,8 +5,8 @@ using PLS.SKS.Package.DataAccess.Interfaces;
 
 namespace PLS.SKS.Package.DataAccess
 {
-    public class MockDatabase : Interfaces.IDatabase
-    {
+    public class MockDatabase : IDatabase
+	{
         public MockDatabase()
         {
             _parcelRepo = new Mock.MockParcelRepository();
@@ -24,13 +24,13 @@ namespace PLS.SKS.Package.DataAccess
             }
         }
 
-        IHopArrivalRepository hopArrivalRepo
+        /*IHopArrivalRepository hopArrivalRepo
         {
             get
             {
-                return _parcelRepo;
+				return _hopArrivalRepo;
             }
-        }
+        }*/
 
         IRecipientRepository recipientRepo => throw new NotImplementedException();
 
@@ -40,7 +40,15 @@ namespace PLS.SKS.Package.DataAccess
 
         IWarehouseRepository IDatabase.warehouseRepo => throw new NotImplementedException();
 
-        public Mock.MockParcelRepository _parcelRepo;
+		IHopArrivalRepository IDatabase.hopArrivalRepo => throw new NotImplementedException();
+
+		IParcelRepository IDatabase.parcelRepo => throw new NotImplementedException();
+
+		IRecipientRepository IDatabase.recipientRepo => throw new NotImplementedException();
+
+		ITrackingInformationRepository IDatabase.trackingRepo => throw new NotImplementedException();
+
+		public Mock.MockParcelRepository _parcelRepo;
         public Mock.MockRecipientRepository _recRepo;
         public Mock.MockTrackingInformationRepository _trackingRepo;
         public Mock.MockTruckRepository _truckRepo;

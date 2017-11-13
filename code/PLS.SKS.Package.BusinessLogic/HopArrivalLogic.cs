@@ -17,9 +17,11 @@ namespace PLS.SKS.Package.BusinessLogic
 			parcelRepo = new DataAccess.Sql.SqlParcelRepository(serviceProvider.GetRequiredService<DataAccess.Sql.DBContext>());
 		}
 
-		public void scanParcel(DataAccess.Entities.Parcel parcel, string code)
+		public void scanParcel(string trackingNumber, string code)
         {
-			//
+			//TrackingInformation des Parcels gehört geupdated
+			//Was mach ich mit dem HopArrival?
+			//DataAccess.Entities.Parcel dalParcel = parcelRepo.GetByCode(trackingNumber);
 		}
-    }
+	}
 }

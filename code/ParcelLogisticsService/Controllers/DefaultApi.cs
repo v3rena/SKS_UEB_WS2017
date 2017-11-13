@@ -52,12 +52,7 @@ namespace IO.Swagger.Controllers
         public virtual IActionResult ExportWarehouses()
         {
 			Warehouse warehouse = bl.ExportWarehouses();
-            string exampleJson = null;
-           
-            var example = exampleJson != null
-            ? JsonConvert.DeserializeObject<Warehouse>(exampleJson)
-            : default(Warehouse);
-            return new ObjectResult(example);
+            return new ObjectResult(warehouse);
         }
 
 
@@ -73,12 +68,7 @@ namespace IO.Swagger.Controllers
         [SwaggerOperation("ImportWarehouses")]
         public virtual void ImportWarehouses([FromBody]Warehouse warehouseRoot)
         {
-			string exampleJson = null;
-
-			var example = exampleJson != null
-			? JsonConvert.DeserializeObject<InlineResponse200>(exampleJson)
-			: default(InlineResponse200);
-
+			bl.ImportWarehouses(warehouseRoot);
 		}
 
 
@@ -95,11 +85,7 @@ namespace IO.Swagger.Controllers
         [SwaggerOperation("ReportParcelHop")]
         public virtual void ReportParcelHop([FromRoute]string trackingId, [FromRoute]string code)
         {
-			string exampleJson = null;
-
-			var example = exampleJson != null
-			? JsonConvert.DeserializeObject<InlineResponse200>(exampleJson)
-			: default(InlineResponse200);
+			bl.scanParcel(trackingId, code);
 		}
 
 
@@ -137,11 +123,6 @@ namespace IO.Swagger.Controllers
         public virtual IActionResult TrackParcel([FromRoute]string trackingId)
         { 
 			TrackingInformation trInfo = bl.trackParcel(trackingId);
-
-			//string exampleJson = null;
-			//var example = exampleJson != null
-            //? JsonConvert.DeserializeObject<Parcel>(sParcel.ToString())
-            //: default(Parcel);
 			return new ObjectResult(trInfo);
 
 		}

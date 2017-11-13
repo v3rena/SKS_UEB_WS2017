@@ -20,17 +20,17 @@ namespace PLS.SKS.Package.BusinessLogic
             createMaps();
         }
 
-		public void scanParcel()
+		public void scanParcel(string trackingNumber, string code)
         {
 			Validator.ParcelValidator validator = new Validator.ParcelValidator();
 			//ValidationResult results = validator.Validate(parcel);
 			//bool validationSucceeded = results.IsValid;
 			//IList<ValidationFailure> failures = results.Errors;
 
-			//hopArrivalLogic.scanParcel()
-        }
+			hopArrivalLogic.scanParcel(trackingNumber, code);
+		}
 
-        public string addParcel(IO.Swagger.Models.Parcel parcel)
+		public string addParcel(IO.Swagger.Models.Parcel parcel)
         {
 			Entities.Parcel blParcel = Mapper.Map<Entities.Parcel>(parcel);
 
@@ -49,7 +49,7 @@ namespace PLS.SKS.Package.BusinessLogic
         {
 			DataAccess.Entities.Parcel dalParcel = trackingLogic.trackParcel(trackingNumber);
 			Entities.Parcel blParcel = Mapper.Map<Entities.Parcel>(dalParcel);
-			var trInfo = blParcel.trackingInformation;
+			var trInfo = blParcel.TrackingInformation;
 			IO.Swagger.Models.TrackingInformation info = Mapper.Map<IO.Swagger.Models.TrackingInformation>(trInfo);
 			return info;
 		}

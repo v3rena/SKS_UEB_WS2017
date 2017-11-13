@@ -24,7 +24,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 		public void Delete(int id)
 		{
-			throw new NotImplementedException();
+			db.Remove(db.Parcels.Where(p => p.Id == id));
 		}
 
 		public IEnumerable<Parcel> GetByCode(int code)
@@ -37,6 +37,11 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			return db.Parcels.Find(id);
 		}
 
+		public Parcel GetByTrackingNumber(string TrackingNumber)
+		{
+			return db.Parcels.Where(p => p.TrackingNumber == TrackingNumber).FirstOrDefault();
+		}
+
 		public IEnumerable<Parcel> GetByLengthRanking(int top)
 		{
 			throw new NotImplementedException();
@@ -44,7 +49,12 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 		public void Update(Parcel p)
 		{
-			throw new NotImplementedException();
+			var ParcelToUpdate = db.Parcels.SingleOrDefault(b => b.Id == p.Id);
+			if (ParcelToUpdate != null)
+			{
+				ParcelToUpdate = p;
+				db.SaveChanges();
+			}
 		}
 	}
 }

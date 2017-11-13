@@ -22,10 +22,10 @@ namespace PLS.SKS.Package.BusinessLogic
 
 		public string addParcel(DataAccess.Entities.Parcel parcel)
         {
-			parcel.trackingNumber = "TN" + inc.ToString();
+			parcel.TrackingNumber = "TN" + inc.ToString();
 			inc++;
 			int pk = parcelRepo.Create(parcel);
-			return parcel.trackingNumber;
+			return parcel.TrackingNumber;
         }
     }
   }
