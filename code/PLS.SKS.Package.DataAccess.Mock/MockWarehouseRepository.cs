@@ -10,9 +10,9 @@ namespace PLS.SKS.Package.DataAccess.Mock
     {
         public MockWarehouseRepository()
         {
-            Create(new Entities.Warehouse("Bez1_1", "descr", 1.0m, new List<Entities.Warehouse>(), new List<Entities.Truck>()));
-            Create(new Entities.Warehouse("Reg1_1", "descr", 1.0m, new List<Entities.Warehouse>(), new List<Entities.Truck>()));
-            Create(new Entities.Warehouse("Root", "descr", 1.0m, new List<Entities.Warehouse>(), new List<Entities.Truck>()));
+            //Create(new Entities.Warehouse("Bez1_1", "descr", 1.0m, new List<Entities.Warehouse>(), new List<Entities.Truck>()));
+            //Create(new Entities.Warehouse("Reg1_1", "descr", 1.0m, new List<Entities.Warehouse>(), new List<Entities.Truck>()));
+            //Create(new Entities.Warehouse("Root", "descr", 1.0m, new List<Entities.Warehouse>(), new List<Entities.Truck>()));
         }
 
         public int Create(Warehouse w)
