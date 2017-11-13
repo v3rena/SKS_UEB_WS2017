@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\PLS.SKS.Package.DataAccess.Entities\PLS.SKS.Package.DataAccess.Entities.csproj" />
     <ProjectReference Include="..\PLS.SKS.Package.DataAccess.Interfaces\PLS.SKS.Package.DataAccess.Interfaces.csproj" />
     <ProjectReference Include="..\PLS.SKS.Package.DataAccess.Mock\PLS.SKS.Package.DataAccess.Mock.csproj" />
