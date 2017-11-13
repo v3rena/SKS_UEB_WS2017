@@ -25,12 +25,13 @@ namespace PLS.SKS.Package.Services
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-			services.AddDbContext<DataAccess.Sql.ParcelLogisticsDBContext>(options =>
+			services.AddDbContext<DataAccess.Sql.DBContext>(options =>
 			options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-			services.AddScoped<DataAccess.Interfaces.IParcelRepository, DataAccess.Sql.SqlParcelRepository>();
 			services.AddScoped<BusinessLogic.BusinessLogic>();
-			services.AddScoped(typeof(DataAccess.Interfaces.IParcelRepository), typeof(DataAccess.Sql.SqlParcelRepository));
+
+			//services.AddScoped<DataAccess.Interfaces.IParcelRepository, DataAccess.Sql.SqlParcelRepository>();
+			//services.AddScoped(typeof(DataAccess.Interfaces.IParcelRepository), typeof(DataAccess.Sql.SqlParcelRepository));
 
 			services.AddMvc();
         }

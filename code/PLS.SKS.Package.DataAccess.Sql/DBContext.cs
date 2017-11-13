@@ -6,13 +6,13 @@ using PLS.SKS.Package.DataAccess.Entities;
 
 namespace PLS.SKS.Package.DataAccess.Sql
 {
-    public class ParcelLogisticsDBContext : DbContext
+    public class DBContext : DbContext
 	{
-		public ParcelLogisticsDBContext(DbContextOptions<ParcelLogisticsDBContext> options) : base(options)
+		public DBContext(DbContextOptions<DBContext> options) : base(options)
         {
 		}
 
-		public ParcelLogisticsDBContext() : base()
+		public DBContext() : base()
         {
 		}
 

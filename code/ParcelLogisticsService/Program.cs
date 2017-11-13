@@ -24,7 +24,7 @@ namespace PLS.SKS.Package.Services
 				var services = scope.ServiceProvider;
 				try
 				{
-					var context = services.GetRequiredService <DataAccess.Sql.ParcelLogisticsDBContext> ();
+					var context = services.GetRequiredService <DataAccess.Sql.DBContext> ();
 					DBInitializer.Initialize(context);
 				}
 				catch (Exception ex)

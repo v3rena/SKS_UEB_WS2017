@@ -9,11 +9,11 @@ namespace PLS.SKS.Package.DataAccess.Sql
 {
 	public class SqlParcelRepository : IParcelRepository
 	{
-		private readonly ParcelLogisticsDBContext db = new ParcelLogisticsDBContext();
+		private readonly DBContext db;
 
-		public SqlParcelRepository() { }
+		//public SqlParcelRepository() { }
 
-		public SqlParcelRepository(ParcelLogisticsDBContext context)
+		public SqlParcelRepository(DBContext context)
 		{
 			db = context;
 		}
