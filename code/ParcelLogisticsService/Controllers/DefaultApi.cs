@@ -20,8 +20,8 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using IO.Swagger.Models;
 using PLS.SKS.Package;
-using PLS.SKS.Package.BusinessLogic;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using PLS.SKS.Package.BusinessLogic;
 
 namespace IO.Swagger.Controllers
 {
@@ -31,7 +31,7 @@ namespace IO.Swagger.Controllers
     /// </summary>
     public class DefaultApiController : Controller
     {
-		PLS.SKS.Package.BusinessLogic.BusinessLogic bl;
+		BusinessLogic bl;
 
 		public DefaultApiController(BusinessLogic bl) //ItrackingLogic, IMapper
 		{
@@ -164,7 +164,7 @@ namespace IO.Swagger.Controllers
         [SwaggerResponse(200)]
         public virtual IActionResult TestFunktion()
         {
-            
+            bl.Test();
 
             string exampleJson = null;
             var example = exampleJson != null

@@ -35,7 +35,7 @@ namespace IO.Swagger.Models
         /// <param name="Street">Street (required).</param>
         /// <param name="PostalCode">PostalCode (required).</param>
         /// <param name="City">City (required).</param>
-        public Recipient(string FirstName = default(string), string LastName = default(string), string Street = default(string), string PostalCode = default(string), string City = default(string))
+        public Recipient(string FirstName, string LastName, string Street, string PostalCode, string City)
         {
             // to ensure "FirstName" is required (not null)
             if (FirstName == null)
