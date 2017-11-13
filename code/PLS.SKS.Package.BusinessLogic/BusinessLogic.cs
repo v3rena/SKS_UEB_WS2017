@@ -13,6 +13,9 @@ namespace PLS.SKS.Package.BusinessLogic
             hopArrivalLogic = new HopArrivalLogic();
             parcelEntryLogic = new ParcelEntryLogic();
             trackingLogic = new TrackingLogic();
+
+
+
             createMaps();
         }
 
