@@ -16,6 +16,7 @@ namespace PLS.SKS.Package.BusinessLogic
             hopArrivalLogic = new HopArrivalLogic(serviceProvider);
             parcelEntryLogic = new ParcelEntryLogic(serviceProvider);
             trackingLogic = new TrackingLogic(serviceProvider);
+			warehouseLogic = new WarehouseLogic(serviceProvider);
             createMaps();
         }
 
@@ -29,7 +30,7 @@ namespace PLS.SKS.Package.BusinessLogic
 			//hopArrivalLogic.scanParcel()
         }
 
-        public void addParcel(IO.Swagger.Models.Parcel parcel)
+        public string addParcel(IO.Swagger.Models.Parcel parcel)
         {
 			Entities.Parcel blParcel = Mapper.Map<Entities.Parcel>(parcel);
 
@@ -40,19 +41,40 @@ namespace PLS.SKS.Package.BusinessLogic
 			IList<ValidationFailure> failures = results.Errors;
 
 			DataAccess.Entities.Parcel dalParcel = Mapper.Map<DataAccess.Entities.Parcel>(blParcel);
-			parcelEntryLogic.addParcel(dalParcel);
+			string trNr = parcelEntryLogic.addParcel(dalParcel);
+			return trNr;
         }
 
-        public IO.Swagger.Models.Parcel trackParcel(string trackingNumber)
+        public IO.Swagger.Models.TrackingInformation trackParcel(string trackingNumber)
         {
 			DataAccess.Entities.Parcel dalParcel = trackingLogic.trackParcel(trackingNumber);
-
 			Entities.Parcel blParcel = Mapper.Map<Entities.Parcel>(dalParcel);
-			//IO.Swagger.Models.Parcel sParcel = Mapper.Map<IO.Swagger.Models.Parcel>(blParcel);
-			//Testweise Erstellung eines Swagger-Parcels, weil Mapping (noch) nicht funktioniert
-			IO.Swagger.Models.Parcel sParcel = new IO.Swagger.Models.Parcel(22, new IO.Swagger.Models.Recipient("Hans Peter", "Doskozil", "Industriestrasse 39", "1210", "Wien"));
+			var trInfo = blParcel.trackingInformation;
+			IO.Swagger.Models.TrackingInformation info = Mapper.Map<IO.Swagger.Models.TrackingInformation>(trInfo);
+			return info;
+		}
 
-			return sParcel;
+		public IO.Swagger.Models.Warehouse ExportWarehouses()
+		{
+			//Should return root warehouse!
+			DataAccess.Entities.Warehouse dalWarehouse = warehouseLogic.ExportWarehouses();
+			Entities.Warehouse blWarehouse = Mapper.Map<Entities.Warehouse>(dalWarehouse);
+			IO.Swagger.Models.Warehouse swaggerWarehouse = Mapper.Map<IO.Swagger.Models.Warehouse>(blWarehouse);
+			return swaggerWarehouse;
+		}
+
+		public void ImportWarehouses(IO.Swagger.Models.Warehouse warehouse)
+		{
+			Entities.Warehouse blWarehouse = Mapper.Map<Entities.Warehouse>(warehouse);
+
+			//Validates BusinessLogic model
+			Validator.WarehouseValidator validator = new Validator.WarehouseValidator();
+			ValidationResult results = validator.Validate(blWarehouse);
+			bool validationSucceeded = results.IsValid;
+			IList<ValidationFailure> failures = results.Errors;
+
+			DataAccess.Entities.Warehouse dalWarehouse = Mapper.Map<DataAccess.Entities.Warehouse>(blWarehouse);
+			warehouseLogic.ImportWarehouses(dalWarehouse);
 		}
 
 		private void createMaps()
@@ -84,5 +106,6 @@ namespace PLS.SKS.Package.BusinessLogic
         private HopArrivalLogic hopArrivalLogic;
         private ParcelEntryLogic parcelEntryLogic;
         private TrackingLogic trackingLogic;
+		private WarehouseLogic warehouseLogic;
     }
 }

@@ -38,11 +38,6 @@ namespace IO.Swagger.Controllers
 			this.bl = bl;
 		}
 
-		/*public DefaultApiController(PLS.SKS.Package.BusinessLogic.BusinessLogic businessLogic)
-		{
-			bl = businessLogic;
-		}*/
-
 		/// <summary>
 		/// 
 		/// </summary>
@@ -55,9 +50,10 @@ namespace IO.Swagger.Controllers
         [SwaggerOperation("ExportWarehouses")]
         [SwaggerResponse(200, type: typeof(Warehouse))]
         public virtual IActionResult ExportWarehouses()
-        { 
+        {
+			Warehouse warehouse = bl.ExportWarehouses();
             string exampleJson = null;
-            
+           
             var example = exampleJson != null
             ? JsonConvert.DeserializeObject<Warehouse>(exampleJson)
             : default(Warehouse);
@@ -120,17 +116,10 @@ namespace IO.Swagger.Controllers
         [SwaggerResponse(200, type: typeof(InlineResponse200))]
         public virtual IActionResult SubmitParcel([FromBody]Parcel newParcel)
         {
-			Recipient recipient = new Recipient("Tobias", "Test", "Teststrasse 1", "1010", "Teststadt");
-			Parcel parcel = new Parcel(12, recipient);
-			bl.addParcel(parcel);
-
-
-            string exampleJson = null;
-            
-            var example = exampleJson != null
-            ? JsonConvert.DeserializeObject<InlineResponse200>(exampleJson)
-            : default(InlineResponse200);
-            return new ObjectResult(example);
+			string trNr = bl.addParcel(newParcel);
+			//Test it!!
+			InlineResponse200 inlineR = new InlineResponse200(trNr);
+            return new ObjectResult(inlineR);
         }
 
 
@@ -144,18 +133,16 @@ namespace IO.Swagger.Controllers
         [HttpGet]
         [Route("/api/parcel/{trackingId}")]
         [SwaggerOperation("TrackParcel")]
-        [SwaggerResponse(200, type: typeof(Parcel))] //TrackingInformation ist der Rückgabewert!!!
+        [SwaggerResponse(200, type: typeof(TrackingInformation))]
         public virtual IActionResult TrackParcel([FromRoute]string trackingId)
         { 
-			Parcel sParcel = bl.trackParcel(trackingId);
+			TrackingInformation trInfo = bl.trackParcel(trackingId);
 
 			//string exampleJson = null;
 			//var example = exampleJson != null
             //? JsonConvert.DeserializeObject<Parcel>(sParcel.ToString())
             //: default(Parcel);
-
-			//TrackingInformation soll zurückgegeben werden!
-			return new ObjectResult(sParcel);
+			return new ObjectResult(trInfo);
 
 		}
     }
