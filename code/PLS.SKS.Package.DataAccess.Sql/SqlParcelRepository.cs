@@ -19,7 +19,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		public int Create(Parcel p)
 		{
 			db.Add(p);
-			return p.id;
+			return p.Id;
 		}
 
 		public void Delete(int id)

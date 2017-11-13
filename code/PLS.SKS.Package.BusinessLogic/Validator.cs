@@ -33,8 +33,8 @@ namespace PLS.SKS.Package.BusinessLogic
 		{
 			public ParcelValidator()
 			{
-				RuleFor(parcel => parcel.weight).NotEmpty().WithMessage("Please specify a weight").GreaterThan(0);
-				RuleFor(parcel => parcel.recipient).SetValidator(new RecipientValidator());
+				RuleFor(parcel => parcel.Weight).NotEmpty().WithMessage("Please specify a weight").GreaterThan(0);
+				RuleFor(parcel => parcel.Recipient).SetValidator(new RecipientValidator());
 			}
 		}
 

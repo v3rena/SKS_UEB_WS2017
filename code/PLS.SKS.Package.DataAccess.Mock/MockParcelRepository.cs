@@ -20,15 +20,15 @@ namespace PLS.SKS.Package.DataAccess.Mock
 
 		public int Create(Parcel p)
 		{
-			p.id = p_id;
+			p.Id = p_id;
 			p_id++;
 			parcels.Add(p);
-			return p.id;
+			return p.Id;
 		}
 
 		public void Delete(int id)
 		{
-			Parcel p = parcels.SingleOrDefault(item => item.id == id);
+			Parcel p = parcels.SingleOrDefault(item => item.Id == id);
 			parcels.Remove(p);
 		}
 
@@ -39,7 +39,7 @@ namespace PLS.SKS.Package.DataAccess.Mock
 
 		public Parcel GetById(int id)
 		{
-			return parcels.SingleOrDefault(item => item.id == id);
+			return parcels.SingleOrDefault(item => item.Id == id);
 		}
 
 		public IEnumerable<Parcel> GetByLengthRanking(int top)
@@ -49,7 +49,7 @@ namespace PLS.SKS.Package.DataAccess.Mock
 
 		public void Update(Parcel p)
 		{
-			Parcel p2 = parcels.Find(item => item.id == p.id);
+			Parcel p2 = parcels.Find(item => item.Id == p.Id);
 			p = p2;
 		}
 	}
