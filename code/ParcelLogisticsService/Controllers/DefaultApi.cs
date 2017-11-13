@@ -157,5 +157,20 @@ namespace IO.Swagger.Controllers
 			return new ObjectResult(example);
 
 		}
+
+        [HttpGet]
+        [Route("/test")]
+        [SwaggerOperation("TestFunktion")]
+        [SwaggerResponse(200)]
+        public virtual IActionResult TestFunktion()
+        {
+            
+
+            string exampleJson = null;
+            var example = exampleJson != null
+                ? JsonConvert.DeserializeObject<string>(exampleJson)
+                : default(string);
+            return new ObjectResult(example);
+        }
     }
 }

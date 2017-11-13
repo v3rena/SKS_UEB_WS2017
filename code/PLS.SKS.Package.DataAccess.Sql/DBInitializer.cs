@@ -76,8 +76,8 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 			var parcels = new Parcel[]
 			{
-				new Parcel{recipientId=1, weight=22, trackingNumber="TN01", trackingInformationId=1},
-				new Parcel{recipientId=2, weight=22, trackingNumber="TN02", trackingInformationId=2},
+				new Parcel{RecipientId=1, Weight=22, TrackingNumber="TN01", TrackingInformationId=1},
+				new Parcel{RecipientId=2, Weight=22, TrackingNumber="TN02", TrackingInformationId=2},
 			};
 			foreach (Parcel e in parcels)
 			{

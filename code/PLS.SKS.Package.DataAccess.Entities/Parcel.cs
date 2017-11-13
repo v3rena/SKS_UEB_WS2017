@@ -6,21 +6,21 @@ namespace PLS.SKS.Package.DataAccess.Entities
     {
         public Parcel()
         {
-            recipient = new Recipient();
+            Recipient = new Recipient();
         }
 
         public Parcel(float weight, Recipient recipient)
         {
-            this.weight = weight;
-            this.recipient = recipient;
+            this.Weight = weight;
+            this.Recipient = recipient;
         }
 
-        public int id { get; set; }
-        public float weight { get; set; }
-		public int recipientId { get; set; }
-        public Recipient recipient { get; set; }
-		public string trackingNumber { get; set; } //generated in business logic after parcel is successfully posted
-		public int trackingInformationId { get; set; }
-		public TrackingInformation trackingInformation { get; set; }
+        public int Id { get; set; }
+        public float Weight { get; set; }
+		public int RecipientId { get; set; }
+        public Recipient Recipient { get; set; }
+		public string TrackingNumber { get; set; } //generated in business logic after parcel is successfully posted
+		public int TrackingInformationId { get; set; }
+		public TrackingInformation TrackingInformation { get; set; }
 	}
 }

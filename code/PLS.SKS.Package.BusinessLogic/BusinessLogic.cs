@@ -58,7 +58,7 @@ namespace PLS.SKS.Package.BusinessLogic
             var config = new AutoMapper.MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<IO.Swagger.Models.Recipient, Entities.Recipient>();
-                cfg.CreateMap<IO.Swagger.Models.Parcel, Entities.Parcel>().ForMember(model => model.trackingInformation, option => option.Ignore()).ForMember(model => model.trackingNumber, option => option.Ignore());
+                cfg.CreateMap<IO.Swagger.Models.Parcel, Entities.Parcel>().ForMember(model => model.TrackingInformation, option => option.Ignore()).ForMember(model => model.TrackingNumber, option => option.Ignore());
                 cfg.CreateMap<IO.Swagger.Models.Warehouse, Entities.Warehouse>();
 				cfg.CreateMap<IO.Swagger.Models.Truck, Entities.Truck>(); //.ForMember(model => model.test, option => option.Ignore());
 				cfg.CreateMap<IO.Swagger.Models.TrackingInformation, Entities.TrackingInformation>();
