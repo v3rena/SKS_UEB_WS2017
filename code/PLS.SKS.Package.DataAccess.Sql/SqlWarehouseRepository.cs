@@ -8,9 +8,17 @@ namespace PLS.SKS.Package.DataAccess.Sql
 {
 	public class SqlWarehouseRepository : IWarehouseRepository
 	{
+		private readonly DBContext db;
+
+		public SqlWarehouseRepository(DBContext context)
+		{
+			db = context;
+		}
+
 		public int Create(Warehouse w)
 		{
-			throw new NotImplementedException();
+			db.Add(w);
+			return w.id;
 		}
 
 		public void Delete(int id)

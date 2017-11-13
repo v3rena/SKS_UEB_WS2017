@@ -8,9 +8,17 @@ namespace PLS.SKS.Package.DataAccess.Sql
 {
 	public class SqlTruckRepository : ITruckRepository
 	{
+		private readonly DBContext db;
+
+		public SqlTruckRepository(DBContext context)
+		{
+			db = context;
+		}
+
 		public int Create(Truck t)
 		{
-			throw new NotImplementedException();
+			db.Add(t);
+			return t.id;
 		}
 
 		public void Delete(int id)

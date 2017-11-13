@@ -4,21 +4,22 @@ using System.Collections.Generic;
 using System.Text;
 using static PLS.SKS.Package.BusinessLogic.Validator;
 using PLS.SKS.Package;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace PLS.SKS.Package.BusinessLogic
 {
     public class HopArrivalLogic : Interfaces.IHopArrivalLogic
     {
+		private DataAccess.Interfaces.IParcelRepository parcelRepo;
 
-        public void scanParcel(Entities.Parcel parcel, string code)
-        {
-			ParcelValidator validator = new ParcelValidator();
-			ValidationResult results = validator.Validate(parcel);
-
-			bool validationSucceeded = results.IsValid;
-			IList<ValidationFailure> failures = results.Errors;
-
+		public HopArrivalLogic(IServiceProvider serviceProvider)
+		{
+			parcelRepo = new DataAccess.Sql.SqlParcelRepository(serviceProvider.GetRequiredService<DataAccess.Sql.DBContext>());
 		}
 
+		public void scanParcel(DataAccess.Entities.Parcel parcel, string code)
+        {
+			//
+		}
     }
 }

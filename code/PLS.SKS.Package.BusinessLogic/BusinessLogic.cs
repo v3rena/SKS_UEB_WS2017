@@ -4,6 +4,8 @@ using System.Text;
 using PLS.SKS.Package;
 using PLS.SKS.Package.DataAccess.Sql;
 using Microsoft.Extensions.DependencyInjection;
+using FluentValidation;
+using FluentValidation.Results;
 
 namespace PLS.SKS.Package.BusinessLogic
 {
@@ -11,44 +13,44 @@ namespace PLS.SKS.Package.BusinessLogic
     {
         public BusinessLogic(IServiceProvider serviceProvider)
         {
-			parcelRepo = new DataAccess.Sql.SqlParcelRepository(serviceProvider.GetRequiredService<DBContext>());
-            hopArrivalLogic = new HopArrivalLogic();
-            //parcelEntryLogic = new ParcelEntryLogic(serviceProvider.GetRequiredService<DBContext>());
-            trackingLogic = new TrackingLogic();
-
-
-
+            hopArrivalLogic = new HopArrivalLogic(serviceProvider);
+            parcelEntryLogic = new ParcelEntryLogic(serviceProvider);
+            trackingLogic = new TrackingLogic(serviceProvider);
             createMaps();
         }
 
-		/*public BusinessLogic(DataAccess.Sql.SqlParcelRepository sqlParcelRepository)
-		{
-			parcelRepo = sqlParcelRepository;
-			hopArrivalLogic = new HopArrivalLogic();
-			parcelEntryLogic = new ParcelEntryLogic();
-			trackingLogic = new TrackingLogic();
-			createMaps();
-		}*/
-
 		public void scanParcel()
         {
-            //hopArrivalLogic.scanParcel(new Entities.Parcel(), "test");
+			Validator.ParcelValidator validator = new Validator.ParcelValidator();
+			//ValidationResult results = validator.Validate(parcel);
+			//bool validationSucceeded = results.IsValid;
+			//IList<ValidationFailure> failures = results.Errors;
+
+			//hopArrivalLogic.scanParcel()
         }
 
         public void addParcel(IO.Swagger.Models.Parcel parcel)
         {
-			//Entities.Parcel blParcel = Mapper.Map<Entities.Parcel>(parcel);
-			//DataAccess.Entities.Parcel dalParcel = Mapper.Map<DataAccess.Entities.Parcel>(blParcel);
-			//parcelEntryLogic.addParcel(dalParcel);
+			Entities.Parcel blParcel = Mapper.Map<Entities.Parcel>(parcel);
+
+			//Validates BusinessLogic model
+			Validator.ParcelValidator validator = new Validator.ParcelValidator();
+			ValidationResult results = validator.Validate(blParcel);
+			bool validationSucceeded = results.IsValid;
+			IList<ValidationFailure> failures = results.Errors;
+
+			DataAccess.Entities.Parcel dalParcel = Mapper.Map<DataAccess.Entities.Parcel>(blParcel);
+			parcelEntryLogic.addParcel(dalParcel);
         }
 
         public IO.Swagger.Models.Parcel trackParcel(string trackingNumber)
         {
-			int nr = Convert.ToInt32(trackingNumber);
-			DataAccess.Entities.Parcel dalParcel = parcelRepo.GetById(nr);
+			DataAccess.Entities.Parcel dalParcel = trackingLogic.trackParcel(trackingNumber);
 
 			Entities.Parcel blParcel = Mapper.Map<Entities.Parcel>(dalParcel);
-			IO.Swagger.Models.Parcel sParcel = Mapper.Map<IO.Swagger.Models.Parcel>(blParcel);
+			//IO.Swagger.Models.Parcel sParcel = Mapper.Map<IO.Swagger.Models.Parcel>(blParcel);
+			//Testweise Erstellung eines Swagger-Parcels, weil Mapping (noch) nicht funktioniert
+			IO.Swagger.Models.Parcel sParcel = new IO.Swagger.Models.Parcel(22, new IO.Swagger.Models.Recipient("Hans Peter", "Doskozil", "Industriestrasse 39", "1210", "Wien"));
 
 			return sParcel;
 		}
@@ -96,6 +98,5 @@ namespace PLS.SKS.Package.BusinessLogic
         private HopArrivalLogic hopArrivalLogic;
         private ParcelEntryLogic parcelEntryLogic;
         private TrackingLogic trackingLogic;
-		private DataAccess.Interfaces.IParcelRepository parcelRepo;
     }
 }
