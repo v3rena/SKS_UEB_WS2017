@@ -18,10 +18,10 @@ using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using Swashbuckle.SwaggerGen.Annotations;
 using IO.Swagger.Models;
 using PLS.SKS.Package;
 using PLS.SKS.Package.BusinessLogic;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace IO.Swagger.Controllers
 {

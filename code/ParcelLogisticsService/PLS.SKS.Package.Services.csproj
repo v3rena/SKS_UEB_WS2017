@@ -15,8 +15,8 @@
     <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
-    <PackageReference Include="Swashbuckle.SwaggerGen" Version="6.0.0-beta901" />
-    <PackageReference Include="Swashbuckle.SwaggerUi" Version="6.0.0-beta901" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
