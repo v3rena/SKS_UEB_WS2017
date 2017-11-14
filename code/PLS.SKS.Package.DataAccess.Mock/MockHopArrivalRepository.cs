@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace PLS.SKS.Package.DataAccess.Mock
 {
-	class MockHopArrivalRepository : IHopArrivalRepository
+	public class MockHopArrivalRepository : IHopArrivalRepository
 	{
 		public List<HopArrival> hopArrivals = new List<HopArrival>();
 		int h_id = 0;

@@ -134,7 +134,6 @@ namespace IO.Swagger.Controllers
         public virtual IActionResult TestFunktion()
         {
             bl.Test();
-
             string exampleJson = null;
             var example = exampleJson != null
                 ? JsonConvert.DeserializeObject<string>(exampleJson)

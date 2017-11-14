@@ -9,12 +9,13 @@ namespace PLS.SKS.Package.DataAccess
     {
         public SQLDatabase()
         {
-            /*hopArrivalRepo = new Sql.SqlHopArrivalRepository();
-            parcelRepo = new Sql.SqlParcelRepository();
-            recipientRepo = new Sql.SqlRecipientRepository();
-            trackingRepo = new Sql.SqlTrackingInformationRepository();
-            truckRepo = new Sql.SqlTruckRepository();
-            warehouseRepo = new Sql.SqlWarehouseRepository();*/
+            //hopArrivalRepo = new Sql.SqlHopArrivalRepository();
+            //hopArrivalRepo = new Sql.SqlHopArrivalRepository();
+            //parcelRepo = new Sql.SqlParcelRepository();
+            //recipientRepo = new Sql.SqlRecipientRepository();
+            //trackingRepo = new Sql.SqlTrackingInformationRepository();
+            //truckRepo = new Sql.SqlTruckRepository();
+            //warehouseRepo = new Sql.SqlWarehouseRepository();
         }
 
         public IHopArrivalRepository hopArrivalRepo { get; }
