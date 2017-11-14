@@ -49,6 +49,7 @@ namespace PLS.SKS.Package.BusinessLogic
         {
 			DataAccess.Entities.Parcel dalParcel = trackingLogic.trackParcel(trackingNumber);
 			Entities.Parcel blParcel = Mapper.Map<Entities.Parcel>(dalParcel);
+			//Implement exception handling
 			var trInfo = blParcel.TrackingInformation;
 			IO.Swagger.Models.TrackingInformation info = Mapper.Map<IO.Swagger.Models.TrackingInformation>(trInfo);
 			return info;
@@ -121,7 +122,7 @@ namespace PLS.SKS.Package.BusinessLogic
                 cfg.CreateMap<Entities.Recipient, DataAccess.Entities.Recipient>()
                     .ForMember(model => model.id, option => option.Ignore());
                 cfg.CreateMap<Entities.Parcel, DataAccess.Entities.Parcel>()
-                    .ForMember(model => model.Id, option => option.Ignore())
+                    .ForMember(model => model.id, option => option.Ignore())
                     .ForMember(model => model.TrackingInformationId, option => option.Ignore())
                     .ForMember(model => model.RecipientId, option => option.Ignore());
                 cfg.CreateMap<Entities.Warehouse, DataAccess.Entities.Warehouse>()

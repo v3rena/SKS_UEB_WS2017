@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using PLS.SKS.Package.DataAccess.Entities;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace PLS.SKS.Package.DataAccess.Sql
 {
@@ -19,12 +20,12 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		public int Create(Parcel p)
 		{
 			db.Add(p);
-			return p.Id;
+			return p.id;
 		}
 
 		public void Delete(int id)
 		{
-			db.Remove(db.Parcels.Where(p => p.Id == id));
+			db.Remove(db.Parcels.Where(p => p.id == id));
 		}
 
 		public IEnumerable<Parcel> GetByCode(int code)
@@ -39,7 +40,9 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 		public Parcel GetByTrackingNumber(string TrackingNumber)
 		{
-			return db.Parcels.Where(p => p.TrackingNumber == TrackingNumber).FirstOrDefault();
+			var parcel = db.Parcels.Include(p =>p.Recipient).Include(p=>p.TrackingInformation)
+				.Where(p => p.TrackingNumber == TrackingNumber).FirstOrDefault();
+			return parcel;
 		}
 
 		public IEnumerable<Parcel> GetByLengthRanking(int top)
@@ -49,7 +52,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 		public void Update(Parcel p)
 		{
-			var ParcelToUpdate = db.Parcels.SingleOrDefault(b => b.Id == p.Id);
+			var ParcelToUpdate = db.Parcels.SingleOrDefault(b => b.id == p.id);
 			if (ParcelToUpdate != null)
 			{
 				ParcelToUpdate = p;
