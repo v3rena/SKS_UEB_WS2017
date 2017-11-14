@@ -20,15 +20,15 @@ namespace PLS.SKS.Package.DataAccess.Mock
 
 		public int Create(Parcel p)
 		{
-			p.Id = p_id;
+			p.id = p_id;
 			p_id++;
 			parcels.Add(p);
-			return p.Id;
+			return p.id;
 		}
 
 		public void Delete(int id)
 		{
-			Parcel p = parcels.SingleOrDefault(item => item.Id == id);
+			Parcel p = parcels.SingleOrDefault(item => item.id == id);
 			parcels.Remove(p);
 		}
 
@@ -39,7 +39,7 @@ namespace PLS.SKS.Package.DataAccess.Mock
 
 		public Parcel GetById(int id)
 		{
-			return parcels.SingleOrDefault(item => item.Id == id);
+			return parcels.SingleOrDefault(item => item.id == id);
 		}
 
 		public IEnumerable<Parcel> GetByLengthRanking(int top)
@@ -47,9 +47,14 @@ namespace PLS.SKS.Package.DataAccess.Mock
 			throw new NotImplementedException();
 		}
 
+		public Parcel GetByTrackingNumber(string trackingNumber)
+		{
+			throw new NotImplementedException();
+		}
+
 		public void Update(Parcel p)
 		{
-			Parcel p2 = parcels.Find(item => item.Id == p.Id);
+			Parcel p2 = parcels.Find(item => item.id == p.id);
 			p = p2;
 		}
 	}

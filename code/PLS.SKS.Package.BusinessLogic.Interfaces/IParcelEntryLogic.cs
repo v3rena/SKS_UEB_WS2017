@@ -5,7 +5,6 @@ namespace PLS.SKS.Package.BusinessLogic.Interfaces
 {
     public interface IParcelEntryLogic
     {
-        void addParcel(DataAccess.Entities.Parcel parcel);
-
+        string addParcel(DataAccess.Entities.Parcel parcel);
     }
 }

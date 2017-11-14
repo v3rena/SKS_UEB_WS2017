@@ -17,9 +17,7 @@ namespace PLS.SKS.Package.BusinessLogic
 
         public DataAccess.Entities.Parcel trackParcel(string trackingNumber)
         {
-			//This is not cool, Db query should return parcel by tracking nr, not primary key
-			int nr = Convert.ToInt32(trackingNumber);
-			return parcelRepo.GetById(nr);
-        }
+			return parcelRepo.GetByTrackingNumber(trackingNumber);
+		}
     }
 }

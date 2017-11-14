@@ -13,14 +13,19 @@ namespace PLS.SKS.Package.BusinessLogic
     {
 		private DataAccess.Interfaces.IParcelRepository parcelRepo;
 
+		private int inc = 0;
+
 		public ParcelEntryLogic(IServiceProvider serviceProvider)
 		{
 			parcelRepo = new DataAccess.Sql.SqlParcelRepository(serviceProvider.GetRequiredService<DataAccess.Sql.DBContext>());
 		}
 
-		public void addParcel(DataAccess.Entities.Parcel parcel)
+		public string addParcel(DataAccess.Entities.Parcel parcel)
         {
-			parcelRepo.Create(parcel);
+			parcel.TrackingNumber = "TN" + inc.ToString();
+			inc++;
+			int pk = parcelRepo.Create(parcel);
+			return parcel.TrackingNumber;
         }
     }
   }

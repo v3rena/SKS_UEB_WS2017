@@ -31,10 +31,10 @@ namespace PLS.SKS.Package.Services
 
 			services.AddScoped<BusinessLogic.BusinessLogic>();
 
-			//services.AddScoped<DataAccess.Interfaces.IParcelRepository, DataAccess.Sql.SqlParcelRepository>();
-			//services.AddScoped(typeof(DataAccess.Interfaces.IParcelRepository), typeof(DataAccess.Sql.SqlParcelRepository));
-
-			services.AddMvc();
+			services.AddMvc()
+				.AddJsonOptions(
+			options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+		);
 
             services.AddSwaggerGen(c =>
             {

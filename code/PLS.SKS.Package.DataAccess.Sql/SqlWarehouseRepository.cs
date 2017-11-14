@@ -28,7 +28,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 		public Warehouse GetById(int id)
 		{
-			throw new NotImplementedException();
+			return db.Warehouses.Find(id);
 		}
 
 		public void Update(Warehouse w)

@@ -28,7 +28,7 @@ namespace PLS.SKS.Package.DataAccess
         {
             get
             {
-                return _parcelRepo;
+				return _hopArrivalRepo;
             }
         }
 
@@ -40,11 +40,19 @@ namespace PLS.SKS.Package.DataAccess
 
         IWarehouseRepository IDatabase.warehouseRepo => throw new NotImplementedException();
 
-        public Mock.MockParcelRepository _parcelRepo;
+		IParcelRepository IDatabase.parcelRepo => throw new NotImplementedException();
+
+		IRecipientRepository IDatabase.recipientRepo => throw new NotImplementedException();
+
+		ITrackingInformationRepository IDatabase.trackingRepo => throw new NotImplementedException();
+
+		IHopArrivalRepository IDatabase.hopArrivalRepo => throw new NotImplementedException();
+
+		public Mock.MockParcelRepository _parcelRepo;
         public Mock.MockRecipientRepository _recRepo;
         public Mock.MockTrackingInformationRepository _trackingRepo;
         public Mock.MockTruckRepository _truckRepo;
         public Mock.MockWarehouseRepository _warehouseRepo;
-
+		public Mock.MockHopArrivalRepository _hopArrivalRepo;
     }
 }

@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace PLS.SKS.Package.DataAccess.Sql
@@ -44,7 +45,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			var warehouses = new Warehouse[]
 			{
 				new Warehouse{code="WH01", description="Warehouse Super 01", duration=1.5m, trucks=trucks.ToList(), nextHops=new List<Warehouse>()},
-				new Warehouse{code="WH01", description="Warehouse Super 01", duration=1.5m, trucks=trucks.ToList(), nextHops=new List<Warehouse>()}
+				new Warehouse{code="WH02", description="Warehouse 02", duration=1.5m, trucks=trucks.ToList(), nextHops=new List<Warehouse>()}
 			};
 			foreach (Warehouse e in warehouses)
 			{
@@ -54,8 +55,8 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 			var trackingInformations = new TrackingInformation[]
 			{
-				new TrackingInformation{state="InTransport", futureHops=new List<HopArrival>(), visitedHops=new List<HopArrival>()},
-				new TrackingInformation{state="InTransport", futureHops=new List<HopArrival>(), visitedHops=new List<HopArrival>()}
+				new TrackingInformation{State=TrackingInformation.StateEnum.InTransportEnum, futureHops=new List<HopArrival>(), visitedHops=new List<HopArrival>()},
+				new TrackingInformation{State=TrackingInformation.StateEnum.InTruckDeliveryEnum, futureHops=new List<HopArrival>(), visitedHops=new List<HopArrival>()}
 			};
 			foreach (TrackingInformation e in trackingInformations)
 			{
