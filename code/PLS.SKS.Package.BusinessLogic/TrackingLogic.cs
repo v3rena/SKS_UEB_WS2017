@@ -1,4 +1,5 @@
-﻿using PLS.SKS.Package.BusinessLogic.Entities;
+﻿using Microsoft.Extensions.DependencyInjection;
+using PLS.SKS.Package.BusinessLogic.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,17 +8,16 @@ namespace PLS.SKS.Package.BusinessLogic
 {
     public class TrackingLogic : Interfaces.ITrackingLogic
     {
-		//DataAccess.Sql.SqlParcelRepository parcelRepo = new DataAccess.Sql.SqlParcelRepository();
+		private DataAccess.Interfaces.IParcelRepository parcelRepo;
 
-		public TrackingLogic()
+		public TrackingLogic(IServiceProvider serviceProvider)
+		{
+			parcelRepo = new DataAccess.Sql.SqlParcelRepository(serviceProvider.GetRequiredService<DataAccess.Sql.DBContext>());
+		}
+
+        public DataAccess.Entities.Parcel trackParcel(string trackingNumber)
         {
-
-        }
-
-        public void trackParcel(string trackingID)
-        {
-
-			//return parcelRepo.GetById(trackingID);
-        }
+			return parcelRepo.GetByTrackingNumber(trackingNumber);
+		}
     }
 }

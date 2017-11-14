@@ -65,7 +65,7 @@ namespace IO.Swagger.Models
         /// <param name="State">State of the parcel. (required).</param>
         /// <param name="VisitedHops">Hops visited in the past - either &#x60;warehouse&#x60; or &#x60;truck&#x60;. (required).</param>
         /// <param name="FutureHops">Hops coming up in the future - their times are estimations. (required).</param>
-        public TrackingInformation(StateEnum? State = default(StateEnum?), List<HopArrival> VisitedHops = default(List<HopArrival>), List<HopArrival> FutureHops = default(List<HopArrival>))
+        public TrackingInformation(StateEnum? State, List<HopArrival> VisitedHops, List<HopArrival> FutureHops)
         {
             // to ensure "State" is required (not null)
             if (State == null)

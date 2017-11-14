@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace PLS.SKS.Package.DataAccess.Entities
@@ -8,16 +9,28 @@ namespace PLS.SKS.Package.DataAccess.Entities
     {
         public TrackingInformation() { }
 
-        public TrackingInformation(string state, List<HopArrival> futureHops)
+        public TrackingInformation(StateEnum state, List<HopArrival> futureHops)
         {
-            this.state = state;
+            State = state;
             this.futureHops = futureHops;
             visitedHops = new List<HopArrival>();
         }
 
-        public int id { get; set; }
-        public string state { get; set; }
-        public List<HopArrival> visitedHops = new List<HopArrival>();
+		public enum StateEnum
+		{
+			[EnumMember(Value = "InTransport")]
+			InTransportEnum,
+
+			[EnumMember(Value = "InTruckDelivery")]
+			InTruckDeliveryEnum,
+
+			[EnumMember(Value = "Delivered")]
+			DeliveredEnum
+		}
+
+		public int id { get; set; }
+		public StateEnum? State { get; set; }
+		public List<HopArrival> visitedHops = new List<HopArrival>();
         public List<HopArrival> futureHops = new List<HopArrival>();
 
         public void addVisited(HopArrival visited)

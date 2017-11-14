@@ -6,10 +6,8 @@ namespace PLS.SKS.Package.DataAccess.Entities
 {
     public class Recipient
     {
-        public Recipient()
-        {
-
-        }
+        public Recipient() { }
+        
         public Recipient(string firstName, string lastName, string street, string postalCode, string city)
         {
             this.firstName = firstName;

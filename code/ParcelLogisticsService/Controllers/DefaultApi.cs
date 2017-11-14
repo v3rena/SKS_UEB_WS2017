@@ -20,8 +20,8 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using IO.Swagger.Models;
 using PLS.SKS.Package;
-using PLS.SKS.Package.BusinessLogic;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using PLS.SKS.Package.BusinessLogic;
 
 namespace IO.Swagger.Controllers
 {
@@ -31,17 +31,12 @@ namespace IO.Swagger.Controllers
     /// </summary>
     public class DefaultApiController : Controller
     {
-		PLS.SKS.Package.BusinessLogic.BusinessLogic bl;
+		BusinessLogic bl;
 
 		public DefaultApiController(BusinessLogic bl) //ItrackingLogic, IMapper
 		{
 			this.bl = bl;
 		}
-
-		/*public DefaultApiController(PLS.SKS.Package.BusinessLogic.BusinessLogic businessLogic)
-		{
-			bl = businessLogic;
-		}*/
 
 		/// <summary>
 		/// 
@@ -55,13 +50,9 @@ namespace IO.Swagger.Controllers
         [SwaggerOperation("ExportWarehouses")]
         [SwaggerResponse(200, type: typeof(Warehouse))]
         public virtual IActionResult ExportWarehouses()
-        { 
-            string exampleJson = null;
-            
-            var example = exampleJson != null
-            ? JsonConvert.DeserializeObject<Warehouse>(exampleJson)
-            : default(Warehouse);
-            return new ObjectResult(example);
+        {
+			Warehouse warehouse = bl.ExportWarehouses();
+            return new ObjectResult(warehouse);
         }
 
 
@@ -77,12 +68,7 @@ namespace IO.Swagger.Controllers
         [SwaggerOperation("ImportWarehouses")]
         public virtual void ImportWarehouses([FromBody]Warehouse warehouseRoot)
         {
-			string exampleJson = null;
-
-			var example = exampleJson != null
-			? JsonConvert.DeserializeObject<InlineResponse200>(exampleJson)
-			: default(InlineResponse200);
-
+			bl.ImportWarehouses(warehouseRoot);
 		}
 
 
@@ -99,11 +85,7 @@ namespace IO.Swagger.Controllers
         [SwaggerOperation("ReportParcelHop")]
         public virtual void ReportParcelHop([FromRoute]string trackingId, [FromRoute]string code)
         {
-			string exampleJson = null;
-
-			var example = exampleJson != null
-			? JsonConvert.DeserializeObject<InlineResponse200>(exampleJson)
-			: default(InlineResponse200);
+			bl.scanParcel(trackingId, code);
 		}
 
 
@@ -120,17 +102,10 @@ namespace IO.Swagger.Controllers
         [SwaggerResponse(200, type: typeof(InlineResponse200))]
         public virtual IActionResult SubmitParcel([FromBody]Parcel newParcel)
         {
-			Recipient recipient = new Recipient("Tobias", "Test", "Teststrasse 1", "1010", "Teststadt");
-			Parcel parcel = new Parcel(12, recipient);
-			bl.addParcel(parcel);
-
-
-            string exampleJson = null;
-            
-            var example = exampleJson != null
-            ? JsonConvert.DeserializeObject<InlineResponse200>(exampleJson)
-            : default(InlineResponse200);
-            return new ObjectResult(example);
+			string trNr = bl.addParcel(newParcel);
+			//Test it!!
+			InlineResponse200 inlineR = new InlineResponse200(trNr);
+            return new ObjectResult(inlineR);
         }
 
 
@@ -144,17 +119,11 @@ namespace IO.Swagger.Controllers
         [HttpGet]
         [Route("/api/parcel/{trackingId}")]
         [SwaggerOperation("TrackParcel")]
-        [SwaggerResponse(200, type: typeof(Parcel))] //TrackingInformation ist der Rückgabewert!!!
+        [SwaggerResponse(200, type: typeof(TrackingInformation))]
         public virtual IActionResult TrackParcel([FromRoute]string trackingId)
         { 
-            string exampleJson = null;
-
-			Parcel sParcel = bl.trackParcel(trackingId);
-            
-            var example = exampleJson != null
-            ? JsonConvert.DeserializeObject<Parcel>(sParcel.ToString())
-            : default(Parcel);
-			return new ObjectResult(example);
+			TrackingInformation trInfo = bl.trackParcel(trackingId);
+			return new ObjectResult(trInfo);
 
 		}
 
@@ -164,8 +133,7 @@ namespace IO.Swagger.Controllers
         [SwaggerResponse(200)]
         public virtual IActionResult TestFunktion()
         {
-            
-
+            bl.Test();
             string exampleJson = null;
             var example = exampleJson != null
                 ? JsonConvert.DeserializeObject<string>(exampleJson)

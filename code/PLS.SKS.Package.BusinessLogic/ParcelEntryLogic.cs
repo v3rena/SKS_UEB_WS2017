@@ -5,30 +5,27 @@ using System.Text;
 using static PLS.SKS.Package.BusinessLogic.Validator;
 using PLS.SKS.Package;
 using PLS.SKS.Package.DataAccess.Sql;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace PLS.SKS.Package.BusinessLogic
 {
     public class ParcelEntryLogic : Interfaces.IParcelEntryLogic
     {
-		//DataAccess.Sql.SqlParcelRepository parcelRepo = new DataAccess.Sql.SqlParcelRepository();
-		private DBContext dBContext;
+		private DataAccess.Interfaces.IParcelRepository parcelRepo;
 
-		public ParcelEntryLogic(DBContext dBContext)
+		private int inc = 0;
+
+		public ParcelEntryLogic(IServiceProvider serviceProvider)
 		{
-			this.dBContext = dBContext;
+			parcelRepo = new DataAccess.Sql.SqlParcelRepository(serviceProvider.GetRequiredService<DataAccess.Sql.DBContext>());
 		}
 
-		public void addParcel(DataAccess.Entities.Parcel parcel)
+		public string addParcel(DataAccess.Entities.Parcel parcel)
         {
-			/*ParcelValidator validator = new ParcelValidator();
-			ValidationResult results = validator.Validate(parcel);
-
-            bool validationSucceeded = results.IsValid;
-            IList<ValidationFailure> failures = results.Errors;*/
-
-			string trackingNumber = "Test123";
-
-			//parcelRepo.Create(parcel);
+			parcel.TrackingNumber = "TN" + inc.ToString();
+			inc++;
+			int pk = parcelRepo.Create(parcel);
+			return parcel.TrackingNumber;
         }
     }
   }

@@ -31,10 +31,10 @@ namespace PLS.SKS.Package.Services
 
 			services.AddScoped<BusinessLogic.BusinessLogic>();
 
-			//services.AddScoped<DataAccess.Interfaces.IParcelRepository, DataAccess.Sql.SqlParcelRepository>();
-			//services.AddScoped(typeof(DataAccess.Interfaces.IParcelRepository), typeof(DataAccess.Sql.SqlParcelRepository));
-
-			services.AddMvc();
+			services.AddMvc()
+				.AddJsonOptions(
+			options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+		);
 
             services.AddSwaggerGen(c =>
             {
@@ -45,6 +45,7 @@ namespace PLS.SKS.Package.Services
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {

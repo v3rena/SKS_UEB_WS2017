@@ -33,7 +33,7 @@ namespace IO.Swagger.Models
         /// </summary>
         /// <param name="Code">The code of the &#x60;warehouse&#x60; or &#x60;truck&#x60;. (required).</param>
         /// <param name="DateTime">The date/time the parcel arrived at the hop. (required).</param>
-        public HopArrival(string Code = default(string), DateTime? DateTime = default(DateTime?))
+        public HopArrival(string Code, DateTime? DateTime)
         {
             // to ensure "Code" is required (not null)
             if (Code == null)

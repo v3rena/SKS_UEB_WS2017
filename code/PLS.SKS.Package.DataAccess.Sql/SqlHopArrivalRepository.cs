@@ -8,9 +8,17 @@ namespace PLS.SKS.Package.DataAccess.Sql
 {
 	public class SqlHopArrivalRepository : IHopArrivalRepository
 	{
+		private readonly DBContext db;
+
+		public SqlHopArrivalRepository(DBContext context)
+		{
+			db = context;
+		}
+
 		public int Create(HopArrival h)
 		{
-			throw new NotImplementedException();
+			db.Add(h);
+			return h.id;
 		}
 
 		public void Delete(int id)

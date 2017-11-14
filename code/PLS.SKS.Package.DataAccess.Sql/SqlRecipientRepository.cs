@@ -6,9 +6,17 @@ namespace PLS.SKS.Package.DataAccess.Sql
 {
 	public class SqlRecipientRepository : IRecipientRepository
 	{
-		public int Create(Recipient p)
+		private readonly DBContext db;
+
+		public SqlRecipientRepository(DBContext context)
 		{
-			throw new NotImplementedException();
+			db = context;
+		}
+
+		public int Create(Recipient r)
+		{
+			db.Add(r);
+			return r.id;
 		}
 
 		public void Delete(int id)

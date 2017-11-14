@@ -36,7 +36,7 @@ namespace IO.Swagger.Models
         /// <param name="Duration">Duration (required).</param>
         /// <param name="NextHops">NextHops.</param>
         /// <param name="Trucks">Trucks.</param>
-        public Warehouse(string Code = default(string), string Description = default(string), decimal? Duration = default(decimal?), List<Warehouse> NextHops = default(List<Warehouse>), List<Truck> Trucks = default(List<Truck>))
+        public Warehouse(string Code, string Description, decimal? Duration, List<Warehouse> NextHops, List<Truck> Trucks)
         {
             // to ensure "Code" is required (not null)
             if (Code == null)

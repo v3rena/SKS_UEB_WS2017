@@ -8,9 +8,17 @@ namespace PLS.SKS.Package.DataAccess.Sql
 {
 	public class SqlTrackingInformationRepository : ITrackingInformationRepository
 	{
+		private readonly DBContext db;
+
+		public SqlTrackingInformationRepository(DBContext context)
+		{
+			db = context;
+		}
+
 		public int Create(TrackingInformation t)
 		{
-			throw new NotImplementedException();
+			db.Add(t);
+			return t.id;
 		}
 
 		public void Delete(int id)
