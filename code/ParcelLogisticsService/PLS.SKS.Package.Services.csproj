@@ -30,6 +30,7 @@
     <ProjectReference Include="..\PLS.SKS.Package.DataAccess.Entities\PLS.SKS.Package.DataAccess.Entities.csproj" />
     <ProjectReference Include="..\PLS.SKS.Package.DataAccess.Mock\PLS.SKS.Package.DataAccess.Mock.csproj" />
     <ProjectReference Include="..\PLS.SKS.Package.DataAccess.Sql\PLS.SKS.Package.DataAccess.Sql.csproj" />
+    <ProjectReference Include="..\PLS.SKS.Package.Services.DTOs\PLS.SKS.Package.Services.DTOs.csproj" />
   </ItemGroup>
 
 </Project>
