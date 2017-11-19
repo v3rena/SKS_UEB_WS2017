@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using PLS.SKS.Package.DataAccess.Entities;
+using System.Linq;
 
 namespace PLS.SKS.Package.DataAccess.Sql
 {
@@ -33,7 +34,12 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 		public void Update(TrackingInformation t)
 		{
-			throw new NotImplementedException();
+			var TrToUpdate = db.TrackingInformations.SingleOrDefault(b => b.id == t.id);
+			if (TrToUpdate != null)
+			{
+				TrToUpdate = t;
+				db.SaveChanges();
+			}
 		}
 	}
 }

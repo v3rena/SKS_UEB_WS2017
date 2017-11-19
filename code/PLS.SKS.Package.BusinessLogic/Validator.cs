@@ -22,7 +22,7 @@ namespace PLS.SKS.Package.BusinessLogic
 		{
 			public RecipientValidator()
 			{
-				RuleFor(recipient => recipient.firstName).NotEmpty().WithMessage("Please specify a first name").Matches(new Regex(@"[A-Z][A-Za-z -]"));
+				RuleFor(recipient => recipient.firstName).NotEmpty().WithMessage("Please specify a first name").Matches(new Regex(@"[A-Z]{1}[A-Za-z -]"));
 				RuleFor(recipient => recipient.lastName).NotEmpty().WithMessage("Please specify a last name").Matches(new Regex(@"[A-Z][A-Za-z -]"));
 				RuleFor(recipient => recipient.street).NotEmpty().WithMessage("Please specify a street").Matches(new Regex(@"[A-Za-z] [A-Za-z0-9/]"));
 				RuleFor(recipient => recipient.postalCode).NotEmpty().WithMessage("Please specify a postal code").Matches(new Regex(@"^A-\d{4}"));

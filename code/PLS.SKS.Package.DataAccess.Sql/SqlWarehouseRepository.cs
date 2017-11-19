@@ -30,23 +30,28 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 		public Warehouse GetById(int id)
 		{
-			var w01 = db.Warehouses.Include(w => w.nextHops).Include(w => w.trucks)
+			var warehouse = db.Warehouses.Include(w => w.nextHops).Include(w => w.trucks)
 				.Where(w => w.id == id).FirstOrDefault();
-			var id2 = w01.nextHops.FirstOrDefault().id;
-			var w02 = db.Warehouses.Include(w => w.nextHops).Include(w => w.trucks)
+
+			while(warehouse.nextHops.Count != 0)
+			{
+				var id2 = warehouse.nextHops.FirstOrDefault().id;
+				warehouse = db.Warehouses.Include(w => w.nextHops).Include(w => w.trucks)
 				.Where(w => w.id == id2).FirstOrDefault();
-			var id3 = w02.nextHops.FirstOrDefault().id;
-			var w03 = db.Warehouses.Include(w => w.nextHops).Include(w => w.trucks)
-				.Where(w => w.id == id3).FirstOrDefault();
+			}
 
-			//w02.nextHops.Add(w03);
-
-			return w01;
+			return db.Warehouses.Include(w => w.nextHops).Include(w => w.trucks)
+				.Where(w => w.id == id).FirstOrDefault();
 		}
 
 		public void Update(Warehouse w)
 		{
-			throw new NotImplementedException();
+			var WarehouseToUpdate = db.Warehouses.SingleOrDefault(b => b.id == w.id);
+			if (WarehouseToUpdate != null)
+			{
+				WarehouseToUpdate = w;
+				db.SaveChanges();
+			}
 		}
 	}
 }

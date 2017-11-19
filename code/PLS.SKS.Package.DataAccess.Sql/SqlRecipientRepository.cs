@@ -1,6 +1,7 @@
 ﻿using PLS.SKS.Package.DataAccess.Interfaces;
 using System;
 using PLS.SKS.Package.DataAccess.Entities;
+using System.Linq;
 
 namespace PLS.SKS.Package.DataAccess.Sql
 {
@@ -31,7 +32,12 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 		public void Update(Recipient p)
 		{
-			throw new NotImplementedException();
+			var RecipientToUpdate = db.Recipients.SingleOrDefault(b => b.id == p.id);
+			if (RecipientToUpdate != null)
+			{
+				RecipientToUpdate = p;
+				db.SaveChanges();
+			}
 		}
 	}
 }
