@@ -26,7 +26,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 		public Recipient GetById(int id)
 		{
-			throw new NotImplementedException();
+			return db.Recipients.Find(id);
 		}
 
 		public void Update(Recipient p)

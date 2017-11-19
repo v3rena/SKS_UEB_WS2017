@@ -28,7 +28,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 		public HopArrival GetById(int id)
 		{
-			throw new NotImplementedException();
+			return db.HopArrivals.Find(id);
 		}
 
 		public void Update(HopArrival h)

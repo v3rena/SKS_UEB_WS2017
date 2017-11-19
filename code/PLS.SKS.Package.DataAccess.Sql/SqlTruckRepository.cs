@@ -28,7 +28,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 		public Truck GetById(int id)
 		{
-			throw new NotImplementedException();
+			return db.Trucks.Find(id);
 		}
 
 		public void Update(Truck t)
