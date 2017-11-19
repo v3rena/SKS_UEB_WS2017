@@ -28,7 +28,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 		public TrackingInformation GetById(int id)
 		{
-			throw new NotImplementedException();
+			return db.TrackingInformations.Find(id);
 		}
 
 		public void Update(TrackingInformation t)
