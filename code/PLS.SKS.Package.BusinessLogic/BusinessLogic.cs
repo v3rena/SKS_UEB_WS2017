@@ -50,6 +50,13 @@ namespace PLS.SKS.Package.BusinessLogic
 			DataAccess.Entities.Parcel dalParcel = trackingLogic.trackParcel(trackingNumber);
 			Entities.Parcel blParcel = Mapper.Map<Entities.Parcel>(dalParcel);
 			//Implement exception handling
+
+			//Validates BusinessLogic model
+			Validator.ParcelValidator validator = new Validator.ParcelValidator();
+			ValidationResult results = validator.Validate(blParcel);
+			bool validationSucceeded = results.IsValid;
+			IList<ValidationFailure> failures = results.Errors;
+
 			var trInfo = blParcel.TrackingInformation;
 			IO.Swagger.Models.TrackingInformation info = Mapper.Map<IO.Swagger.Models.TrackingInformation>(trInfo);
 			return info;
@@ -60,6 +67,13 @@ namespace PLS.SKS.Package.BusinessLogic
 			//Should return root warehouse!
 			DataAccess.Entities.Warehouse dalWarehouse = warehouseLogic.ExportWarehouses();
 			Entities.Warehouse blWarehouse = Mapper.Map<Entities.Warehouse>(dalWarehouse);
+
+			//Validates BusinessLogic model
+			Validator.WarehouseValidator validator = new Validator.WarehouseValidator();
+			ValidationResult results = validator.Validate(blWarehouse);
+			bool validationSucceeded = results.IsValid;
+			IList<ValidationFailure> failures = results.Errors;
+
 			IO.Swagger.Models.Warehouse swaggerWarehouse = Mapper.Map<IO.Swagger.Models.Warehouse>(blWarehouse);
 			return swaggerWarehouse;
 		}
