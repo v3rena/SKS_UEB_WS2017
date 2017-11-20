@@ -21,7 +21,7 @@ namespace PLS.SKS.Package.BusinessLogic
 			parcelRepo = new DataAccess.Sql.SqlParcelRepository(serviceProvider.GetRequiredService<DataAccess.Sql.DBContext>());
 		}
 
-		public string addParcel(DataAccess.Entities.Parcel parcel)
+		public string AddParcel(DataAccess.Entities.Parcel parcel)
         {
 			parcel.TrackingNumber = "TN" + inc.ToString();
 			inc++;

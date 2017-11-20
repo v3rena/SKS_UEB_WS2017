@@ -27,7 +27,7 @@ namespace PLS.SKS.Package.BusinessLogic
 			//bool validationSucceeded = results.IsValid;
 			//IList<ValidationFailure> failures = results.Errors;
 
-			hopArrivalLogic.scanParcel(trackingNumber, code);
+			hopArrivalLogic.ScanParcel(trackingNumber, code);
 		}
 
 		public string addParcel(IO.Swagger.Models.Parcel parcel)
@@ -41,13 +41,13 @@ namespace PLS.SKS.Package.BusinessLogic
 			IList<ValidationFailure> failures = results.Errors;
 
 			DataAccess.Entities.Parcel dalParcel = Mapper.Map<DataAccess.Entities.Parcel>(blParcel);
-			string trNr = parcelEntryLogic.addParcel(dalParcel);
+			string trNr = parcelEntryLogic.AddParcel(dalParcel);
 			return trNr;
         }
 
         public IO.Swagger.Models.TrackingInformation trackParcel(string trackingNumber)
         {
-			DataAccess.Entities.Parcel dalParcel = trackingLogic.trackParcel(trackingNumber);
+			DataAccess.Entities.Parcel dalParcel = trackingLogic.TrackParcel(trackingNumber);
 			Entities.Parcel blParcel = Mapper.Map<Entities.Parcel>(dalParcel);
 			//Implement exception handling
 
