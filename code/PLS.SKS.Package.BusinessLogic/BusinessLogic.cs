@@ -157,9 +157,9 @@ namespace PLS.SKS.Package.BusinessLogic
 
         public AutoMapper.IMapper Mapper { get; set; }
 
-        private HopArrivalLogic hopArrivalLogic;
-        private ParcelEntryLogic parcelEntryLogic;
-        private TrackingLogic trackingLogic;
-		private WarehouseLogic warehouseLogic;
+        private Interfaces.IHopArrivalLogic hopArrivalLogic;
+        private Interfaces.IParcelEntryLogic parcelEntryLogic;
+        private Interfaces.ITrackingLogic trackingLogic;
+		private Interfaces.IWarehouseLogic warehouseLogic;
     }
 }
