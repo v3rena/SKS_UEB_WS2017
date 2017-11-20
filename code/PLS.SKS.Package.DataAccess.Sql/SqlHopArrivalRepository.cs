@@ -19,7 +19,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		public int Create(HopArrival h)
 		{
 			db.Add(h);
-			return h.id;
+			return h.Id;
 		}
 
 		public void Delete(int id)
@@ -34,7 +34,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 		public void Update(HopArrival h)
 		{
-			var HopArrivalToUpdate = db.HopArrivals.SingleOrDefault(b => b.id == h.id);
+			var HopArrivalToUpdate = db.HopArrivals.SingleOrDefault(b => b.Id == h.Id);
 			if (HopArrivalToUpdate != null)
 			{
 				HopArrivalToUpdate = h;

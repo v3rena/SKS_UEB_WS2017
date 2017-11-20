@@ -21,7 +21,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		public int Create(Truck t)
 		{
 			db.Add(t);
-			return t.id;
+			return t.Id;
 		}
 
 		public void Delete(int id)
@@ -36,7 +36,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 		public void Update(Truck t)
 		{
-			var TruckToUpdate = db.Trucks.SingleOrDefault(b => b.id == t.id);
+			var TruckToUpdate = db.Trucks.SingleOrDefault(b => b.Id == t.Id);
 			if (WarehouseToUpdate != null)
 			{
 				WarehouseToUpdate = t;

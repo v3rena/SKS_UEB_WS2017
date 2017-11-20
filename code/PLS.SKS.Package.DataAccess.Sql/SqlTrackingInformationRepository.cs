@@ -19,7 +19,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		public int Create(TrackingInformation t)
 		{
 			db.Add(t);
-			return t.id;
+			return t.Id;
 		}
 
 		public void Delete(int id)
@@ -34,7 +34,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 		public void Update(TrackingInformation t)
 		{
-			var TrToUpdate = db.TrackingInformations.SingleOrDefault(b => b.id == t.id);
+			var TrToUpdate = db.TrackingInformations.SingleOrDefault(b => b.Id == t.Id);
 			if (TrToUpdate != null)
 			{
 				TrToUpdate = t;

@@ -20,7 +20,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		public int Create(Warehouse w)
 		{
 			db.Add(w);
-			return w.id;
+			return w.Id;
 		}
 
 		public void Delete(int id)
@@ -30,23 +30,23 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 		public Warehouse GetById(int id)
 		{
-			var warehouse = db.Warehouses.Include(w => w.nextHops).Include(w => w.trucks)
-				.Where(w => w.id == id).FirstOrDefault();
+			var warehouse = db.Warehouses.Include(w => w.NextHops).Include(w => w.Trucks)
+				.Where(w => w.Id == id).FirstOrDefault();
 
-			while(warehouse.nextHops.Count != 0)
+			while(warehouse.NextHops.Count != 0)
 			{
-				var id2 = warehouse.nextHops.FirstOrDefault().id;
-				warehouse = db.Warehouses.Include(w => w.nextHops).Include(w => w.trucks)
-				.Where(w => w.id == id2).FirstOrDefault();
+				var id2 = warehouse.NextHops.FirstOrDefault().Id;
+				warehouse = db.Warehouses.Include(w => w.NextHops).Include(w => w.Trucks)
+				.Where(w => w.Id == id2).FirstOrDefault();
 			}
 
-			return db.Warehouses.Include(w => w.nextHops).Include(w => w.trucks)
-				.Where(w => w.id == id).FirstOrDefault();
+			return db.Warehouses.Include(w => w.NextHops).Include(w => w.Trucks)
+				.Where(w => w.Id == id).FirstOrDefault();
 		}
 
 		public void Update(Warehouse w)
 		{
-			var WarehouseToUpdate = db.Warehouses.SingleOrDefault(b => b.id == w.id);
+			var WarehouseToUpdate = db.Warehouses.SingleOrDefault(b => b.Id == w.Id);
 			if (WarehouseToUpdate != null)
 			{
 				WarehouseToUpdate = w;

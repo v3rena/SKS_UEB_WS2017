@@ -15,7 +15,7 @@ namespace PLS.SKS.Package.DataAccess.Entities
             this.Recipient = recipient;
         }
 
-        public int id { get; set; }
+        public int Id { get; set; }
         public float Weight { get; set; }
 		public int RecipientId { get; set; }
         public virtual Recipient Recipient { get; set; }

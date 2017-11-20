@@ -10,12 +10,12 @@ namespace PLS.SKS.Package.DataAccess.Entities
 
         public Hop(string code, decimal duration)
         {
-            this.code = code;
-            this.duration = duration;
+            this.Code = code;
+            this.Duration = duration;
         }
 
-        public int id { get; set; }
-        public string code { get; set; }
-        public decimal duration { get; set; }
+        public int Id { get; set; }
+        public string Code { get; set; }
+        public decimal Duration { get; set; }
     }
 }
