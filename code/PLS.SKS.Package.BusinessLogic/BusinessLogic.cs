@@ -80,13 +80,27 @@ namespace PLS.SKS.Package.BusinessLogic
 
         public void Test()
         {
-            Entities.Recipient blRec = new Entities.Recipient("fName", "lName", "testStreet", "1234", "testCity");
-            Entities.Parcel blParcel = new Entities.Parcel(2.0f, blRec);
+            //Entities.Recipient blRec = new Entities.Recipient("fName", "lName", "testStreet", "1234", "testCity");
+            //Entities.Parcel blParcel = new Entities.Parcel(2.0f, blRec);
 
-            IO.Swagger.Models.Parcel swParcel = Mapper.Map<IO.Swagger.Models.Parcel>(blParcel);
-            DataAccess.Entities.Parcel dalParcel = Mapper.Map<DataAccess.Entities.Parcel>(blParcel);
-            Entities.Parcel blParcel2 = Mapper.Map<Entities.Parcel>(dalParcel);
-            Entities.Parcel blParcel3 = Mapper.Map<Entities.Parcel>(swParcel);
+            //IO.Swagger.Models.Parcel swParcel = Mapper.Map<IO.Swagger.Models.Parcel>(blParcel);
+            //DataAccess.Entities.Parcel dalParcel = Mapper.Map<DataAccess.Entities.Parcel>(blParcel);
+            //Entities.Parcel blParcel2 = Mapper.Map<Entities.Parcel>(dalParcel);
+            //Entities.Parcel blParcel3 = Mapper.Map<Entities.Parcel>(swParcel);
+
+            DataAccess.Entities.HopArrival Arr1 = new DataAccess.Entities.HopArrival();
+            Arr1.id = 1;
+            Arr1.code = "bla";
+            DataAccess.Entities.HopArrival Arr2 = new DataAccess.Entities.HopArrival();
+            Arr2.id = 2;
+            Arr2.code = "test";
+            DataAccess.Entities.TrackingInformation DALInfo = new DataAccess.Entities.TrackingInformation();
+            DALInfo.id = 1;
+            DALInfo.visitedHops = new List<DataAccess.Entities.HopArrival> { Arr1 };
+            DALInfo.futureHops = new List<DataAccess.Entities.HopArrival> { Arr2 };
+
+            Entities.TrackingInformation BLInfo = Mapper.Map<Entities.TrackingInformation>(DALInfo);
+            
             return;
         }
 

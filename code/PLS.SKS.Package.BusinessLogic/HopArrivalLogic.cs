@@ -19,6 +19,12 @@ namespace PLS.SKS.Package.BusinessLogic
 
 		public void scanParcel(string trackingNumber, string code)
         {
+            //get Parcel with trackingNumber
+            //get TrackingInformation for Parcel
+            //get HopArrival with "code" and "TrackingInformationID"
+            //change state of HopArrival
+
+
 			//TrackingInformation des Parcels gehört geupdated
 			//Was mach ich mit dem HopArrival?
 			//DataAccess.Entities.Parcel dalParcel = parcelRepo.GetByCode(trackingNumber);
