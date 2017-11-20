@@ -134,20 +134,20 @@ namespace PLS.SKS.Package.BusinessLogic
                 cfg.CreateMap<DataAccess.Entities.HopArrival, Entities.HopArrival>();
                 //BL --> DAL
                 cfg.CreateMap<Entities.Recipient, DataAccess.Entities.Recipient>()
-                    .ForMember(model => model.id, option => option.Ignore());
+                    .ForMember(model => model.Id, option => option.Ignore());
                 cfg.CreateMap<Entities.Parcel, DataAccess.Entities.Parcel>()
-                    .ForMember(model => model.id, option => option.Ignore())
+                    .ForMember(model => model.Id, option => option.Ignore())
                     .ForMember(model => model.TrackingInformationId, option => option.Ignore())
                     .ForMember(model => model.RecipientId, option => option.Ignore());
                 cfg.CreateMap<Entities.Warehouse, DataAccess.Entities.Warehouse>()
-                    .ForMember(model => model.id, option => option.Ignore());
+                    .ForMember(model => model.Id, option => option.Ignore());
                 cfg.CreateMap<Entities.Truck, DataAccess.Entities.Truck>()
-                    .ForMember(model => model.id, option => option.Ignore());
+                    .ForMember(model => model.Id, option => option.Ignore());
                 cfg.CreateMap<Entities.TrackingInformation, DataAccess.Entities.TrackingInformation>()
-                    .ForMember(model => model.id, option => option.Ignore());
+                    .ForMember(model => model.Id, option => option.Ignore());
                 cfg.CreateMap<Entities.HopArrival, DataAccess.Entities.HopArrival>()
-                    .ForMember(model => model.id, option => option.Ignore())
-                    .ForMember(model => model.trackingInformationId, option => option.Ignore());
+                    .ForMember(model => model.Id, option => option.Ignore())
+                    .ForMember(model => model.TrackingInformationId, option => option.Ignore());
             }
             );
 

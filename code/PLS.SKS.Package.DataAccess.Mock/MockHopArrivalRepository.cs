@@ -14,26 +14,26 @@ namespace PLS.SKS.Package.DataAccess.Mock
 
 		public int Create(HopArrival h)
 		{
-			h.id = h_id;
+			h.Id = h_id;
 			h_id++;
 			hopArrivals.Add(h);
-			return h.id;
+			return h.Id;
 		}
 
 		public void Delete(int id)
 		{
-			HopArrival h = hopArrivals.SingleOrDefault(item => item.id == id);
+			HopArrival h = hopArrivals.SingleOrDefault(item => item.Id == id);
 			hopArrivals.Remove(h);
 		}
 
 		public HopArrival GetById(int id)
 		{
-			return hopArrivals.SingleOrDefault(item => item.id == id);
+			return hopArrivals.SingleOrDefault(item => item.Id == id);
 		}
 
 		public void Update(HopArrival h)
 		{
-			HopArrival h2 = hopArrivals.Find(item => item.id == h.id);
+			HopArrival h2 = hopArrivals.Find(item => item.Id == h.Id);
 			h = h2;
 		}
 	}

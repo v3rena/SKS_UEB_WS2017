@@ -17,7 +17,7 @@ namespace PLS.SKS.Package.DataAccess.Mock
 
         public int Create(Warehouse w)
         {
-            w.id = m_id;
+            w.Id = m_id;
             m_id++;
             warehouses.Add(w);
             return 0;
@@ -25,19 +25,19 @@ namespace PLS.SKS.Package.DataAccess.Mock
 
         public void Update(Warehouse w)
         {
-            Warehouse w2 = warehouses.Find(item => item.id == w.id);
+            Warehouse w2 = warehouses.Find(item => item.Id == w.Id);
             w = w2;
         }
 
         public void Delete(int id)
         {
-            Warehouse w = warehouses.SingleOrDefault(item => item.id == id);
+            Warehouse w = warehouses.SingleOrDefault(item => item.Id == id);
             warehouses.Remove(w);
         }
 
         public Warehouse GetById(int id)
         {
-            return warehouses.SingleOrDefault(item => item.id == id);
+            return warehouses.SingleOrDefault(item => item.Id == id);
         }
 
         private List<Entities.Warehouse> warehouses = new List<Entities.Warehouse>();

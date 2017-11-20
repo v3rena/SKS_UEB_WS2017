@@ -17,7 +17,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		public int Create(Recipient r)
 		{
 			db.Add(r);
-			return r.id;
+			return r.Id;
 		}
 
 		public void Delete(int id)
@@ -32,7 +32,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 		public void Update(Recipient p)
 		{
-			var RecipientToUpdate = db.Recipients.SingleOrDefault(b => b.id == p.id);
+			var RecipientToUpdate = db.Recipients.SingleOrDefault(b => b.Id == p.Id);
 			if (RecipientToUpdate != null)
 			{
 				RecipientToUpdate = p;

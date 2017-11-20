@@ -14,26 +14,26 @@ namespace PLS.SKS.Package.DataAccess.Mock
 
 		public int Create(TrackingInformation t)
 		{
-			t.id = t_id;
+			t.Id = t_id;
 			t_id++;
 			trackingInformations.Add(t);
-			return t.id;
+			return t.Id;
 		}
 
 		public void Delete(int id)
 		{
-			TrackingInformation t = trackingInformations.SingleOrDefault(item => item.id == id);
+			TrackingInformation t = trackingInformations.SingleOrDefault(item => item.Id == id);
 			trackingInformations.Remove(t);
 		}
 
 		public TrackingInformation GetById(int id)
 		{
-			return trackingInformations.SingleOrDefault(item => item.id == id);
+			return trackingInformations.SingleOrDefault(item => item.Id == id);
 		}
 
 		public void Update(TrackingInformation t)
 		{
-			TrackingInformation t2 = trackingInformations.Find(item => item.id == t.id);
+			TrackingInformation t2 = trackingInformations.Find(item => item.Id == t.Id);
 			t = t2;
 		}
 	}
