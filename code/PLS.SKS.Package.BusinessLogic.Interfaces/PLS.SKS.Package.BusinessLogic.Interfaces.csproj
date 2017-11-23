@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\PLS.SKS.Package.BusinessLogic.Entities\PLS.SKS.Package.BusinessLogic.Entities.csproj" />
     <ProjectReference Include="..\PLS.SKS.Package.DataAccess.Entities\PLS.SKS.Package.DataAccess.Entities.csproj" />
+    <ProjectReference Include="..\PLS.SKS.Package.Services.DTOs\PLS.SKS.Package.Services.DTOs.csproj" />
   </ItemGroup>
 
 </Project>
