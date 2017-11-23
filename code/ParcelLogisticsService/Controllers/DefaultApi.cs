@@ -133,19 +133,5 @@ namespace IO.Swagger.Controllers
 			return new ObjectResult(trInfo);
 
 		}
-
-        [HttpGet]
-        [Route("/test")]
-        [SwaggerOperation("TestFunktion")]
-        [SwaggerResponse(200)]
-        public virtual IActionResult TestFunktion()
-        {
-            bl.Test();
-            string exampleJson = null;
-            var example = exampleJson != null
-                ? JsonConvert.DeserializeObject<string>(exampleJson)
-                : default(string);
-            return new ObjectResult(example);
-        }
     }
 }
