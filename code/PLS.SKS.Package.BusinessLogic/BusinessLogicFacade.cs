@@ -156,27 +156,30 @@ namespace PLS.SKS.Package.BusinessLogic
 
                 cfg.CreateMap<Entities.TrackingInformation, DataAccess.Entities.TrackingInformation>()
                     .ForMember(model => model.Id, option => option.Ignore())
-                    .AfterMap((s,d) => d.visitedHops.ForEach(SetVisited))
-                    .AfterMap((s,d) => d.futureHops.ForEach(SetFuture));
+                    .AfterMap((s,d) => d.visitedHops.ForEach(
+                        delegate(DataAccess.Entities.HopArrival h)
+                        {
+                            h.Status = "visited";
+                        })
+                    )
+                    .AfterMap((s,d) => d.futureHops.ForEach(
+                        delegate (DataAccess.Entities.HopArrival h)
+                        {
+                            h.Status = "future";
+                        })
+                    );
 
                 cfg.CreateMap<Entities.HopArrival, DataAccess.Entities.HopArrival>()
                     .ForMember(model => model.Id, option => option.Ignore())
-                    .ForMember(model => model.Status, option => option.Ignore());
+                    .ForMember(model => model.Status, option => option.Ignore())
+                    .ForMember(model => model.TrackingInformation, option => option.Ignore())
+                    .ForMember(model => model.TrackingInformationId, option => option.Ignore());
                 ;
             }
             );
 
             config.AssertConfigurationIsValid();
             Mapper = config.CreateMapper();
-        }
-
-        private void SetVisited(DataAccess.Entities.HopArrival h)
-        {
-            h.Status = "visited";
-        }
-        private void SetFuture(DataAccess.Entities.HopArrival h)
-        {
-            h.Status = "future";
         }
 
         public AutoMapper.IMapper Mapper { get; set; }
