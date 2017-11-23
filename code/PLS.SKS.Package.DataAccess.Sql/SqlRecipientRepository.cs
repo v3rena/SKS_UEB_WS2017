@@ -17,6 +17,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		public int Create(Recipient r)
 		{
 			db.Add(r);
+			db.SaveChanges();
 			return r.Id;
 		}
 

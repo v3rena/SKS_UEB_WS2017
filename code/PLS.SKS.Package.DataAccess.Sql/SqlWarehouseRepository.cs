@@ -20,6 +20,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		public int Create(Warehouse w)
 		{
 			db.Add(w);
+			db.SaveChanges();
 			return w.Id;
 		}
 
