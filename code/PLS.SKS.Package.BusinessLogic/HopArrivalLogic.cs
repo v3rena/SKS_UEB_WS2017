@@ -21,7 +21,6 @@ namespace PLS.SKS.Package.BusinessLogic
             hopRepo = new DataAccess.Sql.SqlHopArrivalRepository(serviceProvider.GetRequiredService<DataAccess.Sql.DBContext>());
         }
 
-
 		public void ScanParcel(string trackingNumber, string code)
         {
             //get Parcel with trackingNumber
@@ -39,10 +38,6 @@ namespace PLS.SKS.Package.BusinessLogic
             hopArr[index].DateTime = DateTime.Now;
 
             hopRepo.Update(hopArr[index]);
-
-            //TrackingInformation des Parcels gehört geupdated
-            //Was mach ich mit dem HopArrival?
-            //DataAccess.Entities.Parcel dalParcel = parcelRepo.GetByCode(trackingNumber);
         }
     }
 }

@@ -22,6 +22,8 @@ using IO.Swagger.Models;
 using PLS.SKS.Package;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using PLS.SKS.Package.BusinessLogic;
+using Microsoft.Extensions.Logging;
+using log4net;
 
 namespace IO.Swagger.Controllers
 {
@@ -32,10 +34,13 @@ namespace IO.Swagger.Controllers
     public class DefaultApiController : Controller
     {
 		BusinessLogicFacade bl;
+		//private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+		ILogger<DefaultApiController> logger;
 
-		public DefaultApiController(BusinessLogicFacade bl) //ItrackingLogic, IMapper
+		public DefaultApiController(BusinessLogicFacade bl, ILogger<DefaultApiController> logger) //ITrackingLogic, IMapper
 		{
 			this.bl = bl;
+			this.logger = logger;
 		}
 
 		/// <summary>
@@ -51,6 +56,8 @@ namespace IO.Swagger.Controllers
         [SwaggerResponse(200, type: typeof(Warehouse))]
         public virtual IActionResult ExportWarehouses()
         {
+			logger.LogInformation("Calling the ExportWarehouses action");
+			//Log.Debug("Calling the ExportWarehouses action");
 			Warehouse warehouse = bl.ExportWarehouses();
             return new ObjectResult(warehouse);
         }
@@ -126,19 +133,5 @@ namespace IO.Swagger.Controllers
 			return new ObjectResult(trInfo);
 
 		}
-
-        [HttpGet]
-        [Route("/test")]
-        [SwaggerOperation("TestFunktion")]
-        [SwaggerResponse(200)]
-        public virtual IActionResult TestFunktion()
-        {
-            bl.Test();
-            string exampleJson = null;
-            var example = exampleJson != null
-                ? JsonConvert.DeserializeObject<string>(exampleJson)
-                : default(string);
-            return new ObjectResult(example);
-        }
     }
 }
