@@ -5,8 +5,8 @@ using System.Text;
 
 namespace PLS.SKS.Package.BusinessLogic
 {
-    public class WarehouseLogic
-    {
+    public class WarehouseLogic : Interfaces.IWarehouseLogic
+	{
 		private DataAccess.Interfaces.IWarehouseRepository warehouseRepo;
 
 		public WarehouseLogic(IServiceProvider serviceProvider)

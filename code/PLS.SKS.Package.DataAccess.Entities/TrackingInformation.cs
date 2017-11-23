@@ -28,17 +28,17 @@ namespace PLS.SKS.Package.DataAccess.Entities
 			DeliveredEnum
 		}
 
-		public int id { get; set; }
+		public int Id { get; set; }
 		public StateEnum? State { get; set; }
 		public List<HopArrival> visitedHops = new List<HopArrival>();
         public List<HopArrival> futureHops = new List<HopArrival>();
 
-        public void addVisited(HopArrival visited)
+        public void AddVisited(HopArrival visited)
         {
 
         }
 
-        public void removeFuture(HopArrival future)
+        public void RemoveFuture(HopArrival future)
         {
 
         }

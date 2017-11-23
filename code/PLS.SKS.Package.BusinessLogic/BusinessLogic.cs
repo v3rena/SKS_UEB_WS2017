@@ -27,7 +27,7 @@ namespace PLS.SKS.Package.BusinessLogic
 			//bool validationSucceeded = results.IsValid;
 			//IList<ValidationFailure> failures = results.Errors;
 
-			hopArrivalLogic.scanParcel(trackingNumber, code);
+			hopArrivalLogic.ScanParcel(trackingNumber, code);
 		}
 
 		public string addParcel(IO.Swagger.Models.Parcel parcel)
@@ -41,13 +41,13 @@ namespace PLS.SKS.Package.BusinessLogic
 			IList<ValidationFailure> failures = results.Errors;
 
 			DataAccess.Entities.Parcel dalParcel = Mapper.Map<DataAccess.Entities.Parcel>(blParcel);
-			string trNr = parcelEntryLogic.addParcel(dalParcel);
+			string trNr = parcelEntryLogic.AddParcel(dalParcel);
 			return trNr;
         }
 
         public IO.Swagger.Models.TrackingInformation trackParcel(string trackingNumber)
         {
-			DataAccess.Entities.Parcel dalParcel = trackingLogic.trackParcel(trackingNumber);
+			DataAccess.Entities.Parcel dalParcel = trackingLogic.TrackParcel(trackingNumber);
 			Entities.Parcel blParcel = Mapper.Map<Entities.Parcel>(dalParcel);
 			//Implement exception handling
 
@@ -148,20 +148,20 @@ namespace PLS.SKS.Package.BusinessLogic
                 cfg.CreateMap<DataAccess.Entities.HopArrival, Entities.HopArrival>();
                 //BL --> DAL
                 cfg.CreateMap<Entities.Recipient, DataAccess.Entities.Recipient>()
-                    .ForMember(model => model.id, option => option.Ignore());
+                    .ForMember(model => model.Id, option => option.Ignore());
                 cfg.CreateMap<Entities.Parcel, DataAccess.Entities.Parcel>()
-                    .ForMember(model => model.id, option => option.Ignore())
+                    .ForMember(model => model.Id, option => option.Ignore())
                     .ForMember(model => model.TrackingInformationId, option => option.Ignore())
                     .ForMember(model => model.RecipientId, option => option.Ignore());
                 cfg.CreateMap<Entities.Warehouse, DataAccess.Entities.Warehouse>()
-                    .ForMember(model => model.id, option => option.Ignore());
+                    .ForMember(model => model.Id, option => option.Ignore());
                 cfg.CreateMap<Entities.Truck, DataAccess.Entities.Truck>()
-                    .ForMember(model => model.id, option => option.Ignore());
+                    .ForMember(model => model.Id, option => option.Ignore());
                 cfg.CreateMap<Entities.TrackingInformation, DataAccess.Entities.TrackingInformation>()
-                    .ForMember(model => model.id, option => option.Ignore());
+                    .ForMember(model => model.Id, option => option.Ignore());
                 cfg.CreateMap<Entities.HopArrival, DataAccess.Entities.HopArrival>()
-                    .ForMember(model => model.id, option => option.Ignore())
-                    .ForMember(model => model.trackingInformationId, option => option.Ignore());
+                    .ForMember(model => model.Id, option => option.Ignore())
+                    .ForMember(model => model.TrackingInformationId, option => option.Ignore());
             }
             );
 
@@ -171,9 +171,9 @@ namespace PLS.SKS.Package.BusinessLogic
 
         public AutoMapper.IMapper Mapper { get; set; }
 
-        private HopArrivalLogic hopArrivalLogic;
-        private ParcelEntryLogic parcelEntryLogic;
-        private TrackingLogic trackingLogic;
-		private WarehouseLogic warehouseLogic;
+        private Interfaces.IHopArrivalLogic hopArrivalLogic;
+        private Interfaces.IParcelEntryLogic parcelEntryLogic;
+        private Interfaces.ITrackingLogic trackingLogic;
+		private Interfaces.IWarehouseLogic warehouseLogic;
     }
 }
