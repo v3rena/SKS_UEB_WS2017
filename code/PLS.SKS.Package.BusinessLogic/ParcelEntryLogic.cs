@@ -16,8 +16,6 @@ namespace PLS.SKS.Package.BusinessLogic
 		private DataAccess.Interfaces.ITrackingInformationRepository trackingRepo;
 		private DataAccess.Interfaces.IHopArrivalRepository hopArrivalRepo;
 
-
-
 		public ParcelEntryLogic(IServiceProvider serviceProvider)
 		{
 			parcelRepo = new DataAccess.Sql.SqlParcelRepository(serviceProvider.GetRequiredService<DataAccess.Sql.DBContext>());
@@ -27,6 +25,22 @@ namespace PLS.SKS.Package.BusinessLogic
 
 		public string AddParcel(DataAccess.Entities.Parcel parcel)
         {
+			parcel.TrackingInformation = GenerateTrackingInformation();
+			parcel.TrackingNumber = RandomString(8);
+			parcelRepo.Create(parcel);
+			return parcel.TrackingNumber;
+        }
+
+		private static string RandomString(int length)
+		{
+			const string pool = "ABCDEFGHIJKLMNOPQRSTUVW0123456789";
+			var chars = Enumerable.Range(0, length)
+				.Select(x => pool[new Random().Next(0, pool.Length)]);
+			return new string(chars.ToArray());
+		}
+
+		private TrackingInformation GenerateTrackingInformation()
+		{
 			var trackInfo = new TrackingInformation(TrackingInformation.StateEnum.InTransportEnum);
 			int trackInfoId = trackingRepo.Create(trackInfo);
 
@@ -44,19 +58,7 @@ namespace PLS.SKS.Package.BusinessLogic
 			trackInfo.futureHops = new List<HopArrival> { hop2, hop3, hop4 };
 			trackInfo.visitedHops = new List<HopArrival> { hop1 };
 
-			parcel.TrackingInformation = trackInfo;
-			parcel.TrackingNumber = RandomString(8);
-
-			parcelRepo.Create(parcel);
-			return parcel.TrackingNumber;
-        }
-
-		private static string RandomString(int length)
-		{
-			const string pool = "ABCDEFGHIJKLMNOPQRSTUVW0123456789";
-			var chars = Enumerable.Range(0, length)
-				.Select(x => pool[new Random().Next(0, pool.Length)]);
-			return new string(chars.ToArray());
+			return trackInfo;
 		}
 	}
   }
