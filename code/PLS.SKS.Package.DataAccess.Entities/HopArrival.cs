@@ -19,5 +19,7 @@ namespace PLS.SKS.Package.DataAccess.Entities
         public DateTime DateTime { get; set; }
 		public int TrackingInformationId { get; set; }
 		public virtual TrackingInformation TrackingInformation { get; set; }
+        public string Status { get; set; }
+
     }
 }

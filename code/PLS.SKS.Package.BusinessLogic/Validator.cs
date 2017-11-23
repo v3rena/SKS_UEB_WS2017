@@ -13,8 +13,8 @@ namespace PLS.SKS.Package.BusinessLogic
 		{
 			public HopArrivalValidator()
 			{
-				RuleFor(parcel => parcel.code).NotEmpty();
-				RuleFor(parcel => parcel.dateTime).NotEmpty().GreaterThanOrEqualTo(DateTime.Now);
+				RuleFor(parcel => parcel.Code).NotEmpty();
+				RuleFor(parcel => parcel.DateTime).NotEmpty().GreaterThanOrEqualTo(DateTime.Now);
 			}
 		}
 

@@ -114,7 +114,6 @@ namespace PLS.SKS.Package.BusinessLogic
             DALInfo.futureHops = new List<DataAccess.Entities.HopArrival> { Arr2 };
 
             Entities.TrackingInformation BLInfo = Mapper.Map<Entities.TrackingInformation>(DALInfo);
-            
             return;
         }
 
@@ -156,16 +155,34 @@ namespace PLS.SKS.Package.BusinessLogic
                     .ForMember(model => model.Id, option => option.Ignore());
                 cfg.CreateMap<Entities.Truck, DataAccess.Entities.Truck>()
                     .ForMember(model => model.Id, option => option.Ignore());
+
                 cfg.CreateMap<Entities.TrackingInformation, DataAccess.Entities.TrackingInformation>()
-                    .ForMember(model => model.Id, option => option.Ignore());
+                    .ForMember(model => model.Id, option => option.Ignore())
+                    .AfterMap((s,d) => d.visitedHops.ForEach(SetVisited))
+                    .AfterMap((s,d) => d.futureHops.ForEach(SetFuture));
+
                 cfg.CreateMap<Entities.HopArrival, DataAccess.Entities.HopArrival>()
                     .ForMember(model => model.Id, option => option.Ignore())
+<<<<<<< HEAD:code/PLS.SKS.Package.BusinessLogic/BusinessLogic.cs
                     .ForMember(model => model.TrackingInformationId, option => option.Ignore());
+=======
+                    .ForMember(model => model.Status, option => option.Ignore());
+                ;
+>>>>>>> begin work on: HopArrival from DB to correct Lists:code/PLS.SKS.Package.BusinessLogic/BusinessLogicFacade.cs
             }
             );
 
             config.AssertConfigurationIsValid();
             Mapper = config.CreateMapper();
+        }
+
+        private void SetVisited(DataAccess.Entities.HopArrival h)
+        {
+            h.Status = "visited";
+        }
+        private void SetFuture(DataAccess.Entities.HopArrival h)
+        {
+            h.Status = "future";
         }
 
         public AutoMapper.IMapper Mapper { get; set; }

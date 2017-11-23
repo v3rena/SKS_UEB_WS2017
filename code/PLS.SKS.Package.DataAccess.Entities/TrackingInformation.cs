@@ -13,7 +13,6 @@ namespace PLS.SKS.Package.DataAccess.Entities
         {
             State = state;
             this.futureHops = futureHops;
-            visitedHops = new List<HopArrival>();
         }
 
 		public enum StateEnum
