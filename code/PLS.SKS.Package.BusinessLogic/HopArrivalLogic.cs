@@ -21,7 +21,11 @@ namespace PLS.SKS.Package.BusinessLogic
             hopRepo = new DataAccess.Sql.SqlHopArrivalRepository(serviceProvider.GetRequiredService<DataAccess.Sql.DBContext>());
         }
 
+<<<<<<< HEAD
         public void scanParcel(string trackingNumber, string code)
+=======
+		public void ScanParcel(string trackingNumber, string code)
+>>>>>>> development
         {
 
 

@@ -2,6 +2,6 @@
 {
     public interface ITrackingLogic
     {
-        DataAccess.Entities.Parcel trackParcel(string trackingID);
+        DataAccess.Entities.Parcel TrackParcel(string trackingID);
     }
 }
