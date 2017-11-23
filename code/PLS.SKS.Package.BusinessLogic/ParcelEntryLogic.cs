@@ -7,6 +7,7 @@ using PLS.SKS.Package.DataAccess.Sql;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using PLS.SKS.Package.DataAccess.Entities;
+using PLS.SKS.Package.DataAccess.Interfaces;
 
 namespace PLS.SKS.Package.BusinessLogic
 {
@@ -16,11 +17,18 @@ namespace PLS.SKS.Package.BusinessLogic
 		private DataAccess.Interfaces.ITrackingInformationRepository trackingRepo;
 		private DataAccess.Interfaces.IHopArrivalRepository hopArrivalRepo;
 
-		public ParcelEntryLogic(IServiceProvider serviceProvider)
+		/*public ParcelEntryLogic(IServiceProvider serviceProvider)
 		{
 			parcelRepo = new DataAccess.Sql.SqlParcelRepository(serviceProvider.GetRequiredService<DataAccess.Sql.DBContext>());
 			trackingRepo = new DataAccess.Sql.SqlTrackingInformationRepository(serviceProvider.GetRequiredService<DataAccess.Sql.DBContext>());
 			hopArrivalRepo = new DataAccess.Sql.SqlHopArrivalRepository(serviceProvider.GetRequiredService<DataAccess.Sql.DBContext>());
+		}*/
+
+		public ParcelEntryLogic(IParcelRepository parcelRepository, ITrackingInformationRepository trackingInformationRepository, IHopArrivalRepository hopArrivalRepository)
+		{
+			parcelRepo = parcelRepository;
+			trackingRepo = trackingInformationRepository;
+			hopArrivalRepo = hopArrivalRepository;
 		}
 
 		public string AddParcel(DataAccess.Entities.Parcel parcel)

@@ -35,8 +35,8 @@ namespace IO.Swagger.Controllers
     public class DefaultApiController : Controller
     {
 		IBusinessLogicFacade bl;
-		//private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 		ILogger<DefaultApiController> logger;
+		//private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
 		public DefaultApiController(IBusinessLogicFacade bl, ILogger<DefaultApiController> logger) //ITrackingLogic, IMapper
 		{

@@ -6,19 +6,29 @@ using PLS.SKS.Package.DataAccess.Sql;
 using Microsoft.Extensions.DependencyInjection;
 using FluentValidation;
 using FluentValidation.Results;
+using PLS.SKS.Package.BusinessLogic.Interfaces;
 
 namespace PLS.SKS.Package.BusinessLogic
 {
     public class BusinessLogicFacade : Interfaces.IBusinessLogicFacade
     {
-        public BusinessLogicFacade(IServiceProvider serviceProvider)
+        /*public BusinessLogicFacade(IServiceProvider serviceProvider)
         {
             hopArrivalLogic = new HopArrivalLogic(serviceProvider);
             parcelEntryLogic = new ParcelEntryLogic(serviceProvider);
             trackingLogic = new TrackingLogic(serviceProvider);
 			warehouseLogic = new WarehouseLogic(serviceProvider);
             CreateMaps();
-        }
+        }*/
+
+		public BusinessLogicFacade(IHopArrivalLogic hopArrivalLogic, IParcelEntryLogic parcelEntryLogic, ITrackingLogic trackingLogic, IWarehouseLogic warehouseLogic)
+		{
+			this.hopArrivalLogic = hopArrivalLogic;
+			this.parcelEntryLogic = parcelEntryLogic;
+			this.trackingLogic = trackingLogic;
+			this.warehouseLogic = warehouseLogic;
+			CreateMaps();
+		}
 
 		public void ScanParcel(string trackingNumber, string code)
         {
