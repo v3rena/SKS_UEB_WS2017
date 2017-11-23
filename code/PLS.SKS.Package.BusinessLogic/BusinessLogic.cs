@@ -9,18 +9,18 @@ using FluentValidation.Results;
 
 namespace PLS.SKS.Package.BusinessLogic
 {
-    public class BusinessLogic
+    public class BusinessLogicFacade : Interfaces.IBusinessLogicFacade
     {
-        public BusinessLogic(IServiceProvider serviceProvider)
+        public BusinessLogicFacade(IServiceProvider serviceProvider)
         {
             hopArrivalLogic = new HopArrivalLogic(serviceProvider);
             parcelEntryLogic = new ParcelEntryLogic(serviceProvider);
             trackingLogic = new TrackingLogic(serviceProvider);
 			warehouseLogic = new WarehouseLogic(serviceProvider);
-            createMaps();
+            CreateMaps();
         }
 
-		public void scanParcel(string trackingNumber, string code)
+		public void ScanParcel(string trackingNumber, string code)
         {
 			Validator.ParcelValidator validator = new Validator.ParcelValidator();
 			//ValidationResult results = validator.Validate(parcel);
@@ -30,11 +30,11 @@ namespace PLS.SKS.Package.BusinessLogic
 			hopArrivalLogic.ScanParcel(trackingNumber, code);
 		}
 
-		public string addParcel(IO.Swagger.Models.Parcel parcel)
+		public string AddParcel(IO.Swagger.Models.Parcel parcel)
         {
 			Entities.Parcel blParcel = Mapper.Map<Entities.Parcel>(parcel);
 
-			//Validates BusinessLogic model
+			//Validates BusinessLogicFacade model
 			Validator.ParcelValidator validator = new Validator.ParcelValidator();
 			ValidationResult results = validator.Validate(blParcel);
 			bool validationSucceeded = results.IsValid;
@@ -45,13 +45,13 @@ namespace PLS.SKS.Package.BusinessLogic
 			return trNr;
         }
 
-        public IO.Swagger.Models.TrackingInformation trackParcel(string trackingNumber)
+        public IO.Swagger.Models.TrackingInformation TrackParcel(string trackingNumber)
         {
 			DataAccess.Entities.Parcel dalParcel = trackingLogic.TrackParcel(trackingNumber);
 			Entities.Parcel blParcel = Mapper.Map<Entities.Parcel>(dalParcel);
 			//Implement exception handling
 
-			//Validates BusinessLogic model
+			//Validates BusinessLogicFacade model
 			Validator.ParcelValidator validator = new Validator.ParcelValidator();
 			ValidationResult results = validator.Validate(blParcel);
 			bool validationSucceeded = results.IsValid;
@@ -68,7 +68,7 @@ namespace PLS.SKS.Package.BusinessLogic
 			DataAccess.Entities.Warehouse dalWarehouse = warehouseLogic.ExportWarehouses();
 			Entities.Warehouse blWarehouse = Mapper.Map<Entities.Warehouse>(dalWarehouse);
 
-			//Validates BusinessLogic model
+			//Validates BusinessLogicFacade model
 			Validator.WarehouseValidator validator = new Validator.WarehouseValidator();
 			ValidationResult results = validator.Validate(blWarehouse);
 			bool validationSucceeded = results.IsValid;
@@ -82,7 +82,7 @@ namespace PLS.SKS.Package.BusinessLogic
 		{
 			Entities.Warehouse blWarehouse = Mapper.Map<Entities.Warehouse>(warehouse);
 
-			//Validates BusinessLogic model
+			//Validates BusinessLogicFacade model
 			Validator.WarehouseValidator validator = new Validator.WarehouseValidator();
 			ValidationResult results = validator.Validate(blWarehouse);
 			bool validationSucceeded = results.IsValid;
@@ -118,7 +118,7 @@ namespace PLS.SKS.Package.BusinessLogic
             return;
         }
 
-		private void createMaps()
+		public void CreateMaps()
         {
             var config = new AutoMapper.MapperConfiguration(cfg =>
             {
@@ -130,8 +130,7 @@ namespace PLS.SKS.Package.BusinessLogic
                 cfg.CreateMap<IO.Swagger.Models.Warehouse, Entities.Warehouse>();
 				cfg.CreateMap<IO.Swagger.Models.Truck, Entities.Truck>(); //.ForMember(model => model.test, option => option.Ignore());
 				cfg.CreateMap<IO.Swagger.Models.TrackingInformation, Entities.TrackingInformation>();
-                cfg.CreateMap<IO.Swagger.Models.HopArrival, Entities.HopArrival>()
-                    .ForMember(model => model.trackingInformation, option => option.Ignore());
+                cfg.CreateMap<IO.Swagger.Models.HopArrival, Entities.HopArrival>();
                 //BL --> Swagger
                 cfg.CreateMap<Entities.Parcel, IO.Swagger.Models.Parcel>();
                 cfg.CreateMap<Entities.Recipient, IO.Swagger.Models.Recipient>();

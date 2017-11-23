@@ -35,9 +35,9 @@ namespace IO.Swagger.Controllers
     {
 		//private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 		ILogger<DefaultApiController> logger;
-		BusinessLogic bl;
+		BusinessLogicFacade bl;
 
-		public DefaultApiController(BusinessLogic bl, ILogger<DefaultApiController> logger) //ITrackingLogic, IMapper
+		public DefaultApiController(BusinessLogicFacade bl, ILogger<DefaultApiController> logger) //ITrackingLogic, IMapper
 		{
 			this.bl = bl;
 			this.logger = logger;
@@ -92,7 +92,7 @@ namespace IO.Swagger.Controllers
         [SwaggerOperation("ReportParcelHop")]
         public virtual void ReportParcelHop([FromRoute]string trackingId, [FromRoute]string code)
         {
-			bl.scanParcel(trackingId, code);
+			bl.ScanParcel(trackingId, code);
 		}
 
 
@@ -109,7 +109,7 @@ namespace IO.Swagger.Controllers
         [SwaggerResponse(200, type: typeof(InlineResponse200))]
         public virtual IActionResult SubmitParcel([FromBody]Parcel newParcel)
         {
-			string trNr = bl.addParcel(newParcel);
+			string trNr = bl.AddParcel(newParcel);
 			//Test it!!
 			InlineResponse200 inlineR = new InlineResponse200(trNr);
             return new ObjectResult(inlineR);
@@ -129,7 +129,7 @@ namespace IO.Swagger.Controllers
         [SwaggerResponse(200, type: typeof(TrackingInformation))]
         public virtual IActionResult TrackParcel([FromRoute]string trackingId)
         { 
-			TrackingInformation trInfo = bl.trackParcel(trackingId);
+			TrackingInformation trInfo = bl.TrackParcel(trackingId);
 			return new ObjectResult(trInfo);
 
 		}

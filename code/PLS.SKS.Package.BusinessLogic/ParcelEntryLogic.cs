@@ -23,6 +23,8 @@ namespace PLS.SKS.Package.BusinessLogic
 
 		public string AddParcel(DataAccess.Entities.Parcel parcel)
         {
+            //Get Last Parcel for increment?
+            
 			parcel.TrackingNumber = "TN" + inc.ToString();
 			inc++;
 			int pk = parcelRepo.Create(parcel);

@@ -29,7 +29,7 @@ namespace PLS.SKS.Package.Services
 			services.AddDbContext<DataAccess.Sql.DBContext>(options =>
 			options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-			services.AddScoped<BusinessLogic.BusinessLogic>();
+			services.AddScoped<BusinessLogic.BusinessLogicFacade>();
 
 			services.AddMvc()
 				.AddJsonOptions(
