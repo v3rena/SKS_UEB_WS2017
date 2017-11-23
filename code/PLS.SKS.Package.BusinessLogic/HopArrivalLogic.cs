@@ -28,7 +28,7 @@ namespace PLS.SKS.Package.BusinessLogic
             //get TrackingInformation for Parcel
             DataAccess.Entities.TrackingInformation dalInfo = trackRepo.GetById(dalParcel.TrackingInformationId);
             //get HopArrivals with "TrackingInformationID"
-            List<DataAccess.Entities.HopArrival> hopArr = hopRepo.GetByTrackingInforamtionId(dalInfo.Id);
+            List<DataAccess.Entities.HopArrival> hopArr = hopRepo.GetByTrackingInformationId(dalInfo.Id);
             //get HopArrival with "Code"
             DataAccess.Entities.HopArrival h = new DataAccess.Entities.HopArrival { Code = code };
             int index = hopArr.FindIndex(a => a.Code == h.Code);

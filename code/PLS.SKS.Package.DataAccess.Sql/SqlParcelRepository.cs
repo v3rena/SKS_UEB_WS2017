@@ -20,6 +20,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		public int Create(Parcel p)
 		{
 			db.Add(p);
+			db.SaveChanges();
 			return p.Id;
 		}
 

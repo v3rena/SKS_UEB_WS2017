@@ -31,7 +31,7 @@ namespace PLS.SKS.Package.DataAccess.Mock
 			return hopArrivals.SingleOrDefault(item => item.Id == id);
 		}
 
-        public List<HopArrival> GetByTrackingInforamtionId(int id)
+        public List<HopArrival> GetByTrackingInformationId(int id)
         {
             throw new NotImplementedException();
         }

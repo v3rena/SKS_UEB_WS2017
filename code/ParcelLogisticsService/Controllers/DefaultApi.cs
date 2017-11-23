@@ -21,9 +21,10 @@ using Newtonsoft.Json;
 using IO.Swagger.Models;
 using PLS.SKS.Package;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using PLS.SKS.Package.BusinessLogic;
 using Microsoft.Extensions.Logging;
 using log4net;
+using PLS.SKS.Package.BusinessLogic.Interfaces;
+using PLS.SKS.Package.BusinessLogic;
 
 namespace IO.Swagger.Controllers
 {
@@ -33,11 +34,11 @@ namespace IO.Swagger.Controllers
     /// </summary>
     public class DefaultApiController : Controller
     {
-		BusinessLogicFacade bl;
+		IBusinessLogicFacade bl;
 		//private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 		ILogger<DefaultApiController> logger;
 
-		public DefaultApiController(BusinessLogicFacade bl, ILogger<DefaultApiController> logger) //ITrackingLogic, IMapper
+		public DefaultApiController(IBusinessLogicFacade bl, ILogger<DefaultApiController> logger) //ITrackingLogic, IMapper
 		{
 			this.bl = bl;
 			this.logger = logger;
@@ -75,6 +76,7 @@ namespace IO.Swagger.Controllers
         [SwaggerOperation("ImportWarehouses")]
         public virtual void ImportWarehouses([FromBody]Warehouse warehouseRoot)
         {
+			logger.LogInformation("Calling the ImportWarehouses action");
 			bl.ImportWarehouses(warehouseRoot);
 		}
 
@@ -92,6 +94,7 @@ namespace IO.Swagger.Controllers
         [SwaggerOperation("ReportParcelHop")]
         public virtual void ReportParcelHop([FromRoute]string trackingId, [FromRoute]string code)
         {
+			logger.LogInformation("Calling the ReportParcelHop action");
 			bl.ScanParcel(trackingId, code);
 		}
 
@@ -109,6 +112,7 @@ namespace IO.Swagger.Controllers
         [SwaggerResponse(200, type: typeof(InlineResponse200))]
         public virtual IActionResult SubmitParcel([FromBody]Parcel newParcel)
         {
+			logger.LogInformation("Calling the SubmitParcel action");
 			string trNr = bl.AddParcel(newParcel);
 			//Test it!!
 			InlineResponse200 inlineR = new InlineResponse200(trNr);
@@ -128,7 +132,8 @@ namespace IO.Swagger.Controllers
         [SwaggerOperation("TrackParcel")]
         [SwaggerResponse(200, type: typeof(TrackingInformation))]
         public virtual IActionResult TrackParcel([FromRoute]string trackingId)
-        { 
+        {
+			logger.LogInformation("Calling the TrackParcel action");
 			TrackingInformation trInfo = bl.TrackParcel(trackingId);
 			return new ObjectResult(trInfo);
 
