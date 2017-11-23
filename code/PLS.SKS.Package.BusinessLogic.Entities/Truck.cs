@@ -10,20 +10,20 @@ namespace PLS.SKS.Package.BusinessLogic.Entities
 
         public Truck(string code, string numberPlate, decimal latitude, decimal longitude, decimal radius, decimal duration)
         {
-            this.code = code;
-            this.numberPlate = numberPlate;
-            this.latitude = latitude;
-            this.longitude = longitude;
-            this.radius = radius;
-            this.duration = duration;
+            this.Code = code;
+            this.NumberPlate = numberPlate;
+            this.Latitude = latitude;
+            this.Longitude = longitude;
+            this.Radius = radius;
+            this.Duration = duration;
         }
 
-        public string code { get; set; }
-		public string numberPlate { get; set; }
-		public decimal latitude { get; set; }
-		public decimal longitude { get; set; }
-		public decimal radius { get; set; }
-		public decimal duration { get; set; }
+        public string Code { get; set; }
+		public string NumberPlate { get; set; }
+		public decimal Latitude { get; set; }
+		public decimal Longitude { get; set; }
+		public decimal Radius { get; set; }
+		public decimal Duration { get; set; }
 		//public int? test { get; set; }
     }
 }
