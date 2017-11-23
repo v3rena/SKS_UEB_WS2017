@@ -22,6 +22,7 @@ using IO.Swagger.Models;
 using PLS.SKS.Package;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using PLS.SKS.Package.BusinessLogic;
+using Microsoft.Extensions.Logging;
 
 namespace IO.Swagger.Controllers
 {
@@ -31,11 +32,13 @@ namespace IO.Swagger.Controllers
     /// </summary>
     public class DefaultApiController : Controller
     {
+		ILogger<DefaultApiController> logger;
 		BusinessLogic bl;
 
-		public DefaultApiController(BusinessLogic bl) //ItrackingLogic, IMapper
+		public DefaultApiController(BusinessLogic bl, ILogger<DefaultApiController> logger) //ITrackingLogic, IMapper
 		{
 			this.bl = bl;
+			this.logger = logger;
 		}
 
 		/// <summary>
@@ -51,6 +54,7 @@ namespace IO.Swagger.Controllers
         [SwaggerResponse(200, type: typeof(Warehouse))]
         public virtual IActionResult ExportWarehouses()
         {
+			logger.LogInformation("Calling the ExportWarehouses action");
 			Warehouse warehouse = bl.ExportWarehouses();
             return new ObjectResult(warehouse);
         }
