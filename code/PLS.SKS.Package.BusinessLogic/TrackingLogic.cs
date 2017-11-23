@@ -17,7 +17,13 @@ namespace PLS.SKS.Package.BusinessLogic
 
         public DataAccess.Entities.Parcel TrackParcel(string trackingNumber)
         {
-			return parcelRepo.GetByTrackingNumber(trackingNumber);
+            //get Parcel with TrackingNumber
+            //get TrackingInformation of Parcel
+            //get all Hops of TrackingInformation
+            //fill lists with corresponding Hops
+            //return DAL Parcel
+
+            return parcelRepo.GetByTrackingNumber(trackingNumber);
 		}
     }
 }

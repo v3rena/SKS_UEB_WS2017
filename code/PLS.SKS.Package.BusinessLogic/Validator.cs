@@ -13,8 +13,8 @@ namespace PLS.SKS.Package.BusinessLogic
 		{
 			public HopArrivalValidator()
 			{
-				RuleFor(parcel => parcel.code).NotEmpty();
-				RuleFor(parcel => parcel.dateTime).NotEmpty().GreaterThanOrEqualTo(DateTime.Now);
+				RuleFor(parcel => parcel.Code).NotEmpty();
+				RuleFor(parcel => parcel.DateTime).NotEmpty().GreaterThanOrEqualTo(DateTime.Now);
 			}
 		}
 
@@ -22,11 +22,11 @@ namespace PLS.SKS.Package.BusinessLogic
 		{
 			public RecipientValidator()
 			{
-				RuleFor(recipient => recipient.firstName).NotEmpty().WithMessage("Please specify a first name").Matches(new Regex(@"[A-Z]{1}[A-Za-z -]"));
-				RuleFor(recipient => recipient.lastName).NotEmpty().WithMessage("Please specify a last name").Matches(new Regex(@"[A-Z][A-Za-z -]"));
-				RuleFor(recipient => recipient.street).NotEmpty().WithMessage("Please specify a street").Matches(new Regex(@"[A-Za-z] [A-Za-z0-9/]"));
-				RuleFor(recipient => recipient.postalCode).NotEmpty().WithMessage("Please specify a postal code").Matches(new Regex(@"^A-\d{4}"));
-				RuleFor(recipient => recipient.city).NotEmpty().WithMessage("Please specify a city").Matches(new Regex(@"[A-Z][A-Za-z -]"));
+				RuleFor(recipient => recipient.FirstName).NotEmpty().WithMessage("Please specify a first name").Matches(new Regex(@"[A-Z]{1}[A-Za-z -]"));
+				RuleFor(recipient => recipient.LastName).NotEmpty().WithMessage("Please specify a last name").Matches(new Regex(@"[A-Z][A-Za-z -]"));
+				RuleFor(recipient => recipient.Street).NotEmpty().WithMessage("Please specify a street").Matches(new Regex(@"[A-Za-z] [A-Za-z0-9/]"));
+				RuleFor(recipient => recipient.PostalCode).NotEmpty().WithMessage("Please specify a postal code").Matches(new Regex(@"^A-\d{4}"));
+				RuleFor(recipient => recipient.City).NotEmpty().WithMessage("Please specify a city").Matches(new Regex(@"[A-Z][A-Za-z -]"));
 			}
 		}
 
@@ -54,11 +54,11 @@ namespace PLS.SKS.Package.BusinessLogic
 		{
 			public TruckValidator()
 			{
-				RuleFor(truck => truck.code).NotEmpty().WithMessage("Please specify a code").Matches(new Regex(@"[A-Z0-9]{4}"));
-				RuleFor(truck => truck.numberPlate).NotEmpty().WithMessage("Please specify a numberPlate");
-				RuleFor(truck => truck.latitude).NotEmpty().WithMessage("Please specify a latitude");
-				RuleFor(truck => truck.longitude).NotEmpty().WithMessage("Please specify a longitude");
-				RuleFor(truck => truck.radius).NotEmpty().WithMessage("Please specify a radius").GreaterThanOrEqualTo(0);
+				RuleFor(truck => truck.Code).NotEmpty().WithMessage("Please specify a code").Matches(new Regex(@"[A-Z0-9]{4}"));
+				RuleFor(truck => truck.NumberPlate).NotEmpty().WithMessage("Please specify a numberPlate");
+				RuleFor(truck => truck.Latitude).NotEmpty().WithMessage("Please specify a latitude");
+				RuleFor(truck => truck.Longitude).NotEmpty().WithMessage("Please specify a longitude");
+				RuleFor(truck => truck.Radius).NotEmpty().WithMessage("Please specify a radius").GreaterThanOrEqualTo(0);
 			}
 		}
 
@@ -66,9 +66,9 @@ namespace PLS.SKS.Package.BusinessLogic
 		{
 			public WarehouseValidator()
 			{
-				RuleFor(warehouse => warehouse.description).Matches(new Regex(@"[A-Za-z0-9- ]"));
-				RuleFor(warehouse => warehouse.code).NotEmpty().WithMessage("Please specify a code").Matches(new Regex(@"[A-Z0-9]{4}"));
-				RuleFor(warehouse => warehouse.trucks).SetCollectionValidator(new TruckValidator());
+				RuleFor(warehouse => warehouse.Description).Matches(new Regex(@"[A-Za-z0-9- ]"));
+				RuleFor(warehouse => warehouse.Code).NotEmpty().WithMessage("Please specify a code").Matches(new Regex(@"[A-Z0-9]{4}"));
+				RuleFor(warehouse => warehouse.Trucks).SetCollectionValidator(new TruckValidator());
 			}
 		}
 	}

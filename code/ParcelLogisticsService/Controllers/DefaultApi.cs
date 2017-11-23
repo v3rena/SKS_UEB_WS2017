@@ -31,9 +31,9 @@ namespace IO.Swagger.Controllers
     /// </summary>
     public class DefaultApiController : Controller
     {
-		BusinessLogic bl;
+		BusinessLogicFacade bl;
 
-		public DefaultApiController(BusinessLogic bl) //ItrackingLogic, IMapper
+		public DefaultApiController(BusinessLogicFacade bl) //ItrackingLogic, IMapper
 		{
 			this.bl = bl;
 		}
@@ -85,7 +85,7 @@ namespace IO.Swagger.Controllers
         [SwaggerOperation("ReportParcelHop")]
         public virtual void ReportParcelHop([FromRoute]string trackingId, [FromRoute]string code)
         {
-			bl.scanParcel(trackingId, code);
+			bl.ScanParcel(trackingId, code);
 		}
 
 
@@ -102,7 +102,7 @@ namespace IO.Swagger.Controllers
         [SwaggerResponse(200, type: typeof(InlineResponse200))]
         public virtual IActionResult SubmitParcel([FromBody]Parcel newParcel)
         {
-			string trNr = bl.addParcel(newParcel);
+			string trNr = bl.AddParcel(newParcel);
 			//Test it!!
 			InlineResponse200 inlineR = new InlineResponse200(trNr);
             return new ObjectResult(inlineR);
@@ -122,7 +122,7 @@ namespace IO.Swagger.Controllers
         [SwaggerResponse(200, type: typeof(TrackingInformation))]
         public virtual IActionResult TrackParcel([FromRoute]string trackingId)
         { 
-			TrackingInformation trInfo = bl.trackParcel(trackingId);
+			TrackingInformation trInfo = bl.TrackParcel(trackingId);
 			return new ObjectResult(trInfo);
 
 		}

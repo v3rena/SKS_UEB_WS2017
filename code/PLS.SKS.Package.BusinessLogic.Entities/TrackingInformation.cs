@@ -29,15 +29,15 @@ namespace PLS.SKS.Package.BusinessLogic.Entities
 		}
 
 		public StateEnum State { get; set; }
-		public List<HopArrival> visitedHops;
-		public List<HopArrival> futureHops;
+		public List<HopArrival> visitedHops = new List<HopArrival>();
+		public List<HopArrival> futureHops = new List<HopArrival>();
 
-        public void addVisited(HopArrival visited)
+        public void AddVisited(HopArrival visited)
         {
 
         }
 
-        public void removeFuture(HopArrival future)
+        public void RemoveFuture(HopArrival future)
         {
 
         }

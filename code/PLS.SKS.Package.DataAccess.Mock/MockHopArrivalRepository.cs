@@ -31,7 +31,12 @@ namespace PLS.SKS.Package.DataAccess.Mock
 			return hopArrivals.SingleOrDefault(item => item.Id == id);
 		}
 
-		public void Update(HopArrival h)
+        public List<HopArrival> GetByTrackingInforamtionId(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(HopArrival h)
 		{
 			HopArrival h2 = hopArrivals.Find(item => item.Id == h.Id);
 			h = h2;
