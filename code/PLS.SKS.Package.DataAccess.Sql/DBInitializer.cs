@@ -73,17 +73,10 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 			var hopArrivals = new HopArrival[]
 			{
-<<<<<<< HEAD
-				new HopArrival{dateTime=DateTime.Parse("2017-11-09"), code="WH01"},
-				new HopArrival{dateTime=DateTime.Parse("2017-11-10"), code="WH02"},
-				new HopArrival{dateTime=DateTime.Parse("2017-11-11"), code="WH03"},
-				new HopArrival{dateTime=DateTime.Parse("2017-10-02"), code="WH01"}
-=======
-				new HopArrival{DateTime=DateTime.Parse("2017-11-09"), Code="WH01", TrackingInformationId=1},
-				new HopArrival{DateTime=DateTime.Parse("2017-11-10"), Code="WH02", TrackingInformationId=1},
-				new HopArrival{DateTime=DateTime.Parse("2017-11-11"), Code="WH03", TrackingInformationId=1},
-				new HopArrival{DateTime=DateTime.Parse("2017-10-02"), Code="WH01", TrackingInformationId=2}
->>>>>>> development
+				new HopArrival{DateTime=DateTime.Parse("2017-11-09"), Code="WH01"/*, TrackingInformationId=1*/},
+				new HopArrival{DateTime=DateTime.Parse("2017-11-10"), Code="WH02"/*, TrackingInformationId=1*/},
+				new HopArrival{DateTime=DateTime.Parse("2017-11-11"), Code="WH03"/*, TrackingInformationId=1*/},
+				new HopArrival{DateTime=DateTime.Parse("2017-10-02"), Code="WH01"/*, TrackingInformationId=2*/}
 			};
 			foreach (HopArrival e in hopArrivals)
 			{

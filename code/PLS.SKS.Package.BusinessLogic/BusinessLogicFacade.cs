@@ -102,18 +102,15 @@ namespace PLS.SKS.Package.BusinessLogic
             //Entities.Parcel blParcel2 = Mapper.Map<Entities.Parcel>(dalParcel);
             //Entities.Parcel blParcel3 = Mapper.Map<Entities.Parcel>(swParcel);
 
-            DataAccess.Entities.HopArrival Arr1 = new DataAccess.Entities.HopArrival();
-            Arr1.id = 1;
-            Arr1.code = "bla";
-            DataAccess.Entities.HopArrival Arr2 = new DataAccess.Entities.HopArrival();
-            Arr2.id = 2;
-            Arr2.code = "test";
-            DataAccess.Entities.TrackingInformation DALInfo = new DataAccess.Entities.TrackingInformation();
-            DALInfo.Id = 1;
-            DALInfo.visitedHops = new List<DataAccess.Entities.HopArrival> { Arr1 };
-            DALInfo.futureHops = new List<DataAccess.Entities.HopArrival> { Arr2 };
+            Entities.HopArrival Arr1 = new Entities.HopArrival();
+            Arr1.Code = "bla";
+            Entities.HopArrival Arr2 = new Entities.HopArrival();
+            Arr2.Code = "test";
+            Entities.TrackingInformation BLInfo = new Entities.TrackingInformation();
+            BLInfo.visitedHops = new List<Entities.HopArrival> { Arr1 };
+            BLInfo.futureHops = new List<Entities.HopArrival> { Arr2 };
 
-            Entities.TrackingInformation BLInfo = Mapper.Map<Entities.TrackingInformation>(DALInfo);
+            DataAccess.Entities.TrackingInformation DALInfo = Mapper.Map<DataAccess.Entities.TrackingInformation>(BLInfo);
             
             return;
         }
@@ -156,15 +153,30 @@ namespace PLS.SKS.Package.BusinessLogic
                     .ForMember(model => model.Id, option => option.Ignore());
                 cfg.CreateMap<Entities.Truck, DataAccess.Entities.Truck>()
                     .ForMember(model => model.Id, option => option.Ignore());
+
                 cfg.CreateMap<Entities.TrackingInformation, DataAccess.Entities.TrackingInformation>()
-                    .ForMember(model => model.Id, option => option.Ignore());
+                    .ForMember(model => model.Id, option => option.Ignore())
+                    .AfterMap((s,d) => d.visitedHops.ForEach(SetVisited))
+                    .AfterMap((s,d) => d.futureHops.ForEach(SetFuture));
+
                 cfg.CreateMap<Entities.HopArrival, DataAccess.Entities.HopArrival>()
-                    .ForMember(model => model.id, option => option.Ignore());
+                    .ForMember(model => model.Id, option => option.Ignore())
+                    .ForMember(model => model.Status, option => option.Ignore());
+                ;
             }
             );
 
             config.AssertConfigurationIsValid();
             Mapper = config.CreateMapper();
+        }
+
+        private void SetVisited(DataAccess.Entities.HopArrival h)
+        {
+            h.Status = "visited";
+        }
+        private void SetFuture(DataAccess.Entities.HopArrival h)
+        {
+            h.Status = "future";
         }
 
         public AutoMapper.IMapper Mapper { get; set; }
