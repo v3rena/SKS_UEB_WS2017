@@ -23,16 +23,21 @@ namespace PLS.SKS.Package.BusinessLogic
 
 		public void ScanParcel(string trackingNumber, string code)
         {
-
             //get Parcel with trackingNumber
-            //DataAccess.Entities.Parcel dalParcel = parcelRepo.GetByTrackingNumber(trackingNumber);
+            DataAccess.Entities.Parcel dalParcel = parcelRepo.GetByTrackingNumber(trackingNumber);
             //get TrackingInformation for Parcel
-            //DataAccess.Entities.TrackingInformation dalInfo = trackRepo.GetById(dalParcel.TrackingInformationId);
-            //get HopArrival with "code" and "TrackingInformationID"
-            //DataAccess.Entities.HopArrival hopArr = hopRepo.
-            //change state of HopArrival
+            DataAccess.Entities.TrackingInformation dalInfo = trackRepo.GetById(dalParcel.TrackingInformationId);
+            //get HopArrivals with "TrackingInformationID"
+            List<DataAccess.Entities.HopArrival> hopArr = hopRepo.GetByTrackingInforamtionId(dalInfo.Id);
+            //get HopArrival with "Code"
+            DataAccess.Entities.HopArrival h = new DataAccess.Entities.HopArrival { Code = code };
+            int index = hopArr.FindIndex(a => a.Code == h.Code);
+            //update Status to visited
+            hopArr[index].Status = "visited";
+            //update DateTime to now
+            hopArr[index].DateTime = DateTime.Now;
 
-
+            hopRepo.Update(hopArr[index]);
 
             //TrackingInformation des Parcels gehört geupdated
             //Was mach ich mit dem HopArrival?

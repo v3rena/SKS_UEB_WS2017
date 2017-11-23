@@ -32,6 +32,11 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			return db.HopArrivals.Find(id);
 		}
 
+        public List<HopArrival> GetByTrackingInforamtionId(int id)
+        {
+            return db.HopArrivals.Where(h => h.TrackingInformationId == id).ToList();
+        }
+
 		public void Update(HopArrival h)
 		{
 			var HopArrivalToUpdate = db.HopArrivals.SingleOrDefault(b => b.Id == h.Id);
