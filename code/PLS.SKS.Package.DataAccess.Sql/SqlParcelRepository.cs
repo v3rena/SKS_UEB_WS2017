@@ -20,6 +20,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		public int Create(Parcel p)
 		{
 			db.Add(p);
+			db.SaveChanges();
 			return p.Id;
 		}
 
@@ -42,6 +43,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		{
 			var parcel = db.Parcels.Include(p =>p.Recipient).Include(p=>p.TrackingInformation)
 				.Where(p => p.TrackingNumber == TrackingNumber).FirstOrDefault();
+
 			return parcel;
 		}
 

@@ -21,6 +21,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		public int Create(Truck t)
 		{
 			db.Add(t);
+			db.SaveChanges();
 			return t.Id;
 		}
 

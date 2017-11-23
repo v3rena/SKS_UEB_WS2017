@@ -15,6 +15,11 @@ namespace PLS.SKS.Package.DataAccess.Entities
             this.futureHops = futureHops;
         }
 
+		public TrackingInformation(StateEnum state)
+		{
+			State = state;
+		}
+
 		public enum StateEnum
 		{
 			[EnumMember(Value = "InTransport")]

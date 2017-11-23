@@ -19,6 +19,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		public int Create(TrackingInformation t)
 		{
 			db.Add(t);
+			db.SaveChanges();
 			return t.Id;
 		}
 

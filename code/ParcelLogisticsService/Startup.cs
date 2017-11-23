@@ -29,7 +29,18 @@ namespace PLS.SKS.Package.Services
 			services.AddDbContext<DataAccess.Sql.DBContext>(options =>
 			options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-			services.AddScoped<BusinessLogic.BusinessLogicFacade>();
+			services.AddScoped<BusinessLogic.Interfaces.IBusinessLogicFacade, BusinessLogic.BusinessLogicFacade>();
+			services.AddScoped<BusinessLogic.Interfaces.IHopArrivalLogic, BusinessLogic.HopArrivalLogic>();
+			services.AddScoped<BusinessLogic.Interfaces.IParcelEntryLogic, BusinessLogic.ParcelEntryLogic>();
+			services.AddScoped<BusinessLogic.Interfaces.ITrackingLogic, BusinessLogic.TrackingLogic>();
+			services.AddScoped<BusinessLogic.Interfaces.IWarehouseLogic, BusinessLogic.WarehouseLogic>();
+
+			services.AddScoped<DataAccess.Interfaces.IParcelRepository, DataAccess.Sql.SqlParcelRepository>();
+			services.AddScoped<DataAccess.Interfaces.IHopArrivalRepository, DataAccess.Sql.SqlHopArrivalRepository>();
+			services.AddScoped<DataAccess.Interfaces.IRecipientRepository, DataAccess.Sql.SqlRecipientRepository>();
+			services.AddScoped<DataAccess.Interfaces.ITrackingInformationRepository, DataAccess.Sql.SqlTrackingInformationRepository>();
+			services.AddScoped<DataAccess.Interfaces.ITruckRepository, DataAccess.Sql.SqlTruckRepository>();
+			services.AddScoped<DataAccess.Interfaces.IWarehouseRepository, DataAccess.Sql.SqlWarehouseRepository>();
 
 			services.AddMvc()
 				.AddJsonOptions(

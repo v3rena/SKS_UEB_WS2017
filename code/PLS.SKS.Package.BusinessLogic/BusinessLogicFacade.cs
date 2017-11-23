@@ -6,19 +6,29 @@ using PLS.SKS.Package.DataAccess.Sql;
 using Microsoft.Extensions.DependencyInjection;
 using FluentValidation;
 using FluentValidation.Results;
+using PLS.SKS.Package.BusinessLogic.Interfaces;
 
 namespace PLS.SKS.Package.BusinessLogic
 {
     public class BusinessLogicFacade : Interfaces.IBusinessLogicFacade
     {
-        public BusinessLogicFacade(IServiceProvider serviceProvider)
+        /*public BusinessLogicFacade(IServiceProvider serviceProvider)
         {
             hopArrivalLogic = new HopArrivalLogic(serviceProvider);
             parcelEntryLogic = new ParcelEntryLogic(serviceProvider);
             trackingLogic = new TrackingLogic(serviceProvider);
 			warehouseLogic = new WarehouseLogic(serviceProvider);
             CreateMaps();
-        }
+        }*/
+
+		public BusinessLogicFacade(IHopArrivalLogic hopArrivalLogic, IParcelEntryLogic parcelEntryLogic, ITrackingLogic trackingLogic, IWarehouseLogic warehouseLogic)
+		{
+			this.hopArrivalLogic = hopArrivalLogic;
+			this.parcelEntryLogic = parcelEntryLogic;
+			this.trackingLogic = trackingLogic;
+			this.warehouseLogic = warehouseLogic;
+			CreateMaps();
+		}
 
 		public void ScanParcel(string trackingNumber, string code)
         {
@@ -132,25 +142,6 @@ namespace PLS.SKS.Package.BusinessLogic
                     .ForMember(model => model.Id, option => option.Ignore());
 
                 cfg.CreateMap<Entities.TrackingInformation, DataAccess.Entities.TrackingInformation>()
-<<<<<<< HEAD:code/PLS.SKS.Package.BusinessLogic/BusinessLogicFacade.cs
-                    .ForMember(model => model.Id, option => option.Ignore())
-                    .AfterMap((s,d) => d.visitedHops.ForEach(
-                        delegate(DataAccess.Entities.HopArrival h)
-                        {
-                            h.Status = "visited";
-                        })
-                    )
-                    .AfterMap((s,d) => d.futureHops.ForEach(
-                        delegate (DataAccess.Entities.HopArrival h)
-                        {
-                            h.Status = "future";
-                        })
-                    );
-
-				cfg.CreateMap<Entities.HopArrival, DataAccess.Entities.HopArrival>()
-					.ForMember(model => model.Id, option => option.Ignore())
-                    .ForMember(model => model.TrackingInformationId, option => option.Ignore())
-=======
                     .ForMember(model => model.Id, option => option.Ignore())
                     .AfterMap((s,d) => d.visitedHops.ForEach(
                         delegate(DataAccess.Entities.HopArrival h)
@@ -167,7 +158,6 @@ namespace PLS.SKS.Package.BusinessLogic
 
                 cfg.CreateMap<Entities.HopArrival, DataAccess.Entities.HopArrival>()
                     .ForMember(model => model.Id, option => option.Ignore())
->>>>>>> d79a3d26cdd9ce34d59c9f4617c29a36f6fae471:code/PLS.SKS.Package.BusinessLogic/BusinessLogicFacade.cs
                     .ForMember(model => model.Status, option => option.Ignore())
                     .ForMember(model => model.TrackingInformation, option => option.Ignore())
                     .ForMember(model => model.TrackingInformationId, option => option.Ignore());

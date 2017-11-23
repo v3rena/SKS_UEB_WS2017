@@ -19,6 +19,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		public int Create(HopArrival h)
 		{
 			db.Add(h);
+			db.SaveChanges();
 			return h.Id;
 		}
 
@@ -32,7 +33,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			return db.HopArrivals.Find(id);
 		}
 
-        public List<HopArrival> GetByTrackingInforamtionId(int id)
+        public List<HopArrival> GetByTrackingInformationId(int id)
         {
             return db.HopArrivals.Where(h => h.TrackingInformationId == id).ToList();
         }
