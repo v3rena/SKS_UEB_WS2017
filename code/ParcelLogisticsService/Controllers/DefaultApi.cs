@@ -23,6 +23,7 @@ using PLS.SKS.Package;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using PLS.SKS.Package.BusinessLogic;
 using Microsoft.Extensions.Logging;
+using log4net;
 
 namespace IO.Swagger.Controllers
 {
@@ -32,6 +33,7 @@ namespace IO.Swagger.Controllers
     /// </summary>
     public class DefaultApiController : Controller
     {
+		//private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 		ILogger<DefaultApiController> logger;
 		BusinessLogic bl;
 
@@ -55,6 +57,7 @@ namespace IO.Swagger.Controllers
         public virtual IActionResult ExportWarehouses()
         {
 			logger.LogInformation("Calling the ExportWarehouses action");
+			//Log.Debug("Calling the ExportWarehouses action");
 			Warehouse warehouse = bl.ExportWarehouses();
             return new ObjectResult(warehouse);
         }
