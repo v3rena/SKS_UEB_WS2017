@@ -88,6 +88,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 				new HopArrival{DateTime=DateTime.Parse("2017-11-09"), Code="WH01", Status = "visited", TrackingInformationId=1},
                 new HopArrival{DateTime=DateTime.Parse("2017-11-10"), Code="WH02", Status = "visited", TrackingInformationId=1},
                 new HopArrival{DateTime=DateTime.Parse("2017-11-11"), Code="WH03", Status = "future", TrackingInformationId=1},
+                new HopArrival{DateTime=DateTime.Parse("2017-10-02"), Code="TR01", Status = "future", TrackingInformationId=1},
                 new HopArrival{DateTime=DateTime.Parse("2017-10-02"), Code="WH01", Status = "future", TrackingInformationId=2}
             };
 			foreach (HopArrival e in hopArrivals)

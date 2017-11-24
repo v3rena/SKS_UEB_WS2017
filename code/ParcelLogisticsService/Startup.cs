@@ -11,6 +11,7 @@ using Microsoft.Extensions.Options;
 using PLS.SKS.Package;
 using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore.Swagger;
+using AutoMapper;
 
 namespace PLS.SKS.Package.Services
 {
@@ -41,6 +42,8 @@ namespace PLS.SKS.Package.Services
 			services.AddScoped<DataAccess.Interfaces.ITrackingInformationRepository, DataAccess.Sql.SqlTrackingInformationRepository>();
 			services.AddScoped<DataAccess.Interfaces.ITruckRepository, DataAccess.Sql.SqlTruckRepository>();
 			services.AddScoped<DataAccess.Interfaces.IWarehouseRepository, DataAccess.Sql.SqlWarehouseRepository>();
+
+            services.AddAutoMapper();
 
 			services.AddMvc()
 				.AddJsonOptions(

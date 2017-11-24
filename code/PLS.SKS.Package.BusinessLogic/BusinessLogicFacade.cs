@@ -21,13 +21,14 @@ namespace PLS.SKS.Package.BusinessLogic
             CreateMaps();
         }*/
 
-		public BusinessLogicFacade(IHopArrivalLogic hopArrivalLogic, IParcelEntryLogic parcelEntryLogic, ITrackingLogic trackingLogic, IWarehouseLogic warehouseLogic)
+		public BusinessLogicFacade(IHopArrivalLogic hopArrivalLogic, IParcelEntryLogic parcelEntryLogic, ITrackingLogic trackingLogic, IWarehouseLogic warehouseLogic, AutoMapper.IMapper mapper)
 		{
 			this.hopArrivalLogic = hopArrivalLogic;
 			this.parcelEntryLogic = parcelEntryLogic;
 			this.trackingLogic = trackingLogic;
 			this.warehouseLogic = warehouseLogic;
-			CreateMaps();
+            //CreateMaps();
+            this.Mapper = mapper;
 		}
 
 		public void ScanParcel(string trackingNumber, string code)
