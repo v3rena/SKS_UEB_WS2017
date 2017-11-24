@@ -58,7 +58,6 @@ namespace IO.Swagger.Controllers
         public virtual IActionResult ExportWarehouses()
         {
 			logger.LogInformation("Calling the ExportWarehouses action");
-			//Log.Debug("Calling the ExportWarehouses action");
 			Warehouse warehouse = bl.ExportWarehouses();
             return new ObjectResult(warehouse);
         }
