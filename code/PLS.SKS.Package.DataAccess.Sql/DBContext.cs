@@ -14,6 +14,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 		public DBContext() : base()
         {
+			this.Database.EnsureCreated();
 		}
 
 		public DbSet<Recipient> Recipients { get; set; }

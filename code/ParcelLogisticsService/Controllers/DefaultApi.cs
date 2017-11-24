@@ -25,6 +25,7 @@ using Microsoft.Extensions.Logging;
 using log4net;
 using PLS.SKS.Package.BusinessLogic.Interfaces;
 using PLS.SKS.Package.BusinessLogic;
+using log4net.Repository.Hierarchy;
 
 namespace IO.Swagger.Controllers
 {
@@ -36,7 +37,6 @@ namespace IO.Swagger.Controllers
     {
 		IBusinessLogicFacade bl;
 		ILogger<DefaultApiController> logger;
-		//private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
 		public DefaultApiController(IBusinessLogicFacade bl, ILogger<DefaultApiController> logger) //ITrackingLogic, IMapper
 		{
