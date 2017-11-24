@@ -11,6 +11,6 @@ namespace PLS.SKS.Package.DataAccess.Interfaces
         Update(HopArrival h); void
         Delete(int id);
         HopArrival GetById(int id);
-        List<HopArrival> GetByTrackingInforamtionId(int id);
+        List<HopArrival> GetByTrackingInformationId(int id);
     }
 }

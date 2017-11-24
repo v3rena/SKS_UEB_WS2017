@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using PLS.SKS.Package.BusinessLogic.Entities;
+using PLS.SKS.Package.DataAccess.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,19 +11,19 @@ namespace PLS.SKS.Package.BusinessLogic
     {
 		private DataAccess.Interfaces.IParcelRepository parcelRepo;
 
-		public TrackingLogic(IServiceProvider serviceProvider)
+		/*public TrackingLogic(IServiceProvider serviceProvider)
 		{
 			parcelRepo = new DataAccess.Sql.SqlParcelRepository(serviceProvider.GetRequiredService<DataAccess.Sql.DBContext>());
+		}*/
+
+		public TrackingLogic(IParcelRepository parcelRepository)
+		{
+			parcelRepo = parcelRepository;
 		}
 
-        public DataAccess.Entities.Parcel TrackParcel(string trackingNumber)
+		public DataAccess.Entities.Parcel TrackParcel(string trackingNumber)
         {
-            //get Parcel with TrackingNumber
-            //get TrackingInformation of Parcel
-            //get all Hops of TrackingInformation
-            //fill lists with corresponding Hops
-            //return DAL Parcel
-
+			//futureHops and visitedHops are still empty!
             return parcelRepo.GetByTrackingNumber(trackingNumber);
 		}
     }

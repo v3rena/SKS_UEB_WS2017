@@ -20,6 +20,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		public int Create(Warehouse w)
 		{
 			db.Add(w);
+			db.SaveChanges();
 			return w.Id;
 		}
 
@@ -30,15 +31,10 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 		public Warehouse GetById(int id)
 		{
-			var warehouse = db.Warehouses.Include(w => w.NextHops).Include(w => w.Trucks)
-				.Where(w => w.Id == id).FirstOrDefault();
+			Warehouse warehouse = db.Warehouses.Include(w => w.NextHops).Include(w => w.Trucks)
+			.Where(w => w.Id == id).FirstOrDefault();
 
-			while(warehouse.NextHops.Count != 0)
-			{
-				var id2 = warehouse.NextHops.FirstOrDefault().Id;
-				warehouse = db.Warehouses.Include(w => w.NextHops).Include(w => w.Trucks)
-				.Where(w => w.Id == id2).FirstOrDefault();
-			}
+			SearchWarehouseHierarchy(warehouse);
 
 			return db.Warehouses.Include(w => w.NextHops).Include(w => w.Trucks)
 				.Where(w => w.Id == id).FirstOrDefault();
@@ -51,6 +47,20 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			{
 				WarehouseToUpdate = w;
 				db.SaveChanges();
+			}
+		}
+
+		private void SearchWarehouseHierarchy(Warehouse warehouse)
+		{
+			if (warehouse.NextHops.Count != 0)
+			{
+				foreach (var wh in warehouse.NextHops)
+				{
+					int whId = wh.Id;
+					db.Warehouses.Include(w => w.NextHops).Include(w => w.Trucks)
+					.Where(w => w.Id == whId).FirstOrDefault();
+					SearchWarehouseHierarchy(wh);
+				}
 			}
 		}
 	}
