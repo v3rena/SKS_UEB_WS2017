@@ -7,23 +7,27 @@ using Microsoft.Extensions.DependencyInjection;
 using FluentValidation;
 using FluentValidation.Results;
 using PLS.SKS.Package.BusinessLogic.Interfaces;
+using Microsoft.Extensions.Logging;
 
 namespace PLS.SKS.Package.BusinessLogic
 {
     public class BusinessLogicFacade : Interfaces.IBusinessLogicFacade
     {
+		ILogger<BusinessLogicFacade> logger;
 
-		public BusinessLogicFacade(IHopArrivalLogic hopArrivalLogic, IParcelEntryLogic parcelEntryLogic, ITrackingLogic trackingLogic, IWarehouseLogic warehouseLogic)
+		public BusinessLogicFacade(IHopArrivalLogic hopArrivalLogic, IParcelEntryLogic parcelEntryLogic, ITrackingLogic trackingLogic, IWarehouseLogic warehouseLogic, ILogger<BusinessLogicFacade> logger)
 		{
 			this.hopArrivalLogic = hopArrivalLogic;
 			this.parcelEntryLogic = parcelEntryLogic;
 			this.trackingLogic = trackingLogic;
 			this.warehouseLogic = warehouseLogic;
+			this.logger = logger;
 			CreateMaps();
 		}
 
 		public void ScanParcel(string trackingNumber, string code)
         {
+			logger.LogInformation("Calling the ScanParcel action");
 			hopArrivalLogic.ScanParcel(trackingNumber, code);
 		}
 
@@ -36,10 +40,11 @@ namespace PLS.SKS.Package.BusinessLogic
 			ValidationResult results = validator.Validate(blParcel);
 			bool validationSucceeded = results.IsValid;
 			IList<ValidationFailure> failures = results.Errors;
+			//Improve logging
+			logger.LogInformation(results.ToString());
 
 			DataAccess.Entities.Parcel dalParcel = Mapper.Map<DataAccess.Entities.Parcel>(blParcel);
-			string trNr = parcelEntryLogic.AddParcel(dalParcel);
-			return trNr;
+			return parcelEntryLogic.AddParcel(dalParcel);
         }
 
         public IO.Swagger.Models.TrackingInformation TrackParcel(string trackingNumber)

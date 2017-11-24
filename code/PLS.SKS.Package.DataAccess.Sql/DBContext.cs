@@ -10,6 +10,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 	{
 		public DBContext(DbContextOptions<DBContext> options) : base(options)
         {
+			this.Database.EnsureCreated();
 		}
 
 		public DBContext() : base()
