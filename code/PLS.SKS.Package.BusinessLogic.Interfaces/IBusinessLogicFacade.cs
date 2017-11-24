@@ -11,7 +11,6 @@ namespace PLS.SKS.Package.BusinessLogic.Interfaces
         string AddParcel(Parcel parcel);
         TrackingInformation TrackParcel(string trackingNumber);
         Warehouse ExportWarehouses();
-        void CreateMaps();
 		void ImportWarehouses(Warehouse warehouseRoot);
 	}
 }

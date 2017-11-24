@@ -13,22 +13,28 @@ namespace PLS.SKS.Package.BusinessLogic
 {
     public class BusinessLogicFacade : Interfaces.IBusinessLogicFacade
     {
-		ILogger<BusinessLogicFacade> logger;
+		private ILogger<BusinessLogicFacade> Logger;
+		private IHopArrivalLogic HopArrivalLogic;
+		private IParcelEntryLogic ParcelEntryLogic;
+		private ITrackingLogic TrackingLogic;
+		private IWarehouseLogic WarehouseLogic;
 
-		public BusinessLogicFacade(IHopArrivalLogic hopArrivalLogic, IParcelEntryLogic parcelEntryLogic, ITrackingLogic trackingLogic, IWarehouseLogic warehouseLogic, ILogger<BusinessLogicFacade> logger)
+		public AutoMapper.IMapper Mapper { get; set; }
+
+		public BusinessLogicFacade(IHopArrivalLogic hopArrivalLogic, IParcelEntryLogic parcelEntryLogic, ITrackingLogic trackingLogic, IWarehouseLogic warehouseLogic, ILogger<BusinessLogicFacade> logger, AutoMapper.IMapper mapper)
 		{
-			this.hopArrivalLogic = hopArrivalLogic;
-			this.parcelEntryLogic = parcelEntryLogic;
-			this.trackingLogic = trackingLogic;
-			this.warehouseLogic = warehouseLogic;
-			this.logger = logger;
-			CreateMaps();
+			HopArrivalLogic = hopArrivalLogic;
+			ParcelEntryLogic = parcelEntryLogic;
+			TrackingLogic = trackingLogic;
+			WarehouseLogic = warehouseLogic;
+			Logger = logger;
+            Mapper = mapper;
 		}
 
 		public void ScanParcel(string trackingNumber, string code)
         {
-			logger.LogInformation("Calling the ScanParcel action");
-			hopArrivalLogic.ScanParcel(trackingNumber, code);
+			Logger.LogInformation("Calling the ScanParcel action");
+			HopArrivalLogic.ScanParcel(trackingNumber, code);
 		}
 
 		public string AddParcel(IO.Swagger.Models.Parcel parcel)
@@ -41,15 +47,15 @@ namespace PLS.SKS.Package.BusinessLogic
 			bool validationSucceeded = results.IsValid;
 			IList<ValidationFailure> failures = results.Errors;
 			//Improve logging
-			logger.LogInformation(results.ToString());
+			Logger.LogInformation(results.ToString());
 
 			DataAccess.Entities.Parcel dalParcel = Mapper.Map<DataAccess.Entities.Parcel>(blParcel);
-			return parcelEntryLogic.AddParcel(dalParcel);
+			return ParcelEntryLogic.AddParcel(dalParcel);
         }
 
         public IO.Swagger.Models.TrackingInformation TrackParcel(string trackingNumber)
         {
-			DataAccess.Entities.Parcel dalParcel = trackingLogic.TrackParcel(trackingNumber);
+			DataAccess.Entities.Parcel dalParcel = TrackingLogic.TrackParcel(trackingNumber);
 			Entities.Parcel blParcel = Mapper.Map<Entities.Parcel>(dalParcel);
 			//Implement exception handling
 
@@ -67,7 +73,7 @@ namespace PLS.SKS.Package.BusinessLogic
 		public IO.Swagger.Models.Warehouse ExportWarehouses()
 		{
 			//Should return root warehouse!
-			DataAccess.Entities.Warehouse dalWarehouse = warehouseLogic.ExportWarehouses();
+			DataAccess.Entities.Warehouse dalWarehouse = WarehouseLogic.ExportWarehouses();
 			Entities.Warehouse blWarehouse = Mapper.Map<Entities.Warehouse>(dalWarehouse);
 
 			//Validates BusinessLogicFacade model
@@ -91,7 +97,7 @@ namespace PLS.SKS.Package.BusinessLogic
 			IList<ValidationFailure> failures = results.Errors;
 
 			DataAccess.Entities.Warehouse dalWarehouse = Mapper.Map<DataAccess.Entities.Warehouse>(blWarehouse);
-			warehouseLogic.ImportWarehouses(dalWarehouse);
+			WarehouseLogic.ImportWarehouses(dalWarehouse);
 		}
 
 		public void CreateMaps()
@@ -160,12 +166,5 @@ namespace PLS.SKS.Package.BusinessLogic
             config.AssertConfigurationIsValid();
             Mapper = config.CreateMapper();
         }
-
-        public AutoMapper.IMapper Mapper { get; set; }
-
-        private Interfaces.IHopArrivalLogic hopArrivalLogic;
-        private Interfaces.IParcelEntryLogic parcelEntryLogic;
-        private Interfaces.ITrackingLogic trackingLogic;
-		private Interfaces.IWarehouseLogic warehouseLogic;
     }
 }
