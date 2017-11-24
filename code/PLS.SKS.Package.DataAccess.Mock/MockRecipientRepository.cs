@@ -20,26 +20,26 @@ namespace PLS.SKS.Package.DataAccess.Mock
 
         public int Create(Recipient r)
         {
-			r.id = r_id;
+			r.Id = r_id;
 			r_id++;
 			recipients.Add(r);
-			return r.id;
+			return r.Id;
         }
 
         public void Delete(int id)
         {
-            Recipient r = recipients.SingleOrDefault(item => item.id == id);
+            Recipient r = recipients.SingleOrDefault(item => item.Id == id);
             recipients.Remove(r);
         }
 
         public Recipient GetById(int id)
         {
-            return recipients.SingleOrDefault(item => item.id == id);
+            return recipients.SingleOrDefault(item => item.Id == id);
         }
 
         public void Update(Recipient r)
         {
-            Recipient r2 = recipients.Find(item => item.id == r.id);
+            Recipient r2 = recipients.Find(item => item.Id == r.Id);
             r = r2;
         }
     }

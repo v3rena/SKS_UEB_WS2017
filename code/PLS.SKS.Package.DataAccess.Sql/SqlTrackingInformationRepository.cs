@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using PLS.SKS.Package.DataAccess.Entities;
+using System.Linq;
 
 namespace PLS.SKS.Package.DataAccess.Sql
 {
@@ -18,7 +19,8 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		public int Create(TrackingInformation t)
 		{
 			db.Add(t);
-			return t.id;
+			db.SaveChanges();
+			return t.Id;
 		}
 
 		public void Delete(int id)
@@ -28,12 +30,17 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 		public TrackingInformation GetById(int id)
 		{
-			throw new NotImplementedException();
+			return db.TrackingInformations.Find(id);
 		}
 
 		public void Update(TrackingInformation t)
 		{
-			throw new NotImplementedException();
+			var TrToUpdate = db.TrackingInformations.SingleOrDefault(b => b.Id == t.Id);
+			if (TrToUpdate != null)
+			{
+				TrToUpdate = t;
+				db.SaveChanges();
+			}
 		}
 	}
 }

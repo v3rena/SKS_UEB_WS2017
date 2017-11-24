@@ -22,8 +22,8 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 			var recipients = new Recipient[]
 			{
-				new Recipient{firstName="Carson",lastName="Alexander", street="Teststrasse 1", city="Wien", postalCode="1010"},
-				new Recipient{firstName="Test",lastName="Tobias", street="Teststrasse 1", city="Wien", postalCode="1010"}
+				new Recipient{FirstName="Turanga",LastName="Leela", Street="Teststrasse 1", City="Wien", PostalCode="A-1010"},
+				new Recipient{FirstName="Hubert",LastName="Farnsworth", Street="Teststrasse 2", City="Wien", PostalCode="A-1020"}
 			};
 			foreach (Recipient s in recipients)
 			{
@@ -33,19 +33,38 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 			var trucks = new Truck[]
 			{
-				new Truck{code="TR01", duration=1.3m, latitude=1.1m, longitude=2.0m, radius=3.3m, numberPlate="WR-2765"},
-				new Truck{code="TR02", duration=1.3m, latitude=1.1m, longitude=2.0m, radius=3.3m, numberPlate="WR-2788"}
+				new Truck{Code="TR01", Duration=1.3m, Latitude=1.1m, Longitude=2.0m, Radius=3.3m, NumberPlate="WR-2765"},
+				new Truck{Code="TR02", Duration=1.3m, Latitude=1.1m, Longitude=2.0m, Radius=3.3m, NumberPlate="WR-2788"},
+			};
+			var trucks2 = new Truck[]
+			{
+				new Truck{Code="TR03", Duration=1.3m, Latitude=2.2m, Longitude=3.0m, Radius=3.3m, NumberPlate="WR-2777"},
+				new Truck{Code="TR04", Duration=1.3m, Latitude=2.2m, Longitude=3.0m, Radius=3.3m, NumberPlate="WR-2739"},
 			};
 			foreach (Truck c in trucks)
 			{
 				context.Trucks.Add(c);
 			}
+			foreach (Truck c in trucks2)
+			{
+				context.Trucks.Add(c);
+			}
 			context.SaveChanges();
 
+			var w01 = new Warehouse { Code = "WH01", Description = "Superwarehouse 01", Duration = 1.5m, Trucks = new List<Truck>(), NextHops = new List<Warehouse>() };
+			var w02 = new Warehouse { Code = "WH02", Description = "Warehouse 02", Duration = 1.5m, Trucks = new List<Truck>(), NextHops = new List<Warehouse>() };
+			var w03 = new Warehouse { Code = "WH03", Description = "Warehouse 03", Duration = 1.5m, Trucks = trucks.ToList(), NextHops = new List<Warehouse>() };
+			var w04 = new Warehouse { Code = "WH04", Description = "Warehouse 04", Duration = 1.5m, Trucks = trucks2.ToList(), NextHops = new List<Warehouse>() };
+
+			w01.NextHops.Add(w02);
+			w02.NextHops.Add(w03);
+			w02.NextHops.Add(w04);
 			var warehouses = new Warehouse[]
 			{
-				new Warehouse{code="WH01", description="Warehouse Super 01", duration=1.5m, trucks=trucks.ToList(), nextHops=new List<Warehouse>()},
-				new Warehouse{code="WH02", description="Warehouse 02", duration=1.5m, trucks=trucks.ToList(), nextHops=new List<Warehouse>()}
+				w01,
+				w02,
+				w03,
+				w04
 			};
 			foreach (Warehouse e in warehouses)
 			{
@@ -55,8 +74,8 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 			var trackingInformations = new TrackingInformation[]
 			{
-				new TrackingInformation{State=TrackingInformation.StateEnum.InTransportEnum, futureHops=new List<HopArrival>(), visitedHops=new List<HopArrival>()},
-				new TrackingInformation{State=TrackingInformation.StateEnum.InTruckDeliveryEnum, futureHops=new List<HopArrival>(), visitedHops=new List<HopArrival>()}
+				new TrackingInformation{State=TrackingInformation.StateEnum.DeliveredEnum },
+				new TrackingInformation{State=TrackingInformation.StateEnum.InTransportEnum }
 			};
 			foreach (TrackingInformation e in trackingInformations)
 			{
@@ -66,9 +85,11 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 			var hopArrivals = new HopArrival[]
 			{
-				new HopArrival{dateTime=DateTime.Parse("2017-11-09"), code="WH01", trackingInformationId=1},
-				new HopArrival{dateTime=DateTime.Parse("2017-11-10"), code="WH02", trackingInformationId=2}
-			};
+				new HopArrival{DateTime=DateTime.Parse("2017-11-09"), Code="WH01", Status = "visited", TrackingInformationId=1},
+                new HopArrival{DateTime=DateTime.Parse("2017-11-10"), Code="WH02", Status = "visited", TrackingInformationId=1},
+                new HopArrival{DateTime=DateTime.Parse("2017-11-11"), Code="WH03", Status = "future", TrackingInformationId=1},
+                new HopArrival{DateTime=DateTime.Parse("2017-10-02"), Code="WH01", Status = "future", TrackingInformationId=2}
+            };
 			foreach (HopArrival e in hopArrivals)
 			{
 				context.HopArrivals.Add(e);
@@ -77,8 +98,8 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 			var parcels = new Parcel[]
 			{
-				new Parcel{RecipientId=1, Weight=22, TrackingNumber="TN01", TrackingInformationId=1},
-				new Parcel{RecipientId=2, Weight=22, TrackingNumber="TN02", TrackingInformationId=2},
+				new Parcel{RecipientId=1, Weight=22, TrackingNumber="TN000001", TrackingInformationId=1},
+				new Parcel{RecipientId=2, Weight=10, TrackingNumber="TN000002", TrackingInformationId=2},
 			};
 			foreach (Parcel e in parcels)
 			{

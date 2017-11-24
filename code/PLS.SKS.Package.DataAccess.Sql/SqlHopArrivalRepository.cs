@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using PLS.SKS.Package.DataAccess.Entities;
+using System.Linq;
 
 namespace PLS.SKS.Package.DataAccess.Sql
 {
@@ -18,7 +19,8 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		public int Create(HopArrival h)
 		{
 			db.Add(h);
-			return h.id;
+			db.SaveChanges();
+			return h.Id;
 		}
 
 		public void Delete(int id)
@@ -28,12 +30,22 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 		public HopArrival GetById(int id)
 		{
-			throw new NotImplementedException();
+			return db.HopArrivals.Find(id);
 		}
+
+        public List<HopArrival> GetByTrackingInformationId(int id)
+        {
+            return db.HopArrivals.Where(h => h.TrackingInformationId == id).ToList();
+        }
 
 		public void Update(HopArrival h)
 		{
-			throw new NotImplementedException();
+			var HopArrivalToUpdate = db.HopArrivals.SingleOrDefault(b => b.Id == h.Id);
+			if (HopArrivalToUpdate != null)
+			{
+				HopArrivalToUpdate = h;
+				db.SaveChanges();
+			}
 		}
 	}
 }

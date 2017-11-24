@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using PLS.SKS.Package.DataAccess.Entities;
+using System.Linq;
 
 namespace PLS.SKS.Package.DataAccess.Sql
 {
@@ -15,10 +16,13 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			db = context;
 		}
 
+		public object WarehouseToUpdate { get; private set; }
+
 		public int Create(Truck t)
 		{
 			db.Add(t);
-			return t.id;
+			db.SaveChanges();
+			return t.Id;
 		}
 
 		public void Delete(int id)
@@ -28,12 +32,17 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 		public Truck GetById(int id)
 		{
-			throw new NotImplementedException();
+			return db.Trucks.Find(id);
 		}
 
 		public void Update(Truck t)
 		{
-			throw new NotImplementedException();
+			var TruckToUpdate = db.Trucks.SingleOrDefault(b => b.Id == t.Id);
+			if (WarehouseToUpdate != null)
+			{
+				WarehouseToUpdate = t;
+				db.SaveChanges();
+			}
 		}
 	}
 }

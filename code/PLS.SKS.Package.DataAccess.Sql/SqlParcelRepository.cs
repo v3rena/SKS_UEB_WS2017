@@ -20,12 +20,13 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		public int Create(Parcel p)
 		{
 			db.Add(p);
-			return p.id;
+			db.SaveChanges();
+			return p.Id;
 		}
 
 		public void Delete(int id)
 		{
-			db.Remove(db.Parcels.Where(p => p.id == id));
+			db.Remove(db.Parcels.Where(p => p.Id == id));
 		}
 
 		public IEnumerable<Parcel> GetByCode(int code)
@@ -42,6 +43,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		{
 			var parcel = db.Parcels.Include(p =>p.Recipient).Include(p=>p.TrackingInformation)
 				.Where(p => p.TrackingNumber == TrackingNumber).FirstOrDefault();
+
 			return parcel;
 		}
 
@@ -52,7 +54,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 		public void Update(Parcel p)
 		{
-			var ParcelToUpdate = db.Parcels.SingleOrDefault(b => b.id == p.id);
+			var ParcelToUpdate = db.Parcels.SingleOrDefault(b => b.Id == p.Id);
 			if (ParcelToUpdate != null)
 			{
 				ParcelToUpdate = p;

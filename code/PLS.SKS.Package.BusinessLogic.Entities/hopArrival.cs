@@ -10,13 +10,13 @@ namespace PLS.SKS.Package.BusinessLogic.Entities
 
         public HopArrival(string code, DateTime dateTime)
         {
-            this.code = code;
-            this.dateTime = dateTime;
+            this.Code = code;
+            this.DateTime = dateTime;
         }
 
-        public string code { get; set; }
-        public DateTime dateTime { get; set; }
-		public TrackingInformation trackingInformation { get; set; }
-
+        public string Code { get; set; }
+        public DateTime DateTime { get; set; }
+		//public TrackingInformation TrackingInformation { get; set; }
+        //public int TrackingInformationId { get; set; }
 	}
 }

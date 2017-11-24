@@ -1,6 +1,7 @@
 ﻿using PLS.SKS.Package.DataAccess.Interfaces;
 using System;
 using PLS.SKS.Package.DataAccess.Entities;
+using System.Linq;
 
 namespace PLS.SKS.Package.DataAccess.Sql
 {
@@ -16,7 +17,8 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		public int Create(Recipient r)
 		{
 			db.Add(r);
-			return r.id;
+			db.SaveChanges();
+			return r.Id;
 		}
 
 		public void Delete(int id)
@@ -26,12 +28,17 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 		public Recipient GetById(int id)
 		{
-			throw new NotImplementedException();
+			return db.Recipients.Find(id);
 		}
 
 		public void Update(Recipient p)
 		{
-			throw new NotImplementedException();
+			var RecipientToUpdate = db.Recipients.SingleOrDefault(b => b.Id == p.Id);
+			if (RecipientToUpdate != null)
+			{
+				RecipientToUpdate = p;
+				db.SaveChanges();
+			}
 		}
 	}
 }

@@ -10,18 +10,18 @@ namespace PLS.SKS.Package.DataAccess.Entities
         
         public Recipient(string firstName, string lastName, string street, string postalCode, string city)
         {
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.street = street;
-            this.postalCode = postalCode;
-            this.city = city;
+            this.FirstName = firstName;
+            this.LastName = lastName;
+            this.Street = street;
+            this.PostalCode = postalCode;
+            this.City = city;
         }
 
-        public int id { get; set; }
-        public string firstName { get; set; }
-        public string lastName { get; set; }
-        public string street { get; set; }
-        public string postalCode { get; set; }
-        public string city { get; set; }
+        public int Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Street { get; set; }
+        public string PostalCode { get; set; }
+        public string City { get; set; }
     }
 }
