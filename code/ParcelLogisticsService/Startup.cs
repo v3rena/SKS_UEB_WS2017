@@ -61,7 +61,7 @@ namespace PLS.SKS.Package.Services
         {
 			loggerFactory.AddConsole(Configuration.GetSection("Logging"));
 			loggerFactory.AddDebug();
-			//loggerFactory.AddNLog();
+			loggerFactory.AddLog4Net();
 
 			app.UseSwagger();
             app.UseSwaggerUI(c =>

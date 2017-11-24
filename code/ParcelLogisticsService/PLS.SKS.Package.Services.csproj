@@ -16,6 +16,7 @@
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Log4Net.AspNetCore" Version="1.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="1.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="1.0.0" />
@@ -26,6 +27,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="log4net.config" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\PLS.SKS.Package.BusinessLogic.Entities\PLS.SKS.Package.BusinessLogic.Entities.csproj" />
     <ProjectReference Include="..\PLS.SKS.Package.BusinessLogic.Interfaces\PLS.SKS.Package.BusinessLogic.Interfaces.csproj" />
     <ProjectReference Include="..\PLS.SKS.Package.BusinessLogic\PLS.SKS.Package.BusinessLogic.csproj" />
@@ -33,6 +38,12 @@
     <ProjectReference Include="..\PLS.SKS.Package.DataAccess.Mock\PLS.SKS.Package.DataAccess.Mock.csproj" />
     <ProjectReference Include="..\PLS.SKS.Package.DataAccess.Sql\PLS.SKS.Package.DataAccess.Sql.csproj" />
     <ProjectReference Include="..\PLS.SKS.Package.Services.DTOs\PLS.SKS.Package.Services.DTOs.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="log4net.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

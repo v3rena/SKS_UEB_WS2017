@@ -12,14 +12,6 @@ namespace PLS.SKS.Package.BusinessLogic
 {
     public class BusinessLogicFacade : Interfaces.IBusinessLogicFacade
     {
-        /*public BusinessLogicFacade(IServiceProvider serviceProvider)
-        {
-            hopArrivalLogic = new HopArrivalLogic(serviceProvider);
-            parcelEntryLogic = new ParcelEntryLogic(serviceProvider);
-            trackingLogic = new TrackingLogic(serviceProvider);
-			warehouseLogic = new WarehouseLogic(serviceProvider);
-            CreateMaps();
-        }*/
 
 		public BusinessLogicFacade(IHopArrivalLogic hopArrivalLogic, IParcelEntryLogic parcelEntryLogic, ITrackingLogic trackingLogic, IWarehouseLogic warehouseLogic, AutoMapper.IMapper mapper)
 		{
@@ -33,11 +25,6 @@ namespace PLS.SKS.Package.BusinessLogic
 
 		public void ScanParcel(string trackingNumber, string code)
         {
-			Validator.ParcelValidator validator = new Validator.ParcelValidator();
-			//ValidationResult results = validator.Validate(parcel);
-			//bool validationSucceeded = results.IsValid;
-			//IList<ValidationFailure> failures = results.Errors;
-
 			hopArrivalLogic.ScanParcel(trackingNumber, code);
 		}
 
