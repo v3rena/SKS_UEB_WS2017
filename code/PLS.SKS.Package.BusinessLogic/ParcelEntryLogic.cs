@@ -17,13 +17,6 @@ namespace PLS.SKS.Package.BusinessLogic
 		private DataAccess.Interfaces.ITrackingInformationRepository trackingRepo;
 		private DataAccess.Interfaces.IHopArrivalRepository hopArrivalRepo;
 
-		/*public ParcelEntryLogic(IServiceProvider serviceProvider)
-		{
-			parcelRepo = new DataAccess.Sql.SqlParcelRepository(serviceProvider.GetRequiredService<DataAccess.Sql.DBContext>());
-			trackingRepo = new DataAccess.Sql.SqlTrackingInformationRepository(serviceProvider.GetRequiredService<DataAccess.Sql.DBContext>());
-			hopArrivalRepo = new DataAccess.Sql.SqlHopArrivalRepository(serviceProvider.GetRequiredService<DataAccess.Sql.DBContext>());
-		}*/
-
 		public ParcelEntryLogic(IParcelRepository parcelRepository, ITrackingInformationRepository trackingInformationRepository, IHopArrivalRepository hopArrivalRepository)
 		{
 			parcelRepo = parcelRepository;
