@@ -12,11 +12,6 @@ namespace PLS.SKS.Package.BusinessLogic
 		private DataAccess.Interfaces.IParcelRepository parcelRepo;
         private DataAccess.Interfaces.IHopArrivalRepository hopRepo;
 
-		/*public TrackingLogic(IServiceProvider serviceProvider)
-		{
-			parcelRepo = new DataAccess.Sql.SqlParcelRepository(serviceProvider.GetRequiredService<DataAccess.Sql.DBContext>());
-		}*/
-
 		public TrackingLogic(IParcelRepository parcelRepository, IHopArrivalRepository hopRepository)
 		{
 			parcelRepo = parcelRepository;
@@ -25,7 +20,6 @@ namespace PLS.SKS.Package.BusinessLogic
 
 		public DataAccess.Entities.Parcel TrackParcel(string trackingNumber)
         {
-            //get Parcel with tracking number
             DataAccess.Entities.Parcel DALParcel = parcelRepo.GetByTrackingNumber(trackingNumber);
             //get HopArrivals with "TrackingInformationID"
             List<DataAccess.Entities.HopArrival> hopArr = hopRepo.GetByTrackingInformationId(DALParcel.TrackingInformationId);
@@ -41,7 +35,6 @@ namespace PLS.SKS.Package.BusinessLogic
                     DALParcel.TrackingInformation.futureHops.Add(h);
                 }
             }
-
             return DALParcel;
 		}
     }
