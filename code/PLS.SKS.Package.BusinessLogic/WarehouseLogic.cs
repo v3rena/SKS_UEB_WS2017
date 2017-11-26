@@ -10,11 +10,6 @@ namespace PLS.SKS.Package.BusinessLogic
 	{
 		private DataAccess.Interfaces.IWarehouseRepository warehouseRepo;
 
-		/*public WarehouseLogic(IServiceProvider serviceProvider)
-		{
-			warehouseRepo = new DataAccess.Sql.SqlWarehouseRepository(serviceProvider.GetRequiredService<DataAccess.Sql.DBContext>());
-		}*/
-
 		public WarehouseLogic(IWarehouseRepository warehouseRepository)
 		{
 			warehouseRepo = warehouseRepository;
@@ -22,13 +17,13 @@ namespace PLS.SKS.Package.BusinessLogic
 
 		public DataAccess.Entities.Warehouse ExportWarehouses()
 		{
-			//Should return root warehouse!
+			//Should return root warehouse
 			return warehouseRepo.GetById(1);
 		}
 
 		public void ImportWarehouses(DataAccess.Entities.Warehouse warehouse)
 		{
-			int pk = warehouseRepo.Create(warehouse);
+			warehouseRepo.Create(warehouse);
 		}
 	}
 }

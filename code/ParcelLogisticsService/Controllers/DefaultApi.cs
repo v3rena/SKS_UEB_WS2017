@@ -25,7 +25,6 @@ using Microsoft.Extensions.Logging;
 using log4net;
 using PLS.SKS.Package.BusinessLogic.Interfaces;
 using PLS.SKS.Package.BusinessLogic;
-using log4net.Repository.Hierarchy;
 
 namespace IO.Swagger.Controllers
 {

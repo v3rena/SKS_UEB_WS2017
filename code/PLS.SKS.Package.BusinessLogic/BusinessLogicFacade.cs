@@ -13,16 +13,22 @@ namespace PLS.SKS.Package.BusinessLogic
 {
     public class BusinessLogicFacade : Interfaces.IBusinessLogicFacade
     {
-		ILogger<BusinessLogicFacade> logger;
+		private ILogger<BusinessLogicFacade> logger;
+		private IHopArrivalLogic hopArrivalLogic;
+		private IParcelEntryLogic parcelEntryLogic;
+		private ITrackingLogic trackingLogic;
+		private IWarehouseLogic warehouseLogic;
 
-		public BusinessLogicFacade(IHopArrivalLogic hopArrivalLogic, IParcelEntryLogic parcelEntryLogic, ITrackingLogic trackingLogic, IWarehouseLogic warehouseLogic, ILogger<BusinessLogicFacade> logger)
+		public AutoMapper.IMapper Mapper { get; set; }
+
+		public BusinessLogicFacade(IHopArrivalLogic hopArrivalLogic, IParcelEntryLogic parcelEntryLogic, ITrackingLogic trackingLogic, IWarehouseLogic warehouseLogic, ILogger<BusinessLogicFacade> logger, AutoMapper.IMapper mapper)
 		{
 			this.hopArrivalLogic = hopArrivalLogic;
 			this.parcelEntryLogic = parcelEntryLogic;
 			this.trackingLogic = trackingLogic;
 			this.warehouseLogic = warehouseLogic;
 			this.logger = logger;
-			CreateMaps();
+            Mapper = mapper;
 		}
 
 		public void ScanParcel(string trackingNumber, string code)
@@ -31,67 +37,87 @@ namespace PLS.SKS.Package.BusinessLogic
 			hopArrivalLogic.ScanParcel(trackingNumber, code);
 		}
 
-		public string AddParcel(IO.Swagger.Models.Parcel parcel)
+		public string AddParcel(IO.Swagger.Models.Parcel serviceParcel)
         {
-			Entities.Parcel blParcel = Mapper.Map<Entities.Parcel>(parcel);
-
-			//Validates BusinessLogicFacade model
-			Validator.ParcelValidator validator = new Validator.ParcelValidator();
-			ValidationResult results = validator.Validate(blParcel);
-			bool validationSucceeded = results.IsValid;
-			IList<ValidationFailure> failures = results.Errors;
-			//Improve logging
-			logger.LogInformation(results.ToString());
-
+			logger.LogInformation("Calling the AddParcel action");
+			Entities.Parcel blParcel = Mapper.Map<Entities.Parcel>(serviceParcel);
+			if(blParcel!=null)
+			{
+				logger.LogError(ValidateParcel(blParcel));
+			}
 			DataAccess.Entities.Parcel dalParcel = Mapper.Map<DataAccess.Entities.Parcel>(blParcel);
 			return parcelEntryLogic.AddParcel(dalParcel);
         }
 
         public IO.Swagger.Models.TrackingInformation TrackParcel(string trackingNumber)
         {
+			logger.LogInformation("Calling the TrackParcel action");
 			DataAccess.Entities.Parcel dalParcel = trackingLogic.TrackParcel(trackingNumber);
 			Entities.Parcel blParcel = Mapper.Map<Entities.Parcel>(dalParcel);
-			//Implement exception handling
+			if(blParcel!=null)
+			{
+				logger.LogError(ValidateParcel(blParcel));
 
-			//Validates BusinessLogicFacade model
-			Validator.ParcelValidator validator = new Validator.ParcelValidator();
-			ValidationResult results = validator.Validate(blParcel);
-			bool validationSucceeded = results.IsValid;
-			IList<ValidationFailure> failures = results.Errors;
-
-			var trInfo = blParcel.TrackingInformation;
-			IO.Swagger.Models.TrackingInformation info = Mapper.Map<IO.Swagger.Models.TrackingInformation>(trInfo);
+			}
+			IO.Swagger.Models.TrackingInformation info = Mapper.Map<IO.Swagger.Models.TrackingInformation>(blParcel.TrackingInformation);
 			return info;
 		}
 
 		public IO.Swagger.Models.Warehouse ExportWarehouses()
 		{
-			//Should return root warehouse!
+			logger.LogInformation("Calling the ExportWarehouses action");
 			DataAccess.Entities.Warehouse dalWarehouse = warehouseLogic.ExportWarehouses();
 			Entities.Warehouse blWarehouse = Mapper.Map<Entities.Warehouse>(dalWarehouse);
-
-			//Validates BusinessLogicFacade model
-			Validator.WarehouseValidator validator = new Validator.WarehouseValidator();
-			ValidationResult results = validator.Validate(blWarehouse);
-			bool validationSucceeded = results.IsValid;
-			IList<ValidationFailure> failures = results.Errors;
-
-			IO.Swagger.Models.Warehouse swaggerWarehouse = Mapper.Map<IO.Swagger.Models.Warehouse>(blWarehouse);
-			return swaggerWarehouse;
+			if (blWarehouse!= null)
+			{
+				logger.LogError(ValidateWarehouse(blWarehouse));
+			}
+			IO.Swagger.Models.Warehouse serviceWarehouse = Mapper.Map<IO.Swagger.Models.Warehouse>(blWarehouse);
+			return serviceWarehouse;
 		}
 
 		public void ImportWarehouses(IO.Swagger.Models.Warehouse warehouse)
 		{
+			logger.LogInformation("Calling the ImportWarehouses action");
 			Entities.Warehouse blWarehouse = Mapper.Map<Entities.Warehouse>(warehouse);
+			if (blWarehouse != null)
+			{
+				logger.LogError(ValidateWarehouse(blWarehouse));
+			}
+			DataAccess.Entities.Warehouse dalWarehouse = Mapper.Map<DataAccess.Entities.Warehouse>(blWarehouse);
+			warehouseLogic.ImportWarehouses(dalWarehouse);
+		}
 
-			//Validates BusinessLogicFacade model
+		private string ValidateWarehouse(Entities.Warehouse blWarehouse)
+		{
+			StringBuilder validationResults = new StringBuilder();
+
 			Validator.WarehouseValidator validator = new Validator.WarehouseValidator();
 			ValidationResult results = validator.Validate(blWarehouse);
 			bool validationSucceeded = results.IsValid;
 			IList<ValidationFailure> failures = results.Errors;
 
-			DataAccess.Entities.Warehouse dalWarehouse = Mapper.Map<DataAccess.Entities.Warehouse>(blWarehouse);
-			warehouseLogic.ImportWarehouses(dalWarehouse);
+			foreach (var failure in failures)
+			{
+				validationResults.Append(failure);
+			}
+			return validationResults.ToString();
+		}
+
+		private string ValidateParcel(Entities.Parcel blParcel)
+		{
+			StringBuilder validationResults = new StringBuilder();
+
+			Validator.ParcelValidator validator = new Validator.ParcelValidator();
+			ValidationResult results = validator.Validate(blParcel);
+			bool validationSucceeded = results.IsValid;
+			IList<ValidationFailure> failures = results.Errors;
+
+			foreach (var failure in failures)
+			{
+				validationResults.Append(failure);
+			}
+			return validationResults.ToString();
 		}
 
 		public void CreateMaps()
@@ -160,12 +186,5 @@ namespace PLS.SKS.Package.BusinessLogic
             config.AssertConfigurationIsValid();
             Mapper = config.CreateMapper();
         }
-
-        public AutoMapper.IMapper Mapper { get; set; }
-
-        private Interfaces.IHopArrivalLogic hopArrivalLogic;
-        private Interfaces.IParcelEntryLogic parcelEntryLogic;
-        private Interfaces.ITrackingLogic trackingLogic;
-		private Interfaces.IWarehouseLogic warehouseLogic;
     }
 }

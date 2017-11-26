@@ -11,6 +11,7 @@ using Microsoft.Extensions.Options;
 using PLS.SKS.Package;
 using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore.Swagger;
+using AutoMapper;
 
 namespace PLS.SKS.Package.Services
 {
@@ -26,6 +27,7 @@ namespace PLS.SKS.Package.Services
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+			//Add Database Context
 			services.AddDbContext<DataAccess.Sql.DBContext>(options =>
 			options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -43,6 +45,9 @@ namespace PLS.SKS.Package.Services
 			services.AddScoped<DataAccess.Interfaces.ITrackingInformationRepository, DataAccess.Sql.SqlTrackingInformationRepository>();
 			services.AddScoped<DataAccess.Interfaces.ITruckRepository, DataAccess.Sql.SqlTruckRepository>();
 			services.AddScoped<DataAccess.Interfaces.IWarehouseRepository, DataAccess.Sql.SqlWarehouseRepository>();
+
+			//Add Mapping
+            services.AddAutoMapper();
 
 			services.AddMvc()
 				.AddJsonOptions(
