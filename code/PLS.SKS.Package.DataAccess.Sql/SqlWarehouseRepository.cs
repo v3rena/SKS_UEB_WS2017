@@ -5,16 +5,21 @@ using System.Text;
 using PLS.SKS.Package.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Data.SqlClient;
+using Microsoft.Extensions.Logging;
 
 namespace PLS.SKS.Package.DataAccess.Sql
 {
 	public class SqlWarehouseRepository : IWarehouseRepository
 	{
 		private readonly DBContext db;
-
-		public SqlWarehouseRepository(DBContext context)
+		ILogger<SqlWarehouseRepository> logger;
+		ExceptionHelper exceptionHelper = new ExceptionHelper();
+		
+		public SqlWarehouseRepository(DBContext context, ILogger<SqlWarehouseRepository> logger)
 		{
 			db = context;
+			this.logger = logger;
 		}
 
 		public int Create(Warehouse w)
@@ -31,13 +36,19 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 		public Warehouse GetById(int id)
 		{
-			Warehouse warehouse = db.Warehouses.Include(w => w.NextHops).Include(w => w.Trucks)
-			.Where(w => w.Id == id).FirstOrDefault();
-
-			SearchWarehouseHierarchy(warehouse);
-
-			return db.Warehouses.Include(w => w.NextHops).Include(w => w.Trucks)
+			try
+			{
+				Warehouse warehouse = db.Warehouses.Include(w => w.NextHops).Include(w => w.Trucks)
 				.Where(w => w.Id == id).FirstOrDefault();
+				SearchWarehouseHierarchy(warehouse);
+				return db.Warehouses.Include(w => w.NextHops).Include(w => w.Trucks)
+					.Where(w => w.Id == id).FirstOrDefault();
+			}
+			catch(SqlException ex)
+			{
+				logger.LogError(exceptionHelper.BuildSqlExceptionMessage(ex));
+				return null;
+			}
 		}
 
 		public void Update(Warehouse w)
