@@ -23,7 +23,7 @@ namespace PLS.SKS.Package.Services
 				var services = scope.ServiceProvider;
 				try
 				{
-					var context = services.GetRequiredService <DBContext> ();
+					var context = services.GetRequiredService <DBContext>();
 					DBInitializer.Initialize(context);
 				}
 				catch (Exception ex)
