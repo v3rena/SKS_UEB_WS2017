@@ -7,8 +7,6 @@ namespace PLS.SKS.Package.BusinessLogic
 {
 	public class BLException : Exception
 	{
-		ILogger<BLException> logger;
-
 		public BLException()
 		{
 

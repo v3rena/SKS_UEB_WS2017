@@ -8,8 +8,6 @@ namespace PLS.SKS.Package.Services
 {
 	public class ServiceException : Exception
 	{
-		ILogger<ServiceException> logger;
-
 		public ServiceException()
 		{
 
