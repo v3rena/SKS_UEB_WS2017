@@ -4,23 +4,35 @@ using System.Collections.Generic;
 using System.Text;
 using PLS.SKS.Package.DataAccess.Entities;
 using System.Linq;
+using System.Data.SqlClient;
+using Microsoft.Extensions.Logging;
 
 namespace PLS.SKS.Package.DataAccess.Sql
 {
 	public class SqlHopArrivalRepository : IHopArrivalRepository
 	{
 		private readonly DBContext db;
+		ILogger<SqlParcelRepository> logger;
+		ExceptionHelper exceptionHelper = new ExceptionHelper();
 
-		public SqlHopArrivalRepository(DBContext context)
+		public SqlHopArrivalRepository(DBContext context, ILogger<SqlParcelRepository> logger)
 		{
 			db = context;
 		}
 
 		public int Create(HopArrival h)
 		{
-			db.Add(h);
-			db.SaveChanges();
-			return h.Id;
+			try
+			{
+				db.Add(h);
+				db.SaveChanges();
+				return h.Id;
+			}
+			catch (SqlException ex)
+			{
+				logger.LogError(exceptionHelper.BuildSqlExceptionMessage(ex));
+				throw new DALException("Could not save hopArrival to database", ex);
+			}
 		}
 
 		public void Delete(int id)
@@ -30,21 +42,45 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 		public HopArrival GetById(int id)
 		{
-			return db.HopArrivals.Find(id);
+			try
+			{
+				return db.HopArrivals.Find(id);
+			}
+			catch (SqlException ex)
+			{
+				logger.LogError(exceptionHelper.BuildSqlExceptionMessage(ex));
+				throw new DALException("Could not retrieve hopArrival from database", ex);
+			}
 		}
 
         public List<HopArrival> GetByTrackingInformationId(int id)
         {
-            return db.HopArrivals.Where(h => h.TrackingInformationId == id).ToList();
+			try
+			{
+				return db.HopArrivals.Where(h => h.TrackingInformationId == id).ToList();
+			}
+			catch (SqlException ex)
+			{
+				logger.LogError(exceptionHelper.BuildSqlExceptionMessage(ex));
+				throw new DALException("Could not retrieve hopArrival from database", ex);
+			}
         }
 
 		public void Update(HopArrival h)
 		{
-			var HopArrivalToUpdate = db.HopArrivals.SingleOrDefault(b => b.Id == h.Id);
-			if (HopArrivalToUpdate != null)
+			try
 			{
-				HopArrivalToUpdate = h;
-				db.SaveChanges();
+				var HopArrivalToUpdate = db.HopArrivals.SingleOrDefault(b => b.Id == h.Id);
+				if (HopArrivalToUpdate != null)
+				{
+					HopArrivalToUpdate = h;
+					db.SaveChanges();
+				}
+			}
+			catch (SqlException ex)
+			{
+				logger.LogError(exceptionHelper.BuildSqlExceptionMessage(ex));
+				throw new DALException("Could not update hopArrival in database", ex);
 			}
 		}
 	}

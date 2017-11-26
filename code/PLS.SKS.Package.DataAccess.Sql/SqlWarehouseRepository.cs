@@ -15,7 +15,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		private readonly DBContext db;
 		ILogger<SqlWarehouseRepository> logger;
 		ExceptionHelper exceptionHelper = new ExceptionHelper();
-		
+
 		public SqlWarehouseRepository(DBContext context, ILogger<SqlWarehouseRepository> logger)
 		{
 			db = context;
@@ -24,9 +24,17 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 		public int Create(Warehouse w)
 		{
-			db.Add(w);
-			db.SaveChanges();
-			return w.Id;
+			try
+			{
+				db.Add(w);
+				db.SaveChanges();
+				return w.Id;
+			}
+			catch (SqlException ex)
+			{
+				logger.LogError(exceptionHelper.BuildSqlExceptionMessage(ex));
+				throw new DALException("Could not save warehouse hierarchy to database", ex);
+			}
 		}
 
 		public void Delete(int id)
@@ -44,10 +52,10 @@ namespace PLS.SKS.Package.DataAccess.Sql
 				return db.Warehouses.Include(w => w.NextHops).Include(w => w.Trucks)
 					.Where(w => w.Id == id).FirstOrDefault();
 			}
-			catch(SqlException ex)
+			catch (SqlException ex)
 			{
 				logger.LogError(exceptionHelper.BuildSqlExceptionMessage(ex));
-				return null;
+				throw new DALException("Could not retrieve warehouse hierarchy from database", ex);
 			}
 		}
 

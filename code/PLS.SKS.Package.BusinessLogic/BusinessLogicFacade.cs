@@ -37,11 +37,14 @@ namespace PLS.SKS.Package.BusinessLogic
 			hopArrivalLogic.ScanParcel(trackingNumber, code);
 		}
 
-		public string AddParcel(IO.Swagger.Models.Parcel parcel)
+		public string AddParcel(IO.Swagger.Models.Parcel serviceParcel)
         {
 			logger.LogInformation("Calling the AddParcel action");
-			Entities.Parcel blParcel = Mapper.Map<Entities.Parcel>(parcel);
-			logger.LogError(ValidateParcel(blParcel));
+			Entities.Parcel blParcel = Mapper.Map<Entities.Parcel>(serviceParcel);
+			if(blParcel!=null)
+			{
+				logger.LogError(ValidateParcel(blParcel));
+			}
 			DataAccess.Entities.Parcel dalParcel = Mapper.Map<DataAccess.Entities.Parcel>(blParcel);
 			return parcelEntryLogic.AddParcel(dalParcel);
         }
@@ -51,7 +54,11 @@ namespace PLS.SKS.Package.BusinessLogic
 			logger.LogInformation("Calling the TrackParcel action");
 			DataAccess.Entities.Parcel dalParcel = trackingLogic.TrackParcel(trackingNumber);
 			Entities.Parcel blParcel = Mapper.Map<Entities.Parcel>(dalParcel);
-			logger.LogError(ValidateParcel(blParcel));
+			if(blParcel!=null)
+			{
+				logger.LogError(ValidateParcel(blParcel));
+
+			}
 			IO.Swagger.Models.TrackingInformation info = Mapper.Map<IO.Swagger.Models.TrackingInformation>(blParcel.TrackingInformation);
 			return info;
 		}
@@ -61,7 +68,10 @@ namespace PLS.SKS.Package.BusinessLogic
 			logger.LogInformation("Calling the ExportWarehouses action");
 			DataAccess.Entities.Warehouse dalWarehouse = warehouseLogic.ExportWarehouses();
 			Entities.Warehouse blWarehouse = Mapper.Map<Entities.Warehouse>(dalWarehouse);
-			logger.LogError(ValidateWarehouse(blWarehouse));
+			if (blWarehouse!= null)
+			{
+				logger.LogError(ValidateWarehouse(blWarehouse));
+			}
 			IO.Swagger.Models.Warehouse serviceWarehouse = Mapper.Map<IO.Swagger.Models.Warehouse>(blWarehouse);
 			return serviceWarehouse;
 		}
@@ -70,7 +80,10 @@ namespace PLS.SKS.Package.BusinessLogic
 		{
 			logger.LogInformation("Calling the ImportWarehouses action");
 			Entities.Warehouse blWarehouse = Mapper.Map<Entities.Warehouse>(warehouse);
-			logger.LogError(ValidateWarehouse(blWarehouse));
+			if (blWarehouse != null)
+			{
+				logger.LogError(ValidateWarehouse(blWarehouse));
+			}
 			DataAccess.Entities.Warehouse dalWarehouse = Mapper.Map<DataAccess.Entities.Warehouse>(blWarehouse);
 			warehouseLogic.ImportWarehouses(dalWarehouse);
 		}

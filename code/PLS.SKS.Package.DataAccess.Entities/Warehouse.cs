@@ -20,6 +20,5 @@ namespace PLS.SKS.Package.DataAccess.Entities
 		public string Description { get; set; }
         public List<Warehouse> NextHops { get; set; }
         public List<Truck> Trucks { get; set; }
-		public string Test { get; set; }
     }
 }

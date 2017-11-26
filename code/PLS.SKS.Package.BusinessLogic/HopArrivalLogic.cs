@@ -11,9 +11,9 @@ namespace PLS.SKS.Package.BusinessLogic
 {
     public class HopArrivalLogic : Interfaces.IHopArrivalLogic
     {
-		private DataAccess.Interfaces.IParcelRepository parcelRepo;
-        private DataAccess.Interfaces.ITrackingInformationRepository trackingRepo;
-        private DataAccess.Interfaces.IHopArrivalRepository hopArrivalRepo;
+		private IParcelRepository parcelRepo;
+        private ITrackingInformationRepository trackingRepo;
+        private IHopArrivalRepository hopArrivalRepo;
 
 		public HopArrivalLogic(IParcelRepository parcelRepository, ITrackingInformationRepository trackingInformationRepository, IHopArrivalRepository hopArrivalRepository)
 		{

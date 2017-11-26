@@ -13,9 +13,9 @@ namespace PLS.SKS.Package.BusinessLogic
 {
     public class ParcelEntryLogic : Interfaces.IParcelEntryLogic
     {
-		private DataAccess.Interfaces.IParcelRepository parcelRepo;
-		private DataAccess.Interfaces.ITrackingInformationRepository trackingRepo;
-		private DataAccess.Interfaces.IHopArrivalRepository hopArrivalRepo;
+		private IParcelRepository parcelRepo;
+		private ITrackingInformationRepository trackingRepo;
+		private IHopArrivalRepository hopArrivalRepo;
 
 		public ParcelEntryLogic(IParcelRepository parcelRepository, ITrackingInformationRepository trackingInformationRepository, IHopArrivalRepository hopArrivalRepository)
 		{
@@ -24,7 +24,7 @@ namespace PLS.SKS.Package.BusinessLogic
 			hopArrivalRepo = hopArrivalRepository;
 		}
 
-		public string AddParcel(DataAccess.Entities.Parcel parcel)
+		public string AddParcel(Parcel parcel)
         {
 			parcel.TrackingInformation = GenerateTrackingInformation();
 			parcel.TrackingNumber = RandomString(8);
