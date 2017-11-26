@@ -5,9 +5,9 @@ using AutoMapper;
 
 namespace PLS.SKS.Package.BusinessLogic.MapperProfiles
 {
-    public class DataAccessToBusniessProfile : Profile
+    public class DataAccessToBusinessProfile : Profile
     {
-        public DataAccessToBusniessProfile()
+        public DataAccessToBusinessProfile()
         {
             CreateMap<DataAccess.Entities.Recipient, Entities.Recipient>();
             CreateMap<DataAccess.Entities.Parcel, Entities.Parcel>();

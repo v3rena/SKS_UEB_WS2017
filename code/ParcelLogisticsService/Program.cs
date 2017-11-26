@@ -16,7 +16,6 @@ namespace PLS.SKS.Package.Services
     {
         public static void Main(string[] args)
         {
-
 			var host = BuildWebHost(args);
 
 			using (var scope = host.Services.CreateScope())
@@ -24,7 +23,7 @@ namespace PLS.SKS.Package.Services
 				var services = scope.ServiceProvider;
 				try
 				{
-					var context = services.GetRequiredService <DataAccess.Sql.DBContext> ();
+					var context = services.GetRequiredService <DBContext> ();
 					DBInitializer.Initialize(context);
 				}
 				catch (Exception ex)
@@ -33,9 +32,7 @@ namespace PLS.SKS.Package.Services
 					logger.LogError(ex, "An error occurred while seeding the database.");
 				}
 			}
-
 			host.Run();
-			//BuildWebHost(args).Run();
         }
 
         public static IWebHost BuildWebHost(string[] args) =>
