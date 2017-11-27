@@ -13,8 +13,8 @@ namespace PLS.SKS.Package.DataAccess.Sql.Migrations
                 name: "Recipients",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
-                        //.Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     City = table.Column<string>(nullable: true),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
@@ -30,8 +30,8 @@ namespace PLS.SKS.Package.DataAccess.Sql.Migrations
                 name: "TrackingInformations",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
-                        //.Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     State = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -43,8 +43,8 @@ namespace PLS.SKS.Package.DataAccess.Sql.Migrations
                 name: "Warehouses",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
-                        //.Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Code = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     Duration = table.Column<decimal>(nullable: false),
@@ -65,8 +65,8 @@ namespace PLS.SKS.Package.DataAccess.Sql.Migrations
                 name: "HopArrivals",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
-                        //.Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Code = table.Column<string>(nullable: true),
                     DateTime = table.Column<DateTime>(nullable: false),
                     Status = table.Column<string>(nullable: true),
@@ -87,8 +87,8 @@ namespace PLS.SKS.Package.DataAccess.Sql.Migrations
                 name: "Parcels",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
-                        //.Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     RecipientId = table.Column<int>(nullable: false),
                     TrackingInformationId = table.Column<int>(nullable: false),
                     TrackingNumber = table.Column<string>(nullable: true),
@@ -115,8 +115,8 @@ namespace PLS.SKS.Package.DataAccess.Sql.Migrations
                 name: "Trucks",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
-                        //.Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Code = table.Column<string>(nullable: true),
                     Duration = table.Column<decimal>(nullable: false),
                     Latitude = table.Column<decimal>(nullable: false),

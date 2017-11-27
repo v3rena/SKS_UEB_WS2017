@@ -106,43 +106,43 @@ namespace PLS.SKS.Package.DataAccess.Sql.Migrations
 				name: "Id",
 				table: "Warehouse",
 				nullable: false,
-				oldClrType: typeof(int));
-			//.Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+				oldClrType: typeof(int))
+			.Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
 			migrationBuilder.AlterColumn<int>(
 				name: "Id",
 				table: "Truck",
 				nullable: false,
-				oldClrType: typeof(int));
-			//.Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+				oldClrType: typeof(int))
+			.Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
 			migrationBuilder.AlterColumn<int>(
 				name: "Id",
 				table: "TrackingInformation",
 				nullable: false,
-				oldClrType: typeof(int));
-			//.Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+				oldClrType: typeof(int))
+			.Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
 			migrationBuilder.AlterColumn<int>(
 				name: "Id",
 				table: "Recipient",
 				nullable: false,
-				oldClrType: typeof(int));
-			//.Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+				oldClrType: typeof(int))
+			.Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
 			migrationBuilder.AlterColumn<int>(
 				name: "Id",
 				table: "Parcel",
 				nullable: false,
-				oldClrType: typeof(int));
-			//.Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+				oldClrType: typeof(int))
+			.Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
 			migrationBuilder.AlterColumn<int>(
 				name: "Id",
 				table: "HopArrival",
 				nullable: false,
-				oldClrType: typeof(int));
-                //.Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+				oldClrType: typeof(int))
+                .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             migrationBuilder.AddPrimaryKey(
                 name: "PK_Warehouse",
@@ -314,43 +314,43 @@ namespace PLS.SKS.Package.DataAccess.Sql.Migrations
 				name: "Id",
 				table: "Warehouses",
 				nullable: false,
-				oldClrType: typeof(int));
-			//.OldAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+				oldClrType: typeof(int))
+			.OldAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
 			migrationBuilder.AlterColumn<int>(
 				name: "Id",
 				table: "Trucks",
 				nullable: false,
-				oldClrType: typeof(int));
-			//.OldAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+				oldClrType: typeof(int))
+			.OldAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
 			migrationBuilder.AlterColumn<int>(
 				name: "Id",
 				table: "TrackingInformations",
 				nullable: false,
-				oldClrType: typeof(int));
-			//.OldAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+				oldClrType: typeof(int))
+			.OldAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
 			migrationBuilder.AlterColumn<int>(
 				name: "Id",
 				table: "Recipients",
 				nullable: false,
-				oldClrType: typeof(int));
-			//.OldAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+				oldClrType: typeof(int))
+			.OldAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
 			migrationBuilder.AlterColumn<int>(
 				name: "Id",
 				table: "Parcels",
 				nullable: false,
-				oldClrType: typeof(int));
-			//.OldAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+				oldClrType: typeof(int))
+			.OldAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
 			migrationBuilder.AlterColumn<int>(
 				name: "Id",
 				table: "HopArrivals",
 				nullable: false,
-				oldClrType: typeof(int));
-			//.OldAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+				oldClrType: typeof(int))
+			.OldAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             migrationBuilder.AddPrimaryKey(
                 name: "PK_Warehouses",
