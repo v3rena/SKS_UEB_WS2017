@@ -66,7 +66,7 @@ namespace PLS.SKS.Package.Services
 			loggerFactory.AddConsole(Configuration.GetSection("Logging"));
 			loggerFactory.AddDebug();
 			loggerFactory.AddLog4Net();
-			//loggerFactor.AddAzureWebAppDiagnostics();
+			loggerFactory.AddAzureWebAppDiagnostics();
 
 			app.UseSwagger();
             app.UseSwaggerUI(c =>
