@@ -25,9 +25,9 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
 		{
             Setup();
 
-            MockParcelRepository mockParcelRepo = new MockParcelRepository();
             MockHopArrivalRepository mockHopRepo = new MockHopArrivalRepository();
             MockTrackingInformationRepository mockTrackRepo = new MockTrackingInformationRepository();
+            MockParcelRepository mockParcelRepo = new MockParcelRepository(mockTrackRepo);
 
 
             Interfaces.IParcelEntryLogic parcelLogic = new ParcelEntryLogic(mockParcelRepo, mockTrackRepo, mockHopRepo);
