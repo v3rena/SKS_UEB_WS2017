@@ -12,13 +12,13 @@ namespace PLS.SKS.ServiceAgents
 {
 	public class GoogleEncodingAgent : IGeoEncodingAgent
 	{
-		private static readonly string apiKey = "de01ffd9808244fcbbfa65d675ee6fd0";
+		private static readonly string apiKey = "AIzaSyBx774ImXlKrTp_3Zr2ugSPgzD_Yjjk1QQ";
 
 		public GeoCoordinates EncodeAddress(Address a)
 		{
 			GeoCoordinates coordinates = new GeoCoordinates();
 			HttpClient client = GetClient();
-			HttpResponseMessage response = client.GetAsync($"path-to-google-api").Result;
+			HttpResponseMessage response = client.GetAsync($"/maps/api/geocode/json?address={a}&key={apiKey}").Result;
 			if (response.IsSuccessStatusCode)
 			{
 				coordinates = response.Content.ReadAsAsync<GeoCoordinates>().Result;
@@ -30,7 +30,7 @@ namespace PLS.SKS.ServiceAgents
 		{
 			HttpClient client = new HttpClient()
 			{
-				BaseAddress = new Uri("https://newsapi.org")
+				BaseAddress = new Uri("https://maps.googleapis.com")
 			};
 			client.DefaultRequestHeaders.Accept.Clear();
 			client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
