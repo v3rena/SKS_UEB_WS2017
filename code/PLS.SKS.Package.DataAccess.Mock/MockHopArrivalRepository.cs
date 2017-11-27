@@ -12,6 +12,11 @@ namespace PLS.SKS.Package.DataAccess.Mock
 		public List<HopArrival> hopArrivals = new List<HopArrival>();
 		int h_id = 0;
 
+        public MockHopArrivalRepository()
+        {
+            Create(new HopArrival("WH01", DateTime.Parse("2017-11-09"), 1, "visited"));
+        }
+
 		public int Create(HopArrival h)
 		{
 			h.Id = h_id;

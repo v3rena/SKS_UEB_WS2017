@@ -8,10 +8,12 @@ namespace PLS.SKS.Package.DataAccess.Entities
     {
         public HopArrival() { }
 
-        public HopArrival(string code, DateTime dateTime)
+        public HopArrival(string code, DateTime dateTime, int trId, string status)
         {
-            this.Code = code;
-            this.DateTime = dateTime;
+            Code = code;
+            DateTime = dateTime;
+            TrackingInformationId = trId;
+            Status = status;
         }
 
         public int Id { get; set; }
