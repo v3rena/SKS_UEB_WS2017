@@ -1,0 +1,23 @@
+﻿2017-11-26 20:50:39,096 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-26 20:50:40,838 INFO [2] ?.? - Executed DbCommand (449ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-26 20:50:40,846 INFO [2] ?.? - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-26 20:50:41,064 INFO [2] ?.? - Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Recipients] AS [r])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+2017-11-26 20:50:41,366 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/  
+2017-11-26 20:50:41,538 INFO [8] ?.? - Request finished in 188.7113ms 404 
+2017-11-26 20:50:41,590 INFO [10] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/favicon.ico  
+2017-11-26 20:50:41,596 INFO [10] ?.? - Request finished in 5.5167ms 404 
+2017-11-26 20:50:41,604 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/favicon.ico  
+2017-11-26 20:50:41,608 INFO [8] ?.? - Request finished in 2.3345ms 404 
+2017-11-26 20:50:41,622 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/  
+2017-11-26 20:50:41,631 INFO [9] ?.? - Sending file. Request path: '/index.html'. Physical path: 'N/A'
+2017-11-26 20:50:41,639 INFO [9] ?.? - Request finished in 16.1684ms 200 text/html
+2017-11-26 20:50:41,833 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/v1/swagger.json  
+2017-11-26 20:50:42,014 INFO [8] ?.? - Request finished in 180.9705ms 200 application/json

@@ -26,9 +26,9 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 		}
 
-		public DALException(string message, SqlException inner) : base(message, inner)
-		{
-			//logger.LogError(exceptionHelper.BuildSqlExceptionMessage(inner));
-		}
-	}
+        public DALException(string message, SqlException inner) : base(message, inner)
+        {
+            //logger.LogError(exceptionHelper.BuildSqlExceptionMessage(inner));
+        }
+    }
 }

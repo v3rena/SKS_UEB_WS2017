@@ -104,87 +104,20 @@ namespace PLS.SKS.Package.BusinessLogic
 			return validationResults.ToString();
 		}
 
-		private string ValidateParcel(Entities.Parcel blParcel)
-		{
-			StringBuilder validationResults = new StringBuilder();
-
-			Validator.ParcelValidator validator = new Validator.ParcelValidator();
-			ValidationResult results = validator.Validate(blParcel);
-			bool validationSucceeded = results.IsValid;
-			IList<ValidationFailure> failures = results.Errors;
-
-			foreach (var failure in failures)
-			{
-				validationResults.Append(failure);
-			}
-			return validationResults.ToString();
-		}
-
-		public void CreateMaps()
+        private string ValidateParcel(Entities.Parcel blParcel)
         {
-            var config = new AutoMapper.MapperConfiguration(cfg =>
+            StringBuilder validationResults = new StringBuilder();
+
+            Validator.ParcelValidator validator = new Validator.ParcelValidator();
+            ValidationResult results = validator.Validate(blParcel);
+            bool validationSucceeded = results.IsValid;
+            IList<ValidationFailure> failures = results.Errors;
+
+            foreach (var failure in failures)
             {
-                //Swagger --> BL
-                cfg.CreateMap<IO.Swagger.Models.Recipient, Entities.Recipient>();
-                cfg.CreateMap<IO.Swagger.Models.Parcel, Entities.Parcel>()
-                    .ForMember(model => model.TrackingInformation, option => option.Ignore())
-                    .ForMember(model => model.TrackingNumber, option => option.Ignore());
-                cfg.CreateMap<IO.Swagger.Models.Warehouse, Entities.Warehouse>();
-				cfg.CreateMap<IO.Swagger.Models.Truck, Entities.Truck>(); //.ForMember(model => model.test, option => option.Ignore());
-				cfg.CreateMap<IO.Swagger.Models.TrackingInformation, Entities.TrackingInformation>();
-                cfg.CreateMap<IO.Swagger.Models.HopArrival, Entities.HopArrival>();
-                //BL --> Swagger
-                cfg.CreateMap<Entities.Parcel, IO.Swagger.Models.Parcel>();
-                cfg.CreateMap<Entities.Recipient, IO.Swagger.Models.Recipient>();
-                cfg.CreateMap<Entities.Warehouse, IO.Swagger.Models.Warehouse>();
-                cfg.CreateMap<Entities.Truck, IO.Swagger.Models.Truck>();
-                cfg.CreateMap<Entities.TrackingInformation, IO.Swagger.Models.TrackingInformation>();
-                cfg.CreateMap<Entities.HopArrival, IO.Swagger.Models.HopArrival>();
-                //DAL --> BL
-                cfg.CreateMap<DataAccess.Entities.Recipient, Entities.Recipient>();
-                cfg.CreateMap<DataAccess.Entities.Parcel, Entities.Parcel>();
-                cfg.CreateMap<DataAccess.Entities.Warehouse, Entities.Warehouse>();
-                cfg.CreateMap<DataAccess.Entities.Truck, Entities.Truck>();
-                cfg.CreateMap<DataAccess.Entities.TrackingInformation, Entities.TrackingInformation>();
-                cfg.CreateMap<DataAccess.Entities.HopArrival, Entities.HopArrival>();
-                //BL --> DAL
-                cfg.CreateMap<Entities.Recipient, DataAccess.Entities.Recipient>()
-                    .ForMember(model => model.Id, option => option.Ignore());
-                cfg.CreateMap<Entities.Parcel, DataAccess.Entities.Parcel>()
-                    .ForMember(model => model.Id, option => option.Ignore())
-                    .ForMember(model => model.TrackingInformationId, option => option.Ignore())
-                    .ForMember(model => model.RecipientId, option => option.Ignore());
-                cfg.CreateMap<Entities.Warehouse, DataAccess.Entities.Warehouse>()
-                    .ForMember(model => model.Id, option => option.Ignore());
-                cfg.CreateMap<Entities.Truck, DataAccess.Entities.Truck>()
-                    .ForMember(model => model.Id, option => option.Ignore());
-
-                cfg.CreateMap<Entities.TrackingInformation, DataAccess.Entities.TrackingInformation>()
-                    .ForMember(model => model.Id, option => option.Ignore())
-                    .AfterMap((s,d) => d.visitedHops.ForEach(
-                        delegate(DataAccess.Entities.HopArrival h)
-                        {
-                            h.Status = "visited";
-                        })
-                    )
-                    .AfterMap((s,d) => d.futureHops.ForEach(
-                        delegate (DataAccess.Entities.HopArrival h)
-                        {
-                            h.Status = "future";
-                        })
-                    );
-
-                cfg.CreateMap<Entities.HopArrival, DataAccess.Entities.HopArrival>()
-                    .ForMember(model => model.Id, option => option.Ignore())
-                    .ForMember(model => model.Status, option => option.Ignore())
-                    .ForMember(model => model.TrackingInformation, option => option.Ignore())
-                    .ForMember(model => model.TrackingInformationId, option => option.Ignore());
-                ;
+                validationResults.Append(failure);
             }
-            );
-
-            config.AssertConfigurationIsValid();
-            Mapper = config.CreateMapper();
+            return validationResults.ToString();
         }
     }
 }
