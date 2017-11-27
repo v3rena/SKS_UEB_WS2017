@@ -11,9 +11,9 @@ namespace PLS.SKS.Package.DataAccess.Entities
 
         public Parcel(float weight, Recipient recipient, int trId)
         {
-            this.Weight = weight;
-            this.Recipient = recipient;
-            this.TrackingInformationId = trId;
+            Weight = weight;
+            Recipient = recipient;
+            TrackingInformationId = trId;
         }
 
         public int Id { get; set; }

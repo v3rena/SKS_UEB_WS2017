@@ -9,11 +9,12 @@ namespace PLS.SKS.Package.DataAccess
     {
         public MockDatabase()
         {
-            _parcelRepo = new Mock.MockParcelRepository();
             _recRepo = new Mock.MockRecipientRepository();
             _trackingRepo = new Mock.MockTrackingInformationRepository();
             _truckRepo = new Mock.MockTruckRepository();
             _warehouseRepo = new Mock.MockWarehouseRepository();
+            _parcelRepo = new Mock.MockParcelRepository(_trackingRepo);
+
         }
 
         IParcelRepository parcelRepo
