@@ -18,6 +18,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		public SqlHopArrivalRepository(DBContext context, ILogger<SqlHopArrivalRepository> logger)
 		{
 			db = context;
+			this.logger = logger;
 		}
 
 		public int Create(HopArrival h)
