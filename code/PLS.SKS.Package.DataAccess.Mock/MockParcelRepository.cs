@@ -14,8 +14,8 @@ namespace PLS.SKS.Package.DataAccess.Mock
 
 		public MockParcelRepository()
 		{
-			//Create(new Parcel(25, new Recipient("Christian", "Kern", "Bundesstrasse 12", "1010", "Wien")));
-			//Create(new Parcel(1, new Recipient("Ulrike", "Lunacek", "Blumenweg 1", "1120", "Wien")));
+			Create(new Parcel(25, new Recipient("Christian", "Kern", "Bundesstrasse 12", "1010", "Wien"), 1));
+			Create(new Parcel(1, new Recipient("Ulrike", "Lunacek", "Blumenweg 1", "1120", "Wien"), 2));
 		}
 
 		public int Create(Parcel p)
