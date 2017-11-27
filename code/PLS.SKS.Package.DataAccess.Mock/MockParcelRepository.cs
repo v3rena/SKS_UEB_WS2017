@@ -9,13 +9,23 @@ namespace PLS.SKS.Package.DataAccess.Mock
 {
 	public class MockParcelRepository : IParcelRepository
 	{
+        MockTrackingInformationRepository mockTrackRepo;
 		public List<Parcel> parcels = new List<Parcel>();
 		int p_id = 0;
 
-		public MockParcelRepository()
+		public MockParcelRepository(MockTrackingInformationRepository trRepo)
 		{
-			Create(new Parcel(25, new Recipient("Christian", "Kern", "Bundesstrasse 12", "1010", "Wien"), 1));
-			Create(new Parcel(1, new Recipient("Ulrike", "Lunacek", "Blumenweg 1", "1120", "Wien"), 2));
+            mockTrackRepo = trRepo;
+
+            Parcel p1 = new Parcel(25, new Recipient("Christian", "Kern", "Bundesstrasse 12", "1010", "Wien"), 1);
+            p1.TrackingNumber = "TN000001";
+            p1.TrackingInformation = mockTrackRepo.GetById(p1.TrackingInformationId);
+            Parcel p2 = new Parcel(1, new Recipient("Ulrike", "Lunacek", "Blumenweg 1", "1120", "Wien"), 2);
+            p2.TrackingNumber = "TN000002";
+            p2.TrackingInformation = mockTrackRepo.GetById(p1.TrackingInformationId);
+
+            Create(p1);
+			Create(p2);
 		}
 
 		public int Create(Parcel p)
@@ -49,7 +59,7 @@ namespace PLS.SKS.Package.DataAccess.Mock
 
 		public Parcel GetByTrackingNumber(string trackingNumber)
 		{
-			throw new NotImplementedException();
+            return parcels.Single(item => item.TrackingNumber == trackingNumber);
 		}
 
 		public void Update(Parcel p)

@@ -9,18 +9,29 @@ namespace PLS.SKS.Package.BusinessLogic
 {
     public class TrackingLogic : Interfaces.ITrackingLogic
     {
-		private DataAccess.Interfaces.IParcelRepository parcelRepo;
-        private DataAccess.Interfaces.IHopArrivalRepository hopRepo;
+		private IParcelRepository parcelRepo;
+        private IHopArrivalRepository hopRepo;
+        private ITrackingInformationRepository trackRepo;
 
-		public TrackingLogic(IParcelRepository parcelRepository, IHopArrivalRepository hopRepository)
+		public TrackingLogic(IParcelRepository parcelRepository, IHopArrivalRepository hopRepository, ITrackingInformationRepository trackRepository)
 		{
 			parcelRepo = parcelRepository;
             hopRepo = hopRepository;
+            trackRepo = trackRepository;
 		}
 
 		public DataAccess.Entities.Parcel TrackParcel(string trackingNumber)
         {
             DataAccess.Entities.Parcel DALParcel = parcelRepo.GetByTrackingNumber(trackingNumber);
+
+
+#if DEBUG
+            //Fuer Tests
+            if(DALParcel.TrackingInformation == null)
+            {
+                DALParcel.TrackingInformation = trackRepo.GetById(DALParcel.TrackingInformationId);
+            }
+#endif
             //get HopArrivals with "TrackingInformationID"
             List<DataAccess.Entities.HopArrival> hopArr = hopRepo.GetByTrackingInformationId(DALParcel.TrackingInformationId);
             //fill visitedHops and futureHops lists

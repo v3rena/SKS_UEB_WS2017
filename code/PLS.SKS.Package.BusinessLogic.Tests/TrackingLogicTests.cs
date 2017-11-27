@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PLS.SKS.Package.BusinessLogic;
+using PLS.SKS.Package.DataAccess.Mock;
 
 namespace PLS.SKS.Package.BusinessLogic.Tests
 {
@@ -10,19 +11,29 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
 		[TestMethod]
         public void TrackArrival_ValidInputArguments_ReturnsTrue()
         {
-			//var track = new TrackingLogic();
-			//track.trackPackage("XYZ");
-            Assert.IsTrue(true);
+            MockHopArrivalRepository mockHopRepo = new MockHopArrivalRepository();
+            MockTrackingInformationRepository mockTrackRepo = new MockTrackingInformationRepository();
+            MockParcelRepository mockParcelRepo = new MockParcelRepository(mockTrackRepo);
+
+            TrackingLogic trLogic = new TrackingLogic(mockParcelRepo, mockHopRepo, mockTrackRepo);
+
+            DataAccess.Entities.Parcel dalParcel = trLogic.TrackParcel("TN000001");
+
+            Assert.IsNotNull(dalParcel);
 		}
 
 		[TestMethod]
 		public void TrackArrival_NullPackage_ThrowsException()
 		{
-			//var track = new TrackingLogic();
-			//track.trackPackage(null);
-            Assert.IsTrue(true);
-		}
+            MockHopArrivalRepository mockHopRepo = new MockHopArrivalRepository();
+            MockTrackingInformationRepository mockTrackRepo = new MockTrackingInformationRepository();
+            MockParcelRepository mockParcelRepo = new MockParcelRepository(mockTrackRepo);
 
+
+            TrackingLogic trLogic = new TrackingLogic(mockParcelRepo, mockHopRepo, mockTrackRepo);
+
+            
+		}
 	}
 }
 
