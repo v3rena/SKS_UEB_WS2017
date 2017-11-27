@@ -15,9 +15,13 @@ namespace PLS.SKS.Package.DataAccess.Mock
         public MockHopArrivalRepository()
         {
             Create(new HopArrival("WH01", DateTime.Parse("2017-11-09"), 1, "visited"));
+            Create(new HopArrival("WH02", DateTime.Parse("2017-11-09"), 1, "future"));
+            Create(new HopArrival("WH03", DateTime.Parse("2017-11-09"), 1, "future"));
+            Create(new HopArrival("WH01", DateTime.Parse("2017-11-09"), 2, "visited"));
+            Create(new HopArrival("WH02", DateTime.Parse("2017-11-09"), 2, "future"));
         }
 
-		public int Create(HopArrival h)
+        public int Create(HopArrival h)
 		{
 			h.Id = h_id;
 			h_id++;
@@ -38,7 +42,7 @@ namespace PLS.SKS.Package.DataAccess.Mock
 
         public List<HopArrival> GetByTrackingInformationId(int id)
         {
-            throw new NotImplementedException();
+            return hopArrivals.FindAll(item => item.TrackingInformationId == id);
         }
 
         public void Update(HopArrival h)
