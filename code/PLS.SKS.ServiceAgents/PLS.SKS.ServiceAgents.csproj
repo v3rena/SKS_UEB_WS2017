@@ -4,4 +4,12 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PLS.SKS.ServiceAgents.Interfaces\PLS.SKS.ServiceAgents.Interfaces.csproj" />
+  </ItemGroup>
+
 </Project>

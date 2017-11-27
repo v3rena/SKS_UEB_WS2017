@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PLS.SKS.ServiceAgents.DTOs\PLS.SKS.ServiceAgents.DTOs.csproj" />
+  </ItemGroup>
+
 </Project>
