@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2008
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PLS.SKS.Package.Services", "ParcelLogisticsService\PLS.SKS.Package.Services.csproj", "{054B8554-6346-41FA-9B27-BBD8087DBCFF}"
 EndProject
@@ -35,7 +35,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PLS.SKS.Package.DataAccess"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PLS.SKS.Package.Services.DTOs", "PLS.SKS.Package.Services.DTOs\PLS.SKS.Package.Services.DTOs.csproj", "{5628FEE8-AE86-4666-9D1E-E26609148A08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PLS.SKS.Package.DataAccess.Tests", "PLS.SKS.Package.DataAccess.Tests\PLS.SKS.Package.DataAccess.Tests.csproj", "{0B889A15-78D6-402E-9130-7E71D8DBF01F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PLS.SKS.Package.DataAccess.Tests", "PLS.SKS.Package.DataAccess.Tests\PLS.SKS.Package.DataAccess.Tests.csproj", "{0B889A15-78D6-402E-9130-7E71D8DBF01F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceAgents", "ServiceAgents", "{8744EE67-0F53-4785-B894-28C2B593CB82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PLS.SKS.ServiceAgents", "PLS.SKS.ServiceAgents\PLS.SKS.ServiceAgents.csproj", "{04E85807-E7F8-4097-94BD-457BCBE5A8D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PLS.SKS.ServiceAgents.Interfaces", "PLS.SKS.ServiceAgents.Interfaces\PLS.SKS.ServiceAgents.Interfaces.csproj", "{E711D93D-DA98-4D26-8143-9F2BFB1D6431}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PLS.SKS.ServiceAgents.DTOs", "PLS.SKS.ServiceAgents.DTOs\PLS.SKS.ServiceAgents.DTOs.csproj", "{8B5D798B-13B0-4427-AD9E-2634D34CA3A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +107,18 @@ Global
 		{0B889A15-78D6-402E-9130-7E71D8DBF01F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B889A15-78D6-402E-9130-7E71D8DBF01F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B889A15-78D6-402E-9130-7E71D8DBF01F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04E85807-E7F8-4097-94BD-457BCBE5A8D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04E85807-E7F8-4097-94BD-457BCBE5A8D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04E85807-E7F8-4097-94BD-457BCBE5A8D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04E85807-E7F8-4097-94BD-457BCBE5A8D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E711D93D-DA98-4D26-8143-9F2BFB1D6431}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E711D93D-DA98-4D26-8143-9F2BFB1D6431}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E711D93D-DA98-4D26-8143-9F2BFB1D6431}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E711D93D-DA98-4D26-8143-9F2BFB1D6431}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B5D798B-13B0-4427-AD9E-2634D34CA3A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B5D798B-13B0-4427-AD9E-2634D34CA3A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B5D798B-13B0-4427-AD9E-2634D34CA3A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B5D798B-13B0-4427-AD9E-2634D34CA3A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -118,6 +138,9 @@ Global
 		{B57374F5-5A8C-4522-A415-A33359790B4A} = {439B6556-C165-4DFE-A937-C21BC07DD49C}
 		{5628FEE8-AE86-4666-9D1E-E26609148A08} = {98A6394D-85D0-4C84-8F81-F74B788DAF0C}
 		{0B889A15-78D6-402E-9130-7E71D8DBF01F} = {439B6556-C165-4DFE-A937-C21BC07DD49C}
+		{04E85807-E7F8-4097-94BD-457BCBE5A8D0} = {8744EE67-0F53-4785-B894-28C2B593CB82}
+		{E711D93D-DA98-4D26-8143-9F2BFB1D6431} = {8744EE67-0F53-4785-B894-28C2B593CB82}
+		{8B5D798B-13B0-4427-AD9E-2634D34CA3A9} = {8744EE67-0F53-4785-B894-28C2B593CB82}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B303BF79-71FE-4F7F-B140-151ED058CF19}
