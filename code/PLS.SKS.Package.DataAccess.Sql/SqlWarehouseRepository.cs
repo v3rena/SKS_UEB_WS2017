@@ -33,7 +33,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			catch (SqlException ex)
 			{
 				logger.LogError(exceptionHelper.BuildSqlExceptionMessage(ex));
-				throw new DALException("Could not save warehouse hierarchy to database", ex);
+				throw new DALException("Could not save warehouse to database", ex);
 			}
 		}
 
@@ -55,17 +55,25 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			catch (SqlException ex)
 			{
 				logger.LogError(exceptionHelper.BuildSqlExceptionMessage(ex));
-				throw new DALException("Could not retrieve warehouse hierarchy from database", ex);
+				throw new DALException("Could not retrieve warehouse from database", ex);
 			}
 		}
 
 		public void Update(Warehouse w)
 		{
-			var WarehouseToUpdate = db.Warehouses.SingleOrDefault(b => b.Id == w.Id);
-			if (WarehouseToUpdate != null)
+			try
 			{
-				WarehouseToUpdate = w;
-				db.SaveChanges();
+				var WarehouseToUpdate = db.Warehouses.SingleOrDefault(b => b.Id == w.Id);
+				if (WarehouseToUpdate != null)
+				{
+					WarehouseToUpdate = w;
+					db.SaveChanges();
+				}
+			}
+			catch (SqlException ex)
+			{
+				logger.LogError(exceptionHelper.BuildSqlExceptionMessage(ex));
+				throw new DALException("Could not update warehouse", ex);
 			}
 		}
 
