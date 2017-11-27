@@ -58,15 +58,29 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 		public Parcel GetById(int id)
 		{
-			return db.Parcels.Find(id);
+			try
+			{
+				return db.Parcels.Find(id);
+			}
+			catch (SqlException ex)
+			{
+				logger.LogError(exceptionHelper.BuildSqlExceptionMessage(ex));
+				throw new DALException("Could not retrieve parcel from database", ex);
+			}
 		}
 
 		public Parcel GetByTrackingNumber(string TrackingNumber)
 		{
-			var parcel = db.Parcels.Include(p =>p.Recipient).Include(p=>p.TrackingInformation)
+			try
+			{
+				return db.Parcels.Include(p => p.Recipient).Include(p => p.TrackingInformation)
 				.Where(p => p.TrackingNumber == TrackingNumber).FirstOrDefault();
-
-			return parcel;
+			}
+			catch (SqlException ex)
+			{
+				logger.LogError(exceptionHelper.BuildSqlExceptionMessage(ex));
+				throw new DALException("Could not retrieve parcel from database", ex);
+			}
 		}
 
 		public IEnumerable<Parcel> GetByLengthRanking(int top)
@@ -76,11 +90,19 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 		public void Update(Parcel p)
 		{
-			var ParcelToUpdate = db.Parcels.SingleOrDefault(b => b.Id == p.Id);
-			if (ParcelToUpdate != null)
+			try
 			{
-				ParcelToUpdate = p;
-				db.SaveChanges();
+				var ParcelToUpdate = db.Parcels.SingleOrDefault(b => b.Id == p.Id);
+				if (ParcelToUpdate != null)
+				{
+					ParcelToUpdate = p;
+					db.SaveChanges();
+				}
+			}
+			catch (SqlException ex)
+			{
+				logger.LogError(exceptionHelper.BuildSqlExceptionMessage(ex));
+				throw new DALException("Could not update parcel", ex);
 			}
 		}
 	}

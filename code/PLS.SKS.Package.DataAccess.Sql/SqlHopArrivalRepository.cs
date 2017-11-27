@@ -12,10 +12,10 @@ namespace PLS.SKS.Package.DataAccess.Sql
 	public class SqlHopArrivalRepository : IHopArrivalRepository
 	{
 		private readonly DBContext db;
-		ILogger<SqlParcelRepository> logger;
+		ILogger<SqlHopArrivalRepository> logger;
 		ExceptionHelper exceptionHelper = new ExceptionHelper();
 
-		public SqlHopArrivalRepository(DBContext context, ILogger<SqlParcelRepository> logger)
+		public SqlHopArrivalRepository(DBContext context, ILogger<SqlHopArrivalRepository> logger)
 		{
 			db = context;
 		}
