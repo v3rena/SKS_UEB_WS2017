@@ -16,7 +16,7 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
         private void Setup()
         {
             validDALRec = new DataAccess.Entities.Recipient("Tobias", "Test", "Teststraße 9", "1140", "Wien");
-            validDALParcel = new DataAccess.Entities.Parcel(1.5f, validDALRec);
+            validDALParcel = new DataAccess.Entities.Parcel(1.5f, validDALRec, 1);
         }
 
 		//public void MethodUnderTest_Scenario_ExpectedOutcome()
