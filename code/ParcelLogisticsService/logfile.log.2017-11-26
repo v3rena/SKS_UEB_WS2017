@@ -1,23 +1,2367 @@
-﻿2017-11-26 20:50:39,096 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
-2017-11-26 20:50:40,838 INFO [2] ?.? - Executed DbCommand (449ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+﻿2017-11-26 14:19:11,802 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-26 14:19:19,405 INFO [2] ?.? - Executed DbCommand (114ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
 IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
-2017-11-26 20:50:40,846 INFO [2] ?.? - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+2017-11-26 14:19:19,445 INFO [2] ?.? - Executed DbCommand (8ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
 IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
-2017-11-26 20:50:41,064 INFO [2] ?.? - Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+2017-11-26 14:19:20,275 INFO [2] ?.? - Executed DbCommand (8ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
 SELECT CASE
     WHEN EXISTS (
         SELECT 1
         FROM [Recipients] AS [r])
     THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
 END
-2017-11-26 20:50:41,366 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/  
-2017-11-26 20:50:41,538 INFO [8] ?.? - Request finished in 188.7113ms 404 
-2017-11-26 20:50:41,590 INFO [10] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/favicon.ico  
-2017-11-26 20:50:41,596 INFO [10] ?.? - Request finished in 5.5167ms 404 
-2017-11-26 20:50:41,604 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/favicon.ico  
-2017-11-26 20:50:41,608 INFO [8] ?.? - Request finished in 2.3345ms 404 
-2017-11-26 20:50:41,622 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/  
-2017-11-26 20:50:41,631 INFO [9] ?.? - Sending file. Request path: '/index.html'. Physical path: 'N/A'
-2017-11-26 20:50:41,639 INFO [9] ?.? - Request finished in 16.1684ms 200 text/html
-2017-11-26 20:50:41,833 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/v1/swagger.json  
-2017-11-26 20:50:42,014 INFO [8] ?.? - Request finished in 180.9705ms 200 application/json
+2017-11-26 14:19:21,029 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/  
+2017-11-26 14:19:21,491 INFO [8] ?.? - Request finished in 498.9675ms 404 
+2017-11-26 14:19:46,258 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/swagger/  
+2017-11-26 14:19:46,327 INFO [8] ?.? - Sending file. Request path: '/index.html'. Physical path: 'N/A'
+2017-11-26 14:19:46,765 INFO [8] ?.? - Request finished in 230.1419ms 200 text/html
+2017-11-26 14:19:47,896 INFO [11] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/swagger/v1/swagger.json  
+2017-11-26 14:19:48,676 INFO [11] ?.? - Request finished in 923.5379ms 200 application/json
+2017-11-26 14:19:51,392 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/api/warehouse  
+2017-11-26 14:19:51,720 INFO [9] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-26 14:19:51,773 INFO [9] ?.? - Executed DbCommand (33ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-26 14:19:51,860 INFO [9] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.ExportWarehouses (PLS.SKS.Package.Services) with arguments ((null)) - ModelState is Valid
+2017-11-26 14:19:51,871 INFO [9] ?.? - Calling the ExportWarehouses action
+2017-11-26 14:19:53,080 ERROR [9] ?.? - Failed executing DbCommand (77ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[Test], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__id_0
+ORDER BY [w].[Id] - System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Test'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+ClientConnectionId:04d80eb5-7b30-4c5b-b50b-900d704f9e87
+Error Number:207,State:1,Class:16
+2017-11-26 14:19:53,509 ERROR [9] ?.? - An exception occurred in the database while iterating the results of a query for context type 'PLS.SKS.Package.DataAccess.Sql.DBContext'.
+System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Test'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(Boolean buffer)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.SelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at lambda_method(Closure , QueryContext )
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass17_1`1.<CompileQueryCore>b__0(QueryContext qc)
+ClientConnectionId:04d80eb5-7b30-4c5b-b50b-900d704f9e87
+Error Number:207,State:1,Class:16 - System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Test'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(Boolean buffer)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.SelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at lambda_method(Closure , QueryContext )
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass17_1`1.<CompileQueryCore>b__0(QueryContext qc)
+ClientConnectionId:04d80eb5-7b30-4c5b-b50b-900d704f9e87
+Error Number:207,State:1,Class:16
+2017-11-26 14:19:53,826 ERROR [9] ?.? - System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Test'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(Boolean buffer)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.SelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at lambda_method(Closure , QueryContext )
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass17_1`1.<CompileQueryCore>b__0(QueryContext qc)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source)
+   at PLS.SKS.Package.DataAccess.Sql.SqlWarehouseRepository.GetById(Int32 id) in C:\Users\Verena\Desktop\SKS_UEB_WS2017\code\PLS.SKS.Package.DataAccess.Sql\SqlWarehouseRepository.cs:line 40
+ClientConnectionId:04d80eb5-7b30-4c5b-b50b-900d704f9e87
+Error Number:207,State:1,Class:16
+2017-11-26 14:19:59,946 ERROR [9] ?.? - Failed executing DbCommand (11ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[Test], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__id_0
+ORDER BY [w].[Id] - System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Test'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+ClientConnectionId:04d80eb5-7b30-4c5b-b50b-900d704f9e87
+Error Number:207,State:1,Class:16
+2017-11-26 14:20:00,589 ERROR [9] ?.? - An exception occurred in the database while iterating the results of a query for context type 'PLS.SKS.Package.DataAccess.Sql.DBContext'.
+System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Test'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(Boolean buffer)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.SelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at lambda_method(Closure , QueryContext )
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass17_1`1.<CompileQueryCore>b__0(QueryContext qc)
+ClientConnectionId:04d80eb5-7b30-4c5b-b50b-900d704f9e87
+Error Number:207,State:1,Class:16 - System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Test'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(Boolean buffer)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.SelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at lambda_method(Closure , QueryContext )
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass17_1`1.<CompileQueryCore>b__0(QueryContext qc)
+ClientConnectionId:04d80eb5-7b30-4c5b-b50b-900d704f9e87
+Error Number:207,State:1,Class:16
+2017-11-26 14:20:03,858 INFO [9] ?.? - Executed action IO.Swagger.Controllers.DefaultApiController.ExportWarehouses (PLS.SKS.Package.Services) in 12185.7467ms
+2017-11-26 14:20:04,558 ERROR [9] ?.? - An unhandled exception has occurred while executing the request - System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Test'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(Boolean buffer)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.SelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at lambda_method(Closure , QueryContext )
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass17_1`1.<CompileQueryCore>b__0(QueryContext qc)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source)
+   at PLS.SKS.Package.DataAccess.Sql.SqlWarehouseRepository.GetById(Int32 id) in C:\Users\Verena\Desktop\SKS_UEB_WS2017\code\PLS.SKS.Package.DataAccess.Sql\SqlWarehouseRepository.cs:line 51
+   at PLS.SKS.Package.BusinessLogic.WarehouseLogic.ExportWarehouses() in C:\Users\Verena\Desktop\SKS_UEB_WS2017\code\PLS.SKS.Package.BusinessLogic\WarehouseLogic.cs:line 26
+   at PLS.SKS.Package.BusinessLogic.BusinessLogicFacade.ExportWarehouses() in C:\Users\Verena\Desktop\SKS_UEB_WS2017\code\PLS.SKS.Package.BusinessLogic\BusinessLogicFacade.cs:line 76
+   at IO.Swagger.Controllers.DefaultApiController.ExportWarehouses() in C:\Users\Verena\Desktop\SKS_UEB_WS2017\code\ParcelLogisticsService\Controllers\DefaultApi.cs:line 60
+   at lambda_method(Closure , Object , Object[] )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Execute(Object target, Object[] parameters)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeActionMethodAsync>d__12.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeNextActionFilterAsync>d__10.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeInnerFilterAsync>d__14.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeNextResourceFilter>d__22.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeFilterPipelineAsync>d__17.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeAsync>d__15.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.<Invoke>d__7.MoveNext()
+ClientConnectionId:04d80eb5-7b30-4c5b-b50b-900d704f9e87
+Error Number:207,State:1,Class:16
+2017-11-26 14:20:05,560 INFO [9] ?.? - Request finished in 13831.0094ms 500 text/html; charset=utf-8
+2017-11-26 14:47:53,389 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-26 14:47:56,583 INFO [2] ?.? - Executed DbCommand (195ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-26 14:47:56,622 INFO [2] ?.? - Executed DbCommand (10ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-26 14:47:57,571 INFO [2] ?.? - Executed DbCommand (11ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Recipients] AS [r])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+2017-11-26 14:47:58,585 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/  
+2017-11-26 14:47:59,284 INFO [8] ?.? - Request finished in 576.8853ms 404 
+2017-11-26 14:48:33,561 INFO [4] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/swagger/  
+2017-11-26 14:48:33,682 INFO [4] ?.? - Sending file. Request path: '/index.html'. Physical path: 'N/A'
+2017-11-26 14:48:34,056 INFO [4] ?.? - Request finished in 154.8903ms 200 text/html
+2017-11-26 14:48:35,494 INFO [14] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/swagger/v1/swagger.json  
+2017-11-26 14:48:36,228 INFO [14] ?.? - Request finished in 667.4632ms 200 application/json
+2017-11-26 14:48:39,761 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/api/warehouse  
+2017-11-26 14:48:40,015 INFO [9] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-26 14:48:40,084 INFO [9] ?.? - Executed DbCommand (25ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-26 14:48:40,317 INFO [9] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.ExportWarehouses (PLS.SKS.Package.Services) with arguments ((null)) - ModelState is Valid
+2017-11-26 14:48:40,330 INFO [9] ?.? - Calling the ExportWarehouses action
+2017-11-26 14:48:42,490 ERROR [9] ?.? - Failed executing DbCommand (121ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[Test], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__id_0
+ORDER BY [w].[Id] - System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Test'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+ClientConnectionId:d8d0083d-251e-4ddc-8c92-2ee69dbb76bb
+Error Number:207,State:1,Class:16
+2017-11-26 14:48:43,320 ERROR [9] ?.? - An exception occurred in the database while iterating the results of a query for context type 'PLS.SKS.Package.DataAccess.Sql.DBContext'.
+System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Test'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(Boolean buffer)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.SelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at lambda_method(Closure , QueryContext )
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass17_1`1.<CompileQueryCore>b__0(QueryContext qc)
+ClientConnectionId:d8d0083d-251e-4ddc-8c92-2ee69dbb76bb
+Error Number:207,State:1,Class:16 - System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Test'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(Boolean buffer)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.SelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at lambda_method(Closure , QueryContext )
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass17_1`1.<CompileQueryCore>b__0(QueryContext qc)
+ClientConnectionId:d8d0083d-251e-4ddc-8c92-2ee69dbb76bb
+Error Number:207,State:1,Class:16
+2017-11-26 14:48:43,686 ERROR [9] ?.? - Index #0
+Message: Invalid column name 'Test'.
+LineNumber: 1
+Source: Core .Net SqlClient Data Provider
+Procedure: 
+
+2017-11-26 15:27:39,704 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-26 15:27:44,840 INFO [2] ?.? - Executed DbCommand (185ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-26 15:27:44,913 INFO [2] ?.? - Executed DbCommand (18ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-26 15:27:45,969 INFO [2] ?.? - Executed DbCommand (14ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Recipients] AS [r])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+2017-11-26 15:27:48,189 INFO [11] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/  
+2017-11-26 15:27:49,071 INFO [11] ?.? - Request finished in 991.032ms 404 
+2017-11-26 15:28:09,114 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/swagger/  
+2017-11-26 15:28:09,140 INFO [8] ?.? - Sending file. Request path: '/index.html'. Physical path: 'N/A'
+2017-11-26 15:28:09,590 INFO [8] ?.? - Request finished in 147.6028ms 200 text/html
+2017-11-26 15:28:10,321 INFO [11] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/swagger/v1/swagger.json  
+2017-11-26 15:28:11,184 INFO [11] ?.? - Request finished in 755.6709ms 200 application/json
+2017-11-26 15:28:13,761 INFO [11] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/api/warehouse  
+2017-11-26 15:28:13,974 INFO [11] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-26 15:28:14,043 INFO [11] ?.? - Executed DbCommand (18ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-26 15:28:14,177 INFO [11] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.ExportWarehouses (PLS.SKS.Package.Services) with arguments ((null)) - ModelState is Valid
+2017-11-26 15:28:14,214 INFO [11] ?.? - Calling the ExportWarehouses action
+2017-11-26 15:28:14,228 INFO [11] ?.? - Calling the ExportWarehouses action
+2017-11-26 15:28:15,926 ERROR [11] ?.? - Failed executing DbCommand (62ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[Test], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__id_0
+ORDER BY [w].[Id] - System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Test'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+ClientConnectionId:e668c166-673c-4ed8-be79-03f05cc6df58
+Error Number:207,State:1,Class:16
+2017-11-26 15:28:16,412 ERROR [11] ?.? - An exception occurred in the database while iterating the results of a query for context type 'PLS.SKS.Package.DataAccess.Sql.DBContext'.
+System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Test'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(Boolean buffer)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.SelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at lambda_method(Closure , QueryContext )
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass17_1`1.<CompileQueryCore>b__0(QueryContext qc)
+ClientConnectionId:e668c166-673c-4ed8-be79-03f05cc6df58
+Error Number:207,State:1,Class:16 - System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Test'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(Boolean buffer)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.SelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at lambda_method(Closure , QueryContext )
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass17_1`1.<CompileQueryCore>b__0(QueryContext qc)
+ClientConnectionId:e668c166-673c-4ed8-be79-03f05cc6df58
+Error Number:207,State:1,Class:16
+2017-11-26 15:28:16,739 ERROR [11] ?.? - Index #0
+Message: Invalid column name 'Test'.
+LineNumber: 1
+Source: Core .Net SqlClient Data Provider
+Procedure: 
+
+2017-11-26 15:28:40,648 INFO [11] ?.? - Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+2017-11-26 15:28:40,685 INFO [11] ?.? - Executed action IO.Swagger.Controllers.DefaultApiController.ExportWarehouses (PLS.SKS.Package.Services) in 26694.7202ms
+2017-11-26 15:28:40,806 INFO [11] ?.? - Request finished in 26933.7496ms 204 
+2017-11-26 15:32:33,103 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-26 15:32:43,911 INFO [2] ?.? - Executed DbCommand (349ms) [Parameters=[], CommandType='Text', CommandTimeout='60']
+CREATE DATABASE [ParcelLogisticsDB];
+2017-11-26 15:32:44,038 INFO [2] ?.? - Executed DbCommand (115ms) [Parameters=[], CommandType='Text', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5 EXEC(N'ALTER DATABASE [ParcelLogisticsDB] SET READ_COMMITTED_SNAPSHOT ON;');
+2017-11-26 15:32:44,297 INFO [2] ?.? - Executed DbCommand (10ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Recipients] (
+    [Id] int NOT NULL IDENTITY,
+    [City] nvarchar(max) NULL,
+    [FirstName] nvarchar(max) NULL,
+    [LastName] nvarchar(max) NULL,
+    [PostalCode] nvarchar(max) NULL,
+    [Street] nvarchar(max) NULL,
+    CONSTRAINT [PK_Recipients] PRIMARY KEY ([Id])
+);
+2017-11-26 15:32:44,307 INFO [2] ?.? - Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [TrackingInformations] (
+    [Id] int NOT NULL IDENTITY,
+    [State] int NULL,
+    CONSTRAINT [PK_TrackingInformations] PRIMARY KEY ([Id])
+);
+2017-11-26 15:32:44,318 INFO [2] ?.? - Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Warehouses] (
+    [Id] int NOT NULL IDENTITY,
+    [Code] nvarchar(max) NULL,
+    [Description] nvarchar(max) NULL,
+    [Duration] decimal(18, 2) NOT NULL,
+    [WarehouseId] int NULL,
+    CONSTRAINT [PK_Warehouses] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Warehouses_Warehouses_WarehouseId] FOREIGN KEY ([WarehouseId]) REFERENCES [Warehouses] ([Id]) ON DELETE NO ACTION
+);
+2017-11-26 15:32:44,328 INFO [2] ?.? - Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [HopArrivals] (
+    [Id] int NOT NULL IDENTITY,
+    [Code] nvarchar(max) NULL,
+    [DateTime] datetime2 NOT NULL,
+    [Status] nvarchar(max) NULL,
+    [TrackingInformationId] int NOT NULL,
+    CONSTRAINT [PK_HopArrivals] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_HopArrivals_TrackingInformations_TrackingInformationId] FOREIGN KEY ([TrackingInformationId]) REFERENCES [TrackingInformations] ([Id]) ON DELETE CASCADE
+);
+2017-11-26 15:32:44,342 INFO [2] ?.? - Executed DbCommand (10ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Parcels] (
+    [Id] int NOT NULL IDENTITY,
+    [RecipientId] int NOT NULL,
+    [TrackingInformationId] int NOT NULL,
+    [TrackingNumber] nvarchar(max) NULL,
+    [Weight] real NOT NULL,
+    CONSTRAINT [PK_Parcels] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Parcels_Recipients_RecipientId] FOREIGN KEY ([RecipientId]) REFERENCES [Recipients] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Parcels_TrackingInformations_TrackingInformationId] FOREIGN KEY ([TrackingInformationId]) REFERENCES [TrackingInformations] ([Id]) ON DELETE CASCADE
+);
+2017-11-26 15:32:44,352 INFO [2] ?.? - Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Trucks] (
+    [Id] int NOT NULL IDENTITY,
+    [Code] nvarchar(max) NULL,
+    [Duration] decimal(18, 2) NOT NULL,
+    [Latitude] decimal(18, 2) NOT NULL,
+    [Longitude] decimal(18, 2) NOT NULL,
+    [NumberPlate] nvarchar(max) NULL,
+    [Radius] decimal(18, 2) NOT NULL,
+    [WarehouseId] int NULL,
+    CONSTRAINT [PK_Trucks] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Trucks_Warehouses_WarehouseId] FOREIGN KEY ([WarehouseId]) REFERENCES [Warehouses] ([Id]) ON DELETE NO ACTION
+);
+2017-11-26 15:32:44,362 INFO [2] ?.? - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_HopArrivals_TrackingInformationId] ON [HopArrivals] ([TrackingInformationId]);
+2017-11-26 15:32:44,369 INFO [2] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_Parcels_RecipientId] ON [Parcels] ([RecipientId]);
+2017-11-26 15:32:44,378 INFO [2] ?.? - Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_Parcels_TrackingInformationId] ON [Parcels] ([TrackingInformationId]);
+2017-11-26 15:32:44,393 INFO [2] ?.? - Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_Trucks_WarehouseId] ON [Trucks] ([WarehouseId]);
+2017-11-26 15:32:44,403 INFO [2] ?.? - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_Warehouses_WarehouseId] ON [Warehouses] ([WarehouseId]);
+2017-11-26 15:32:44,537 INFO [2] ?.? - Executed DbCommand (83ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-26 15:32:45,401 INFO [2] ?.? - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Recipients] AS [r])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+2017-11-26 15:32:45,867 INFO [2] ?.? - Executed DbCommand (74ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+DECLARE @inserted0 TABLE ([Id] int, [_Position] [int]);
+MERGE [Recipients] USING (
+VALUES (@p0, @p1, @p2, @p3, @p4, 0),
+(@p5, @p6, @p7, @p8, @p9, 1)) AS i ([City], [FirstName], [LastName], [PostalCode], [Street], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([City], [FirstName], [LastName], [PostalCode], [Street])
+VALUES (i.[City], i.[FirstName], i.[LastName], i.[PostalCode], i.[Street])
+OUTPUT INSERTED.[Id], i._Position
+INTO @inserted0;
+
+SELECT [t].[Id] FROM [Recipients] t
+INNER JOIN @inserted0 i ON ([t].[Id] = [i].[Id])
+ORDER BY [i].[_Position];
+2017-11-26 15:32:46,040 INFO [2] ?.? - Executed DbCommand (28ms) [Parameters=[@p0='?' (Size = 4000), @p1='?', @p2='?', @p3='?', @p4='?' (Size = 4000), @p5='?', @p6='?', @p7='?' (Size = 4000), @p8='?', @p9='?', @p10='?', @p11='?' (Size = 4000), @p12='?', @p13='?', @p14='?' (Size = 4000), @p15='?', @p16='?', @p17='?', @p18='?' (Size = 4000), @p19='?', @p20='?', @p21='?' (Size = 4000), @p22='?', @p23='?', @p24='?', @p25='?' (Size = 4000), @p26='?', @p27='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+DECLARE @inserted0 TABLE ([Id] int, [_Position] [int]);
+MERGE [Trucks] USING (
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, 0),
+(@p7, @p8, @p9, @p10, @p11, @p12, @p13, 1),
+(@p14, @p15, @p16, @p17, @p18, @p19, @p20, 2),
+(@p21, @p22, @p23, @p24, @p25, @p26, @p27, 3)) AS i ([Code], [Duration], [Latitude], [Longitude], [NumberPlate], [Radius], [WarehouseId], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Code], [Duration], [Latitude], [Longitude], [NumberPlate], [Radius], [WarehouseId])
+VALUES (i.[Code], i.[Duration], i.[Latitude], i.[Longitude], i.[NumberPlate], i.[Radius], i.[WarehouseId])
+OUTPUT INSERTED.[Id], i._Position
+INTO @inserted0;
+
+SELECT [t].[Id] FROM [Trucks] t
+INNER JOIN @inserted0 i ON ([t].[Id] = [i].[Id])
+ORDER BY [i].[_Position];
+2017-11-26 15:32:46,176 INFO [2] ?.? - Executed DbCommand (7ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?', @p3='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Warehouses] ([Code], [Description], [Duration], [WarehouseId])
+VALUES (@p0, @p1, @p2, @p3);
+SELECT [Id]
+FROM [Warehouses]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-11-26 15:32:46,203 INFO [2] ?.? - Executed DbCommand (3ms) [Parameters=[@p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?', @p7='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Warehouses] ([Code], [Description], [Duration], [WarehouseId])
+VALUES (@p4, @p5, @p6, @p7);
+SELECT [Id]
+FROM [Warehouses]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-11-26 15:32:46,247 INFO [2] ?.? - Executed DbCommand (38ms) [Parameters=[@p8='?' (Size = 4000), @p9='?' (Size = 4000), @p10='?', @p11='?', @p12='?' (Size = 4000), @p13='?' (Size = 4000), @p14='?', @p15='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+DECLARE @inserted0 TABLE ([Id] int, [_Position] [int]);
+MERGE [Warehouses] USING (
+VALUES (@p8, @p9, @p10, @p11, 0),
+(@p12, @p13, @p14, @p15, 1)) AS i ([Code], [Description], [Duration], [WarehouseId], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Code], [Description], [Duration], [WarehouseId])
+VALUES (i.[Code], i.[Description], i.[Duration], i.[WarehouseId])
+OUTPUT INSERTED.[Id], i._Position
+INTO @inserted0;
+
+SELECT [t].[Id] FROM [Warehouses] t
+INNER JOIN @inserted0 i ON ([t].[Id] = [i].[Id])
+ORDER BY [i].[_Position];
+2017-11-26 15:32:46,285 INFO [2] ?.? - Executed DbCommand (9ms) [Parameters=[@p17='?', @p16='?', @p19='?', @p18='?', @p21='?', @p20='?', @p23='?', @p22='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Trucks] SET [WarehouseId] = @p16
+WHERE [Id] = @p17;
+SELECT @@ROWCOUNT;
+
+UPDATE [Trucks] SET [WarehouseId] = @p18
+WHERE [Id] = @p19;
+SELECT @@ROWCOUNT;
+
+UPDATE [Trucks] SET [WarehouseId] = @p20
+WHERE [Id] = @p21;
+SELECT @@ROWCOUNT;
+
+UPDATE [Trucks] SET [WarehouseId] = @p22
+WHERE [Id] = @p23;
+SELECT @@ROWCOUNT;
+2017-11-26 15:32:46,330 INFO [2] ?.? - Executed DbCommand (16ms) [Parameters=[@p0='?', @p1='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+DECLARE @inserted0 TABLE ([Id] int, [_Position] [int]);
+MERGE [TrackingInformations] USING (
+VALUES (@p0, 0),
+(@p1, 1)) AS i ([State], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([State])
+VALUES (i.[State])
+OUTPUT INSERTED.[Id], i._Position
+INTO @inserted0;
+
+SELECT [t].[Id] FROM [TrackingInformations] t
+INNER JOIN @inserted0 i ON ([t].[Id] = [i].[Id])
+ORDER BY [i].[_Position];
+2017-11-26 15:32:46,385 INFO [2] ?.? - Executed DbCommand (20ms) [Parameters=[@p0='?' (Size = 4000), @p1='?', @p2='?' (Size = 4000), @p3='?', @p4='?' (Size = 4000), @p5='?', @p6='?' (Size = 4000), @p7='?', @p8='?' (Size = 4000), @p9='?', @p10='?' (Size = 4000), @p11='?', @p12='?' (Size = 4000), @p13='?', @p14='?' (Size = 4000), @p15='?', @p16='?' (Size = 4000), @p17='?', @p18='?' (Size = 4000), @p19='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+DECLARE @inserted0 TABLE ([Id] int, [_Position] [int]);
+MERGE [HopArrivals] USING (
+VALUES (@p0, @p1, @p2, @p3, 0),
+(@p4, @p5, @p6, @p7, 1),
+(@p8, @p9, @p10, @p11, 2),
+(@p12, @p13, @p14, @p15, 3),
+(@p16, @p17, @p18, @p19, 4)) AS i ([Code], [DateTime], [Status], [TrackingInformationId], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Code], [DateTime], [Status], [TrackingInformationId])
+VALUES (i.[Code], i.[DateTime], i.[Status], i.[TrackingInformationId])
+OUTPUT INSERTED.[Id], i._Position
+INTO @inserted0;
+
+SELECT [t].[Id] FROM [HopArrivals] t
+INNER JOIN @inserted0 i ON ([t].[Id] = [i].[Id])
+ORDER BY [i].[_Position];
+2017-11-26 15:32:46,448 INFO [2] ?.? - Executed DbCommand (26ms) [Parameters=[@p0='?', @p1='?', @p2='?' (Size = 4000), @p3='?', @p4='?', @p5='?', @p6='?' (Size = 4000), @p7='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+DECLARE @inserted0 TABLE ([Id] int, [_Position] [int]);
+MERGE [Parcels] USING (
+VALUES (@p0, @p1, @p2, @p3, 0),
+(@p4, @p5, @p6, @p7, 1)) AS i ([RecipientId], [TrackingInformationId], [TrackingNumber], [Weight], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([RecipientId], [TrackingInformationId], [TrackingNumber], [Weight])
+VALUES (i.[RecipientId], i.[TrackingInformationId], i.[TrackingNumber], i.[Weight])
+OUTPUT INSERTED.[Id], i._Position
+INTO @inserted0;
+
+SELECT [t].[Id] FROM [Parcels] t
+INNER JOIN @inserted0 i ON ([t].[Id] = [i].[Id])
+ORDER BY [i].[_Position];
+2017-11-26 15:32:47,609 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/  
+2017-11-26 15:32:47,856 INFO [9] ?.? - Request finished in 298.8846ms 404 
+2017-11-26 15:32:54,057 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/swagge  
+2017-11-26 15:32:54,244 INFO [9] ?.? - Request finished in 7.7887ms 404 
+2017-11-26 15:32:56,669 INFO [13] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/swagger/  
+2017-11-26 15:32:56,691 INFO [13] ?.? - Sending file. Request path: '/index.html'. Physical path: 'N/A'
+2017-11-26 15:32:57,145 INFO [13] ?.? - Request finished in 66.584ms 200 text/html
+2017-11-26 15:32:58,503 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/swagger/v1/swagger.json  
+2017-11-26 15:32:59,237 INFO [9] ?.? - Request finished in 586.3862ms 200 application/json
+2017-11-26 15:33:02,030 INFO [13] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/api/warehouse  
+2017-11-26 15:33:02,357 INFO [13] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-26 15:33:02,386 INFO [13] ?.? - Executed DbCommand (13ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-26 15:33:02,624 INFO [13] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.ExportWarehouses (PLS.SKS.Package.Services) with arguments ((null)) - ModelState is Valid
+2017-11-26 15:33:02,646 INFO [13] ?.? - Calling the ExportWarehouses action
+2017-11-26 15:33:02,691 INFO [13] ?.? - Calling the ExportWarehouses action
+2017-11-26 15:33:03,896 INFO [13] ?.? - Executed DbCommand (2ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__id_0
+ORDER BY [w].[Id]
+2017-11-26 15:33:04,108 INFO [13] ?.? - Executed DbCommand (45ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__id_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-26 15:33:04,138 INFO [13] ?.? - Executed DbCommand (6ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__id_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-26 15:33:04,186 INFO [13] ?.? - Executed DbCommand (1ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__whId_0
+ORDER BY [w].[Id]
+2017-11-26 15:33:04,199 INFO [13] ?.? - Executed DbCommand (2ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__whId_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-26 15:33:04,210 INFO [13] ?.? - Executed DbCommand (2ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__whId_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-26 15:33:04,225 INFO [13] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__whId_0
+ORDER BY [w].[Id]
+2017-11-26 15:33:04,233 INFO [13] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__whId_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-26 15:33:04,238 INFO [13] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__whId_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-26 15:33:04,245 INFO [13] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__whId_0
+ORDER BY [w].[Id]
+2017-11-26 15:33:04,252 INFO [13] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__whId_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-26 15:33:04,257 INFO [13] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__whId_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-26 15:33:04,263 INFO [13] ?.? - Executed DbCommand (0ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__id_0
+ORDER BY [w].[Id]
+2017-11-26 15:33:04,273 INFO [13] ?.? - Executed DbCommand (1ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__id_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-26 15:33:04,280 INFO [13] ?.? - Executed DbCommand (0ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__id_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-26 15:33:04,623 ERROR [13] ?.? - 'Code' is not in the correct format.
+2017-11-26 15:33:04,738 INFO [13] ?.? - Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+2017-11-26 15:33:04,794 INFO [13] ?.? - Executed action IO.Swagger.Controllers.DefaultApiController.ExportWarehouses (PLS.SKS.Package.Services) in 2476.5759ms
+2017-11-26 15:33:04,876 INFO [13] ?.? - Request finished in 2769.0637ms 200 application/json; charset=utf-8
+2017-11-26 15:33:39,322 INFO [13] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/api/warehouse  
+2017-11-26 15:33:39,354 INFO [13] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-26 15:33:39,383 INFO [13] ?.? - Executed DbCommand (16ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-26 15:33:39,393 INFO [13] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.ExportWarehouses (PLS.SKS.Package.Services) with arguments ((null)) - ModelState is Valid
+2017-11-26 15:33:39,404 INFO [13] ?.? - Calling the ExportWarehouses action
+2017-11-26 15:33:39,409 INFO [13] ?.? - Calling the ExportWarehouses action
+2017-11-26 15:33:39,421 INFO [13] ?.? - Executed DbCommand (0ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__id_0
+ORDER BY [w].[Id]
+2017-11-26 15:33:39,428 INFO [13] ?.? - Executed DbCommand (0ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__id_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-26 15:33:39,437 INFO [13] ?.? - Executed DbCommand (0ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__id_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-26 15:33:39,445 INFO [13] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__whId_0
+ORDER BY [w].[Id]
+2017-11-26 15:33:39,452 INFO [13] ?.? - Executed DbCommand (1ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__whId_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-26 15:33:39,459 INFO [13] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__whId_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-26 15:33:39,475 INFO [13] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__whId_0
+ORDER BY [w].[Id]
+2017-11-26 15:33:39,513 INFO [13] ?.? - Executed DbCommand (1ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__whId_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-26 15:33:39,538 INFO [13] ?.? - Executed DbCommand (6ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__whId_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-26 15:33:39,546 INFO [13] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__whId_0
+ORDER BY [w].[Id]
+2017-11-26 15:33:39,556 INFO [13] ?.? - Executed DbCommand (4ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__whId_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-26 15:33:39,563 INFO [13] ?.? - Executed DbCommand (1ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__whId_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-26 15:33:39,572 INFO [13] ?.? - Executed DbCommand (0ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__id_0
+ORDER BY [w].[Id]
+2017-11-26 15:33:39,586 INFO [13] ?.? - Executed DbCommand (1ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__id_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-26 15:33:39,594 INFO [13] ?.? - Executed DbCommand (0ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__id_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-26 15:33:39,619 ERROR [13] ?.? - 'Code' is not in the correct format.
+2017-11-26 15:34:20,625 INFO [13] ?.? - Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+2017-11-26 15:34:20,640 INFO [13] ?.? - Executed action IO.Swagger.Controllers.DefaultApiController.ExportWarehouses (PLS.SKS.Package.Services) in 41303.1161ms
+2017-11-26 15:34:20,651 INFO [13] ?.? - Request finished in 41328.6257ms 200 application/json; charset=utf-8
+2017-11-26 15:34:20,750 INFO [15] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/api/warehouse  
+2017-11-26 15:34:20,758 INFO [15] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-26 15:34:20,774 INFO [15] ?.? - Executed DbCommand (7ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-26 15:34:20,779 INFO [15] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.ExportWarehouses (PLS.SKS.Package.Services) with arguments ((null)) - ModelState is Valid
+2017-11-26 15:34:20,786 INFO [15] ?.? - Calling the ExportWarehouses action
+2017-11-26 15:34:20,791 INFO [15] ?.? - Calling the ExportWarehouses action
+2017-11-26 15:34:20,807 INFO [15] ?.? - Executed DbCommand (0ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__id_0
+ORDER BY [w].[Id]
+2017-11-26 15:34:20,846 INFO [15] ?.? - Executed DbCommand (3ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__id_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-26 15:34:20,858 INFO [15] ?.? - Executed DbCommand (2ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__id_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-26 15:34:20,908 INFO [15] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__whId_0
+ORDER BY [w].[Id]
+2017-11-26 15:34:20,918 INFO [15] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__whId_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-26 15:34:20,926 INFO [15] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__whId_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-26 15:34:20,935 INFO [15] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__whId_0
+ORDER BY [w].[Id]
+2017-11-26 15:34:20,944 INFO [15] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__whId_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-26 15:34:20,953 INFO [15] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__whId_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-26 15:34:20,961 INFO [15] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__whId_0
+ORDER BY [w].[Id]
+2017-11-26 15:34:20,969 INFO [15] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__whId_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-26 15:34:20,976 INFO [15] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__whId_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-26 15:34:20,985 INFO [15] ?.? - Executed DbCommand (0ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__id_0
+ORDER BY [w].[Id]
+2017-11-26 15:34:20,994 INFO [15] ?.? - Executed DbCommand (1ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__id_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-26 15:34:21,005 INFO [15] ?.? - Executed DbCommand (0ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__id_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-26 15:37:19,865 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-26 15:37:30,640 ERROR [2] ?.? - Failed executing DbCommand (13ms) [Parameters=[], CommandType='Text', CommandTimeout='60']
+CREATE DATABASE [ParcelLogisticsDB]; - System.Data.SqlClient.SqlException (0x80131904): Cannot create file 'C:\Users\Verena\ParcelLogisticsDB.mdf' because it already exists. Change the file path or the file name, and retry the operation.
+CREATE DATABASE failed. Some file names listed could not be created. Check related errors.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite, String methodName)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+ClientConnectionId:63891c89-fc8a-4793-851b-b704a7125571
+Error Number:5170,State:4,Class:16
+2017-11-26 15:38:54,286 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-26 15:39:05,342 INFO [2] ?.? - Executed DbCommand (546ms) [Parameters=[], CommandType='Text', CommandTimeout='60']
+CREATE DATABASE [ParcelLogisticsDB];
+2017-11-26 15:39:05,530 INFO [2] ?.? - Executed DbCommand (180ms) [Parameters=[], CommandType='Text', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5 EXEC(N'ALTER DATABASE [ParcelLogisticsDB] SET READ_COMMITTED_SNAPSHOT ON;');
+2017-11-26 15:39:06,085 INFO [2] ?.? - Executed DbCommand (122ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Recipients] (
+    [Id] int NOT NULL IDENTITY,
+    [City] nvarchar(max) NULL,
+    [FirstName] nvarchar(max) NULL,
+    [LastName] nvarchar(max) NULL,
+    [PostalCode] nvarchar(max) NULL,
+    [Street] nvarchar(max) NULL,
+    CONSTRAINT [PK_Recipients] PRIMARY KEY ([Id])
+);
+2017-11-26 15:39:06,104 INFO [2] ?.? - Executed DbCommand (8ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [TrackingInformations] (
+    [Id] int NOT NULL IDENTITY,
+    [State] int NULL,
+    CONSTRAINT [PK_TrackingInformations] PRIMARY KEY ([Id])
+);
+2017-11-26 15:39:06,119 INFO [2] ?.? - Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Warehouses] (
+    [Id] int NOT NULL IDENTITY,
+    [Code] nvarchar(max) NULL,
+    [Description] nvarchar(max) NULL,
+    [Duration] decimal(18, 2) NOT NULL,
+    [WarehouseId] int NULL,
+    CONSTRAINT [PK_Warehouses] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Warehouses_Warehouses_WarehouseId] FOREIGN KEY ([WarehouseId]) REFERENCES [Warehouses] ([Id]) ON DELETE NO ACTION
+);
+2017-11-26 15:39:06,153 INFO [2] ?.? - Executed DbCommand (8ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [HopArrivals] (
+    [Id] int NOT NULL IDENTITY,
+    [Code] nvarchar(max) NULL,
+    [DateTime] datetime2 NOT NULL,
+    [Status] nvarchar(max) NULL,
+    [TrackingInformationId] int NOT NULL,
+    CONSTRAINT [PK_HopArrivals] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_HopArrivals_TrackingInformations_TrackingInformationId] FOREIGN KEY ([TrackingInformationId]) REFERENCES [TrackingInformations] ([Id]) ON DELETE CASCADE
+);
+2017-11-26 15:39:06,327 INFO [2] ?.? - Executed DbCommand (111ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Parcels] (
+    [Id] int NOT NULL IDENTITY,
+    [RecipientId] int NOT NULL,
+    [TrackingInformationId] int NOT NULL,
+    [TrackingNumber] nvarchar(max) NULL,
+    [Weight] real NOT NULL,
+    CONSTRAINT [PK_Parcels] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Parcels_Recipients_RecipientId] FOREIGN KEY ([RecipientId]) REFERENCES [Recipients] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Parcels_TrackingInformations_TrackingInformationId] FOREIGN KEY ([TrackingInformationId]) REFERENCES [TrackingInformations] ([Id]) ON DELETE CASCADE
+);
+2017-11-26 15:39:06,385 INFO [2] ?.? - Executed DbCommand (44ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Trucks] (
+    [Id] int NOT NULL IDENTITY,
+    [Code] nvarchar(max) NULL,
+    [Duration] decimal(18, 2) NOT NULL,
+    [Latitude] decimal(18, 2) NOT NULL,
+    [Longitude] decimal(18, 2) NOT NULL,
+    [NumberPlate] nvarchar(max) NULL,
+    [Radius] decimal(18, 2) NOT NULL,
+    [WarehouseId] int NULL,
+    CONSTRAINT [PK_Trucks] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Trucks_Warehouses_WarehouseId] FOREIGN KEY ([WarehouseId]) REFERENCES [Warehouses] ([Id]) ON DELETE NO ACTION
+);
+2017-11-26 15:39:06,397 INFO [2] ?.? - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_HopArrivals_TrackingInformationId] ON [HopArrivals] ([TrackingInformationId]);
+2017-11-26 15:39:06,407 INFO [2] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_Parcels_RecipientId] ON [Parcels] ([RecipientId]);
+2017-11-26 15:39:06,418 INFO [2] ?.? - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_Parcels_TrackingInformationId] ON [Parcels] ([TrackingInformationId]);
+2017-11-26 15:39:06,434 INFO [2] ?.? - Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_Trucks_WarehouseId] ON [Trucks] ([WarehouseId]);
+2017-11-26 15:39:06,444 INFO [2] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_Warehouses_WarehouseId] ON [Warehouses] ([WarehouseId]);
+2017-11-26 15:39:06,668 INFO [2] ?.? - Executed DbCommand (189ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-26 15:39:07,532 INFO [2] ?.? - Executed DbCommand (74ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Recipients] AS [r])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+2017-11-26 15:39:08,436 INFO [2] ?.? - Executed DbCommand (134ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+DECLARE @inserted0 TABLE ([Id] int, [_Position] [int]);
+MERGE [Recipients] USING (
+VALUES (@p0, @p1, @p2, @p3, @p4, 0),
+(@p5, @p6, @p7, @p8, @p9, 1)) AS i ([City], [FirstName], [LastName], [PostalCode], [Street], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([City], [FirstName], [LastName], [PostalCode], [Street])
+VALUES (i.[City], i.[FirstName], i.[LastName], i.[PostalCode], i.[Street])
+OUTPUT INSERTED.[Id], i._Position
+INTO @inserted0;
+
+SELECT [t].[Id] FROM [Recipients] t
+INNER JOIN @inserted0 i ON ([t].[Id] = [i].[Id])
+ORDER BY [i].[_Position];
+2017-11-26 15:39:08,618 INFO [2] ?.? - Executed DbCommand (20ms) [Parameters=[@p0='?' (Size = 4000), @p1='?', @p2='?', @p3='?', @p4='?' (Size = 4000), @p5='?', @p6='?', @p7='?' (Size = 4000), @p8='?', @p9='?', @p10='?', @p11='?' (Size = 4000), @p12='?', @p13='?', @p14='?' (Size = 4000), @p15='?', @p16='?', @p17='?', @p18='?' (Size = 4000), @p19='?', @p20='?', @p21='?' (Size = 4000), @p22='?', @p23='?', @p24='?', @p25='?' (Size = 4000), @p26='?', @p27='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+DECLARE @inserted0 TABLE ([Id] int, [_Position] [int]);
+MERGE [Trucks] USING (
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, 0),
+(@p7, @p8, @p9, @p10, @p11, @p12, @p13, 1),
+(@p14, @p15, @p16, @p17, @p18, @p19, @p20, 2),
+(@p21, @p22, @p23, @p24, @p25, @p26, @p27, 3)) AS i ([Code], [Duration], [Latitude], [Longitude], [NumberPlate], [Radius], [WarehouseId], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Code], [Duration], [Latitude], [Longitude], [NumberPlate], [Radius], [WarehouseId])
+VALUES (i.[Code], i.[Duration], i.[Latitude], i.[Longitude], i.[NumberPlate], i.[Radius], i.[WarehouseId])
+OUTPUT INSERTED.[Id], i._Position
+INTO @inserted0;
+
+SELECT [t].[Id] FROM [Trucks] t
+INNER JOIN @inserted0 i ON ([t].[Id] = [i].[Id])
+ORDER BY [i].[_Position];
+2017-11-26 15:39:08,807 INFO [2] ?.? - Executed DbCommand (46ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?', @p3='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Warehouses] ([Code], [Description], [Duration], [WarehouseId])
+VALUES (@p0, @p1, @p2, @p3);
+SELECT [Id]
+FROM [Warehouses]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-11-26 15:39:08,838 INFO [2] ?.? - Executed DbCommand (6ms) [Parameters=[@p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?', @p7='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Warehouses] ([Code], [Description], [Duration], [WarehouseId])
+VALUES (@p4, @p5, @p6, @p7);
+SELECT [Id]
+FROM [Warehouses]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-11-26 15:39:08,873 INFO [2] ?.? - Executed DbCommand (27ms) [Parameters=[@p8='?' (Size = 4000), @p9='?' (Size = 4000), @p10='?', @p11='?', @p12='?' (Size = 4000), @p13='?' (Size = 4000), @p14='?', @p15='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+DECLARE @inserted0 TABLE ([Id] int, [_Position] [int]);
+MERGE [Warehouses] USING (
+VALUES (@p8, @p9, @p10, @p11, 0),
+(@p12, @p13, @p14, @p15, 1)) AS i ([Code], [Description], [Duration], [WarehouseId], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Code], [Description], [Duration], [WarehouseId])
+VALUES (i.[Code], i.[Description], i.[Duration], i.[WarehouseId])
+OUTPUT INSERTED.[Id], i._Position
+INTO @inserted0;
+
+SELECT [t].[Id] FROM [Warehouses] t
+INNER JOIN @inserted0 i ON ([t].[Id] = [i].[Id])
+ORDER BY [i].[_Position];
+2017-11-26 15:39:08,912 INFO [2] ?.? - Executed DbCommand (8ms) [Parameters=[@p17='?', @p16='?', @p19='?', @p18='?', @p21='?', @p20='?', @p23='?', @p22='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Trucks] SET [WarehouseId] = @p16
+WHERE [Id] = @p17;
+SELECT @@ROWCOUNT;
+
+UPDATE [Trucks] SET [WarehouseId] = @p18
+WHERE [Id] = @p19;
+SELECT @@ROWCOUNT;
+
+UPDATE [Trucks] SET [WarehouseId] = @p20
+WHERE [Id] = @p21;
+SELECT @@ROWCOUNT;
+
+UPDATE [Trucks] SET [WarehouseId] = @p22
+WHERE [Id] = @p23;
+SELECT @@ROWCOUNT;
+2017-11-26 15:39:09,006 INFO [2] ?.? - Executed DbCommand (22ms) [Parameters=[@p0='?', @p1='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+DECLARE @inserted0 TABLE ([Id] int, [_Position] [int]);
+MERGE [TrackingInformations] USING (
+VALUES (@p0, 0),
+(@p1, 1)) AS i ([State], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([State])
+VALUES (i.[State])
+OUTPUT INSERTED.[Id], i._Position
+INTO @inserted0;
+
+SELECT [t].[Id] FROM [TrackingInformations] t
+INNER JOIN @inserted0 i ON ([t].[Id] = [i].[Id])
+ORDER BY [i].[_Position];
+2017-11-26 15:39:09,092 INFO [2] ?.? - Executed DbCommand (26ms) [Parameters=[@p0='?' (Size = 4000), @p1='?', @p2='?' (Size = 4000), @p3='?', @p4='?' (Size = 4000), @p5='?', @p6='?' (Size = 4000), @p7='?', @p8='?' (Size = 4000), @p9='?', @p10='?' (Size = 4000), @p11='?', @p12='?' (Size = 4000), @p13='?', @p14='?' (Size = 4000), @p15='?', @p16='?' (Size = 4000), @p17='?', @p18='?' (Size = 4000), @p19='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+DECLARE @inserted0 TABLE ([Id] int, [_Position] [int]);
+MERGE [HopArrivals] USING (
+VALUES (@p0, @p1, @p2, @p3, 0),
+(@p4, @p5, @p6, @p7, 1),
+(@p8, @p9, @p10, @p11, 2),
+(@p12, @p13, @p14, @p15, 3),
+(@p16, @p17, @p18, @p19, 4)) AS i ([Code], [DateTime], [Status], [TrackingInformationId], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Code], [DateTime], [Status], [TrackingInformationId])
+VALUES (i.[Code], i.[DateTime], i.[Status], i.[TrackingInformationId])
+OUTPUT INSERTED.[Id], i._Position
+INTO @inserted0;
+
+SELECT [t].[Id] FROM [HopArrivals] t
+INNER JOIN @inserted0 i ON ([t].[Id] = [i].[Id])
+ORDER BY [i].[_Position];
+2017-11-26 15:39:09,303 INFO [2] ?.? - Executed DbCommand (68ms) [Parameters=[@p0='?', @p1='?', @p2='?' (Size = 4000), @p3='?', @p4='?', @p5='?', @p6='?' (Size = 4000), @p7='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+DECLARE @inserted0 TABLE ([Id] int, [_Position] [int]);
+MERGE [Parcels] USING (
+VALUES (@p0, @p1, @p2, @p3, 0),
+(@p4, @p5, @p6, @p7, 1)) AS i ([RecipientId], [TrackingInformationId], [TrackingNumber], [Weight], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([RecipientId], [TrackingInformationId], [TrackingNumber], [Weight])
+VALUES (i.[RecipientId], i.[TrackingInformationId], i.[TrackingNumber], i.[Weight])
+OUTPUT INSERTED.[Id], i._Position
+INTO @inserted0;
+
+SELECT [t].[Id] FROM [Parcels] t
+INNER JOIN @inserted0 i ON ([t].[Id] = [i].[Id])
+ORDER BY [i].[_Position];
+2017-11-26 15:39:10,202 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/  
+2017-11-26 15:39:10,899 INFO [8] ?.? - Request finished in 352.9254ms 404 
+2017-11-26 15:39:41,795 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/swagger/  
+2017-11-26 15:39:41,815 INFO [9] ?.? - Sending file. Request path: '/index.html'. Physical path: 'N/A'
+2017-11-26 15:39:42,200 INFO [9] ?.? - Request finished in 35.6402ms 200 text/html
+2017-11-26 15:39:43,443 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/swagger/v1/swagger.json  
+2017-11-26 15:39:44,311 INFO [9] ?.? - Request finished in 1275.1248ms 200 application/json
+2017-11-26 15:39:47,006 INFO [13] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/api/warehouse  
+2017-11-26 15:39:47,228 INFO [13] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-26 15:39:47,269 INFO [13] ?.? - Executed DbCommand (30ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-26 15:39:47,461 INFO [13] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.ExportWarehouses (PLS.SKS.Package.Services) with arguments ((null)) - ModelState is Valid
+2017-11-26 15:39:47,537 INFO [13] ?.? - Calling the ExportWarehouses action
+2017-11-26 15:39:47,551 INFO [13] ?.? - Calling the ExportWarehouses action
+2017-11-26 15:39:48,882 INFO [13] ?.? - Executed DbCommand (10ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__id_0
+ORDER BY [w].[Id]
+2017-11-26 15:39:49,002 INFO [13] ?.? - Executed DbCommand (4ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__id_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-26 15:39:49,035 INFO [13] ?.? - Executed DbCommand (7ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__id_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-26 15:39:49,119 INFO [13] ?.? - Executed DbCommand (5ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__whId_0
+ORDER BY [w].[Id]
+2017-11-26 15:39:49,192 INFO [13] ?.? - Executed DbCommand (16ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__whId_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-26 15:39:49,218 INFO [13] ?.? - Executed DbCommand (5ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__whId_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-26 15:39:49,241 INFO [13] ?.? - Executed DbCommand (2ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__whId_0
+ORDER BY [w].[Id]
+2017-11-26 15:39:49,251 INFO [13] ?.? - Executed DbCommand (1ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__whId_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-26 15:39:49,261 INFO [13] ?.? - Executed DbCommand (2ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__whId_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-26 15:39:49,274 INFO [13] ?.? - Executed DbCommand (1ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__whId_0
+ORDER BY [w].[Id]
+2017-11-26 15:39:49,287 INFO [13] ?.? - Executed DbCommand (1ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__whId_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-26 15:39:49,303 INFO [13] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__whId_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-26 15:39:49,315 INFO [13] ?.? - Executed DbCommand (1ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__id_0
+ORDER BY [w].[Id]
+2017-11-26 15:39:49,322 INFO [13] ?.? - Executed DbCommand (0ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__id_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-26 15:39:49,336 INFO [13] ?.? - Executed DbCommand (1ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__id_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-26 15:40:05,572 INFO [13] ?.? - Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+2017-11-26 15:40:05,674 INFO [13] ?.? - Executed action IO.Swagger.Controllers.DefaultApiController.ExportWarehouses (PLS.SKS.Package.Services) in 18461.6707ms
+2017-11-26 15:40:05,840 INFO [13] ?.? - Request finished in 18680.2361ms 200 application/json; charset=utf-8
+2017-11-26 15:45:22,554 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-26 15:45:26,353 INFO [2] ?.? - Executed DbCommand (154ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-26 15:45:26,518 INFO [2] ?.? - Executed DbCommand (62ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-26 15:45:27,736 INFO [2] ?.? - Executed DbCommand (37ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Recipients] AS [r])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+2017-11-26 15:45:28,673 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/  
+2017-11-26 15:45:28,946 INFO [8] ?.? - Request finished in 316.9651ms 404 
+2017-11-26 15:45:38,408 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/swagger/  
+2017-11-26 15:45:38,425 INFO [8] ?.? - Sending file. Request path: '/index.html'. Physical path: 'N/A'
+2017-11-26 15:45:38,885 INFO [8] ?.? - Request finished in 34.607ms 200 text/html
+2017-11-26 15:45:40,365 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/swagger/v1/swagger.json  
+2017-11-26 15:45:41,564 INFO [9] ?.? - Request finished in 1034.2519ms 200 application/json
+2017-11-26 15:45:47,305 INFO [8] ?.? - Request starting HTTP/1.1 POST http://localhost:56172/api/warehouse application/json-patch+json 2
+2017-11-26 15:45:47,589 INFO [8] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-26 15:45:47,701 INFO [8] ?.? - Executed DbCommand (88ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-26 15:46:05,777 INFO [8] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.ImportWarehouses (PLS.SKS.Package.Services) with arguments () - ModelState is Invalid
+2017-11-26 15:46:05,786 INFO [8] ?.? - Calling the ImportWarehouses action
+2017-11-26 15:46:05,793 INFO [8] ?.? - Calling the ImportWarehouses action
+2017-11-26 15:46:20,509 INFO [8] ?.? - Executed action IO.Swagger.Controllers.DefaultApiController.ImportWarehouses (PLS.SKS.Package.Services) in 32929.0658ms
+2017-11-26 15:46:20,697 ERROR [8] ?.? - An unhandled exception has occurred while executing the request - System.ArgumentNullException: Value cannot be null.
+Parameter name: Cannot pass null model to Validate.
+   at FluentValidation.AbstractValidator`1.EnsureInstanceNotNull(Object instanceToValidate)
+   at FluentValidation.AbstractValidator`1.Validate(ValidationContext`1 context)
+   at PLS.SKS.Package.BusinessLogic.BusinessLogicFacade.ValidateWarehouse(Warehouse blWarehouse) in C:\Users\Verena\Desktop\SKS_UEB_WS2017\code\PLS.SKS.Package.BusinessLogic\BusinessLogicFacade.cs:line 89
+   at PLS.SKS.Package.BusinessLogic.BusinessLogicFacade.ImportWarehouses(Warehouse warehouse) in C:\Users\Verena\Desktop\SKS_UEB_WS2017\code\PLS.SKS.Package.BusinessLogic\BusinessLogicFacade.cs:line 79
+   at IO.Swagger.Controllers.DefaultApiController.ImportWarehouses(Warehouse warehouseRoot) in C:\Users\Verena\Desktop\SKS_UEB_WS2017\code\ParcelLogisticsService\Controllers\DefaultApi.cs:line 78
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.<>c__DisplayClass33_0.<WrapVoidMethod>b__0(Object target, Object[] parameters)
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Execute(Object target, Object[] parameters)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeActionMethodAsync>d__12.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeNextActionFilterAsync>d__10.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeInnerFilterAsync>d__14.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeNextResourceFilter>d__22.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeFilterPipelineAsync>d__17.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeAsync>d__15.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.<Invoke>d__7.MoveNext()
+2017-11-26 15:46:20,913 INFO [8] ?.? - Request finished in 33625.1578ms 500 text/html; charset=utf-8
+2017-11-26 15:48:32,182 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-26 15:48:39,524 INFO [2] ?.? - Executed DbCommand (356ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-26 15:48:39,726 INFO [2] ?.? - Executed DbCommand (158ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-26 15:48:41,420 INFO [2] ?.? - Executed DbCommand (320ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Recipients] AS [r])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+2017-11-26 15:48:44,219 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/  
+2017-11-26 15:48:46,067 INFO [9] ?.? - Request finished in 1282.5823ms 404 
+2017-11-26 15:48:50,458 INFO [11] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/swagger/  
+2017-11-26 15:48:50,525 INFO [11] ?.? - Sending file. Request path: '/index.html'. Physical path: 'N/A'
+2017-11-26 15:48:50,778 INFO [11] ?.? - Request finished in 108.2978ms 200 text/html
+2017-11-26 15:48:52,287 INFO [11] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/swagger/v1/swagger.json  
+2017-11-26 15:48:53,269 INFO [11] ?.? - Request finished in 1139.4653ms 200 application/json
+2017-11-26 15:48:56,573 INFO [9] ?.? - Request starting HTTP/1.1 POST http://localhost:56172/api/warehouse application/json-patch+json 2
+2017-11-26 15:48:56,876 INFO [9] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-26 15:48:56,904 INFO [9] ?.? - Executed DbCommand (7ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-26 15:49:29,159 INFO [9] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.ImportWarehouses (PLS.SKS.Package.Services) with arguments () - ModelState is Invalid
+2017-11-26 15:49:29,183 INFO [9] ?.? - Calling the ImportWarehouses action
+2017-11-26 15:49:29,320 INFO [9] ?.? - Calling the ImportWarehouses action
+2017-11-26 15:49:36,491 INFO [9] ?.? - Executed action IO.Swagger.Controllers.DefaultApiController.ImportWarehouses (PLS.SKS.Package.Services) in 39601.1527ms
+2017-11-26 15:49:36,904 ERROR [9] ?.? - An unhandled exception has occurred while executing the request - System.ArgumentNullException: Value cannot be null.
+Parameter name: entity
+   at Microsoft.EntityFrameworkCore.Utilities.Check.NotNull[T](T value, String parameterName)
+   at Microsoft.EntityFrameworkCore.DbContext.Add[TEntity](TEntity entity)
+   at PLS.SKS.Package.DataAccess.Sql.SqlWarehouseRepository.Create(Warehouse w) in C:\Users\Verena\Desktop\SKS_UEB_WS2017\code\PLS.SKS.Package.DataAccess.Sql\SqlWarehouseRepository.cs:line 27
+   at PLS.SKS.Package.BusinessLogic.WarehouseLogic.ImportWarehouses(Warehouse warehouse) in C:\Users\Verena\Desktop\SKS_UEB_WS2017\code\PLS.SKS.Package.BusinessLogic\WarehouseLogic.cs:line 26
+   at PLS.SKS.Package.BusinessLogic.BusinessLogicFacade.ImportWarehouses(Warehouse warehouse) in C:\Users\Verena\Desktop\SKS_UEB_WS2017\code\PLS.SKS.Package.BusinessLogic\BusinessLogicFacade.cs:line 84
+   at IO.Swagger.Controllers.DefaultApiController.ImportWarehouses(Warehouse warehouseRoot) in C:\Users\Verena\Desktop\SKS_UEB_WS2017\code\ParcelLogisticsService\Controllers\DefaultApi.cs:line 78
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.<>c__DisplayClass33_0.<WrapVoidMethod>b__0(Object target, Object[] parameters)
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Execute(Object target, Object[] parameters)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeActionMethodAsync>d__12.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeNextActionFilterAsync>d__10.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeInnerFilterAsync>d__14.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeNextResourceFilter>d__22.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeFilterPipelineAsync>d__17.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeAsync>d__15.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.<Invoke>d__7.MoveNext()
+2017-11-26 15:49:37,508 INFO [9] ?.? - Request finished in 40749.0003ms 500 text/html; charset=utf-8
+2017-11-26 16:06:07,152 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-26 16:06:09,926 INFO [2] ?.? - Executed DbCommand (161ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-26 16:06:09,960 INFO [2] ?.? - Executed DbCommand (14ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-26 16:06:10,868 INFO [2] ?.? - Executed DbCommand (53ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Recipients] AS [r])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+2017-11-26 16:06:11,751 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/  
+2017-11-26 16:06:12,073 INFO [9] ?.? - Request finished in 373.7576ms 404 
+2017-11-26 16:06:18,744 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/swagger/  
+2017-11-26 16:06:18,781 INFO [8] ?.? - Sending file. Request path: '/index.html'. Physical path: 'N/A'
+2017-11-26 16:06:19,280 INFO [8] ?.? - Request finished in 60.8377ms 200 text/html
+2017-11-26 16:06:19,646 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/swagger/v1/swagger.json  
+2017-11-26 16:06:20,451 INFO [9] ?.? - Request finished in 761.6282ms 200 application/json
+2017-11-26 16:06:24,754 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/api/warehouse  
+2017-11-26 16:06:24,946 INFO [9] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-26 16:06:24,998 INFO [9] ?.? - Executed DbCommand (38ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-26 16:06:25,055 INFO [9] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.ExportWarehouses (PLS.SKS.Package.Services) with arguments ((null)) - ModelState is Valid
+2017-11-26 16:06:25,137 INFO [9] ?.? - Calling the ExportWarehouses action
+2017-11-26 16:06:25,148 INFO [9] ?.? - Calling the ExportWarehouses action
+2017-11-26 16:06:25,885 INFO [9] ?.? - Executed DbCommand (61ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__id_0
+ORDER BY [w].[Id]
+2017-11-26 16:06:26,168 INFO [9] ?.? - Executed DbCommand (8ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__id_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-26 16:06:26,465 INFO [9] ?.? - Executed DbCommand (29ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__id_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-26 16:06:26,629 INFO [9] ?.? - Executed DbCommand (24ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__whId_0
+ORDER BY [w].[Id]
+2017-11-26 16:06:26,649 INFO [9] ?.? - Executed DbCommand (8ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__whId_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-26 16:06:26,669 INFO [9] ?.? - Executed DbCommand (9ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__whId_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-26 16:06:26,693 INFO [9] ?.? - Executed DbCommand (2ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__whId_0
+ORDER BY [w].[Id]
+2017-11-26 16:06:26,701 INFO [9] ?.? - Executed DbCommand (1ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__whId_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-26 16:06:26,716 INFO [9] ?.? - Executed DbCommand (1ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__whId_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-26 16:06:26,735 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__whId_0
+ORDER BY [w].[Id]
+2017-11-26 16:06:26,745 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__whId_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-26 16:06:26,753 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__whId_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-26 16:06:26,772 INFO [9] ?.? - Executed DbCommand (5ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__id_0
+ORDER BY [w].[Id]
+2017-11-26 16:06:26,779 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__id_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-26 16:06:26,793 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__id_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-26 16:06:27,719 INFO [9] ?.? - Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+2017-11-26 16:06:27,915 INFO [9] ?.? - Executed action IO.Swagger.Controllers.DefaultApiController.ExportWarehouses (PLS.SKS.Package.Services) in 2854.908ms
+2017-11-26 16:06:28,195 INFO [9] ?.? - Request finished in 3170.1849ms 200 application/json; charset=utf-8
+2017-11-26 16:08:49,952 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-26 16:09:00,886 INFO [2] ?.? - Executed DbCommand (454ms) [Parameters=[], CommandType='Text', CommandTimeout='60']
+CREATE DATABASE [ParcelLogisticsDB];
+2017-11-26 16:09:01,003 INFO [2] ?.? - Executed DbCommand (109ms) [Parameters=[], CommandType='Text', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5 EXEC(N'ALTER DATABASE [ParcelLogisticsDB] SET READ_COMMITTED_SNAPSHOT ON;');
+2017-11-26 16:09:01,265 INFO [2] ?.? - Executed DbCommand (11ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Recipients] (
+    [Id] int NOT NULL IDENTITY,
+    [City] nvarchar(max) NULL,
+    [FirstName] nvarchar(max) NULL,
+    [LastName] nvarchar(max) NULL,
+    [PostalCode] nvarchar(max) NULL,
+    [Street] nvarchar(max) NULL,
+    CONSTRAINT [PK_Recipients] PRIMARY KEY ([Id])
+);
+2017-11-26 16:09:01,275 INFO [2] ?.? - Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [TrackingInformations] (
+    [Id] int NOT NULL IDENTITY,
+    [State] int NULL,
+    CONSTRAINT [PK_TrackingInformations] PRIMARY KEY ([Id])
+);
+2017-11-26 16:09:01,284 INFO [2] ?.? - Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Warehouses] (
+    [Id] int NOT NULL IDENTITY,
+    [Code] nvarchar(max) NULL,
+    [Description] nvarchar(max) NULL,
+    [Duration] decimal(18, 2) NOT NULL,
+    [Test] nvarchar(max) NULL,
+    [WarehouseId] int NULL,
+    CONSTRAINT [PK_Warehouses] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Warehouses_Warehouses_WarehouseId] FOREIGN KEY ([WarehouseId]) REFERENCES [Warehouses] ([Id]) ON DELETE NO ACTION
+);
+2017-11-26 16:09:01,295 INFO [2] ?.? - Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [HopArrivals] (
+    [Id] int NOT NULL IDENTITY,
+    [Code] nvarchar(max) NULL,
+    [DateTime] datetime2 NOT NULL,
+    [Status] nvarchar(max) NULL,
+    [TrackingInformationId] int NOT NULL,
+    CONSTRAINT [PK_HopArrivals] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_HopArrivals_TrackingInformations_TrackingInformationId] FOREIGN KEY ([TrackingInformationId]) REFERENCES [TrackingInformations] ([Id]) ON DELETE CASCADE
+);
+2017-11-26 16:09:01,305 INFO [2] ?.? - Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Parcels] (
+    [Id] int NOT NULL IDENTITY,
+    [RecipientId] int NOT NULL,
+    [TrackingInformationId] int NOT NULL,
+    [TrackingNumber] nvarchar(max) NULL,
+    [Weight] real NOT NULL,
+    CONSTRAINT [PK_Parcels] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Parcels_Recipients_RecipientId] FOREIGN KEY ([RecipientId]) REFERENCES [Recipients] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Parcels_TrackingInformations_TrackingInformationId] FOREIGN KEY ([TrackingInformationId]) REFERENCES [TrackingInformations] ([Id]) ON DELETE CASCADE
+);
+2017-11-26 16:09:01,316 INFO [2] ?.? - Executed DbCommand (7ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Trucks] (
+    [Id] int NOT NULL IDENTITY,
+    [Code] nvarchar(max) NULL,
+    [Duration] decimal(18, 2) NOT NULL,
+    [Latitude] decimal(18, 2) NOT NULL,
+    [Longitude] decimal(18, 2) NOT NULL,
+    [NumberPlate] nvarchar(max) NULL,
+    [Radius] decimal(18, 2) NOT NULL,
+    [WarehouseId] int NULL,
+    CONSTRAINT [PK_Trucks] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Trucks_Warehouses_WarehouseId] FOREIGN KEY ([WarehouseId]) REFERENCES [Warehouses] ([Id]) ON DELETE NO ACTION
+);
+2017-11-26 16:09:01,322 INFO [2] ?.? - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_HopArrivals_TrackingInformationId] ON [HopArrivals] ([TrackingInformationId]);
+2017-11-26 16:09:01,330 INFO [2] ?.? - Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_Parcels_RecipientId] ON [Parcels] ([RecipientId]);
+2017-11-26 16:09:01,338 INFO [2] ?.? - Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_Parcels_TrackingInformationId] ON [Parcels] ([TrackingInformationId]);
+2017-11-26 16:09:01,353 INFO [2] ?.? - Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_Trucks_WarehouseId] ON [Trucks] ([WarehouseId]);
+2017-11-26 16:09:01,381 INFO [2] ?.? - Executed DbCommand (17ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_Warehouses_WarehouseId] ON [Warehouses] ([WarehouseId]);
+2017-11-26 16:09:01,470 INFO [2] ?.? - Executed DbCommand (46ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-26 16:09:02,313 INFO [2] ?.? - Executed DbCommand (53ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Recipients] AS [r])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+2017-11-26 16:09:02,978 INFO [2] ?.? - Executed DbCommand (106ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+DECLARE @inserted0 TABLE ([Id] int, [_Position] [int]);
+MERGE [Recipients] USING (
+VALUES (@p0, @p1, @p2, @p3, @p4, 0),
+(@p5, @p6, @p7, @p8, @p9, 1)) AS i ([City], [FirstName], [LastName], [PostalCode], [Street], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([City], [FirstName], [LastName], [PostalCode], [Street])
+VALUES (i.[City], i.[FirstName], i.[LastName], i.[PostalCode], i.[Street])
+OUTPUT INSERTED.[Id], i._Position
+INTO @inserted0;
+
+SELECT [t].[Id] FROM [Recipients] t
+INNER JOIN @inserted0 i ON ([t].[Id] = [i].[Id])
+ORDER BY [i].[_Position];
+2017-11-26 16:09:03,190 INFO [2] ?.? - Executed DbCommand (30ms) [Parameters=[@p0='?' (Size = 4000), @p1='?', @p2='?', @p3='?', @p4='?' (Size = 4000), @p5='?', @p6='?', @p7='?' (Size = 4000), @p8='?', @p9='?', @p10='?', @p11='?' (Size = 4000), @p12='?', @p13='?', @p14='?' (Size = 4000), @p15='?', @p16='?', @p17='?', @p18='?' (Size = 4000), @p19='?', @p20='?', @p21='?' (Size = 4000), @p22='?', @p23='?', @p24='?', @p25='?' (Size = 4000), @p26='?', @p27='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+DECLARE @inserted0 TABLE ([Id] int, [_Position] [int]);
+MERGE [Trucks] USING (
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, 0),
+(@p7, @p8, @p9, @p10, @p11, @p12, @p13, 1),
+(@p14, @p15, @p16, @p17, @p18, @p19, @p20, 2),
+(@p21, @p22, @p23, @p24, @p25, @p26, @p27, 3)) AS i ([Code], [Duration], [Latitude], [Longitude], [NumberPlate], [Radius], [WarehouseId], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Code], [Duration], [Latitude], [Longitude], [NumberPlate], [Radius], [WarehouseId])
+VALUES (i.[Code], i.[Duration], i.[Latitude], i.[Longitude], i.[NumberPlate], i.[Radius], i.[WarehouseId])
+OUTPUT INSERTED.[Id], i._Position
+INTO @inserted0;
+
+SELECT [t].[Id] FROM [Trucks] t
+INNER JOIN @inserted0 i ON ([t].[Id] = [i].[Id])
+ORDER BY [i].[_Position];
+2017-11-26 16:09:03,329 INFO [2] ?.? - Executed DbCommand (6ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?', @p3='?' (Size = 4000), @p4='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Warehouses] ([Code], [Description], [Duration], [Test], [WarehouseId])
+VALUES (@p0, @p1, @p2, @p3, @p4);
+SELECT [Id]
+FROM [Warehouses]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-11-26 16:09:03,351 INFO [2] ?.? - Executed DbCommand (3ms) [Parameters=[@p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?', @p8='?' (Size = 4000), @p9='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Warehouses] ([Code], [Description], [Duration], [Test], [WarehouseId])
+VALUES (@p5, @p6, @p7, @p8, @p9);
+SELECT [Id]
+FROM [Warehouses]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-11-26 16:09:03,378 INFO [2] ?.? - Executed DbCommand (21ms) [Parameters=[@p10='?' (Size = 4000), @p11='?' (Size = 4000), @p12='?', @p13='?' (Size = 4000), @p14='?', @p15='?' (Size = 4000), @p16='?' (Size = 4000), @p17='?', @p18='?' (Size = 4000), @p19='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+DECLARE @inserted0 TABLE ([Id] int, [_Position] [int]);
+MERGE [Warehouses] USING (
+VALUES (@p10, @p11, @p12, @p13, @p14, 0),
+(@p15, @p16, @p17, @p18, @p19, 1)) AS i ([Code], [Description], [Duration], [Test], [WarehouseId], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Code], [Description], [Duration], [Test], [WarehouseId])
+VALUES (i.[Code], i.[Description], i.[Duration], i.[Test], i.[WarehouseId])
+OUTPUT INSERTED.[Id], i._Position
+INTO @inserted0;
+
+SELECT [t].[Id] FROM [Warehouses] t
+INNER JOIN @inserted0 i ON ([t].[Id] = [i].[Id])
+ORDER BY [i].[_Position];
+2017-11-26 16:09:03,406 INFO [2] ?.? - Executed DbCommand (9ms) [Parameters=[@p21='?', @p20='?', @p23='?', @p22='?', @p25='?', @p24='?', @p27='?', @p26='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Trucks] SET [WarehouseId] = @p20
+WHERE [Id] = @p21;
+SELECT @@ROWCOUNT;
+
+UPDATE [Trucks] SET [WarehouseId] = @p22
+WHERE [Id] = @p23;
+SELECT @@ROWCOUNT;
+
+UPDATE [Trucks] SET [WarehouseId] = @p24
+WHERE [Id] = @p25;
+SELECT @@ROWCOUNT;
+
+UPDATE [Trucks] SET [WarehouseId] = @p26
+WHERE [Id] = @p27;
+SELECT @@ROWCOUNT;
+2017-11-26 16:09:03,477 INFO [2] ?.? - Executed DbCommand (17ms) [Parameters=[@p0='?', @p1='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+DECLARE @inserted0 TABLE ([Id] int, [_Position] [int]);
+MERGE [TrackingInformations] USING (
+VALUES (@p0, 0),
+(@p1, 1)) AS i ([State], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([State])
+VALUES (i.[State])
+OUTPUT INSERTED.[Id], i._Position
+INTO @inserted0;
+
+SELECT [t].[Id] FROM [TrackingInformations] t
+INNER JOIN @inserted0 i ON ([t].[Id] = [i].[Id])
+ORDER BY [i].[_Position];
+2017-11-26 16:09:03,559 INFO [2] ?.? - Executed DbCommand (24ms) [Parameters=[@p0='?' (Size = 4000), @p1='?', @p2='?' (Size = 4000), @p3='?', @p4='?' (Size = 4000), @p5='?', @p6='?' (Size = 4000), @p7='?', @p8='?' (Size = 4000), @p9='?', @p10='?' (Size = 4000), @p11='?', @p12='?' (Size = 4000), @p13='?', @p14='?' (Size = 4000), @p15='?', @p16='?' (Size = 4000), @p17='?', @p18='?' (Size = 4000), @p19='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+DECLARE @inserted0 TABLE ([Id] int, [_Position] [int]);
+MERGE [HopArrivals] USING (
+VALUES (@p0, @p1, @p2, @p3, 0),
+(@p4, @p5, @p6, @p7, 1),
+(@p8, @p9, @p10, @p11, 2),
+(@p12, @p13, @p14, @p15, 3),
+(@p16, @p17, @p18, @p19, 4)) AS i ([Code], [DateTime], [Status], [TrackingInformationId], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Code], [DateTime], [Status], [TrackingInformationId])
+VALUES (i.[Code], i.[DateTime], i.[Status], i.[TrackingInformationId])
+OUTPUT INSERTED.[Id], i._Position
+INTO @inserted0;
+
+SELECT [t].[Id] FROM [HopArrivals] t
+INNER JOIN @inserted0 i ON ([t].[Id] = [i].[Id])
+ORDER BY [i].[_Position];
+2017-11-26 16:09:03,629 INFO [2] ?.? - Executed DbCommand (31ms) [Parameters=[@p0='?', @p1='?', @p2='?' (Size = 4000), @p3='?', @p4='?', @p5='?', @p6='?' (Size = 4000), @p7='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+DECLARE @inserted0 TABLE ([Id] int, [_Position] [int]);
+MERGE [Parcels] USING (
+VALUES (@p0, @p1, @p2, @p3, 0),
+(@p4, @p5, @p6, @p7, 1)) AS i ([RecipientId], [TrackingInformationId], [TrackingNumber], [Weight], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([RecipientId], [TrackingInformationId], [TrackingNumber], [Weight])
+VALUES (i.[RecipientId], i.[TrackingInformationId], i.[TrackingNumber], i.[Weight])
+OUTPUT INSERTED.[Id], i._Position
+INTO @inserted0;
+
+SELECT [t].[Id] FROM [Parcels] t
+INNER JOIN @inserted0 i ON ([t].[Id] = [i].[Id])
+ORDER BY [i].[_Position];
+2017-11-26 16:09:04,700 INFO [11] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/  
+2017-11-26 16:09:05,671 INFO [11] ?.? - Request finished in 770.4408ms 404 
+2017-11-26 16:09:12,322 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/swagger/  
+2017-11-26 16:09:12,353 INFO [8] ?.? - Sending file. Request path: '/index.html'. Physical path: 'N/A'
+2017-11-26 16:09:12,768 INFO [8] ?.? - Request finished in 200.0437ms 200 text/html
+2017-11-26 16:09:14,375 INFO [11] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/swagger/v1/swagger.json  
+2017-11-26 16:09:14,963 INFO [11] ?.? - Request finished in 714.2453ms 200 application/json
+2017-11-26 16:09:17,538 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/api/warehouse  
+2017-11-26 16:09:17,709 INFO [9] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-26 16:09:17,762 INFO [9] ?.? - Executed DbCommand (19ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-26 16:09:17,855 INFO [9] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.ExportWarehouses (PLS.SKS.Package.Services) with arguments ((null)) - ModelState is Valid
+2017-11-26 16:09:17,870 INFO [9] ?.? - Calling the ExportWarehouses action
+2017-11-26 16:09:17,878 INFO [9] ?.? - Calling the ExportWarehouses action
+2017-11-26 16:09:19,094 INFO [9] ?.? - Executed DbCommand (2ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[Test], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__id_0
+ORDER BY [w].[Id]
+2017-11-26 16:09:19,189 INFO [9] ?.? - Executed DbCommand (3ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[Test], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__id_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-26 16:09:19,220 INFO [9] ?.? - Executed DbCommand (9ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__id_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-26 16:09:19,281 INFO [9] ?.? - Executed DbCommand (2ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[Test], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__whId_0
+ORDER BY [w].[Id]
+2017-11-26 16:09:19,314 INFO [9] ?.? - Executed DbCommand (10ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[Test], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__whId_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-26 16:09:19,349 INFO [9] ?.? - Executed DbCommand (16ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__whId_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-26 16:09:19,377 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[Test], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__whId_0
+ORDER BY [w].[Id]
+2017-11-26 16:09:19,386 INFO [9] ?.? - Executed DbCommand (2ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[Test], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__whId_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-26 16:09:19,404 INFO [9] ?.? - Executed DbCommand (1ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__whId_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-26 16:09:19,418 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[Test], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__whId_0
+ORDER BY [w].[Id]
+2017-11-26 16:09:19,434 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[Test], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__whId_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-26 16:09:19,447 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__whId_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-26 16:09:19,461 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[Test], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__id_0
+ORDER BY [w].[Id]
+2017-11-26 16:09:19,470 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[Test], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__id_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-26 16:09:19,481 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__id_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-26 16:09:20,268 INFO [9] ?.? - Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+2017-11-26 16:09:20,333 INFO [9] ?.? - Executed action IO.Swagger.Controllers.DefaultApiController.ExportWarehouses (PLS.SKS.Package.Services) in 2621.0436ms
+2017-11-26 16:09:20,418 INFO [9] ?.? - Request finished in 2812.4355ms 200 application/json; charset=utf-8
+2017-11-26 16:47:39,961 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-26 16:47:43,508 INFO [2] ?.? - Executed DbCommand (202ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-26 16:47:43,603 INFO [2] ?.? - Executed DbCommand (32ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-26 16:47:44,893 INFO [2] ?.? - Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Recipients] AS [r])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+2017-11-26 16:47:46,201 INFO [11] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/  
+2017-11-26 16:47:47,579 INFO [11] ?.? - Request finished in 1363.9035ms 404 
+2017-11-26 16:48:03,986 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/swagger/  
+2017-11-26 16:48:04,004 INFO [8] ?.? - Sending file. Request path: '/index.html'. Physical path: 'N/A'
+2017-11-26 16:48:04,235 INFO [8] ?.? - Request finished in 37.3651ms 200 text/html
+2017-11-26 16:48:05,812 INFO [11] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/swagger/v1/swagger.json  
+2017-11-26 16:48:06,471 INFO [11] ?.? - Request finished in 820.3356ms 200 application/json
+2017-11-26 16:48:09,427 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/api/warehouse  
+2017-11-26 16:48:09,684 INFO [9] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-26 16:48:09,758 INFO [9] ?.? - Executed DbCommand (59ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-26 16:48:09,845 INFO [9] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.ExportWarehouses (PLS.SKS.Package.Services) with arguments ((null)) - ModelState is Valid
+2017-11-26 16:48:09,861 INFO [9] ?.? - Calling the ExportWarehouses action
+2017-11-26 16:48:09,874 INFO [9] ?.? - Calling the ExportWarehouses action
+2017-11-26 16:48:11,119 INFO [9] ?.? - Executed DbCommand (111ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__id_0
+ORDER BY [w].[Id]
+2017-11-26 16:48:11,327 INFO [9] ?.? - Executed DbCommand (3ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__id_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-26 16:48:11,361 INFO [9] ?.? - Executed DbCommand (4ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__id_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-26 16:48:11,406 INFO [9] ?.? - Executed DbCommand (1ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__whId_0
+ORDER BY [w].[Id]
+2017-11-26 16:48:11,421 INFO [9] ?.? - Executed DbCommand (3ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__whId_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-26 16:48:11,455 INFO [9] ?.? - Executed DbCommand (2ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__whId_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-26 16:48:11,516 INFO [9] ?.? - Executed DbCommand (2ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__whId_0
+ORDER BY [w].[Id]
+2017-11-26 16:48:11,527 INFO [9] ?.? - Executed DbCommand (4ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__whId_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-26 16:48:11,543 INFO [9] ?.? - Executed DbCommand (1ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__whId_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-26 16:48:11,595 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__whId_0
+ORDER BY [w].[Id]
+2017-11-26 16:48:11,606 INFO [9] ?.? - Executed DbCommand (1ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__whId_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-26 16:48:11,618 INFO [9] ?.? - Executed DbCommand (1ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__whId_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-26 16:48:11,628 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__id_0
+ORDER BY [w].[Id]
+2017-11-26 16:48:11,674 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__id_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-26 16:48:11,760 INFO [9] ?.? - Executed DbCommand (8ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__id_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-26 16:48:12,524 INFO [9] ?.? - Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+2017-11-26 16:48:12,602 INFO [9] ?.? - Executed action IO.Swagger.Controllers.DefaultApiController.ExportWarehouses (PLS.SKS.Package.Services) in 2916.988ms
+2017-11-26 16:48:12,742 INFO [9] ?.? - Request finished in 3179.0498ms 200 application/json; charset=utf-8
+2017-11-26 16:48:42,973 INFO [8] ?.? - Request starting HTTP/1.1 POST http://localhost:56172/api/parcel application/json-patch+json 172
+2017-11-26 16:48:43,010 INFO [8] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-26 16:48:43,044 INFO [8] ?.? - Executed DbCommand (12ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-26 16:48:43,340 INFO [8] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.SubmitParcel (PLS.SKS.Package.Services) with arguments (class Parcel {
+  Weight: 5
+  Recipient: class Receipient {
+  FirstName: Hubert
+  LastName: Farnsworth
+  Street: A-8757
+  PostalCode: Strasse 1
+  City: Wien
+}
+
+}
+) - ModelState is Valid
+2017-11-26 16:48:43,403 INFO [8] ?.? - Calling the SubmitParcel action
+2017-11-26 16:48:43,409 INFO [8] ?.? - Calling the AddParcel action
+2017-11-26 16:48:43,537 ERROR [8] ?.? - 'Street' is not in the correct format.'Postal Code' is not in the correct format.
+2017-11-26 16:48:44,309 INFO [8] ?.? - Executed DbCommand (17ms) [Parameters=[@p0='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [TrackingInformations] ([State])
+VALUES (@p0);
+SELECT [Id]
+FROM [TrackingInformations]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-11-26 16:48:44,472 INFO [8] ?.? - Executed DbCommand (8ms) [Parameters=[@p0='?' (Size = 4000), @p1='?', @p2='?' (Size = 4000), @p3='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [HopArrivals] ([Code], [DateTime], [Status], [TrackingInformationId])
+VALUES (@p0, @p1, @p2, @p3);
+SELECT [Id]
+FROM [HopArrivals]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-11-26 16:48:44,491 INFO [8] ?.? - Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 4000), @p1='?', @p2='?' (Size = 4000), @p3='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [HopArrivals] ([Code], [DateTime], [Status], [TrackingInformationId])
+VALUES (@p0, @p1, @p2, @p3);
+SELECT [Id]
+FROM [HopArrivals]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-11-26 16:48:44,523 INFO [8] ?.? - Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 4000), @p1='?', @p2='?' (Size = 4000), @p3='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [HopArrivals] ([Code], [DateTime], [Status], [TrackingInformationId])
+VALUES (@p0, @p1, @p2, @p3);
+SELECT [Id]
+FROM [HopArrivals]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-11-26 16:48:44,571 INFO [8] ?.? - Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 4000), @p1='?', @p2='?' (Size = 4000), @p3='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [HopArrivals] ([Code], [DateTime], [Status], [TrackingInformationId])
+VALUES (@p0, @p1, @p2, @p3);
+SELECT [Id]
+FROM [HopArrivals]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-11-26 16:48:44,760 INFO [8] ?.? - Executed DbCommand (18ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Recipients] ([City], [FirstName], [LastName], [PostalCode], [Street])
+VALUES (@p0, @p1, @p2, @p3, @p4);
+SELECT [Id]
+FROM [Recipients]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-11-26 16:48:44,855 INFO [8] ?.? - Executed DbCommand (50ms) [Parameters=[@p5='?', @p6='?', @p7='?' (Size = 4000), @p8='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Parcels] ([RecipientId], [TrackingInformationId], [TrackingNumber], [Weight])
+VALUES (@p5, @p6, @p7, @p8);
+SELECT [Id]
+FROM [Parcels]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-11-26 16:48:44,890 INFO [8] ?.? - Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+2017-11-26 16:48:45,023 INFO [8] ?.? - Executed action IO.Swagger.Controllers.DefaultApiController.SubmitParcel (PLS.SKS.Package.Services) in 1886.0804ms
+2017-11-26 16:48:45,419 INFO [8] ?.? - Request finished in 2056.8652ms 200 application/json; charset=utf-8
+2017-11-26 16:48:53,491 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/api/parcel/NUQP8UMQ  
+2017-11-26 16:48:53,505 INFO [8] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-26 16:48:53,517 INFO [8] ?.? - Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-26 16:48:53,527 INFO [8] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.TrackParcel (PLS.SKS.Package.Services) with arguments (NUQP8UMQ) - ModelState is Valid
+2017-11-26 16:48:53,535 INFO [8] ?.? - Calling the TrackParcel action
+2017-11-26 16:48:53,543 INFO [8] ?.? - Calling the TrackParcel action
+2017-11-26 16:48:53,762 INFO [8] ?.? - Executed DbCommand (20ms) [Parameters=[@__TrackingNumber_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[RecipientId], [p].[TrackingInformationId], [p].[TrackingNumber], [p].[Weight], [p.TrackingInformation].[Id], [p.TrackingInformation].[State], [p.Recipient].[Id], [p.Recipient].[City], [p.Recipient].[FirstName], [p.Recipient].[LastName], [p.Recipient].[PostalCode], [p.Recipient].[Street]
+FROM [Parcels] AS [p]
+INNER JOIN [TrackingInformations] AS [p.TrackingInformation] ON [p].[TrackingInformationId] = [p.TrackingInformation].[Id]
+INNER JOIN [Recipients] AS [p.Recipient] ON [p].[RecipientId] = [p.Recipient].[Id]
+WHERE [p].[TrackingNumber] = @__TrackingNumber_0
+2017-11-26 16:48:53,860 INFO [8] ?.? - Executed DbCommand (39ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [h].[Id], [h].[Code], [h].[DateTime], [h].[Status], [h].[TrackingInformationId]
+FROM [HopArrivals] AS [h]
+WHERE [h].[TrackingInformationId] = @__id_0
+2017-11-26 16:48:54,256 ERROR [8] ?.? - 'Street' is not in the correct format.'Postal Code' is not in the correct format.
+2017-11-26 16:48:54,360 INFO [8] ?.? - Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+2017-11-26 16:48:54,489 INFO [8] ?.? - Executed action IO.Swagger.Controllers.DefaultApiController.TrackParcel (PLS.SKS.Package.Services) in 908.2584ms
+2017-11-26 16:48:54,850 INFO [8] ?.? - Request finished in 1074.5354ms 200 application/json; charset=utf-8
+2017-11-26 16:49:07,925 INFO [8] ?.? - Request starting HTTP/1.1 POST http://localhost:56172/api/parcel/NUQP8UMQ/reportHop/WH02  0
+2017-11-26 16:49:07,943 INFO [8] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-26 16:49:07,987 INFO [8] ?.? - Executed DbCommand (17ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-26 16:49:08,010 INFO [8] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.ReportParcelHop (PLS.SKS.Package.Services) with arguments (NUQP8UMQ, WH02) - ModelState is Valid
+2017-11-26 16:49:08,024 INFO [8] ?.? - Calling the ReportParcelHop action
+2017-11-26 16:49:08,045 INFO [8] ?.? - Calling the ScanParcel action
+2017-11-26 16:49:08,060 INFO [8] ?.? - Executed DbCommand (2ms) [Parameters=[@__TrackingNumber_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[RecipientId], [p].[TrackingInformationId], [p].[TrackingNumber], [p].[Weight], [p.TrackingInformation].[Id], [p.TrackingInformation].[State], [p.Recipient].[Id], [p.Recipient].[City], [p.Recipient].[FirstName], [p.Recipient].[LastName], [p.Recipient].[PostalCode], [p.Recipient].[Street]
+FROM [Parcels] AS [p]
+INNER JOIN [TrackingInformations] AS [p.TrackingInformation] ON [p].[TrackingInformationId] = [p.TrackingInformation].[Id]
+INNER JOIN [Recipients] AS [p.Recipient] ON [p].[RecipientId] = [p.Recipient].[Id]
+WHERE [p].[TrackingNumber] = @__TrackingNumber_0
+2017-11-26 16:49:08,118 INFO [8] ?.? - Executed DbCommand (12ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [h].[Id], [h].[Code], [h].[DateTime], [h].[Status], [h].[TrackingInformationId]
+FROM [HopArrivals] AS [h]
+WHERE [h].[TrackingInformationId] = @__id_0
+2017-11-26 16:49:08,154 INFO [8] ?.? - Executed DbCommand (2ms) [Parameters=[@__h_Id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(2) [b].[Id], [b].[Code], [b].[DateTime], [b].[Status], [b].[TrackingInformationId]
+FROM [HopArrivals] AS [b]
+WHERE [b].[Id] = @__h_Id_0
+2017-11-26 16:49:08,211 INFO [8] ?.? - Executed DbCommand (16ms) [Parameters=[@p2='?', @p0='?', @p1='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [HopArrivals] SET [DateTime] = @p0, [Status] = @p1
+WHERE [Id] = @p2;
+SELECT @@ROWCOUNT;
+2017-11-26 16:49:08,226 INFO [8] ?.? - Executed action IO.Swagger.Controllers.DefaultApiController.ReportParcelHop (PLS.SKS.Package.Services) in 284.9554ms
+2017-11-26 16:49:08,237 INFO [8] ?.? - Request finished in 308.9566ms 200 
+2017-11-26 16:49:14,221 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/api/parcel/NUQP8UMQ  
+2017-11-26 16:49:14,228 INFO [9] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-26 16:49:14,249 INFO [9] ?.? - Executed DbCommand (12ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-26 16:49:14,259 INFO [9] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.TrackParcel (PLS.SKS.Package.Services) with arguments (NUQP8UMQ) - ModelState is Valid
+2017-11-26 16:49:14,272 INFO [9] ?.? - Calling the TrackParcel action
+2017-11-26 16:49:14,279 INFO [9] ?.? - Calling the TrackParcel action
+2017-11-26 16:49:14,292 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[@__TrackingNumber_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[RecipientId], [p].[TrackingInformationId], [p].[TrackingNumber], [p].[Weight], [p.TrackingInformation].[Id], [p.TrackingInformation].[State], [p.Recipient].[Id], [p.Recipient].[City], [p.Recipient].[FirstName], [p.Recipient].[LastName], [p.Recipient].[PostalCode], [p.Recipient].[Street]
+FROM [Parcels] AS [p]
+INNER JOIN [TrackingInformations] AS [p.TrackingInformation] ON [p].[TrackingInformationId] = [p.TrackingInformation].[Id]
+INNER JOIN [Recipients] AS [p.Recipient] ON [p].[RecipientId] = [p.Recipient].[Id]
+WHERE [p].[TrackingNumber] = @__TrackingNumber_0
+2017-11-26 16:49:14,306 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [h].[Id], [h].[Code], [h].[DateTime], [h].[Status], [h].[TrackingInformationId]
+FROM [HopArrivals] AS [h]
+WHERE [h].[TrackingInformationId] = @__id_0
+2017-11-26 16:49:14,373 ERROR [9] ?.? - 'Street' is not in the correct format.'Postal Code' is not in the correct format.
+2017-11-26 16:49:14,392 INFO [9] ?.? - Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+2017-11-26 16:49:14,405 INFO [9] ?.? - Executed action IO.Swagger.Controllers.DefaultApiController.TrackParcel (PLS.SKS.Package.Services) in 170.0496ms
+2017-11-26 16:49:14,486 INFO [9] ?.? - Request finished in 190.0294ms 200 application/json; charset=utf-8
