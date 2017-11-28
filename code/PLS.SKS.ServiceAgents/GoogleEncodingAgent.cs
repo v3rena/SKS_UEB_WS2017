@@ -13,17 +13,33 @@ namespace PLS.SKS.ServiceAgents
 	public class GoogleEncodingAgent : IGeoEncodingAgent
 	{
 		private static readonly string apiKey = "AIzaSyBx774ImXlKrTp_3Zr2ugSPgzD_Yjjk1QQ";
+		private ILogger<GoogleEncodingAgent> logger;
+		public AutoMapper.IMapper Mapper { get; set; }
 
-		public GeoCoordinates EncodeAddress(Address a)
+		public GoogleEncodingAgent(ILogger<GoogleEncodingAgent> logger, AutoMapper.IMapper mapper)
 		{
-			GeoCoordinates coordinates = new GeoCoordinates();
+			this.logger = logger;
+			this.Mapper = mapper;
+		}
+
+		public Location EncodeAddress(Recipient a)
+		{
+			var root = new GeoEncodingRoot();
 			HttpClient client = GetClient();
 			HttpResponseMessage response = client.GetAsync($"/maps/api/geocode/json?address={a}&key={apiKey}").Result;
 			if (response.IsSuccessStatusCode)
 			{
-				coordinates = response.Content.ReadAsAsync<GeoCoordinates>().Result;
+				root = response.Content.ReadAsAsync<GeoEncodingRoot>().Result;
 			}
-			return coordinates;
+			try
+			{
+				return root.Results.FirstOrDefault().Geometry.Location;
+			}
+			catch(Exception ex)
+			{
+
+				throw new
+			}
 		}
 
 		private HttpClient GetClient()

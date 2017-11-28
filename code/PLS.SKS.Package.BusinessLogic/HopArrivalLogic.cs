@@ -6,6 +6,7 @@ using static PLS.SKS.Package.BusinessLogic.Validator;
 using PLS.SKS.Package;
 using Microsoft.Extensions.DependencyInjection;
 using PLS.SKS.Package.DataAccess.Interfaces;
+using Microsoft.Extensions.Logging;
 
 namespace PLS.SKS.Package.BusinessLogic
 {
@@ -14,12 +15,14 @@ namespace PLS.SKS.Package.BusinessLogic
 		private IParcelRepository parcelRepo;
         private ITrackingInformationRepository trackingRepo;
         private IHopArrivalRepository hopArrivalRepo;
+		private ILogger<HopArrivalLogic> logger;
 
-		public HopArrivalLogic(IParcelRepository parcelRepository, ITrackingInformationRepository trackingInformationRepository, IHopArrivalRepository hopArrivalRepository)
+		public HopArrivalLogic(IParcelRepository parcelRepository, ITrackingInformationRepository trackingInformationRepository, IHopArrivalRepository hopArrivalRepository, ILogger<HopArrivalLogic> logger)
 		{
 			parcelRepo = parcelRepository;
 			trackingRepo = trackingInformationRepository;
 			hopArrivalRepo = hopArrivalRepository;
+			this.logger = logger;
 		}
 
 		public void ScanParcel(string trackingNumber, string code)

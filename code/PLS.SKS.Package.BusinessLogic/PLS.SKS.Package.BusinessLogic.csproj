@@ -18,6 +18,7 @@
     <ProjectReference Include="..\PLS.SKS.Package.DataAccess.Interfaces\PLS.SKS.Package.DataAccess.Interfaces.csproj" />
     <ProjectReference Include="..\PLS.SKS.Package.DataAccess.Sql\PLS.SKS.Package.DataAccess.Sql.csproj" />
     <ProjectReference Include="..\PLS.SKS.Package.Services.DTOs\PLS.SKS.Package.Services.DTOs.csproj" />
+    <ProjectReference Include="..\PLS.SKS.ServiceAgents.Interfaces\PLS.SKS.ServiceAgents.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>

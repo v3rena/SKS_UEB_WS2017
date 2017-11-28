@@ -8,6 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using PLS.SKS.Package.DataAccess.Entities;
 using PLS.SKS.Package.DataAccess.Interfaces;
+using PLS.SKS.ServiceAgents.Interfaces;
+using Microsoft.Extensions.Logging;
 
 namespace PLS.SKS.Package.BusinessLogic
 {
@@ -16,17 +18,24 @@ namespace PLS.SKS.Package.BusinessLogic
 		private IParcelRepository parcelRepo;
 		private ITrackingInformationRepository trackingRepo;
 		private IHopArrivalRepository hopArrivalRepo;
+		private IGeoEncodingAgent encodingAgent;
+		private ILogger<ParcelEntryLogic> logger;
 
-		public ParcelEntryLogic(IParcelRepository parcelRepository, ITrackingInformationRepository trackingInformationRepository, IHopArrivalRepository hopArrivalRepository)
+		public AutoMapper.IMapper mapper { get; set; }
+
+		public ParcelEntryLogic(IParcelRepository parcelRepository, ITrackingInformationRepository trackingInformationRepository, IHopArrivalRepository hopArrivalRepository, IGeoEncodingAgent encodingAgent, ILogger<ParcelEntryLogic> logger, AutoMapper.IMapper mapper)
 		{
 			parcelRepo = parcelRepository;
 			trackingRepo = trackingInformationRepository;
 			hopArrivalRepo = hopArrivalRepository;
+			this.encodingAgent = encodingAgent;
+			this.logger = logger;
+			this.mapper = mapper;
 		}
 
 		public string AddParcel(Parcel parcel)
         {
-			parcel.TrackingInformation = GenerateTrackingInformation();
+			parcel.TrackingInformation = GenerateTrackingInformation(parcel);
 			parcel.TrackingNumber = RandomString(8);
 			parcelRepo.Create(parcel);
 			return parcel.TrackingNumber;
@@ -40,7 +49,7 @@ namespace PLS.SKS.Package.BusinessLogic
 			return new string(chars.ToArray());
 		}
 
-		private TrackingInformation GenerateTrackingInformation()
+		private TrackingInformation GenerateTrackingInformation(Parcel parcel)
 		{
 			var trackInfo = new TrackingInformation(TrackingInformation.StateEnum.InTransportEnum);
 			int trackInfoId = trackingRepo.Create(trackInfo);
@@ -55,6 +64,12 @@ namespace PLS.SKS.Package.BusinessLogic
 			hopArrivalRepo.Create(hop2);
 			hopArrivalRepo.Create(hop3);
 			hopArrivalRepo.Create(hop4);
+
+			Entities.Recipient blRecipient = mapper.Map<Entities.Recipient>(parcel.Recipient);
+			ServiceAgents.DTOs.Recipient saRecipient = mapper.Map<ServiceAgents.DTOs.Recipient>(blRecipient);
+			var saLocation = encodingAgent.EncodeAddress(saRecipient);
+
+			Entities.Location lbLocation = mapper.Map<Entities.Location>(saLocation);
 
 			trackInfo.futureHops = new List<HopArrival> { hop2, hop3, hop4 };
 			trackInfo.visitedHops = new List<HopArrival> { hop1 };
