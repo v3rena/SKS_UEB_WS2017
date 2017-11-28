@@ -29,8 +29,10 @@ namespace PLS.SKS.Package.BusinessLogic
 
 		public void ScanParcel(string trackingNumber, string code)
         {
-            //get Parcel with trackingNumber
-            DataAccess.Entities.Parcel dalParcel = parcelRepo.GetByTrackingNumber(trackingNumber);
+			logger.LogInformation("Calling the ScanParcel action");
+
+			//get Parcel with trackingNumber
+			DataAccess.Entities.Parcel dalParcel = parcelRepo.GetByTrackingNumber(trackingNumber);
             //get TrackingInformation for Parcel
             DataAccess.Entities.TrackingInformation dalInfo = trackingRepo.GetById(dalParcel.TrackingInformationId);
             //get HopArrivals with "TrackingInformationID"

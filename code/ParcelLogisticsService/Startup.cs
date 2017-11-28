@@ -32,7 +32,6 @@ namespace PLS.SKS.Package.Services
 			options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
 			//Add BusinessLogic Components
-			services.AddScoped<BusinessLogic.Interfaces.IBusinessLogicFacade, BusinessLogic.BusinessLogicFacade>();
 			services.AddScoped<BusinessLogic.Interfaces.IHopArrivalLogic, BusinessLogic.HopArrivalLogic>();
 			services.AddScoped<BusinessLogic.Interfaces.IParcelEntryLogic, BusinessLogic.ParcelEntryLogic>();
 			services.AddScoped<BusinessLogic.Interfaces.ITrackingLogic, BusinessLogic.TrackingLogic>();

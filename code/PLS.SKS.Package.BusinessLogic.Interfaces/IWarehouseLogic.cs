@@ -4,7 +4,7 @@ namespace PLS.SKS.Package.BusinessLogic.Interfaces
 {
 	public interface IWarehouseLogic
 	{
-		Warehouse ExportWarehouses();
-		void ImportWarehouses(Warehouse warehouse);
+		IO.Swagger.Models.Warehouse ExportWarehouses();
+		void ImportWarehouses(IO.Swagger.Models.Warehouse warehouse);
 	}
 }

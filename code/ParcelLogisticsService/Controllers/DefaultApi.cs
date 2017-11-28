@@ -34,16 +34,14 @@ namespace IO.Swagger.Controllers
     /// </summary>
     public class DefaultApiController : Controller
     {
-		IBusinessLogicFacade bl;
 		private IHopArrivalLogic hopArrivalLogic;
 		private IParcelEntryLogic parcelEntryLogic;
 		private ITrackingLogic trackingLogic;
 		private IWarehouseLogic warehouseLogic;
 		ILogger<DefaultApiController> logger;
 
-		public DefaultApiController(IBusinessLogicFacade bl, ILogger<DefaultApiController> logger, IHopArrivalLogic hopArrivalLogic, IParcelEntryLogic parcelEntryLogic, ITrackingLogic trackingLogic, IWarehouseLogic warehouseLogic) //ITrackingLogic, IMapper
+		public DefaultApiController(ILogger<DefaultApiController> logger, IHopArrivalLogic hopArrivalLogic, IParcelEntryLogic parcelEntryLogic, ITrackingLogic trackingLogic, IWarehouseLogic warehouseLogic) //ITrackingLogic, IMapper
 		{
-			this.bl = bl;
 			this.hopArrivalLogic = hopArrivalLogic;
 			this.parcelEntryLogic = parcelEntryLogic;
 			this.trackingLogic = trackingLogic;
@@ -65,7 +63,7 @@ namespace IO.Swagger.Controllers
         public virtual IActionResult ExportWarehouses()
         {
 			logger.LogInformation("Calling the ExportWarehouses action");
-			Warehouse warehouse = bl.ExportWarehouses();
+			Warehouse warehouse = warehouseLogic.ExportWarehouses();
             return new ObjectResult(warehouse);
         }
 
@@ -83,7 +81,7 @@ namespace IO.Swagger.Controllers
         public virtual void ImportWarehouses([FromBody]Warehouse warehouseRoot)
         {
 			logger.LogInformation("Calling the ImportWarehouses action");
-			bl.ImportWarehouses(warehouseRoot);
+			warehouseLogic.ImportWarehouses(warehouseRoot);
 		}
 
 
@@ -101,7 +99,7 @@ namespace IO.Swagger.Controllers
         public virtual void ReportParcelHop([FromRoute]string trackingId, [FromRoute]string code)
         {
 			logger.LogInformation("Calling the ReportParcelHop action");
-			bl.ScanParcel(trackingId, code);
+			hopArrivalLogic.ScanParcel(trackingId, code);
 		}
 
 
@@ -139,7 +137,7 @@ namespace IO.Swagger.Controllers
         public virtual IActionResult TrackParcel([FromRoute]string trackingId)
         {
 			logger.LogInformation("Calling the TrackParcel action");
-			TrackingInformation trInfo = bl.TrackParcel(trackingId);
+			TrackingInformation trInfo = trackingLogic.TrackParcel(trackingId);
 			return new ObjectResult(trInfo);
 
 		}
