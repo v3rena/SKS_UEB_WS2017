@@ -39,12 +39,11 @@ namespace PLS.SKS.Package.BusinessLogic
 			{
 				logger.LogError(ValidateParcel(blParcel));
 			}
-
-			blParcel.TrackingInformation = GenerateTrackingInformation(blParcel);
-			blParcel.TrackingNumber = RandomString(8);
 			DataAccess.Entities.Parcel dalParcel = mapper.Map<DataAccess.Entities.Parcel>(blParcel);
+			dalParcel.TrackingInformation = GenerateTrackingInformation(dalParcel);
+			dalParcel.TrackingNumber = RandomString(8);
 			parcelRepo.Create(dalParcel);
-			return blParcel.TrackingNumber;
+			return dalParcel.TrackingNumber;
         }
 
 		private static string RandomString(int length)
@@ -55,11 +54,9 @@ namespace PLS.SKS.Package.BusinessLogic
 			return new string(chars.ToArray());
 		}
 
-		private Entities.TrackingInformation GenerateTrackingInformation(BusinessLogic.Entities.Parcel parcel)
+		private DataAccess.Entities.TrackingInformation GenerateTrackingInformation(DataAccess.Entities.Parcel parcel)
 		{
-			var blTrackInfo = new Entities.TrackingInformation(BusinessLogic.Entities.TrackingInformation.StateEnum.InTransportEnum);
-			DataAccess.Entities.TrackingInformation dalTrackInfo = mapper.Map<DataAccess.Entities.TrackingInformation>(blTrackInfo);
-
+			var dalTrackInfo = new DataAccess.Entities.TrackingInformation(DataAccess.Entities.TrackingInformation.StateEnum.InTransportEnum);
 			int trackInfoId = trackingRepo.Create(dalTrackInfo);
 
 			//Get truck that is nearest to the given adress and get warehouse hierarchy from there
@@ -76,9 +73,7 @@ namespace PLS.SKS.Package.BusinessLogic
 			dalTrackInfo.futureHops = new List<DataAccess.Entities.HopArrival> { hop2, hop3, hop4 };
 			dalTrackInfo.visitedHops = new List<DataAccess.Entities.HopArrival> { hop1 };
 
-			blTrackInfo = mapper.Map<BusinessLogic.Entities.TrackingInformation>(dalTrackInfo);
-
-			return blTrackInfo;
+			return dalTrackInfo;
 
 			Entities.Recipient blRecipient = mapper.Map<Entities.Recipient>(parcel.Recipient);
 			ServiceAgents.DTOs.Recipient saRecipient = mapper.Map<ServiceAgents.DTOs.Recipient>(blRecipient);

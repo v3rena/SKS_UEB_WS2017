@@ -29,7 +29,6 @@ namespace PLS.SKS.Package.BusinessLogic
 
 		public IO.Swagger.Models.TrackingInformation TrackParcel(string trackingNumber)
         {
-
 			logger.LogInformation("Calling the TrackParcel action");
 
 			DataAccess.Entities.Parcel dalParcel = parcelRepo.GetByTrackingNumber(trackingNumber);
