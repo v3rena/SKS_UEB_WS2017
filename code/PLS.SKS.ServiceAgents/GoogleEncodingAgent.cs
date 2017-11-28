@@ -23,11 +23,23 @@ namespace PLS.SKS.ServiceAgents
 			this.mapper = mapper;
 		}
 
-		public Location EncodeAddress(Recipient a)
+		private HttpClient GetClient()
+		{
+			HttpClient client = new HttpClient()
+			{
+				BaseAddress = new Uri("https://maps.googleapis.com")
+			};
+			client.DefaultRequestHeaders.Accept.Clear();
+			client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+			return client;
+		}
+
+		public Location EncodeAddress(Recipient recipient)
 		{
 			var root = new GeoEncodingRoot();
+			string address = GetAddress(recipient);
 			HttpClient client = GetClient();
-			HttpResponseMessage response = client.GetAsync($"/maps/api/geocode/json?address={a}&key={apiKey}").Result;
+			HttpResponseMessage response = client.GetAsync($"/maps/api/geocode/json?address={address}&key={apiKey}").Result;
 			if (response.IsSuccessStatusCode)
 			{
 				root = response.Content.ReadAsAsync<GeoEncodingRoot>().Result;
@@ -43,15 +55,9 @@ namespace PLS.SKS.ServiceAgents
 			}
 		}
 
-		private HttpClient GetClient()
+		private string GetAddress(Recipient recipient)
 		{
-			HttpClient client = new HttpClient()
-			{
-				BaseAddress = new Uri("https://maps.googleapis.com")
-			};
-			client.DefaultRequestHeaders.Accept.Clear();
-			client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-			return client;
+			return recipient.Street + " " + recipient.PostalCode + " " + recipient.City;
 		}
 	}
 }

@@ -69,7 +69,7 @@ namespace PLS.SKS.Package.BusinessLogic
 			ServiceAgents.DTOs.Recipient saRecipient = mapper.Map<ServiceAgents.DTOs.Recipient>(blRecipient);
 			var saLocation = encodingAgent.EncodeAddress(saRecipient);
 
-			Entities.Location lbLocation = mapper.Map<Entities.Location>(saLocation);
+			Entities.Location blLocation = mapper.Map<Entities.Location>(saLocation);
 
 			trackInfo.futureHops = new List<HopArrival> { hop2, hop3, hop4 };
 			trackInfo.visitedHops = new List<HopArrival> { hop1 };
