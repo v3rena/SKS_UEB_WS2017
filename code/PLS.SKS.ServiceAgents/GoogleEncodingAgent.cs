@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using PLS.SKS.ServiceAgents.DTOs;
+using Microsoft.Extensions.Logging;
 
 namespace PLS.SKS.ServiceAgents
 {
@@ -14,12 +15,12 @@ namespace PLS.SKS.ServiceAgents
 	{
 		private static readonly string apiKey = "AIzaSyBx774ImXlKrTp_3Zr2ugSPgzD_Yjjk1QQ";
 		private ILogger<GoogleEncodingAgent> logger;
-		public AutoMapper.IMapper Mapper { get; set; }
+		public AutoMapper.IMapper mapper { get; set; }
 
 		public GoogleEncodingAgent(ILogger<GoogleEncodingAgent> logger, AutoMapper.IMapper mapper)
 		{
 			this.logger = logger;
-			this.Mapper = mapper;
+			this.mapper = mapper;
 		}
 
 		public Location EncodeAddress(Recipient a)
@@ -37,8 +38,8 @@ namespace PLS.SKS.ServiceAgents
 			}
 			catch(Exception ex)
 			{
-
-				throw new
+				logger.LogError(ex.ToString());
+				throw new Exception();
 			}
 		}
 
