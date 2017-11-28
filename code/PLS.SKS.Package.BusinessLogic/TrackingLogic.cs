@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation.Results;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using PLS.SKS.Package.BusinessLogic.Entities;
 using PLS.SKS.Package.DataAccess.Interfaces;
@@ -14,7 +15,7 @@ namespace PLS.SKS.Package.BusinessLogic
         private IHopArrivalRepository hopRepo;
         private ITrackingInformationRepository trackRepo;
 		private ILogger<TrackingLogic> logger;
-		public AutoMapper.IMapper mapper { get; set; }
+		private AutoMapper.IMapper mapper;
 
 
 		public TrackingLogic(IParcelRepository parcelRepository, IHopArrivalRepository hopRepository, ITrackingInformationRepository trackRepository, ILogger<TrackingLogic> logger, AutoMapper.IMapper mapper)
@@ -26,33 +27,51 @@ namespace PLS.SKS.Package.BusinessLogic
 			this.mapper = mapper;
 		}
 
-		public DataAccess.Entities.Parcel TrackParcel(string trackingNumber)
+		public IO.Swagger.Models.TrackingInformation TrackParcel(string trackingNumber)
         {
-            DataAccess.Entities.Parcel DALParcel = parcelRepo.GetByTrackingNumber(trackingNumber);
+			logger.LogInformation("Calling the TrackParcel action");
 
+			DataAccess.Entities.Parcel dalParcel = parcelRepo.GetByTrackingNumber(trackingNumber);
 
-#if DEBUG
-            //Fuer Tests
-            if(DALParcel.TrackingInformation == null)
-            {
-                DALParcel.TrackingInformation = trackRepo.GetById(DALParcel.TrackingInformationId);
-            }
-#endif
             //get HopArrivals with "TrackingInformationID"
-            List<DataAccess.Entities.HopArrival> hopArr = hopRepo.GetByTrackingInformationId(DALParcel.TrackingInformationId);
+            List<DataAccess.Entities.HopArrival> hopArr = hopRepo.GetByTrackingInformationId(dalParcel.TrackingInformationId);
             //fill visitedHops and futureHops lists
             foreach(var h in hopArr)
             {
                 if(h.Status == "visited")
                 {
-                    DALParcel.TrackingInformation.visitedHops.Add(h);
+                    dalParcel.TrackingInformation.visitedHops.Add(h);
                 }
                 else if(h.Status == "future")
                 {
-                    DALParcel.TrackingInformation.futureHops.Add(h);
+                    dalParcel.TrackingInformation.futureHops.Add(h);
                 }
             }
-            return DALParcel;
+
+			Entities.Parcel blParcel = mapper.Map<Entities.Parcel>(dalParcel);
+			if (blParcel != null)
+			{
+				logger.LogError(ValidateParcel(blParcel));
+
+			}
+			IO.Swagger.Models.TrackingInformation info = mapper.Map<IO.Swagger.Models.TrackingInformation>(blParcel.TrackingInformation);
+			return info;
 		}
-    }
+
+		public string ValidateParcel(Entities.Parcel blParcel)
+		{
+			StringBuilder validationResults = new StringBuilder();
+
+			Validator.ParcelValidator validator = new Validator.ParcelValidator();
+			ValidationResult results = validator.Validate(blParcel);
+			bool validationSucceeded = results.IsValid;
+			IList<ValidationFailure> failures = results.Errors;
+
+			foreach (var failure in failures)
+			{
+				validationResults.Append(failure);
+			}
+			return validationResults.ToString();
+		}
+	}
 }

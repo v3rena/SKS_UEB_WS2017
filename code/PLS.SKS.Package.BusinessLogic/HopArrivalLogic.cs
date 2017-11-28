@@ -16,7 +16,7 @@ namespace PLS.SKS.Package.BusinessLogic
         private ITrackingInformationRepository trackingRepo;
         private IHopArrivalRepository hopArrivalRepo;
 		private ILogger<HopArrivalLogic> logger;
-		public AutoMapper.IMapper mapper { get; set; }
+		private AutoMapper.IMapper mapper;
 
 		public HopArrivalLogic(IParcelRepository parcelRepository, ITrackingInformationRepository trackingInformationRepository, IHopArrivalRepository hopArrivalRepository, ILogger<HopArrivalLogic> logger, AutoMapper.IMapper mapper)
 		{
@@ -29,8 +29,10 @@ namespace PLS.SKS.Package.BusinessLogic
 
 		public void ScanParcel(string trackingNumber, string code)
         {
-            //get Parcel with trackingNumber
-            DataAccess.Entities.Parcel dalParcel = parcelRepo.GetByTrackingNumber(trackingNumber);
+			logger.LogInformation("Calling the ScanParcel action");
+
+			//get Parcel with trackingNumber
+			DataAccess.Entities.Parcel dalParcel = parcelRepo.GetByTrackingNumber(trackingNumber);
             //get TrackingInformation for Parcel
             DataAccess.Entities.TrackingInformation dalInfo = trackingRepo.GetById(dalParcel.TrackingInformationId);
             //get HopArrivals with "TrackingInformationID"

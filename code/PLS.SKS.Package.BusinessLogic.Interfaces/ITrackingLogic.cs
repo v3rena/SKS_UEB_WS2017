@@ -2,6 +2,6 @@
 {
     public interface ITrackingLogic
     {
-        DataAccess.Entities.Parcel TrackParcel(string trackingID);
+		IO.Swagger.Models.TrackingInformation TrackParcel(string trackingID);
     }
 }
