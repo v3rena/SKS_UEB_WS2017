@@ -46,8 +46,11 @@ namespace PLS.SKS.Package.Services
 			services.AddScoped<DataAccess.Interfaces.ITruckRepository, DataAccess.Sql.SqlTruckRepository>();
 			services.AddScoped<DataAccess.Interfaces.IWarehouseRepository, DataAccess.Sql.SqlWarehouseRepository>();
 
+			//Add GeoEncodingAgent
+			services.AddScoped<ServiceAgents.Interfaces.IGeoEncodingAgent, ServiceAgents.GoogleEncodingAgent>();
+
 			//Add Mapping
-            services.AddAutoMapper();
+			services.AddAutoMapper();
 
 			services.AddMvc()
 				.AddJsonOptions(
