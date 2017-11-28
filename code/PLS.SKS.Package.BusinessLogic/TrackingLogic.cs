@@ -14,13 +14,16 @@ namespace PLS.SKS.Package.BusinessLogic
         private IHopArrivalRepository hopRepo;
         private ITrackingInformationRepository trackRepo;
 		private ILogger<TrackingLogic> logger;
+		public AutoMapper.IMapper mapper { get; set; }
 
-		public TrackingLogic(IParcelRepository parcelRepository, IHopArrivalRepository hopRepository, ITrackingInformationRepository trackRepository, ILogger<TrackingLogic> logger)
+
+		public TrackingLogic(IParcelRepository parcelRepository, IHopArrivalRepository hopRepository, ITrackingInformationRepository trackRepository, ILogger<TrackingLogic> logger, AutoMapper.IMapper mapper)
 		{
 			parcelRepo = parcelRepository;
             hopRepo = hopRepository;
             trackRepo = trackRepository;
 			this.logger = logger;
+			this.mapper = mapper;
 		}
 
 		public DataAccess.Entities.Parcel TrackParcel(string trackingNumber)

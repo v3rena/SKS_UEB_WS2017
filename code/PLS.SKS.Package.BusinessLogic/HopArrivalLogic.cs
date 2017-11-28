@@ -16,13 +16,15 @@ namespace PLS.SKS.Package.BusinessLogic
         private ITrackingInformationRepository trackingRepo;
         private IHopArrivalRepository hopArrivalRepo;
 		private ILogger<HopArrivalLogic> logger;
+		public AutoMapper.IMapper mapper { get; set; }
 
-		public HopArrivalLogic(IParcelRepository parcelRepository, ITrackingInformationRepository trackingInformationRepository, IHopArrivalRepository hopArrivalRepository, ILogger<HopArrivalLogic> logger)
+		public HopArrivalLogic(IParcelRepository parcelRepository, ITrackingInformationRepository trackingInformationRepository, IHopArrivalRepository hopArrivalRepository, ILogger<HopArrivalLogic> logger, AutoMapper.IMapper mapper)
 		{
 			parcelRepo = parcelRepository;
 			trackingRepo = trackingInformationRepository;
 			hopArrivalRepo = hopArrivalRepository;
 			this.logger = logger;
+			this.mapper = mapper;
 		}
 
 		public void ScanParcel(string trackingNumber, string code)
