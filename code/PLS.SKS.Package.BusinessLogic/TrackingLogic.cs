@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using PLS.SKS.Package.BusinessLogic.Entities;
 using PLS.SKS.Package.DataAccess.Interfaces;
 using System;
@@ -12,12 +13,17 @@ namespace PLS.SKS.Package.BusinessLogic
 		private IParcelRepository parcelRepo;
         private IHopArrivalRepository hopRepo;
         private ITrackingInformationRepository trackRepo;
+		private ILogger<TrackingLogic> logger;
+		public AutoMapper.IMapper mapper { get; set; }
 
-		public TrackingLogic(IParcelRepository parcelRepository, IHopArrivalRepository hopRepository, ITrackingInformationRepository trackRepository)
+
+		public TrackingLogic(IParcelRepository parcelRepository, IHopArrivalRepository hopRepository, ITrackingInformationRepository trackRepository, ILogger<TrackingLogic> logger, AutoMapper.IMapper mapper)
 		{
 			parcelRepo = parcelRepository;
             hopRepo = hopRepository;
             trackRepo = trackRepository;
+			this.logger = logger;
+			this.mapper = mapper;
 		}
 
 		public DataAccess.Entities.Parcel TrackParcel(string trackingNumber)

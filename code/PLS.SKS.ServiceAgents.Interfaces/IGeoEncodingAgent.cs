@@ -9,6 +9,6 @@ namespace PLS.SKS.ServiceAgents.Interfaces
 {
 	public interface IGeoEncodingAgent
 	{
-		GeoCoordinates EncodeAddress(Address a);
+		Location EncodeAddress(Recipient a);
 	}
 }
