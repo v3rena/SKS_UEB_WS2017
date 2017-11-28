@@ -35,11 +35,19 @@ namespace IO.Swagger.Controllers
     public class DefaultApiController : Controller
     {
 		IBusinessLogicFacade bl;
+		private IHopArrivalLogic hopArrivalLogic;
+		private IParcelEntryLogic parcelEntryLogic;
+		private ITrackingLogic trackingLogic;
+		private IWarehouseLogic warehouseLogic;
 		ILogger<DefaultApiController> logger;
 
-		public DefaultApiController(IBusinessLogicFacade bl, ILogger<DefaultApiController> logger) //ITrackingLogic, IMapper
+		public DefaultApiController(IBusinessLogicFacade bl, ILogger<DefaultApiController> logger, IHopArrivalLogic hopArrivalLogic, IParcelEntryLogic parcelEntryLogic, ITrackingLogic trackingLogic, IWarehouseLogic warehouseLogic) //ITrackingLogic, IMapper
 		{
 			this.bl = bl;
+			this.hopArrivalLogic = hopArrivalLogic;
+			this.parcelEntryLogic = parcelEntryLogic;
+			this.trackingLogic = trackingLogic;
+			this.warehouseLogic = warehouseLogic;
 			this.logger = logger;
 		}
 
@@ -111,8 +119,7 @@ namespace IO.Swagger.Controllers
         public virtual IActionResult SubmitParcel([FromBody]Parcel newParcel)
         {
 			logger.LogInformation("Calling the SubmitParcel action");
-			string trNr = bl.AddParcel(newParcel);
-			//Test it!!
+			string trNr = parcelEntryLogic.AddParcel(newParcel);
 			InlineResponse200 inlineR = new InlineResponse200(trNr);
             return new ObjectResult(inlineR);
         }

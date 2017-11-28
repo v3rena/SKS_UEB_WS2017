@@ -11,7 +11,10 @@ namespace PLS.SKS.Package.BusinessLogic.MapperProfiles
         {
             CreateMap<Entities.Recipient, DataAccess.Entities.Recipient>()
                 .ForMember(model => model.Id, option => option.Ignore());
-            CreateMap<Entities.Parcel, DataAccess.Entities.Parcel>()
+			CreateMap<Entities.HopArrival, DataAccess.Entities.HopArrival>()
+			   .ForMember(model => model.Id, option => option.Ignore())
+			   .ForMember(model => model.TrackingInformationId, option => option.Ignore());
+			CreateMap<Entities.Parcel, DataAccess.Entities.Parcel>()
                 .ForMember(model => model.Id, option => option.Ignore())
                 .ForMember(model => model.TrackingInformationId, option => option.Ignore())
                 .ForMember(model => model.RecipientId, option => option.Ignore());

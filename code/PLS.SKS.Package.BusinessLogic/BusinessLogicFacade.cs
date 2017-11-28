@@ -37,18 +37,6 @@ namespace PLS.SKS.Package.BusinessLogic
 			hopArrivalLogic.ScanParcel(trackingNumber, code);
 		}
 
-		public string AddParcel(IO.Swagger.Models.Parcel serviceParcel)
-        {
-			logger.LogInformation("Calling the AddParcel action");
-			Entities.Parcel blParcel = Mapper.Map<Entities.Parcel>(serviceParcel);
-			if(blParcel!=null)
-			{
-				logger.LogError(ValidateParcel(blParcel));
-			}
-			DataAccess.Entities.Parcel dalParcel = Mapper.Map<DataAccess.Entities.Parcel>(blParcel);
-			return parcelEntryLogic.AddParcel(dalParcel);
-        }
-
         public IO.Swagger.Models.TrackingInformation TrackParcel(string trackingNumber)
         {
 			logger.LogInformation("Calling the TrackParcel action");
