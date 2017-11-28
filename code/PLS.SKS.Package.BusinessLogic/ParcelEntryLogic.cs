@@ -9,6 +9,7 @@ using System.Linq;
 using PLS.SKS.Package.DataAccess.Interfaces;
 using PLS.SKS.ServiceAgents.Interfaces;
 using Microsoft.Extensions.Logging;
+using PLS.SKS.Package.BusinessLogic.Helpers;
 
 namespace PLS.SKS.Package.BusinessLogic
 {
@@ -17,15 +18,17 @@ namespace PLS.SKS.Package.BusinessLogic
 		private IParcelRepository parcelRepo;
 		private ITrackingInformationRepository trackingRepo;
 		private IHopArrivalRepository hopArrivalRepo;
+		private ITruckRepository truckRepo;
 		private IGeoEncodingAgent encodingAgent;
 		private ILogger<ParcelEntryLogic> logger;
 		private AutoMapper.IMapper mapper;
 
-		public ParcelEntryLogic(IParcelRepository parcelRepository, ITrackingInformationRepository trackingInformationRepository, IHopArrivalRepository hopArrivalRepository, IGeoEncodingAgent encodingAgent, ILogger<ParcelEntryLogic> logger, AutoMapper.IMapper mapper)
+		public ParcelEntryLogic(ITruckRepository truckRepository, IParcelRepository parcelRepository, ITrackingInformationRepository trackingInformationRepository, IHopArrivalRepository hopArrivalRepository, IGeoEncodingAgent encodingAgent, ILogger<ParcelEntryLogic> logger, AutoMapper.IMapper mapper)
 		{
 			parcelRepo = parcelRepository;
 			trackingRepo = trackingInformationRepository;
 			hopArrivalRepo = hopArrivalRepository;
+			truckRepo = truckRepository;
 			this.encodingAgent = encodingAgent;
 			this.logger = logger;
 			this.mapper = mapper;
@@ -79,6 +82,29 @@ namespace PLS.SKS.Package.BusinessLogic
 			ServiceAgents.DTOs.Recipient saRecipient = mapper.Map<ServiceAgents.DTOs.Recipient>(blRecipient);
 			var saLocation = encodingAgent.EncodeAddress(saRecipient);
 			Entities.Location blLocation = mapper.Map<Entities.Location>(saLocation);
+
+			//Select truck with shortest distance
+			//Retrieve hierarchy of warehouses from that truck
+			//Write that info to TrackingInformation of parcel
+		}
+
+		private Entities.Truck SelectNearestTruck(Entities.Location blLocation)
+		{
+			var trucks = truckRepo.GetAll();
+			var NearestTruck = trucks.FirstOrDefault();
+			var smallestDistance = DistanceCalculator.GetDistanceBetweenTwoPoints((double)NearestTruck.Latitude, (double)NearestTruck.Longitude, blLocation.Lng, blLocation.Lng);
+
+			foreach (var truck in trucks)
+			{
+				var distance = DistanceCalculator.GetDistanceBetweenTwoPoints((double)truck.Latitude, (double)truck.Longitude, blLocation.Lng, blLocation.Lng);
+				if (distance < smallestDistance)
+				{
+					smallestDistance = distance;
+					NearestTruck = truck;
+				}
+			}
+			//Map the truck!
+			return new Entities.Truck();
 		}
 
 		private string ValidateParcel(Entities.Parcel blParcel)
