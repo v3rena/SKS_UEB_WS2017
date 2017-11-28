@@ -11,7 +11,7 @@ namespace PLS.SKS.Package.BusinessLogic
 	{
 		private IWarehouseRepository warehouseRepo;
 		private ILogger<WarehouseLogic> logger;
-		public AutoMapper.IMapper mapper { get; set; }
+		private AutoMapper.IMapper mapper;
 
 		public WarehouseLogic(IWarehouseRepository warehouseRepository, ILogger<WarehouseLogic> logger, AutoMapper.IMapper mapper)
 		{

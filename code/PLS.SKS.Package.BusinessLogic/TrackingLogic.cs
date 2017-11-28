@@ -14,7 +14,7 @@ namespace PLS.SKS.Package.BusinessLogic
         private IHopArrivalRepository hopRepo;
         private ITrackingInformationRepository trackRepo;
 		private ILogger<TrackingLogic> logger;
-		public AutoMapper.IMapper mapper { get; set; }
+		private AutoMapper.IMapper mapper;
 
 
 		public TrackingLogic(IParcelRepository parcelRepository, IHopArrivalRepository hopRepository, ITrackingInformationRepository trackRepository, ILogger<TrackingLogic> logger, AutoMapper.IMapper mapper)

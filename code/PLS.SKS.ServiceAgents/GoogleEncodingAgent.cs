@@ -15,7 +15,7 @@ namespace PLS.SKS.ServiceAgents
 	{
 		private static readonly string apiKey = "AIzaSyBx774ImXlKrTp_3Zr2ugSPgzD_Yjjk1QQ";
 		private ILogger<GoogleEncodingAgent> logger;
-		public AutoMapper.IMapper mapper { get; set; }
+		private AutoMapper.IMapper mapper;
 
 		public GoogleEncodingAgent(ILogger<GoogleEncodingAgent> logger, AutoMapper.IMapper mapper)
 		{

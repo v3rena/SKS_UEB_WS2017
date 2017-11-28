@@ -20,8 +20,7 @@ namespace PLS.SKS.Package.BusinessLogic
 		private IHopArrivalRepository hopArrivalRepo;
 		private IGeoEncodingAgent encodingAgent;
 		private ILogger<ParcelEntryLogic> logger;
-
-		public AutoMapper.IMapper mapper { get; set; }
+		private AutoMapper.IMapper mapper;
 
 		public ParcelEntryLogic(IParcelRepository parcelRepository, ITrackingInformationRepository trackingInformationRepository, IHopArrivalRepository hopArrivalRepository, IGeoEncodingAgent encodingAgent, ILogger<ParcelEntryLogic> logger, AutoMapper.IMapper mapper)
 		{
@@ -68,7 +67,6 @@ namespace PLS.SKS.Package.BusinessLogic
 			Entities.Recipient blRecipient = mapper.Map<Entities.Recipient>(parcel.Recipient);
 			ServiceAgents.DTOs.Recipient saRecipient = mapper.Map<ServiceAgents.DTOs.Recipient>(blRecipient);
 			var saLocation = encodingAgent.EncodeAddress(saRecipient);
-
 			Entities.Location blLocation = mapper.Map<Entities.Location>(saLocation);
 
 			trackInfo.futureHops = new List<HopArrival> { hop2, hop3, hop4 };
