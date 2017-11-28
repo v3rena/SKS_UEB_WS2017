@@ -29,6 +29,7 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
 
             MockHopArrivalRepository mockHopRepo = new MockHopArrivalRepository();
             MockTrackingInformationRepository mockTrackRepo = new MockTrackingInformationRepository();
+			MockTruckRepository mockTruckRepo = new MockTruckRepository();
             MockParcelRepository mockParcelRepo = new MockParcelRepository(mockTrackRepo);
 
 			var mockMapper = new Mock<AutoMapper.IMapper>();
@@ -39,7 +40,7 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
 			ILogger<GoogleEncodingAgent> googleEncodingAgentLogger = mockGoogleEncodingAgentLogger.Object;
 			var encodingAgent = new GoogleEncodingAgent(googleEncodingAgentLogger, mapper);
 
-			Interfaces.IParcelEntryLogic parcelLogic = new ParcelEntryLogic(mockParcelRepo, mockTrackRepo, mockHopRepo, encodingAgent, parcelEntryLogicLogger, mapper);
+			Interfaces.IParcelEntryLogic parcelLogic = new ParcelEntryLogic(mockTruckRepo, mockParcelRepo, mockTrackRepo, mockHopRepo, encodingAgent, parcelEntryLogicLogger, mapper);
 
             var trackNumber = parcelLogic.AddParcel(validDALParcel);
             Assert.IsNotNull(trackNumber);
