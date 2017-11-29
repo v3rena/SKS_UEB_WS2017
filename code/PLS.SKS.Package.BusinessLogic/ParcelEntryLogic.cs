@@ -37,17 +37,25 @@ namespace PLS.SKS.Package.BusinessLogic
 		public string AddParcel(IO.Swagger.Models.Parcel serviceParcel)
         {
 			logger.LogInformation("Calling the AddParcel action");
-			Entities.Parcel blParcel = mapper.Map<Entities.Parcel>(serviceParcel);
-			if (blParcel != null)
+			try
 			{
-				logger.LogError(ValidateParcel(blParcel));
+				Entities.Parcel blParcel = mapper.Map<Entities.Parcel>(serviceParcel);
+				if (blParcel != null)
+				{
+					logger.LogError(ValidateParcel(blParcel));
+				}
+				DataAccess.Entities.Parcel dalParcel = mapper.Map<DataAccess.Entities.Parcel>(blParcel);
+				dalParcel.TrackingInformation = GenerateTrackingInformation(dalParcel);
+				dalParcel.TrackingNumber = RandomString(8);
+				parcelRepo.Create(dalParcel);
+				return dalParcel.TrackingNumber;
 			}
-			DataAccess.Entities.Parcel dalParcel = mapper.Map<DataAccess.Entities.Parcel>(blParcel);
-			dalParcel.TrackingInformation = GenerateTrackingInformation(dalParcel);
-			dalParcel.TrackingNumber = RandomString(8);
-			parcelRepo.Create(dalParcel);
-			return dalParcel.TrackingNumber;
-        }
+			catch (Exception ex)
+			{
+				logger.LogError("Could not add parcel", ex);
+				throw new BLException("Could not add parcel", ex);
+			}
+		}
 
 		private static string RandomString(int length)
 		{
@@ -78,12 +86,12 @@ namespace PLS.SKS.Package.BusinessLogic
 
 			return dalTrackInfo;
 
+			//UNDER CONSTRUCTION
 			Entities.Recipient blRecipient = mapper.Map<Entities.Recipient>(parcel.Recipient);
 			ServiceAgents.DTOs.Recipient saRecipient = mapper.Map<ServiceAgents.DTOs.Recipient>(blRecipient);
 			var saLocation = encodingAgent.EncodeAddress(saRecipient);
 			Entities.Location blLocation = mapper.Map<Entities.Location>(saLocation);
-
-			//Select truck with shortest distance
+			var truck = SelectNearestTruck(blLocation);
 			//Retrieve hierarchy of warehouses from that truck
 			//Write that info to TrackingInformation of parcel
 		}
@@ -103,8 +111,8 @@ namespace PLS.SKS.Package.BusinessLogic
 					NearestTruck = truck;
 				}
 			}
-			//Map the truck!
-			return new Entities.Truck();
+			Entities.Truck blTruck = mapper.Map<Entities.Truck>(NearestTruck);
+			return blTruck;
 		}
 
 		private string ValidateParcel(Entities.Parcel blParcel)
