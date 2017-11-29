@@ -33,6 +33,11 @@ namespace PLS.SKS.Package.BusinessLogic
 
 			DataAccess.Entities.Parcel dalParcel = parcelRepo.GetByTrackingNumber(trackingNumber);
 
+            if(dalParcel == null)
+            {
+                throw new BLException("Parcel not found in Database");
+            }
+
             //get HopArrivals with "TrackingInformationID"
             List<DataAccess.Entities.HopArrival> hopArr = hopRepo.GetByTrackingInformationId(dalParcel.TrackingInformationId);
             //fill visitedHops and futureHops lists
@@ -52,7 +57,6 @@ namespace PLS.SKS.Package.BusinessLogic
 			if (blParcel != null)
 			{
 				logger.LogError(ValidateParcel(blParcel));
-
 			}
 			IO.Swagger.Models.TrackingInformation info = mapper.Map<IO.Swagger.Models.TrackingInformation>(blParcel.TrackingInformation);
 			return info;

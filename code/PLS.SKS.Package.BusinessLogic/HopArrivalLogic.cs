@@ -30,22 +30,36 @@ namespace PLS.SKS.Package.BusinessLogic
 		public void ScanParcel(string trackingNumber, string code)
         {
 			logger.LogInformation("Calling the ScanParcel action");
+            try
+            {
+                //get Parcel with trackingNumber
+                DataAccess.Entities.Parcel dalParcel = parcelRepo.GetByTrackingNumber(trackingNumber);
+                if(dalParcel == null)
+                {
+                    throw new BLException("Parcel not found in Database");
+                }
+                //get TrackingInformation for Parcel
+                DataAccess.Entities.TrackingInformation dalInfo = trackingRepo.GetById(dalParcel.TrackingInformationId);
+                //get HopArrivals with "TrackingInformationID"
+                List<DataAccess.Entities.HopArrival> hopArr = hopArrivalRepo.GetByTrackingInformationId(dalInfo.Id);
+                //get HopArrival with "Code"
+                DataAccess.Entities.HopArrival h = new DataAccess.Entities.HopArrival { Code = code };
+                int index = hopArr.FindIndex(a => a.Code == h.Code);
+                if (index == -1)
+                {
+                    throw new BLException("Wrong Hop for Parcel");
+                }
+                //update Status to visited
+                hopArr[index].Status = "visited";
+                //update DateTime to now
+                hopArr[index].DateTime = DateTime.Now;
 
-			//get Parcel with trackingNumber
-			DataAccess.Entities.Parcel dalParcel = parcelRepo.GetByTrackingNumber(trackingNumber);
-            //get TrackingInformation for Parcel
-            DataAccess.Entities.TrackingInformation dalInfo = trackingRepo.GetById(dalParcel.TrackingInformationId);
-            //get HopArrivals with "TrackingInformationID"
-            List<DataAccess.Entities.HopArrival> hopArr = hopArrivalRepo.GetByTrackingInformationId(dalInfo.Id);
-            //get HopArrival with "Code"
-            DataAccess.Entities.HopArrival h = new DataAccess.Entities.HopArrival { Code = code };
-            int index = hopArr.FindIndex(a => a.Code == h.Code);
-            //update Status to visited
-            hopArr[index].Status = "visited";
-            //update DateTime to now
-            hopArr[index].DateTime = DateTime.Now;
-
-			hopArrivalRepo.Update(hopArr[index]);
+                hopArrivalRepo.Update(hopArr[index]);
+            }
+			catch(BLException b)
+            {
+                throw b;
+            }
         }
     }
 }

@@ -39,11 +39,20 @@ namespace PLS.SKS.Package.BusinessLogic
 			logger.LogInformation("Calling the AddParcel action");
 			try
 			{
+                if (serviceParcel == null)
+                {
+                    throw new ArgumentNullException("serviceParcel", "Received Service Parcel was NULL");
+                }
 				Entities.Parcel blParcel = mapper.Map<Entities.Parcel>(serviceParcel);
 				if (blParcel != null)
 				{
-					logger.LogError(ValidateParcel(blParcel));
-				}
+                    string validationResults = ValidatePreAddedParcel(blParcel);
+                    if(validationResults != "")
+                    {
+                        logger.LogError(validationResults);
+                        throw new ArgumentException("Given Parcel is not valid");
+                    }
+                }
 				DataAccess.Entities.Parcel dalParcel = mapper.Map<DataAccess.Entities.Parcel>(blParcel);
 				dalParcel.TrackingInformation = GenerateTrackingInformation(dalParcel);
 				dalParcel.TrackingNumber = RandomString(8);
@@ -130,5 +139,21 @@ namespace PLS.SKS.Package.BusinessLogic
 			}
 			return validationResults.ToString();
 		}
-	}
+
+        private string ValidatePreAddedParcel(Entities.Parcel blParcel)
+        {
+            StringBuilder validationResults = new StringBuilder();
+
+            Validator.PreAddedParcelValidator validator = new Validator.PreAddedParcelValidator();
+            ValidationResult results = validator.Validate(blParcel);
+            bool validationSucceeded = results.IsValid;
+            IList<ValidationFailure> failures = results.Errors;
+
+            foreach (var failure in failures)
+            {
+                validationResults.Append(failure);
+            }
+            return validationResults.ToString();
+        }
+    }
   }
