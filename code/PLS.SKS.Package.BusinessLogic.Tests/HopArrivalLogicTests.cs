@@ -15,7 +15,7 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
         MockTrackingInformationRepository mockTrackRepo;
         MockParcelRepository mockParcelRepo;
 
-        private void Setup()
+        public HopArrivalLogicTests()
         {
             mockHopRepo = new MockHopArrivalRepository();
             mockTrackRepo = new MockTrackingInformationRepository();
@@ -26,14 +26,12 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
         [TestMethod]
         public void ScanParcel_ValidInputArguments_HopArrivalUpdated()
         {
-            Setup();
-
             var mockMapper = new Mock<AutoMapper.IMapper>();
             var mapper = mockMapper.Object;
             var mockHopArrivalLogicLogger = new Mock<ILogger<HopArrivalLogic>>();
             ILogger<HopArrivalLogic> hopArrivalLogicLogger = mockHopArrivalLogicLogger.Object;
-
             Interfaces.IHopArrivalLogic hopArrivalLogic = new HopArrivalLogic(mockParcelRepo, mockTrackRepo, mockHopRepo, hopArrivalLogicLogger, mapper);
+
             hopArrivalLogic.ScanParcel("TN000001", "WH02");
 
             List<DataAccess.Entities.HopArrival> hopArr = mockHopRepo.GetByTrackingInformationId(1);
@@ -46,8 +44,6 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
         [TestMethod]
         public void ScanParcel_InvalidTrackinNumber_ThrowsException()
         {
-            Setup();
-
             var mockMapper = new Mock<AutoMapper.IMapper>();
             var mapper = mockMapper.Object;
             var mockHopArrivalLogicLogger = new Mock<ILogger<HopArrivalLogic>>();
@@ -61,8 +57,6 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
         [TestMethod]
         public void ScanParcel_InvalidHopCode_ThrowsException()
         {
-            Setup();
-
             var mockMapper = new Mock<AutoMapper.IMapper>();
             var mapper = mockMapper.Object;
             var mockHopArrivalLogicLogger = new Mock<ILogger<HopArrivalLogic>>();

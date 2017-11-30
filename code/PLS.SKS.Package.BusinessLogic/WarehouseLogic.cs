@@ -28,6 +28,11 @@ namespace PLS.SKS.Package.BusinessLogic
 			//Should return root warehouse
 			var dalWarehouse = warehouseRepo.GetById(1);
 
+            if(dalWarehouse == null)
+            {
+                throw new BLException("No RootWarehouse found");
+            }
+
 			Entities.Warehouse blWarehouse = mapper.Map<Entities.Warehouse>(dalWarehouse);
 			if (blWarehouse != null)
 			{
@@ -44,7 +49,12 @@ namespace PLS.SKS.Package.BusinessLogic
 			Entities.Warehouse blWarehouse = mapper.Map<Entities.Warehouse>(warehouse);
 			if (blWarehouse != null)
 			{
-				logger.LogError(ValidateWarehouse(blWarehouse));
+                string validationResults = ValidateWarehouse(blWarehouse);
+                if (validationResults != "")
+                {
+                    logger.LogError(validationResults);
+                    throw new BLException("Given Warehouse is not valid");
+                }
 			}
 			DataAccess.Entities.Warehouse dalWarehouse = mapper.Map<DataAccess.Entities.Warehouse>(blWarehouse);
 

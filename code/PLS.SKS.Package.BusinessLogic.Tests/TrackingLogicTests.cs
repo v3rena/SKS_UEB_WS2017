@@ -22,7 +22,7 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
         DataAccess.Entities.TrackingInformation validDALInfo;
         IO.Swagger.Models.TrackingInformation validSwagInfo;
 
-        public void Setup()
+        public TrackingLogicTests()
         {
             mockHopRepo = new MockHopArrivalRepository();
             mockTrackRepo = new MockTrackingInformationRepository();
@@ -92,8 +92,6 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
         [TestMethod]
         public void TrackArrival_ValidInputArguments_ReturnsTrackingInformation()
         {
-            Setup();            
-
 			var mockMapper = new Mock<AutoMapper.IMapper>();
             mockMapper.Setup(m => m.Map<Entities.Parcel>(It.IsAny<DataAccess.Entities.Parcel>())).Returns(validBLParcel);
             mockMapper.Setup(m => m.Map<IO.Swagger.Models.TrackingInformation>(It.IsAny<Entities.TrackingInformation>())).Returns(validSwagInfo);
@@ -111,8 +109,6 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
 		[TestMethod]
 		public void TrackArrival_PackageDoesNotExist_ThrowsException()
 		{
-            Setup();
-
 			var mockMapper = new Mock<AutoMapper.IMapper>();
 			var mapper = mockMapper.Object;
 			var mockTrackingLogicLogger = new Mock<ILogger<TrackingLogic>>();

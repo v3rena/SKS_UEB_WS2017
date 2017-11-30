@@ -10,9 +10,25 @@ namespace PLS.SKS.Package.DataAccess.Mock
     {
         public MockWarehouseRepository()
         {
-            //Create(new Entities.Warehouse("Bez1_1", "descr", 1.0m, new List<Entities.Warehouse>(), new List<Entities.Truck>()));
-            //Create(new Entities.Warehouse("Reg1_1", "descr", 1.0m, new List<Entities.Warehouse>(), new List<Entities.Truck>()));
-            //Create(new Entities.Warehouse("Root", "descr", 1.0m, new List<Entities.Warehouse>(), new List<Entities.Truck>()));
+            var wh3 = new Warehouse("Bez1_1", "descr", 1.0m, new List<Warehouse>(), new List<Truck>());
+            wh3.Id = 3;
+            var wh2List = new List<Warehouse>();
+            wh2List.Add(wh3);
+            var wh2 = new Warehouse("Reg1_1", "descr", 1.0m, wh2List, new List<Truck>());
+            wh2.Id = 2;
+            var wh1List = new List<Warehouse>();
+            wh1List.Add(wh2);
+            var wh1 = new Warehouse("Root", "descr", 1.0m, wh1List, new List<Truck>());
+            wh1.Id = 1;
+
+            warehouses.Add(wh1);
+            warehouses.Add(wh2);
+            warehouses.Add(wh3);
+            m_id = 4;
+        }
+        public MockWarehouseRepository(bool b)
+        {
+            m_id = 1;
         }
 
         public int Create(Warehouse w)
@@ -41,6 +57,6 @@ namespace PLS.SKS.Package.DataAccess.Mock
         }
 
         private List<Entities.Warehouse> warehouses = new List<Entities.Warehouse>();
-        private int m_id = 0;
+        private int m_id;
     }
 }

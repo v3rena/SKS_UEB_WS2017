@@ -29,7 +29,7 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
         ILogger<GoogleEncodingAgent> googleEncodingAgentLogger;
         GoogleEncodingAgent encodingAgent;
 
-        private void Setup()
+        public ParcelEntryLogicTests()
         {
             mockHopRepo = new MockHopArrivalRepository();
             mockTrackRepo = new MockTrackingInformationRepository();
@@ -61,7 +61,6 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
 		public void AddParcel_ValidInputArguments_ReturnsParcelTrackingNumber()
 		{
             //Arrange
-            Setup();
             var mockMapper = new Mock<AutoMapper.IMapper>();
             mockMapper.Setup(m => m.Map<Entities.Parcel>(It.IsAny<IO.Swagger.Models.Parcel>())).Returns(validBLParcel);
             mockMapper.Setup(m => m.Map<DataAccess.Entities.Parcel>(It.IsAny<Entities.Parcel>())).Returns(validDALParcel);
@@ -78,7 +77,6 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
         [TestMethod]
         public void AddParcel_NullParcel_ThrowsException()
         {
-            Setup();
             var mockMapper = new Mock<AutoMapper.IMapper>();
             mockMapper.Setup(m => m.Map<Entities.Parcel>(It.IsAny<IO.Swagger.Models.Parcel>())).Returns(validBLParcel);
             mockMapper.Setup(m => m.Map<DataAccess.Entities.Parcel>(It.IsAny<Entities.Parcel>())).Returns(validDALParcel);
@@ -92,7 +90,6 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
         [TestMethod]
         public void AddParcel_InvalidParcel_ThrowsException()
         {
-            Setup();
             var mockMapper = new Mock<AutoMapper.IMapper>();
             mockMapper.Setup(m => m.Map<Entities.Parcel>(It.IsAny<IO.Swagger.Models.Parcel>())).Returns(invalidBLParcel);
             mockMapper.Setup(m => m.Map<DataAccess.Entities.Parcel>(It.IsAny<Entities.Parcel>())).Returns(validDALParcel);

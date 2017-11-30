@@ -27,9 +27,15 @@ namespace PLS.SKS.Package.Services
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-			//Add Database Context
-			services.AddDbContext<DataAccess.Sql.DBContext>(options =>
-			options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //Add Database Context
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            if(Configuration.GetConnectionString("DefaultConnection") == null)
+            {
+                connectionString = "Server = (localdb)\\mssqllocaldb; Database = ParcelLogisticsDB; Trusted_Connection = True; MultipleActiveResultSets = true";
+            }
+
+            services.AddDbContext<DataAccess.Sql.DBContext>(options =>
+			options.UseSqlServer(connectionString));
 
 			//Add BusinessLogic Components
 			services.AddScoped<BusinessLogic.Interfaces.IHopArrivalLogic, BusinessLogic.HopArrivalLogic>();
