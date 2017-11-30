@@ -11,5 +11,7 @@ namespace PLS.SKS.Package.DataAccess.Interfaces
         Update(Warehouse w); void
         Delete(int id);
         Warehouse GetById(int id);
-    }
+		Warehouse GetParent(Truck truck);
+		Warehouse GetParent(Warehouse warehouse);
+	}
 }

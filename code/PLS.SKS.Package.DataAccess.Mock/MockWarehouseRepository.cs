@@ -56,7 +56,17 @@ namespace PLS.SKS.Package.DataAccess.Mock
             return warehouses.SingleOrDefault(item => item.Id == id);
         }
 
-        private List<Entities.Warehouse> warehouses = new List<Entities.Warehouse>();
+		public Warehouse GetParent(Truck truck)
+		{
+			throw new NotImplementedException();
+		}
+
+		public Warehouse GetParent(Warehouse warehouse)
+		{
+			throw new NotImplementedException();
+		}
+
+		private List<Entities.Warehouse> warehouses = new List<Entities.Warehouse>();
         private int m_id;
     }
 }

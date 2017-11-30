@@ -15,6 +15,7 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
         MockTrackingInformationRepository mockTrackRepo;
         MockTruckRepository mockTruckRepo;
         MockParcelRepository mockParcelRepo;
+		MockWarehouseRepository mockWarehouseRepo;
 
         Entities.Recipient validBLRec;
         Entities.Parcel validBLParcel;
@@ -34,6 +35,7 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
             mockHopRepo = new MockHopArrivalRepository();
             mockTrackRepo = new MockTrackingInformationRepository();
             mockTruckRepo = new MockTruckRepository();
+			mockWarehouseRepo = new MockWarehouseRepository();
             mockParcelRepo = new MockParcelRepository(mockTrackRepo);
 
             CreateParcels();
@@ -66,7 +68,7 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
             mockMapper.Setup(m => m.Map<DataAccess.Entities.Parcel>(It.IsAny<Entities.Parcel>())).Returns(validDALParcel);
             var mapper = mockMapper.Object;
             encodingAgent = new GoogleEncodingAgent(googleEncodingAgentLogger, mapper);
-            Interfaces.IParcelEntryLogic parcelLogic = new ParcelEntryLogic(mockTruckRepo, mockParcelRepo, mockTrackRepo, mockHopRepo, encodingAgent, parcelEntryLogicLogger, mapper);
+            Interfaces.IParcelEntryLogic parcelLogic = new ParcelEntryLogic(mockWarehouseRepo, mockTruckRepo, mockParcelRepo, mockTrackRepo, mockHopRepo, encodingAgent, parcelEntryLogicLogger, mapper);
             //Act
             var trackNumber = parcelLogic.AddParcel(validSwagParcel);
             //Assert
@@ -82,7 +84,7 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
             mockMapper.Setup(m => m.Map<DataAccess.Entities.Parcel>(It.IsAny<Entities.Parcel>())).Returns(validDALParcel);
             var mapper = mockMapper.Object;
             encodingAgent = new GoogleEncodingAgent(googleEncodingAgentLogger, mapper);
-            Interfaces.IParcelEntryLogic parcelLogic = new ParcelEntryLogic(mockTruckRepo, mockParcelRepo, mockTrackRepo, mockHopRepo, encodingAgent, parcelEntryLogicLogger, mapper);
+            Interfaces.IParcelEntryLogic parcelLogic = new ParcelEntryLogic(mockWarehouseRepo, mockTruckRepo, mockParcelRepo, mockTrackRepo, mockHopRepo, encodingAgent, parcelEntryLogicLogger, mapper);
 
             Assert.ThrowsException<BLException>( () => parcelLogic.AddParcel(null));
         }
@@ -95,7 +97,7 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
             mockMapper.Setup(m => m.Map<DataAccess.Entities.Parcel>(It.IsAny<Entities.Parcel>())).Returns(validDALParcel);
             var mapper = mockMapper.Object;
             encodingAgent = new GoogleEncodingAgent(googleEncodingAgentLogger, mapper);
-            Interfaces.IParcelEntryLogic parcelLogic = new ParcelEntryLogic(mockTruckRepo, mockParcelRepo, mockTrackRepo, mockHopRepo, encodingAgent, parcelEntryLogicLogger, mapper);
+            Interfaces.IParcelEntryLogic parcelLogic = new ParcelEntryLogic(mockWarehouseRepo, mockTruckRepo, mockParcelRepo, mockTrackRepo, mockHopRepo, encodingAgent, parcelEntryLogicLogger, mapper);
 
             Assert.ThrowsException<BLException>(() => parcelLogic.AddParcel(validSwagParcel));
         }
