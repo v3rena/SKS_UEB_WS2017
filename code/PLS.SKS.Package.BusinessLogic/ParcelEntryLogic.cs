@@ -43,7 +43,7 @@ namespace PLS.SKS.Package.BusinessLogic
 			{
                 if (serviceParcel == null)
                 {
-                    throw new ArgumentNullException("serviceParcel", "Received Service Parcel was NULL");
+					throw new BLException("Received Service Parcel was null", new ArgumentNullException("serviceParcel", "Received Service Parcel was null"));
                 }
 				Entities.Parcel blParcel = mapper.Map<Entities.Parcel>(serviceParcel);
 				if (blParcel != null)
@@ -52,7 +52,7 @@ namespace PLS.SKS.Package.BusinessLogic
                     if(validationResults != "")
                     {
                         logger.LogError(validationResults);
-                        throw new ArgumentException("Given Parcel is not valid");
+                        throw new BLException("Given parcel is not valid", new ArgumentException("Given Parcel is not valid"));
                     }
                 }
 				DataAccess.Entities.Parcel dalParcel = mapper.Map<DataAccess.Entities.Parcel>(blParcel);
@@ -116,32 +116,26 @@ namespace PLS.SKS.Package.BusinessLogic
 				{
 					var hop = new DataAccess.Entities.HopArrival { DateTime = date, Code = wh.Code, Status = "future", TrackingInformationId = trackInfoId };
 					hopArrivalRepo.Create(hop);
+					dalTrackInfo.futureHops.Add(hop);
 					date = date.AddDays(1);
 				}
 
 				var truckHop = new DataAccess.Entities.HopArrival { DateTime = date, Code = truck.Code, Status = "future", TrackingInformationId = trackInfoId };
 				hopArrivalRepo.Create(truckHop);
 
-				//Add the hops to DalTrackingInfo
-
 				return dalTrackInfo;
 			}
-		}
-
-		private bool GetParent(object warehouse)
-		{
-			throw new NotImplementedException();
 		}
 
 		private DataAccess.Entities.Truck SelectNearestTruck(Entities.Location blLocation)
 		{
 			var trucks = truckRepo.GetAll();
 			var nearestTruck = trucks.FirstOrDefault();
-			var smallestDistance = DistanceCalculator.GetDistanceBetweenTwoPoints((double)nearestTruck.Latitude, (double)nearestTruck.Longitude, blLocation.Lng, blLocation.Lng);
+			var smallestDistance = DistanceCalculator.GetDistanceBetweenTwoPoints((double)nearestTruck.Latitude, (double)nearestTruck.Longitude, blLocation.Lat, blLocation.Lng);
 
 			foreach (var truck in trucks)
 			{
-				var distance = DistanceCalculator.GetDistanceBetweenTwoPoints((double)truck.Latitude, (double)truck.Longitude, blLocation.Lng, blLocation.Lng);
+				var distance = DistanceCalculator.GetDistanceBetweenTwoPoints((double)truck.Latitude, (double)truck.Longitude, blLocation.Lat, blLocation.Lng);
 				if (distance < smallestDistance)
 				{
 					smallestDistance = distance;

@@ -34,13 +34,13 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 			var trucks = new Truck[]
 			{
-				new Truck{Code="TR01", Duration=1.3m, Latitude=48.2082647m, Longitude=16.37392060000002m, Radius=50m, NumberPlate="WR-2765"},
-				new Truck{Code="TR02", Duration=1.3m, Latitude=48.2082647m, Longitude=16.37392060000002m, Radius=50m, NumberPlate="WR-2788"},
+				new Truck{Code="TR01", Duration=1.3m, Latitude=48.2089816m, Longitude=16.373213299999975m, Radius=30m, NumberPlate="WR-2765"}, //Wien Stephansplatz
+				new Truck{Code="TR02", Duration=1.3m, Latitude=48.2089816m, Longitude=16.373213299999975m, Radius=30m, NumberPlate="WR-2788"}, //Wien Stephansplatz
 			};
 			var trucks2 = new Truck[]
 			{
-				new Truck{Code="TR03", Duration=1.3m, Latitude=48.30693999999999m, Longitude=14.285830000000033m, Radius=50m, NumberPlate="WR-2777"},
-				new Truck{Code="TR04", Duration=1.3m, Latitude=48.30693999999999m, Longitude=14.285830000000033m, Radius=50m, NumberPlate="WR-2739"},
+				new Truck{Code="TR03", Duration=1.3m, Latitude=48.3059826m, Longitude=14.287141199999951m, Radius=30m, NumberPlate="WR-2777"}, //Linz Hauptplatz
+				new Truck{Code="TR04", Duration=1.3m, Latitude=48.85661400000001m, Longitude=2.3522219000000177m, Radius=30m, NumberPlate="WR-2739"}, //Paris
 			};
 			foreach (Truck c in trucks)
 			{

@@ -27,7 +27,7 @@ namespace PLS.SKS.Package.BusinessLogic.Helpers
 			distance = ConvertRadiansToDecimalDegrees(distance);
 			distance = distance * 60 * 1.1515;
 			// convert to kilometers
-			return distance * 1.609344 * 0.001;
+			return distance * 1.609344;
 		}
 
 		/// <summary>

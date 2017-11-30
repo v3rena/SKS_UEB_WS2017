@@ -50,9 +50,14 @@ namespace PLS.SKS.Package.Services
 			services.AddScoped<DataAccess.Interfaces.ITrackingInformationRepository, DataAccess.Sql.SqlTrackingInformationRepository>();
 			services.AddScoped<DataAccess.Interfaces.ITruckRepository, DataAccess.Sql.SqlTruckRepository>();
 			services.AddScoped<DataAccess.Interfaces.IWarehouseRepository, DataAccess.Sql.SqlWarehouseRepository>();
+			services.AddScoped<DataAccess.Interfaces.IDbCleaner, DataAccess.Sql.DbCleaner>();
 
 			//Add GeoEncodingAgent
 			services.AddScoped<ServiceAgents.Interfaces.IGeoEncodingAgent, ServiceAgents.GoogleEncodingAgent>();
+
+			//Add ExceptionHelper
+			services.AddScoped<DataAccess.Interfaces.IExceptionHelper, DataAccess.Sql.ExceptionHelper>();
+
 
 			//Add Mapping
 			services.AddAutoMapper();
