@@ -11,5 +11,6 @@ namespace PLS.SKS.Package.DataAccess.Interfaces
         Update(Truck t); void
         Delete(int id);
         Truck GetById(int id);
+		List<Truck> GetAll();
     }
 }

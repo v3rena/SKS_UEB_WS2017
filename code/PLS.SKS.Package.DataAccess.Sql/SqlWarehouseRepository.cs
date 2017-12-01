@@ -14,12 +14,13 @@ namespace PLS.SKS.Package.DataAccess.Sql
 	{
 		private readonly DBContext db;
 		ILogger<SqlWarehouseRepository> logger;
-		ExceptionHelper exceptionHelper = new ExceptionHelper();
+		IExceptionHelper exceptionHelper;
 
-		public SqlWarehouseRepository(DBContext context, ILogger<SqlWarehouseRepository> logger)
+		public SqlWarehouseRepository(DBContext context, ILogger<SqlWarehouseRepository> logger, IExceptionHelper exceptionHelper)
 		{
 			db = context;
 			this.logger = logger;
+			this.exceptionHelper = exceptionHelper;
 		}
 
 		public int Create(Warehouse w)
@@ -47,10 +48,10 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			try
 			{
 				Warehouse warehouse = db.Warehouses.Include(w => w.NextHops).Include(w => w.Trucks)
-				.Where(w => w.Id == id).FirstOrDefault();
+				.Where(w => w.Id == id).First();
 				SearchWarehouseHierarchy(warehouse);
 				return db.Warehouses.Include(w => w.NextHops).Include(w => w.Trucks)
-					.Where(w => w.Id == id).FirstOrDefault();
+					.Where(w => w.Id == id).First();
 			}
 			catch (SqlException ex)
 			{
@@ -59,11 +60,53 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			}
 		}
 
+		public Warehouse GetParent(Warehouse warehouse)
+		{
+			try
+			{
+				List<Warehouse> warehouses = db.Warehouses.Include(w => w.NextHops).Include(w => w.Trucks).ToList();
+				foreach (var wh in warehouses)
+				{
+					if (wh.NextHops.Contains(warehouse))
+					{
+						return wh;
+					}
+				}
+				return null;
+			}
+			catch (SqlException ex)
+			{
+				logger.LogError(exceptionHelper.BuildSqlExceptionMessage(ex));
+				throw new DALException("Could not get parent warehouse from database", ex);
+			}
+		}
+
+		public Warehouse GetParent(Truck truck)
+		{
+			try
+			{
+				List<Warehouse> warehouses = db.Warehouses.Include(w => w.NextHops).Include(w => w.Trucks).ToList();
+				foreach (var wh in warehouses)
+				{
+					if (wh.Trucks.Contains(truck))
+					{
+						return wh;
+					}
+				}
+				return null;
+			}
+			catch (SqlException ex)
+			{
+				logger.LogError(exceptionHelper.BuildSqlExceptionMessage(ex));
+				throw new DALException("Could not get parent warehouse from database", ex);
+			}
+		}
+
 		public void Update(Warehouse w)
 		{
 			try
 			{
-				var WarehouseToUpdate = db.Warehouses.SingleOrDefault(b => b.Id == w.Id);
+				var WarehouseToUpdate = db.Warehouses.Single(b => b.Id == w.Id);
 				if (WarehouseToUpdate != null)
 				{
 					WarehouseToUpdate = w;
@@ -85,7 +128,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 				{
 					int whId = wh.Id;
 					db.Warehouses.Include(w => w.NextHops).Include(w => w.Trucks)
-					.Where(w => w.Id == whId).FirstOrDefault();
+					.Where(w => w.Id == whId).First();
 					SearchWarehouseHierarchy(wh);
 				}
 			}

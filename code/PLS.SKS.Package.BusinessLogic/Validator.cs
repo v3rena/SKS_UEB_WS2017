@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using FluentValidation.Results;
 using PLS.SKS.Package.BusinessLogic.Entities;
 using System;
 using System.Collections.Generic;
@@ -40,7 +41,16 @@ namespace PLS.SKS.Package.BusinessLogic
 			}
 		}
 
-		public class TrackingInformationValidator : AbstractValidator<TrackingInformation>
+        public class PreAddedParcelValidator : AbstractValidator<Parcel>
+        {
+            public PreAddedParcelValidator()
+            {
+                RuleFor(parcel => parcel.Weight).NotEmpty().WithMessage("Please specify a weight").GreaterThan(0.0f);
+                RuleFor(parcel => parcel.Recipient).SetValidator(new RecipientValidator());
+            }
+        }
+
+        public class TrackingInformationValidator : AbstractValidator<TrackingInformation>
 		{
 			public TrackingInformationValidator()
 			{

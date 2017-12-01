@@ -1,0 +1,195 @@
+﻿2017-11-27 10:12:01,505 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-27 10:12:11,169 INFO [2] ?.? - Executed DbCommand (416ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-27 10:12:11,177 INFO [2] ?.? - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-27 10:12:11,410 INFO [2] ?.? - Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Recipients] AS [r])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+2017-11-27 10:12:11,629 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger  
+2017-11-27 10:12:11,644 INFO [8] ?.? - Request finished in 31.5078ms 301 
+2017-11-27 10:12:11,656 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/  
+2017-11-27 10:12:11,674 INFO [8] ?.? - Sending file. Request path: '/index.html'. Physical path: 'N/A'
+2017-11-27 10:12:11,681 INFO [8] ?.? - Request finished in 24.8688ms 200 text/html
+2017-11-27 10:12:11,705 INFO [10] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/css/typography.css  
+2017-11-27 10:12:11,729 INFO [10] ?.? - Sending file. Request path: '/css/typography.css'. Physical path: 'N/A'
+2017-11-27 10:12:11,732 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/css/reset.css  
+2017-11-27 10:12:11,757 INFO [11] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/css/print.css  
+2017-11-27 10:12:11,779 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/css/screen.css  
+2017-11-27 10:12:11,801 INFO [10] ?.? - Request finished in 32.0321ms 200 text/css
+2017-11-27 10:12:11,824 INFO [24] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/object-assign-pollyfill.js  
+2017-11-27 10:12:11,847 INFO [11] ?.? - Sending file. Request path: '/css/print.css'. Physical path: 'N/A'
+2017-11-27 10:12:11,869 INFO [12] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/jquery-1.8.0.min.js  
+2017-11-27 10:12:11,871 INFO [8] ?.? - Sending file. Request path: '/css/reset.css'. Physical path: 'N/A'
+2017-11-27 10:12:11,875 INFO [9] ?.? - Sending file. Request path: '/css/screen.css'. Physical path: 'N/A'
+2017-11-27 10:12:11,900 INFO [11] ?.? - Request finished in 138.7963ms 200 text/css
+2017-11-27 10:12:11,902 INFO [24] ?.? - Sending file. Request path: '/lib/object-assign-pollyfill.js'. Physical path: 'N/A'
+2017-11-27 10:12:11,926 INFO [12] ?.? - Sending file. Request path: '/lib/jquery-1.8.0.min.js'. Physical path: 'N/A'
+2017-11-27 10:12:11,928 INFO [11] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/jquery.ba-bbq.min.js  
+2017-11-27 10:12:11,931 INFO [8] ?.? - Request finished in 165.2959ms 200 text/css
+2017-11-27 10:12:11,955 INFO [24] ?.? - Request finished in 123.0424ms 200 application/javascript
+2017-11-27 10:12:11,980 INFO [11] ?.? - Sending file. Request path: '/lib/jquery.ba-bbq.min.js'. Physical path: 'N/A'
+2017-11-27 10:12:12,001 INFO [9] ?.? - Request finished in 147.3929ms 200 text/css
+2017-11-27 10:12:12,003 INFO [10] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/jquery.slideto.min.js  
+2017-11-27 10:12:12,031 INFO [10] ?.? - Sending file. Request path: '/lib/jquery.slideto.min.js'. Physical path: 'N/A'
+2017-11-27 10:12:12,052 INFO [11] ?.? - Request finished in 74.3456ms 200 application/javascript
+2017-11-27 10:12:12,061 INFO [24] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/lodash.min.js  
+2017-11-27 10:12:12,064 INFO [10] ?.? - Request finished in 130.8783ms 200 application/javascript
+2017-11-27 10:12:12,086 INFO [24] ?.? - Sending file. Request path: '/lib/lodash.min.js'. Physical path: 'N/A'
+2017-11-27 10:12:12,088 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/jquery.wiggle.min.js  
+2017-11-27 10:12:12,091 INFO [12] ?.? - Request finished in 269.8479ms 200 application/javascript
+2017-11-27 10:12:12,137 INFO [24] ?.? - Request finished in 62.2151ms 200 application/javascript
+2017-11-27 10:12:12,181 INFO [24] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/highlight.9.1.0.pack_extended.js  
+2017-11-27 10:12:12,186 INFO [24] ?.? - Sending file. Request path: '/lib/highlight.9.1.0.pack_extended.js'. Physical path: 'N/A'
+2017-11-27 10:12:12,206 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/handlebars-4.0.5.js  
+2017-11-27 10:12:12,209 INFO [11] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/backbone-min.js  
+2017-11-27 10:12:12,231 INFO [24] ?.? - Request finished in 26.1348ms 200 application/javascript
+2017-11-27 10:12:12,233 INFO [9] ?.? - Sending file. Request path: '/lib/handlebars-4.0.5.js'. Physical path: 'N/A'
+2017-11-27 10:12:12,236 INFO [11] ?.? - Sending file. Request path: '/lib/backbone-min.js'. Physical path: 'N/A'
+2017-11-27 10:12:12,240 INFO [24] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/jsoneditor.min.js  
+2017-11-27 10:12:12,246 INFO [11] ?.? - Request finished in 54.0808ms 200 application/javascript
+2017-11-27 10:12:12,248 INFO [24] ?.? - Sending file. Request path: '/lib/jsoneditor.min.js'. Physical path: 'N/A'
+2017-11-27 10:12:12,250 INFO [8] ?.? - Sending file. Request path: '/lib/jquery.wiggle.min.js'. Physical path: 'N/A'
+2017-11-27 10:12:12,272 INFO [12] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/swagger-ui.min.js  
+2017-11-27 10:12:12,278 INFO [8] ?.? - Request finished in 212.789ms 200 application/javascript
+2017-11-27 10:12:12,301 INFO [12] ?.? - Sending file. Request path: '/swagger-ui.min.js'. Physical path: 'N/A'
+2017-11-27 10:12:12,322 INFO [10] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/highlight.9.1.0.pack.js  
+2017-11-27 10:12:12,327 INFO [11] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/marked.js  
+2017-11-27 10:12:12,330 INFO [10] ?.? - Sending file. Request path: '/lib/highlight.9.1.0.pack.js'. Physical path: 'N/A'
+2017-11-27 10:12:12,353 INFO [11] ?.? - Sending file. Request path: '/lib/marked.js'. Physical path: 'N/A'
+2017-11-27 10:12:12,355 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/swagger-oauth.js  
+2017-11-27 10:12:12,378 INFO [11] ?.? - Request finished in 76.5128ms 200 application/javascript
+2017-11-27 10:12:12,380 INFO [10] ?.? - Request finished in 237.1226ms 200 application/javascript
+2017-11-27 10:12:12,386 INFO [8] ?.? - Sending file. Request path: '/lib/swagger-oauth.js'. Physical path: 'N/A'
+2017-11-27 10:12:12,393 INFO [8] ?.? - Request finished in 59.8257ms 200 application/javascript
+2017-11-27 10:12:12,424 INFO [12] ?.? - Request finished in 165.9409ms 200 application/javascript
+2017-11-27 10:12:12,426 INFO [10] ?.? - Request finished in 242.2556ms 200 application/javascript
+2017-11-27 10:12:12,433 INFO [8] ?.? - Request finished in 315.8643ms 200 application/javascript
+2017-11-27 10:12:12,443 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/images/logo_small.png  
+2017-11-27 10:12:12,447 INFO [9] ?.? - Sending file. Request path: '/images/logo_small.png'. Physical path: 'N/A'
+2017-11-27 10:12:12,454 INFO [9] ?.? - Request finished in 9.1125ms 200 image/png
+2017-11-27 10:12:12,555 INFO [10] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/v1/swagger.json  
+2017-11-27 10:12:12,635 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/images/favicon-16x16.png  
+2017-11-27 10:12:12,639 INFO [8] ?.? - Sending file. Request path: '/images/favicon-16x16.png'. Physical path: 'N/A'
+2017-11-27 10:12:12,644 INFO [8] ?.? - Request finished in 6.5071ms 200 image/png
+2017-11-27 10:12:12,807 INFO [10] ?.? - Request finished in 250.8116ms 200 application/json
+2017-11-27 10:47:31,311 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-27 10:47:32,726 INFO [2] ?.? - Executed DbCommand (441ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-27 10:47:32,734 INFO [2] ?.? - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-27 10:47:32,939 INFO [2] ?.? - Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Recipients] AS [r])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+2017-11-27 10:47:33,342 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/  
+2017-11-27 10:47:33,437 INFO [8] ?.? - Request finished in 109.5539ms 404 
+2017-11-27 10:47:33,497 INFO [10] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/favicon.ico  
+2017-11-27 10:47:33,500 INFO [10] ?.? - Request finished in 2.7553ms 404 
+2017-11-27 10:53:31,099 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-27 10:53:32,242 INFO [2] ?.? - Executed DbCommand (302ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-27 10:53:32,250 INFO [2] ?.? - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-27 10:53:32,460 INFO [2] ?.? - Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Recipients] AS [r])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+2017-11-27 10:56:24,161 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-27 10:56:25,342 INFO [2] ?.? - Executed DbCommand (337ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-27 10:56:25,350 INFO [2] ?.? - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-27 10:56:25,563 INFO [2] ?.? - Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Recipients] AS [r])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+2017-11-27 10:56:25,977 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/  
+2017-11-27 10:56:26,127 INFO [8] ?.? - Request finished in 165.2698ms 404 
+2017-11-27 10:56:31,137 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/  
+2017-11-27 10:56:31,147 INFO [8] ?.? - Sending file. Request path: '/index.html'. Physical path: 'N/A'
+2017-11-27 10:56:31,154 INFO [8] ?.? - Request finished in 17.0301ms 200 text/html
+2017-11-27 10:56:31,349 INFO [10] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/v1/swagger.json  
+2017-11-27 10:56:31,554 INFO [10] ?.? - Request finished in 201.0095ms 200 application/json
+2017-11-27 10:56:46,771 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/images/throbber.gif  
+2017-11-27 10:56:46,773 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/api/parcel/TN000001  
+2017-11-27 10:56:46,775 INFO [9] ?.? - Sending file. Request path: '/images/throbber.gif'. Physical path: 'N/A'
+2017-11-27 10:56:46,777 INFO [9] ?.? - Request finished in 6.0784ms 200 image/gif
+2017-11-27 10:56:46,844 INFO [8] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-27 10:56:46,850 INFO [8] ?.? - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-27 10:56:46,894 INFO [8] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.TrackParcel (PLS.SKS.Package.Services) with arguments (TN000001) - ModelState is Valid
+2017-11-27 10:56:46,897 INFO [8] ?.? - Calling the TrackParcel action
+2017-11-27 10:56:46,899 INFO [8] ?.? - Calling the TrackParcel action
+2017-11-27 10:56:50,973 INFO [8] ?.? - Executed DbCommand (27ms) [Parameters=[@__TrackingNumber_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[RecipientId], [p].[TrackingInformationId], [p].[TrackingNumber], [p].[Weight], [p.TrackingInformation].[Id], [p.TrackingInformation].[State], [p.Recipient].[Id], [p.Recipient].[City], [p.Recipient].[FirstName], [p.Recipient].[LastName], [p.Recipient].[PostalCode], [p.Recipient].[Street]
+FROM [Parcels] AS [p]
+INNER JOIN [TrackingInformations] AS [p.TrackingInformation] ON [p].[TrackingInformationId] = [p.TrackingInformation].[Id]
+INNER JOIN [Recipients] AS [p.Recipient] ON [p].[RecipientId] = [p.Recipient].[Id]
+WHERE [p].[TrackingNumber] = @__TrackingNumber_0
+2017-11-27 10:57:01,720 INFO [8] ?.? - Executed DbCommand (3ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [h].[Id], [h].[Code], [h].[DateTime], [h].[Status], [h].[TrackingInformationId]
+FROM [HopArrivals] AS [h]
+WHERE [h].[TrackingInformationId] = @__id_0
+2017-11-27 11:02:51,875 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-27 11:02:52,978 INFO [2] ?.? - Executed DbCommand (271ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-27 11:02:52,987 INFO [2] ?.? - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-27 11:02:53,239 INFO [2] ?.? - Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Recipients] AS [r])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+2017-11-27 13:28:26,138 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-27 13:28:36,367 INFO [2] ?.? - Executed DbCommand (522ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-27 13:28:36,375 INFO [2] ?.? - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-27 13:28:36,581 INFO [2] ?.? - Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Recipients] AS [r])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+2017-11-27 13:28:36,866 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/  
+2017-11-27 13:28:37,047 INFO [8] ?.? - Request finished in 195.0593ms 404 
+2017-11-27 13:28:37,192 INFO [10] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/favicon.ico  
+2017-11-27 13:28:37,195 INFO [10] ?.? - Request finished in 2.7238ms 404 
+2017-11-27 13:28:42,335 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/  
+2017-11-27 13:28:42,343 INFO [8] ?.? - Sending file. Request path: '/index.html'. Physical path: 'N/A'
+2017-11-27 13:28:42,349 INFO [8] ?.? - Request finished in 14.4046ms 200 text/html
+2017-11-27 13:28:42,598 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/v1/swagger.json  
+2017-11-27 13:28:42,770 INFO [9] ?.? - Request finished in 172.544ms 200 application/json
+2017-11-27 13:38:41,359 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-27 13:38:42,617 INFO [2] ?.? - Executed DbCommand (384ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-27 13:38:42,626 INFO [2] ?.? - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-27 13:38:42,850 INFO [2] ?.? - Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Recipients] AS [r])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+2017-11-27 13:38:43,030 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/  
+2017-11-27 13:38:43,120 INFO [8] ?.? - Request finished in 104.6305ms 404 
+2017-11-27 13:38:43,281 INFO [10] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/favicon.ico  
+2017-11-27 13:38:43,285 INFO [10] ?.? - Request finished in 3.7636ms 404 

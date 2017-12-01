@@ -13,9 +13,9 @@ namespace PLS.SKS.Package.DataAccess.Mock
 
         public MockRecipientRepository()
         {
-            //Create(new Recipient("Peter", "Pilz", "Waldweg 15", "1120", "Wien"));
-            //Create(new Recipient("Hans Peter", "Doskozil", "Industriestrasse 39", "1210", "Wien"));
-            //Create(new Recipient("August", "Wöginger", "Sonnenhang 7", "4779", "Andorf"));
+            //Create(new Recipient("Peter", "Pilz", "Waldweg 15", "A-1120", "Wien"));
+            //Create(new Recipient("Hans Peter", "Doskozil", "Industriestrasse 39", "A-1210", "Wien"));
+            //Create(new Recipient("August", "Wöginger", "Sonnenhang 7", "A-4779", "Andorf"));
         }
 
         public int Create(Recipient r)

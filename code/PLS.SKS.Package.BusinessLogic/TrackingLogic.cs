@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation.Results;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using PLS.SKS.Package.BusinessLogic.Entities;
 using PLS.SKS.Package.DataAccess.Interfaces;
 using System;
@@ -12,41 +14,73 @@ namespace PLS.SKS.Package.BusinessLogic
 		private IParcelRepository parcelRepo;
         private IHopArrivalRepository hopRepo;
         private ITrackingInformationRepository trackRepo;
+		private ILogger<TrackingLogic> logger;
+		private AutoMapper.IMapper mapper;
 
-		public TrackingLogic(IParcelRepository parcelRepository, IHopArrivalRepository hopRepository, ITrackingInformationRepository trackRepository)
+
+		public TrackingLogic(IParcelRepository parcelRepository, IHopArrivalRepository hopRepository, ITrackingInformationRepository trackRepository, ILogger<TrackingLogic> logger, AutoMapper.IMapper mapper)
 		{
 			parcelRepo = parcelRepository;
             hopRepo = hopRepository;
             trackRepo = trackRepository;
+			this.logger = logger;
+			this.mapper = mapper;
 		}
 
-		public DataAccess.Entities.Parcel TrackParcel(string trackingNumber)
+		public IO.Swagger.Models.TrackingInformation TrackParcel(string trackingNumber)
         {
-            DataAccess.Entities.Parcel DALParcel = parcelRepo.GetByTrackingNumber(trackingNumber);
+			logger.LogInformation("Calling the TrackParcel action");
+			try
+			{
+				DataAccess.Entities.Parcel dalParcel = parcelRepo.GetByTrackingNumber(trackingNumber);
+				if (dalParcel == null)
+				{
+					throw new BLException("Parcel not found in Database");
+				}
 
+				List<DataAccess.Entities.HopArrival> hopArr = hopRepo.GetByTrackingInformationId(dalParcel.TrackingInformationId);
 
-#if DEBUG
-            //Fuer Tests
-            if(DALParcel.TrackingInformation == null)
-            {
-                DALParcel.TrackingInformation = trackRepo.GetById(DALParcel.TrackingInformationId);
-            }
-#endif
-            //get HopArrivals with "TrackingInformationID"
-            List<DataAccess.Entities.HopArrival> hopArr = hopRepo.GetByTrackingInformationId(DALParcel.TrackingInformationId);
-            //fill visitedHops and futureHops lists
-            foreach(var h in hopArr)
-            {
-                if(h.Status == "visited")
-                {
-                    DALParcel.TrackingInformation.visitedHops.Add(h);
-                }
-                else if(h.Status == "future")
-                {
-                    DALParcel.TrackingInformation.futureHops.Add(h);
-                }
-            }
-            return DALParcel;
+				foreach (var h in hopArr)
+				{
+					if (h.Status == "visited")
+					{
+						dalParcel.TrackingInformation.visitedHops.Add(h);
+					}
+					else if (h.Status == "future")
+					{
+						dalParcel.TrackingInformation.futureHops.Add(h);
+					}
+				}
+	
+				Entities.Parcel blParcel = mapper.Map<Entities.Parcel>(dalParcel);
+				if (blParcel != null)
+				{
+					logger.LogError(ValidateParcel(blParcel));
+				}
+				IO.Swagger.Models.TrackingInformation info = mapper.Map<IO.Swagger.Models.TrackingInformation>(blParcel.TrackingInformation);
+				return info;
+			}
+			catch (Exception ex)
+			{
+				logger.LogError("Could not find parcel", ex);
+				throw new BLException("Could not find parcel", ex);
+			}
 		}
-    }
+
+		public string ValidateParcel(Entities.Parcel blParcel)
+		{
+			StringBuilder validationResults = new StringBuilder();
+
+			Validator.ParcelValidator validator = new Validator.ParcelValidator();
+			ValidationResult results = validator.Validate(blParcel);
+			bool validationSucceeded = results.IsValid;
+			IList<ValidationFailure> failures = results.Errors;
+
+			foreach (var failure in failures)
+			{
+				validationResults.Append(failure);
+			}
+			return validationResults.ToString();
+		}
+	}
 }

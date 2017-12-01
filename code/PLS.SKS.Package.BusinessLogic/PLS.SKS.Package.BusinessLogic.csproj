@@ -9,6 +9,7 @@
     <PackageReference Include="FluentValidation" Version="7.2.1" />
     <PackageReference Include="log4net" Version="2.0.8" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Log4Net.AspNetCore" Version="1.1.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,6 +19,7 @@
     <ProjectReference Include="..\PLS.SKS.Package.DataAccess.Interfaces\PLS.SKS.Package.DataAccess.Interfaces.csproj" />
     <ProjectReference Include="..\PLS.SKS.Package.DataAccess.Sql\PLS.SKS.Package.DataAccess.Sql.csproj" />
     <ProjectReference Include="..\PLS.SKS.Package.Services.DTOs\PLS.SKS.Package.Services.DTOs.csproj" />
+    <ProjectReference Include="..\PLS.SKS.ServiceAgents.Interfaces\PLS.SKS.ServiceAgents.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>

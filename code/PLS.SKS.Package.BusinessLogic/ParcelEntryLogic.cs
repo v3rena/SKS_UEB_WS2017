@@ -6,8 +6,10 @@ using PLS.SKS.Package;
 using PLS.SKS.Package.DataAccess.Sql;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
-using PLS.SKS.Package.DataAccess.Entities;
 using PLS.SKS.Package.DataAccess.Interfaces;
+using PLS.SKS.ServiceAgents.Interfaces;
+using Microsoft.Extensions.Logging;
+using PLS.SKS.Package.BusinessLogic.Helpers;
 
 namespace PLS.SKS.Package.BusinessLogic
 {
@@ -16,21 +18,55 @@ namespace PLS.SKS.Package.BusinessLogic
 		private IParcelRepository parcelRepo;
 		private ITrackingInformationRepository trackingRepo;
 		private IHopArrivalRepository hopArrivalRepo;
+		private ITruckRepository truckRepo;
+		private IWarehouseRepository warehouseRepo;
+		private IGeoEncodingAgent encodingAgent;
+		private ILogger<ParcelEntryLogic> logger;
+		private AutoMapper.IMapper mapper;
 
-		public ParcelEntryLogic(IParcelRepository parcelRepository, ITrackingInformationRepository trackingInformationRepository, IHopArrivalRepository hopArrivalRepository)
+		public ParcelEntryLogic(IWarehouseRepository warehouseRepository, ITruckRepository truckRepository, IParcelRepository parcelRepository, ITrackingInformationRepository trackingInformationRepository, IHopArrivalRepository hopArrivalRepository, IGeoEncodingAgent encodingAgent, ILogger<ParcelEntryLogic> logger, AutoMapper.IMapper mapper)
 		{
 			parcelRepo = parcelRepository;
 			trackingRepo = trackingInformationRepository;
 			hopArrivalRepo = hopArrivalRepository;
+			truckRepo = truckRepository;
+			warehouseRepo = warehouseRepository;
+			this.encodingAgent = encodingAgent;
+			this.logger = logger;
+			this.mapper = mapper;
 		}
 
-		public string AddParcel(Parcel parcel)
+		public string AddParcel(IO.Swagger.Models.Parcel serviceParcel)
         {
-			parcel.TrackingInformation = GenerateTrackingInformation();
-			parcel.TrackingNumber = RandomString(8);
-			parcelRepo.Create(parcel);
-			return parcel.TrackingNumber;
-        }
+			logger.LogInformation("Calling the AddParcel action");
+			try
+			{
+                if (serviceParcel == null)
+                {
+					throw new BLException("Received Service Parcel was null", new ArgumentNullException("serviceParcel", "Received Service Parcel was null"));
+                }
+				Entities.Parcel blParcel = mapper.Map<Entities.Parcel>(serviceParcel);
+				if (blParcel != null)
+				{
+                    string validationResults = ValidatePreAddedParcel(blParcel);
+                    if(validationResults != "")
+                    {
+                        logger.LogError(validationResults);
+                        throw new BLException("Given parcel is not valid", new ArgumentException("Given Parcel is not valid"));
+                    }
+                }
+				DataAccess.Entities.Parcel dalParcel = mapper.Map<DataAccess.Entities.Parcel>(blParcel);
+				dalParcel.TrackingInformation = GenerateTrackingInformation(dalParcel);
+				dalParcel.TrackingNumber = RandomString(8);
+				parcelRepo.Create(dalParcel);
+				return dalParcel.TrackingNumber;
+			}
+			catch (Exception ex)
+			{
+				logger.LogError("Could not add parcel", ex);
+				throw new BLException("Could not add parcel", ex);
+			}
+		}
 
 		private static string RandomString(int length)
 		{
@@ -40,26 +76,113 @@ namespace PLS.SKS.Package.BusinessLogic
 			return new string(chars.ToArray());
 		}
 
-		private TrackingInformation GenerateTrackingInformation()
+		private DataAccess.Entities.TrackingInformation GenerateTrackingInformation(DataAccess.Entities.Parcel parcel)
 		{
-			var trackInfo = new TrackingInformation(TrackingInformation.StateEnum.InTransportEnum);
-			int trackInfoId = trackingRepo.Create(trackInfo);
+			var dalTrackInfo = new DataAccess.Entities.TrackingInformation(DataAccess.Entities.TrackingInformation.StateEnum.InTransportEnum);
+			int trackInfoId = trackingRepo.Create(dalTrackInfo);
+			dalTrackInfo.futureHops = new List<DataAccess.Entities.HopArrival>();
+			dalTrackInfo.visitedHops = new List<DataAccess.Entities.HopArrival>();
+			Entities.Recipient blRecipient = mapper.Map<Entities.Recipient>(parcel.Recipient);
+			ServiceAgents.DTOs.Recipient saRecipient = mapper.Map<ServiceAgents.DTOs.Recipient>(blRecipient);
 
-			//Get truck that is nearest to the given adress and get warehouse hierarchy from there
-			var hop1 = new HopArrival { DateTime = DateTime.Now, Code = "WH01", Status = "visited", TrackingInformationId = trackInfoId };
-			var hop2 = new HopArrival { DateTime = DateTime.Now.AddDays(1), Code = "WH02", Status = "future", TrackingInformationId = trackInfoId };
-			var hop3 = new HopArrival { DateTime = DateTime.Now.AddDays(2), Code = "WH03", Status = "future", TrackingInformationId = trackInfoId };
-			var hop4 = new HopArrival { DateTime = DateTime.Now.AddDays(3), Code = "TR01", Status = "future", TrackingInformationId = trackInfoId };
+			var saLocation = encodingAgent.EncodeAddress(saRecipient);
 
-			hopArrivalRepo.Create(hop1);
-			hopArrivalRepo.Create(hop2);
-			hopArrivalRepo.Create(hop3);
-			hopArrivalRepo.Create(hop4);
+			Entities.Location blLocation = mapper.Map<Entities.Location>(saLocation);
 
-			trackInfo.futureHops = new List<HopArrival> { hop2, hop3, hop4 };
-			trackInfo.visitedHops = new List<HopArrival> { hop1 };
+			var truck = SelectNearestTruck(blLocation);
+			if (truck == null)
+			{
+				throw new BLException("The given address is not in the range of service");
+			}
+			else
+			{
+				var warehouses = new List<DataAccess.Entities.Warehouse>();
+				var warehouse = warehouseRepo.GetParent(truck);
+				warehouses.Add(warehouse);
 
-			return trackInfo;
+				while(warehouse!=null)
+				{
+					var parent = warehouseRepo.GetParent(warehouse);
+					if (parent!=null)
+					{
+						warehouses.Add(parent);
+					}
+					warehouse = parent;
+				}
+
+				var date = DateTime.Now;
+				warehouses.Reverse();
+
+				foreach (var wh in warehouses)
+				{
+					date = date.AddDays((double)wh.Duration);
+					var hop = new DataAccess.Entities.HopArrival { DateTime = date, Code = wh.Code, Status = "future", TrackingInformationId = trackInfoId };
+					hopArrivalRepo.Create(hop);
+					dalTrackInfo.futureHops.Add(hop);
+				}
+				date = date.AddDays((double)truck.Duration);
+				var truckHop = new DataAccess.Entities.HopArrival { DateTime = date, Code = truck.Code, Status = "future", TrackingInformationId = trackInfoId };
+
+				hopArrivalRepo.Create(truckHop);
+				return dalTrackInfo;
+			}
 		}
+
+		private DataAccess.Entities.Truck SelectNearestTruck(Entities.Location blLocation)
+		{
+			var trucks = truckRepo.GetAll();
+			var nearestTruck = trucks.FirstOrDefault();
+			var smallestDistance = DistanceCalculator.GetDistanceBetweenTwoPoints((double)nearestTruck.Latitude, (double)nearestTruck.Longitude, blLocation.Lat, blLocation.Lng);
+
+			foreach (var truck in trucks)
+			{
+				var distance = DistanceCalculator.GetDistanceBetweenTwoPoints((double)truck.Latitude, (double)truck.Longitude, blLocation.Lat, blLocation.Lng);
+				if (distance < smallestDistance)
+				{
+					smallestDistance = distance;
+					nearestTruck = truck;
+				}
+			}
+			if ((decimal)smallestDistance <= nearestTruck.Radius)
+			{
+				return nearestTruck;
+			}
+			else
+			{
+				return null;
+			}
+		}
+
+		private string ValidateParcel(Entities.Parcel blParcel)
+		{
+			StringBuilder validationResults = new StringBuilder();
+
+			Validator.ParcelValidator validator = new Validator.ParcelValidator();
+			ValidationResult results = validator.Validate(blParcel);
+			bool validationSucceeded = results.IsValid;
+			IList<ValidationFailure> failures = results.Errors;
+
+			foreach (var failure in failures)
+			{
+				validationResults.Append(failure);
+			}
+			return validationResults.ToString();
+		}
+
+        private string ValidatePreAddedParcel(Entities.Parcel blParcel)
+        {
+            StringBuilder validationResults = new StringBuilder();
+
+            Validator.PreAddedParcelValidator validator = new Validator.PreAddedParcelValidator();
+            ValidationResult results = validator.Validate(blParcel);
+            bool validationSucceeded = results.IsValid;
+            IList<ValidationFailure> failures = results.Errors;
+
+            foreach (var failure in failures)
+            {
+                validationResults.Append(failure);
+            }
+            return validationResults.ToString();
+        }
 	}
-  }
+}

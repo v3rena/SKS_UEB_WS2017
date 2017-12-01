@@ -57,6 +57,19 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			}
 		}
 
+		public List<Truck> GetAll()
+		{
+			try
+			{
+				return db.Trucks.ToList();
+			}
+			catch (SqlException ex)
+			{
+				logger.LogError(exceptionHelper.BuildSqlExceptionMessage(ex));
+				throw new DALException("Could not retrieve truck list from database", ex);
+			}
+		}
+
 		public void Update(Truck t)
 		{
 			try

@@ -16,6 +16,11 @@ namespace PLS.SKS.Package.BusinessLogic.Entities
             visitedHops = new List<HopArrival>();
         }
 
+		public TrackingInformation(StateEnum state)
+		{
+			State = state;
+		}
+
 		public enum StateEnum
 		{
 			[EnumMember(Value = "InTransport")]

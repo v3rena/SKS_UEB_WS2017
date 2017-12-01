@@ -10,7 +10,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 	{
 		public DBContext(DbContextOptions<DBContext> options) : base(options)
         {
-			this.Database.EnsureCreated();
+			//this.Database.EnsureCreated();
 		}
 
 		public DbSet<Recipient> Recipients { get; set; }

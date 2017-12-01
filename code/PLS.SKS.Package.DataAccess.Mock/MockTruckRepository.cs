@@ -37,7 +37,12 @@ namespace PLS.SKS.Package.DataAccess.Mock
             t = t2;
         }
 
-        private List<Truck> trucks = new List<Truck>();
+		public List<Truck> GetAll()
+		{
+			return trucks;
+		}
+
+		private List<Truck> trucks = new List<Truck>();
         private int m_id;
     }
 }

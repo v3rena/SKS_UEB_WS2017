@@ -17,8 +17,8 @@ namespace PLS.SKS.Package.DataAccess.Sql.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-			modelBuilder
-				.HasAnnotation("ProductVersion", "2.0.1-rtm-125")
+            modelBuilder
+                .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("PLS.SKS.Package.DataAccess.Entities.HopArrival", b =>
@@ -38,7 +38,7 @@ namespace PLS.SKS.Package.DataAccess.Sql.Migrations
 
                     b.HasIndex("TrackingInformationId");
 
-                    b.ToTable("HopArrival");
+                    b.ToTable("HopArrivals");
                 });
 
             modelBuilder.Entity("PLS.SKS.Package.DataAccess.Entities.Parcel", b =>
@@ -60,7 +60,7 @@ namespace PLS.SKS.Package.DataAccess.Sql.Migrations
 
                     b.HasIndex("TrackingInformationId");
 
-                    b.ToTable("Parcel");
+                    b.ToTable("Parcels");
                 });
 
             modelBuilder.Entity("PLS.SKS.Package.DataAccess.Entities.Recipient", b =>
@@ -80,7 +80,7 @@ namespace PLS.SKS.Package.DataAccess.Sql.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Recipient");
+                    b.ToTable("Recipients");
                 });
 
             modelBuilder.Entity("PLS.SKS.Package.DataAccess.Entities.TrackingInformation", b =>
@@ -92,7 +92,7 @@ namespace PLS.SKS.Package.DataAccess.Sql.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TrackingInformation");
+                    b.ToTable("TrackingInformations");
                 });
 
             modelBuilder.Entity("PLS.SKS.Package.DataAccess.Entities.Truck", b =>
@@ -118,7 +118,7 @@ namespace PLS.SKS.Package.DataAccess.Sql.Migrations
 
                     b.HasIndex("WarehouseId");
 
-                    b.ToTable("Truck");
+                    b.ToTable("Trucks");
                 });
 
             modelBuilder.Entity("PLS.SKS.Package.DataAccess.Entities.Warehouse", b =>
@@ -138,7 +138,7 @@ namespace PLS.SKS.Package.DataAccess.Sql.Migrations
 
                     b.HasIndex("WarehouseId");
 
-                    b.ToTable("Warehouse");
+                    b.ToTable("Warehouses");
                 });
 
             modelBuilder.Entity("PLS.SKS.Package.DataAccess.Entities.HopArrival", b =>
