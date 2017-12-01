@@ -52,7 +52,9 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
             var mapper = mockMapper.Object;
             var mockHopArrivalLogicLogger = new Mock<ILogger<WarehouseLogic>>();
             ILogger<WarehouseLogic> warehouseLogicLogger = mockHopArrivalLogicLogger.Object;
-            Interfaces.IWarehouseLogic warehouseLogic = new WarehouseLogic(mockWareRepo, warehouseLogicLogger, mapper);
+			var mockCleaner = new Mock<DataAccess.Interfaces.IDbCleaner>();
+			var cleaner = mockCleaner.Object;
+            Interfaces.IWarehouseLogic warehouseLogic = new WarehouseLogic(mockWareRepo, warehouseLogicLogger, mapper, cleaner);
 
             //Act
             IO.Swagger.Models.Warehouse rootWarehouse = warehouseLogic.ExportWarehouses();
@@ -70,7 +72,9 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
             var mapper = mockMapper.Object;
             var mockHopArrivalLogicLogger = new Mock<ILogger<WarehouseLogic>>();
             ILogger<WarehouseLogic> warehouseLogicLogger = mockHopArrivalLogicLogger.Object;
-            Interfaces.IWarehouseLogic warehouseLogic = new WarehouseLogic(mockWareRepo, warehouseLogicLogger, mapper);
+			var mockCleaner = new Mock<DataAccess.Interfaces.IDbCleaner>();
+			var cleaner = mockCleaner.Object;
+			Interfaces.IWarehouseLogic warehouseLogic = new WarehouseLogic(mockWareRepo, warehouseLogicLogger, mapper, cleaner);
 
             //Act
             //Assert
@@ -87,7 +91,9 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
             var mapper = mockMapper.Object;
             var mockHopArrivalLogicLogger = new Mock<ILogger<WarehouseLogic>>();
             ILogger<WarehouseLogic> warehouseLogicLogger = mockHopArrivalLogicLogger.Object;
-            Interfaces.IWarehouseLogic warehouseLogic = new WarehouseLogic(mockWareRepo, warehouseLogicLogger, mapper);
+			var mockCleaner = new Mock<DataAccess.Interfaces.IDbCleaner>();
+			var cleaner = mockCleaner.Object;
+			Interfaces.IWarehouseLogic warehouseLogic = new WarehouseLogic(mockWareRepo, warehouseLogicLogger, mapper, cleaner);
 
             warehouseLogic.ImportWarehouses(validRoot);
 
@@ -107,7 +113,9 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
             var mapper = mockMapper.Object;
             var mockHopArrivalLogicLogger = new Mock<ILogger<WarehouseLogic>>();
             ILogger<WarehouseLogic> warehouseLogicLogger = mockHopArrivalLogicLogger.Object;
-            Interfaces.IWarehouseLogic warehouseLogic = new WarehouseLogic(mockWareRepo, warehouseLogicLogger, mapper);
+			var mockCleaner = new Mock<DataAccess.Interfaces.IDbCleaner>();
+			var cleaner = mockCleaner.Object;
+			Interfaces.IWarehouseLogic warehouseLogic = new WarehouseLogic(mockWareRepo, warehouseLogicLogger, mapper, cleaner);
 
             Assert.ThrowsException<BLException>(() => warehouseLogic.ImportWarehouses(invalidRoot));
         }
