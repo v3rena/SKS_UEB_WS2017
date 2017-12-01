@@ -30,22 +30,31 @@ namespace PLS.SKS.Package.BusinessLogic
 		public void ScanParcel(string trackingNumber, string code)
         {
 			logger.LogInformation("Calling the ScanParcel action");
+            try
+            {
+                DataAccess.Entities.Parcel dalParcel = parcelRepo.GetByTrackingNumber(trackingNumber);
+                if(dalParcel == null)
+                {
+                    throw new BLException("Parcel not found in Database");
+                }
+                DataAccess.Entities.TrackingInformation dalInfo = trackingRepo.GetById(dalParcel.TrackingInformationId);
+                List<DataAccess.Entities.HopArrival> hopArr = hopArrivalRepo.GetByTrackingInformationId(dalInfo.Id);
 
-			//get Parcel with trackingNumber
-			DataAccess.Entities.Parcel dalParcel = parcelRepo.GetByTrackingNumber(trackingNumber);
-            //get TrackingInformation for Parcel
-            DataAccess.Entities.TrackingInformation dalInfo = trackingRepo.GetById(dalParcel.TrackingInformationId);
-            //get HopArrivals with "TrackingInformationID"
-            List<DataAccess.Entities.HopArrival> hopArr = hopArrivalRepo.GetByTrackingInformationId(dalInfo.Id);
-            //get HopArrival with "Code"
-            DataAccess.Entities.HopArrival h = new DataAccess.Entities.HopArrival { Code = code };
-            int index = hopArr.FindIndex(a => a.Code == h.Code);
-            //update Status to visited
-            hopArr[index].Status = "visited";
-            //update DateTime to now
-            hopArr[index].DateTime = DateTime.Now;
+                int index = hopArr.FindIndex(a => a.Code == code);
+                if (index == -1)
+                {
+                    throw new BLException("Wrong hop for parcel");
+                }
+                hopArr[index].Status = "visited";
+                hopArr[index].DateTime = DateTime.Now;
 
-			hopArrivalRepo.Update(hopArr[index]);
-        }
+                hopArrivalRepo.Update(hopArr[index]);
+            }
+			catch (Exception ex)
+			{
+				logger.LogError("Could not update parcel information", ex);
+				throw new BLException("Could not update parcel information", ex);
+			}
+		}
     }
 }

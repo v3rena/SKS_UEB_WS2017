@@ -25,6 +25,7 @@ using Microsoft.Extensions.Logging;
 using log4net;
 using PLS.SKS.Package.BusinessLogic.Interfaces;
 using PLS.SKS.Package.BusinessLogic;
+using PLS.SKS.Package.Services;
 
 namespace IO.Swagger.Controllers
 {
@@ -62,9 +63,17 @@ namespace IO.Swagger.Controllers
         [SwaggerResponse(200, type: typeof(Warehouse))]
         public virtual IActionResult ExportWarehouses()
         {
-			logger.LogInformation("Calling the ExportWarehouses action");
-			Warehouse warehouse = warehouseLogic.ExportWarehouses();
-            return new ObjectResult(warehouse);
+			try
+			{
+				logger.LogInformation("Calling the ExportWarehouses action");
+				Warehouse warehouse = warehouseLogic.ExportWarehouses();
+				return new ObjectResult(warehouse);
+			}
+			catch (Exception ex)
+			{
+				logger.LogError("ExportWarehouses failed", ex);
+				throw new ServiceException("ExportWarehouses failed", ex);
+			}
         }
 
 
@@ -80,8 +89,16 @@ namespace IO.Swagger.Controllers
         [SwaggerOperation("ImportWarehouses")]
         public virtual void ImportWarehouses([FromBody]Warehouse warehouseRoot)
         {
-			logger.LogInformation("Calling the ImportWarehouses action");
-			warehouseLogic.ImportWarehouses(warehouseRoot);
+			try
+			{
+				logger.LogInformation("Calling the ImportWarehouses action");
+				warehouseLogic.ImportWarehouses(warehouseRoot);
+			}
+			catch (Exception ex)
+			{
+				logger.LogError("ImportWarehouses failed", ex);
+				throw new ServiceException("ImportWarehouses failed", ex);
+			}
 		}
 
 
@@ -98,8 +115,16 @@ namespace IO.Swagger.Controllers
         [SwaggerOperation("ReportParcelHop")]
         public virtual void ReportParcelHop([FromRoute]string trackingId, [FromRoute]string code)
         {
-			logger.LogInformation("Calling the ReportParcelHop action");
-			hopArrivalLogic.ScanParcel(trackingId, code);
+			try
+			{
+				logger.LogInformation("Calling the ReportParcelHop action");
+				hopArrivalLogic.ScanParcel(trackingId, code);
+			}
+			catch (Exception ex)
+			{
+				logger.LogError("ReportParcelHop failed", ex);
+				throw new ServiceException("ReportParcelHop failed", ex);
+			}
 		}
 
 
@@ -116,11 +141,19 @@ namespace IO.Swagger.Controllers
         [SwaggerResponse(200, type: typeof(InlineResponse200))]
         public virtual IActionResult SubmitParcel([FromBody]Parcel newParcel)
         {
-			logger.LogInformation("Calling the SubmitParcel action");
-			string trNr = parcelEntryLogic.AddParcel(newParcel);
-			InlineResponse200 inlineR = new InlineResponse200(trNr);
-            return new ObjectResult(inlineR);
-        }
+			try
+			{
+				logger.LogInformation("Calling the SubmitParcel action");
+				string trNr = parcelEntryLogic.AddParcel(newParcel);
+				InlineResponse200 inlineR = new InlineResponse200(trNr);
+				return new ObjectResult(inlineR);
+			}
+			catch (Exception ex)
+			{
+				logger.LogError("SubmitParcel failed", ex);
+				throw new ServiceException("SubmitParcel failed", ex);
+			}
+		}
 
 
         /// <summary>
@@ -136,10 +169,17 @@ namespace IO.Swagger.Controllers
         [SwaggerResponse(200, type: typeof(TrackingInformation))]
         public virtual IActionResult TrackParcel([FromRoute]string trackingId)
         {
-			logger.LogInformation("Calling the TrackParcel action");
-			TrackingInformation trInfo = trackingLogic.TrackParcel(trackingId);
-			return new ObjectResult(trInfo);
-
+			try
+			{
+				logger.LogInformation("Calling the TrackParcel action");
+				TrackingInformation trInfo = trackingLogic.TrackParcel(trackingId);
+				return new ObjectResult(trInfo);
+			}
+			catch (Exception ex)
+			{
+				logger.LogError("TrackParcel failed", ex);
+				throw new ServiceException("TrackParcel failed", ex);
+			}
 		}
     }
 }

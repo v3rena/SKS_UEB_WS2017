@@ -19,16 +19,18 @@ namespace PLS.SKS.Package.BusinessLogic
 		private ITrackingInformationRepository trackingRepo;
 		private IHopArrivalRepository hopArrivalRepo;
 		private ITruckRepository truckRepo;
+		private IWarehouseRepository warehouseRepo;
 		private IGeoEncodingAgent encodingAgent;
 		private ILogger<ParcelEntryLogic> logger;
 		private AutoMapper.IMapper mapper;
 
-		public ParcelEntryLogic(ITruckRepository truckRepository, IParcelRepository parcelRepository, ITrackingInformationRepository trackingInformationRepository, IHopArrivalRepository hopArrivalRepository, IGeoEncodingAgent encodingAgent, ILogger<ParcelEntryLogic> logger, AutoMapper.IMapper mapper)
+		public ParcelEntryLogic(IWarehouseRepository warehouseRepository, ITruckRepository truckRepository, IParcelRepository parcelRepository, ITrackingInformationRepository trackingInformationRepository, IHopArrivalRepository hopArrivalRepository, IGeoEncodingAgent encodingAgent, ILogger<ParcelEntryLogic> logger, AutoMapper.IMapper mapper)
 		{
 			parcelRepo = parcelRepository;
 			trackingRepo = trackingInformationRepository;
 			hopArrivalRepo = hopArrivalRepository;
 			truckRepo = truckRepository;
+			warehouseRepo = warehouseRepository;
 			this.encodingAgent = encodingAgent;
 			this.logger = logger;
 			this.mapper = mapper;
@@ -39,11 +41,20 @@ namespace PLS.SKS.Package.BusinessLogic
 			logger.LogInformation("Calling the AddParcel action");
 			try
 			{
+                if (serviceParcel == null)
+                {
+					throw new BLException("Received Service Parcel was null", new ArgumentNullException("serviceParcel", "Received Service Parcel was null"));
+                }
 				Entities.Parcel blParcel = mapper.Map<Entities.Parcel>(serviceParcel);
 				if (blParcel != null)
 				{
-					logger.LogError(ValidateParcel(blParcel));
-				}
+                    string validationResults = ValidatePreAddedParcel(blParcel);
+                    if(validationResults != "")
+                    {
+                        logger.LogError(validationResults);
+                        throw new BLException("Given parcel is not valid", new ArgumentException("Given Parcel is not valid"));
+                    }
+                }
 				DataAccess.Entities.Parcel dalParcel = mapper.Map<DataAccess.Entities.Parcel>(blParcel);
 				dalParcel.TrackingInformation = GenerateTrackingInformation(dalParcel);
 				dalParcel.TrackingNumber = RandomString(8);
@@ -69,50 +80,77 @@ namespace PLS.SKS.Package.BusinessLogic
 		{
 			var dalTrackInfo = new DataAccess.Entities.TrackingInformation(DataAccess.Entities.TrackingInformation.StateEnum.InTransportEnum);
 			int trackInfoId = trackingRepo.Create(dalTrackInfo);
-
-			//Get truck that is nearest to the given adress and get warehouse hierarchy from there
-			var hop1 = new DataAccess.Entities.HopArrival { DateTime = DateTime.Now, Code = "WH01", Status = "visited", TrackingInformationId = trackInfoId };
-			var hop2 = new DataAccess.Entities.HopArrival { DateTime = DateTime.Now.AddDays(1), Code = "WH02", Status = "future", TrackingInformationId = trackInfoId };
-			var hop3 = new DataAccess.Entities.HopArrival { DateTime = DateTime.Now.AddDays(2), Code = "WH03", Status = "future", TrackingInformationId = trackInfoId };
-			var hop4 = new DataAccess.Entities.HopArrival { DateTime = DateTime.Now.AddDays(3), Code = "TR01", Status = "future", TrackingInformationId = trackInfoId };
-
-			hopArrivalRepo.Create(hop1);
-			hopArrivalRepo.Create(hop2);
-			hopArrivalRepo.Create(hop3);
-			hopArrivalRepo.Create(hop4);
-
-			dalTrackInfo.futureHops = new List<DataAccess.Entities.HopArrival> { hop2, hop3, hop4 };
-			dalTrackInfo.visitedHops = new List<DataAccess.Entities.HopArrival> { hop1 };
-
-			return dalTrackInfo;
-
-			//UNDER CONSTRUCTION
+			dalTrackInfo.futureHops = new List<DataAccess.Entities.HopArrival>();
+			dalTrackInfo.visitedHops = new List<DataAccess.Entities.HopArrival>();
 			Entities.Recipient blRecipient = mapper.Map<Entities.Recipient>(parcel.Recipient);
 			ServiceAgents.DTOs.Recipient saRecipient = mapper.Map<ServiceAgents.DTOs.Recipient>(blRecipient);
+
 			var saLocation = encodingAgent.EncodeAddress(saRecipient);
+
 			Entities.Location blLocation = mapper.Map<Entities.Location>(saLocation);
+
 			var truck = SelectNearestTruck(blLocation);
-			//Retrieve hierarchy of warehouses from that truck
-			//Write that info to TrackingInformation of parcel
+			if (truck == null)
+			{
+				throw new BLException("The given address is not in the range of service");
+			}
+			else
+			{
+				var warehouses = new List<DataAccess.Entities.Warehouse>();
+				var warehouse = warehouseRepo.GetParent(truck);
+				warehouses.Add(warehouse);
+
+				while(warehouse!=null)
+				{
+					var parent = warehouseRepo.GetParent(warehouse);
+					if (parent!=null)
+					{
+						warehouses.Add(parent);
+					}
+					warehouse = parent;
+				}
+
+				var date = DateTime.Now;
+				warehouses.Reverse();
+
+				foreach (var wh in warehouses)
+				{
+					date = date.AddDays((double)wh.Duration);
+					var hop = new DataAccess.Entities.HopArrival { DateTime = date, Code = wh.Code, Status = "future", TrackingInformationId = trackInfoId };
+					hopArrivalRepo.Create(hop);
+					dalTrackInfo.futureHops.Add(hop);
+				}
+				date = date.AddDays((double)truck.Duration);
+				var truckHop = new DataAccess.Entities.HopArrival { DateTime = date, Code = truck.Code, Status = "future", TrackingInformationId = trackInfoId };
+
+				hopArrivalRepo.Create(truckHop);
+				return dalTrackInfo;
+			}
 		}
 
-		private Entities.Truck SelectNearestTruck(Entities.Location blLocation)
+		private DataAccess.Entities.Truck SelectNearestTruck(Entities.Location blLocation)
 		{
 			var trucks = truckRepo.GetAll();
-			var NearestTruck = trucks.FirstOrDefault();
-			var smallestDistance = DistanceCalculator.GetDistanceBetweenTwoPoints((double)NearestTruck.Latitude, (double)NearestTruck.Longitude, blLocation.Lng, blLocation.Lng);
+			var nearestTruck = trucks.FirstOrDefault();
+			var smallestDistance = DistanceCalculator.GetDistanceBetweenTwoPoints((double)nearestTruck.Latitude, (double)nearestTruck.Longitude, blLocation.Lat, blLocation.Lng);
 
 			foreach (var truck in trucks)
 			{
-				var distance = DistanceCalculator.GetDistanceBetweenTwoPoints((double)truck.Latitude, (double)truck.Longitude, blLocation.Lng, blLocation.Lng);
+				var distance = DistanceCalculator.GetDistanceBetweenTwoPoints((double)truck.Latitude, (double)truck.Longitude, blLocation.Lat, blLocation.Lng);
 				if (distance < smallestDistance)
 				{
 					smallestDistance = distance;
-					NearestTruck = truck;
+					nearestTruck = truck;
 				}
 			}
-			Entities.Truck blTruck = mapper.Map<Entities.Truck>(NearestTruck);
-			return blTruck;
+			if ((decimal)smallestDistance <= nearestTruck.Radius)
+			{
+				return nearestTruck;
+			}
+			else
+			{
+				return null;
+			}
 		}
 
 		private string ValidateParcel(Entities.Parcel blParcel)
@@ -130,5 +168,21 @@ namespace PLS.SKS.Package.BusinessLogic
 			}
 			return validationResults.ToString();
 		}
+
+        private string ValidatePreAddedParcel(Entities.Parcel blParcel)
+        {
+            StringBuilder validationResults = new StringBuilder();
+
+            Validator.PreAddedParcelValidator validator = new Validator.PreAddedParcelValidator();
+            ValidationResult results = validator.Validate(blParcel);
+            bool validationSucceeded = results.IsValid;
+            IList<ValidationFailure> failures = results.Errors;
+
+            foreach (var failure in failures)
+            {
+                validationResults.Append(failure);
+            }
+            return validationResults.ToString();
+        }
 	}
-  }
+}

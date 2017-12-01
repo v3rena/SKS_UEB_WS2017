@@ -30,32 +30,41 @@ namespace PLS.SKS.Package.BusinessLogic
 		public IO.Swagger.Models.TrackingInformation TrackParcel(string trackingNumber)
         {
 			logger.LogInformation("Calling the TrackParcel action");
-
-			DataAccess.Entities.Parcel dalParcel = parcelRepo.GetByTrackingNumber(trackingNumber);
-
-            //get HopArrivals with "TrackingInformationID"
-            List<DataAccess.Entities.HopArrival> hopArr = hopRepo.GetByTrackingInformationId(dalParcel.TrackingInformationId);
-            //fill visitedHops and futureHops lists
-            foreach(var h in hopArr)
-            {
-                if(h.Status == "visited")
-                {
-                    dalParcel.TrackingInformation.visitedHops.Add(h);
-                }
-                else if(h.Status == "future")
-                {
-                    dalParcel.TrackingInformation.futureHops.Add(h);
-                }
-            }
-
-			Entities.Parcel blParcel = mapper.Map<Entities.Parcel>(dalParcel);
-			if (blParcel != null)
+			try
 			{
-				logger.LogError(ValidateParcel(blParcel));
+				DataAccess.Entities.Parcel dalParcel = parcelRepo.GetByTrackingNumber(trackingNumber);
+				if (dalParcel == null)
+				{
+					throw new BLException("Parcel not found in Database");
+				}
 
+				List<DataAccess.Entities.HopArrival> hopArr = hopRepo.GetByTrackingInformationId(dalParcel.TrackingInformationId);
+
+				foreach (var h in hopArr)
+				{
+					if (h.Status == "visited")
+					{
+						dalParcel.TrackingInformation.visitedHops.Add(h);
+					}
+					else if (h.Status == "future")
+					{
+						dalParcel.TrackingInformation.futureHops.Add(h);
+					}
+				}
+	
+				Entities.Parcel blParcel = mapper.Map<Entities.Parcel>(dalParcel);
+				if (blParcel != null)
+				{
+					logger.LogError(ValidateParcel(blParcel));
+				}
+				IO.Swagger.Models.TrackingInformation info = mapper.Map<IO.Swagger.Models.TrackingInformation>(blParcel.TrackingInformation);
+				return info;
 			}
-			IO.Swagger.Models.TrackingInformation info = mapper.Map<IO.Swagger.Models.TrackingInformation>(blParcel.TrackingInformation);
-			return info;
+			catch (Exception ex)
+			{
+				logger.LogError("Could not find parcel", ex);
+				throw new BLException("Could not find parcel", ex);
+			}
 		}
 
 		public string ValidateParcel(Entities.Parcel blParcel)

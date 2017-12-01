@@ -1,0 +1,227 @@
+﻿2017-11-29 12:56:41,687 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-29 13:49:39,514 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-29 14:32:01,109 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-29 14:58:27,822 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-29 15:31:46,715 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-29 15:32:17,191 INFO [2] ?.? - Executed DbCommand (188ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-29 15:32:17,392 INFO [2] ?.? - Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Recipients] AS [r])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+2017-11-29 15:32:18,150 INFO [25] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger  
+2017-11-29 15:32:18,164 INFO [25] ?.? - Request finished in 29.2474ms 301 
+2017-11-29 15:32:18,227 INFO [16] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/  
+2017-11-29 15:32:18,243 INFO [16] ?.? - Sending file. Request path: '/index.html'. Physical path: 'N/A'
+2017-11-29 15:32:18,249 INFO [16] ?.? - Request finished in 22.8327ms 200 text/html
+2017-11-29 15:32:18,279 INFO [25] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/css/typography.css  
+2017-11-29 15:32:18,302 INFO [25] ?.? - Sending file. Request path: '/css/typography.css'. Physical path: 'N/A'
+2017-11-29 15:32:18,307 INFO [15] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/css/screen.css  
+2017-11-29 15:32:18,309 INFO [26] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/css/print.css  
+2017-11-29 15:32:18,314 INFO [25] ?.? - Request finished in 33.0576ms 200 text/css
+2017-11-29 15:32:18,316 INFO [26] ?.? - Sending file. Request path: '/css/print.css'. Physical path: 'N/A'
+2017-11-29 15:32:18,337 INFO [15] ?.? - Sending file. Request path: '/css/screen.css'. Physical path: 'N/A'
+2017-11-29 15:32:18,340 INFO [27] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/object-assign-pollyfill.js  
+2017-11-29 15:32:18,361 INFO [16] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/css/reset.css  
+2017-11-29 15:32:18,383 INFO [26] ?.? - Request finished in 32.5883ms 200 text/css
+2017-11-29 15:32:18,405 INFO [27] ?.? - Sending file. Request path: '/lib/object-assign-pollyfill.js'. Physical path: 'N/A'
+2017-11-29 15:32:18,410 INFO [16] ?.? - Sending file. Request path: '/css/reset.css'. Physical path: 'N/A'
+2017-11-29 15:32:18,417 INFO [27] ?.? - Request finished in 101.4326ms 200 application/javascript
+2017-11-29 15:32:18,446 INFO [28] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/jquery-1.8.0.min.js  
+2017-11-29 15:32:18,469 INFO [15] ?.? - Request finished in 60.2378ms 200 text/css
+2017-11-29 15:32:18,475 INFO [16] ?.? - Request finished in 107.1629ms 200 text/css
+2017-11-29 15:32:18,478 INFO [25] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/jquery.slideto.min.js  
+2017-11-29 15:32:18,501 INFO [26] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/jquery.ba-bbq.min.js  
+2017-11-29 15:32:18,526 INFO [16] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/lodash.min.js  
+2017-11-29 15:32:18,528 INFO [15] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/handlebars-4.0.5.js  
+2017-11-29 15:32:18,549 INFO [26] ?.? - Sending file. Request path: '/lib/jquery.ba-bbq.min.js'. Physical path: 'N/A'
+2017-11-29 15:32:18,556 INFO [16] ?.? - Sending file. Request path: '/lib/lodash.min.js'. Physical path: 'N/A'
+2017-11-29 15:32:18,579 INFO [15] ?.? - Sending file. Request path: '/lib/handlebars-4.0.5.js'. Physical path: 'N/A'
+2017-11-29 15:32:18,582 INFO [26] ?.? - Request finished in 125.8637ms 200 application/javascript
+2017-11-29 15:32:18,584 INFO [16] ?.? - Request finished in 100.6095ms 200 application/javascript
+2017-11-29 15:32:18,606 INFO [28] ?.? - Sending file. Request path: '/lib/jquery-1.8.0.min.js'. Physical path: 'N/A'
+2017-11-29 15:32:18,648 INFO [25] ?.? - Sending file. Request path: '/lib/jquery.slideto.min.js'. Physical path: 'N/A'
+2017-11-29 15:32:18,652 INFO [26] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/backbone-min.js  
+2017-11-29 15:32:18,655 INFO [27] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/jquery.wiggle.min.js  
+2017-11-29 15:32:18,698 INFO [26] ?.? - Sending file. Request path: '/lib/backbone-min.js'. Physical path: 'N/A'
+2017-11-29 15:32:18,700 INFO [15] ?.? - Request finished in 123.5287ms 200 application/javascript
+2017-11-29 15:32:18,722 INFO [16] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/swagger-ui.min.js  
+2017-11-29 15:32:18,725 INFO [15] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/highlight.9.1.0.pack_extended.js  
+2017-11-29 15:32:18,727 INFO [16] ?.? - Sending file. Request path: '/swagger-ui.min.js'. Physical path: 'N/A'
+2017-11-29 15:32:18,748 INFO [25] ?.? - Request finished in 200.7651ms 200 application/javascript
+2017-11-29 15:32:18,770 INFO [26] ?.? - Request finished in 71.9589ms 200 application/javascript
+2017-11-29 15:32:18,772 INFO [15] ?.? - Sending file. Request path: '/lib/highlight.9.1.0.pack_extended.js'. Physical path: 'N/A'
+2017-11-29 15:32:18,778 INFO [27] ?.? - Sending file. Request path: '/lib/jquery.wiggle.min.js'. Physical path: 'N/A'
+2017-11-29 15:32:18,780 INFO [26] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/jsoneditor.min.js  
+2017-11-29 15:32:18,782 INFO [27] ?.? - Request finished in 225.0963ms 200 application/javascript
+2017-11-29 15:32:18,790 INFO [26] ?.? - Sending file. Request path: '/lib/jsoneditor.min.js'. Physical path: 'N/A'
+2017-11-29 15:32:18,815 INFO [15] ?.? - Request finished in 50.6152ms 200 application/javascript
+2017-11-29 15:32:18,817 INFO [25] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/highlight.9.1.0.pack.js  
+2017-11-29 15:32:18,841 INFO [25] ?.? - Sending file. Request path: '/lib/highlight.9.1.0.pack.js'. Physical path: 'N/A'
+2017-11-29 15:32:18,863 INFO [15] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/swagger-oauth.js  
+2017-11-29 15:32:18,865 INFO [25] ?.? - Request finished in 47.1789ms 200 application/javascript
+2017-11-29 15:32:18,888 INFO [29] ?.? - Request finished in 90.3242ms 200 application/javascript
+2017-11-29 15:32:18,932 INFO [27] ?.? - Request finished in 187.4232ms 200 application/javascript
+2017-11-29 15:32:18,933 INFO [16] ?.? - Request finished in 558.5802ms 200 application/javascript
+2017-11-29 15:32:18,958 INFO [16] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/marked.js  
+2017-11-29 15:32:18,960 INFO [16] ?.? - Sending file. Request path: '/lib/marked.js'. Physical path: 'N/A'
+2017-11-29 15:32:18,962 INFO [15] ?.? - Sending file. Request path: '/lib/swagger-oauth.js'. Physical path: 'N/A'
+2017-11-29 15:32:18,985 INFO [16] ?.? - Request finished in 5.555ms 200 application/javascript
+2017-11-29 15:32:19,007 INFO [15] ?.? - Request finished in 121.8837ms 200 application/javascript
+2017-11-29 15:32:19,028 INFO [25] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/images/logo_small.png  
+2017-11-29 15:32:19,050 INFO [29] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/v1/swagger.json  
+2017-11-29 15:32:19,076 INFO [25] ?.? - Sending file. Request path: '/images/logo_small.png'. Physical path: 'N/A'
+2017-11-29 15:32:19,079 INFO [25] ?.? - Request finished in 90.3222ms 200 image/png
+2017-11-29 15:32:19,104 INFO [15] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/images/favicon-16x16.png  
+2017-11-29 15:32:19,108 INFO [15] ?.? - Sending file. Request path: '/images/favicon-16x16.png'. Physical path: 'N/A'
+2017-11-29 15:32:19,110 INFO [15] ?.? - Request finished in 6.4013ms 200 image/png
+2017-11-29 15:32:19,292 INFO [29] ?.? - Request finished in 282.1939ms 200 application/json
+2017-11-29 15:33:48,665 INFO [15] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/api/warehouse  
+2017-11-29 15:33:48,666 INFO [16] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/images/throbber.gif  
+2017-11-29 15:33:48,670 INFO [16] ?.? - Sending file. Request path: '/images/throbber.gif'. Physical path: 'N/A'
+2017-11-29 15:33:48,692 INFO [16] ?.? - Request finished in 29.296ms 200 image/gif
+2017-11-29 15:33:48,785 INFO [15] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.ExportWarehouses (PLS.SKS.Package.Services) with arguments ((null)) - ModelState is Valid
+2017-11-29 15:33:48,787 INFO [15] ?.? - Calling the ExportWarehouses action
+2017-11-29 15:33:48,789 INFO [15] ?.? - Calling the ExportWarehouses action
+2017-11-29 15:33:48,802 INFO [15] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-29 15:33:49,074 INFO [15] ?.? - Executed DbCommand (30ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__id_0
+ORDER BY [w].[Id]
+2017-11-29 15:33:49,153 INFO [15] ?.? - Executed DbCommand (1ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__id_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-29 15:33:49,169 INFO [15] ?.? - Executed DbCommand (2ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__id_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-29 15:33:49,188 INFO [15] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__whId_0
+ORDER BY [w].[Id]
+2017-11-29 15:33:49,195 INFO [15] ?.? - Executed DbCommand (2ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__whId_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-29 15:33:49,200 INFO [15] ?.? - Executed DbCommand (1ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__whId_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-29 15:33:49,206 INFO [15] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__whId_0
+ORDER BY [w].[Id]
+2017-11-29 15:33:49,209 INFO [15] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__whId_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-29 15:33:49,212 INFO [15] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__whId_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-29 15:33:49,218 INFO [15] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__whId_0
+ORDER BY [w].[Id]
+2017-11-29 15:33:49,220 INFO [15] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__whId_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-29 15:33:49,223 INFO [15] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__whId_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-29 15:33:49,227 INFO [15] ?.? - Executed DbCommand (0ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__id_0
+ORDER BY [w].[Id]
+2017-11-29 15:33:49,230 INFO [15] ?.? - Executed DbCommand (0ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__id_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-11-29 15:33:49,233 INFO [15] ?.? - Executed DbCommand (0ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__id_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-11-29 15:33:49,364 INFO [15] ?.? - Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+2017-11-29 15:33:49,377 INFO [15] ?.? - Executed action IO.Swagger.Controllers.DefaultApiController.ExportWarehouses (PLS.SKS.Package.Services) in 611.1191ms
+2017-11-29 15:33:49,379 INFO [15] ?.? - Request finished in 734.2819ms 200 application/json; charset=utf-8
+2017-11-29 16:02:06,751 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-11-29 16:02:08,100 INFO [2] ?.? - Executed DbCommand (357ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-11-29 16:02:08,303 INFO [2] ?.? - Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Recipients] AS [r])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END

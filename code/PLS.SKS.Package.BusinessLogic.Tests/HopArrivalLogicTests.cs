@@ -8,32 +8,65 @@ using Microsoft.Extensions.Logging;
 
 namespace PLS.SKS.Package.BusinessLogic.Tests
 {
-	[TestClass]
-	public class HopArrivalLogicTests
-	{
-		//public void MethodUnderTest_Scenario_ExpectedOutcome()
-		[TestMethod]
-		public void ScanParcel_ValidTrNumber_HopArrivalUpdated()
-		{
-            MockHopArrivalRepository mockHopRepo = new MockHopArrivalRepository();
-            MockTrackingInformationRepository mockTrackRepo = new MockTrackingInformationRepository();
-            MockParcelRepository mockParcelRepo = new MockParcelRepository(mockTrackRepo);
+    [TestClass]
+    public class HopArrivalLogicTests
+    {
+        MockHopArrivalRepository mockHopRepo;
+        MockTrackingInformationRepository mockTrackRepo;
+        MockParcelRepository mockParcelRepo;
 
-			var mockMapper = new Mock<AutoMapper.IMapper>();
-			var mapper = mockMapper.Object;
-			var mockHopArrivalLogicLogger = new Mock<ILogger<HopArrivalLogic>>();
-			ILogger<HopArrivalLogic> hopArrivalLogicLogger = mockHopArrivalLogicLogger.Object;
+        public HopArrivalLogicTests()
+        {
+            mockHopRepo = new MockHopArrivalRepository();
+            mockTrackRepo = new MockTrackingInformationRepository();
+            mockParcelRepo = new MockParcelRepository(mockTrackRepo);
+        }
 
-			Interfaces.IHopArrivalLogic parcelLogic = new HopArrivalLogic(mockParcelRepo, mockTrackRepo, mockHopRepo, hopArrivalLogicLogger, mapper);
-            parcelLogic.ScanParcel("TN000001", "WH02");
+        //public void MethodUnderTest_Scenario_ExpectedOutcome()
+        [TestMethod]
+        public void ScanParcel_ValidInputArguments_HopArrivalUpdated()
+        {
+            var mockMapper = new Mock<AutoMapper.IMapper>();
+            var mapper = mockMapper.Object;
+            var mockHopArrivalLogicLogger = new Mock<ILogger<HopArrivalLogic>>();
+            ILogger<HopArrivalLogic> hopArrivalLogicLogger = mockHopArrivalLogicLogger.Object;
+            Interfaces.IHopArrivalLogic hopArrivalLogic = new HopArrivalLogic(mockParcelRepo, mockTrackRepo, mockHopRepo, hopArrivalLogicLogger, mapper);
+
+            hopArrivalLogic.ScanParcel("TN000001", "WH02");
 
             List<DataAccess.Entities.HopArrival> hopArr = mockHopRepo.GetByTrackingInformationId(1);
             DataAccess.Entities.HopArrival h = new DataAccess.Entities.HopArrival { Code = "WH02" };
             int index = hopArr.FindIndex(a => a.Code == h.Code);
 
             Assert.AreEqual(hopArr[index].Status, "visited");
-		}
-	}
+        }
+
+        [TestMethod]
+        public void ScanParcel_InvalidTrackinNumber_ThrowsException()
+        {
+            var mockMapper = new Mock<AutoMapper.IMapper>();
+            var mapper = mockMapper.Object;
+            var mockHopArrivalLogicLogger = new Mock<ILogger<HopArrivalLogic>>();
+            ILogger<HopArrivalLogic> hopArrivalLogicLogger = mockHopArrivalLogicLogger.Object;
+
+            Interfaces.IHopArrivalLogic hopArrivalLogic = new HopArrivalLogic(mockParcelRepo, mockTrackRepo, mockHopRepo, hopArrivalLogicLogger, mapper);
+
+            Assert.ThrowsException<BLException>(() => hopArrivalLogic.ScanParcel("12", "WH02"));
+        }
+
+        [TestMethod]
+        public void ScanParcel_InvalidHopCode_ThrowsException()
+        {
+            var mockMapper = new Mock<AutoMapper.IMapper>();
+            var mapper = mockMapper.Object;
+            var mockHopArrivalLogicLogger = new Mock<ILogger<HopArrivalLogic>>();
+            ILogger<HopArrivalLogic> hopArrivalLogicLogger = mockHopArrivalLogicLogger.Object;
+
+            Interfaces.IHopArrivalLogic hopArrivalLogic = new HopArrivalLogic(mockParcelRepo, mockTrackRepo, mockHopRepo, hopArrivalLogicLogger, mapper);
+
+            Assert.ThrowsException<BLException>(() => hopArrivalLogic.ScanParcel("TN000001", "WH06"));
+        }
+    }
 }
 
 
