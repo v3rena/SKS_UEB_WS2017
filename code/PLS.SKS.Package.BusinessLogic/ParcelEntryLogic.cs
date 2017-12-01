@@ -115,11 +115,13 @@ namespace PLS.SKS.Package.BusinessLogic
 
 				foreach (var wh in warehouses)
 				{
-					var hop = new DataAccess.Entities.HopArrival { DateTime = date.AddDays((double)wh.Duration), Code = wh.Code, Status = "future", TrackingInformationId = trackInfoId };
+					date = date.AddDays((double)wh.Duration);
+					var hop = new DataAccess.Entities.HopArrival { DateTime = date, Code = wh.Code, Status = "future", TrackingInformationId = trackInfoId };
 					hopArrivalRepo.Create(hop);
 					dalTrackInfo.futureHops.Add(hop);
 				}
-				var truckHop = new DataAccess.Entities.HopArrival { DateTime = date.AddDays((double)truck.Duration), Code = truck.Code, Status = "future", TrackingInformationId = trackInfoId };
+				date = date.AddDays((double)truck.Duration);
+				var truckHop = new DataAccess.Entities.HopArrival { DateTime = date, Code = truck.Code, Status = "future", TrackingInformationId = trackInfoId };
 
 				hopArrivalRepo.Create(truckHop);
 				return dalTrackInfo;
@@ -182,5 +184,5 @@ namespace PLS.SKS.Package.BusinessLogic
             }
             return validationResults.ToString();
         }
-    }
-  }
+	}
+}
