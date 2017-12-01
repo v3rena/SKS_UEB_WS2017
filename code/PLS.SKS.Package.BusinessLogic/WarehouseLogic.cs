@@ -12,13 +12,15 @@ namespace PLS.SKS.Package.BusinessLogic
 	{
 		private IWarehouseRepository warehouseRepo;
 		private ILogger<WarehouseLogic> logger;
+		private IDbCleaner dbCleaner;
 		private AutoMapper.IMapper mapper;
 
-		public WarehouseLogic(IWarehouseRepository warehouseRepository, ILogger<WarehouseLogic> logger, AutoMapper.IMapper mapper)
+		public WarehouseLogic(IWarehouseRepository warehouseRepository, ILogger<WarehouseLogic> logger, AutoMapper.IMapper mapper, IDbCleaner dbCleaner)
 		{
 			warehouseRepo = warehouseRepository;
 			this.logger = logger;
 			this.mapper = mapper;
+			this.dbCleaner = dbCleaner;
 		}
 
 		public IO.Swagger.Models.Warehouse ExportWarehouses()
@@ -58,6 +60,7 @@ namespace PLS.SKS.Package.BusinessLogic
 			}
 			DataAccess.Entities.Warehouse dalWarehouse = mapper.Map<DataAccess.Entities.Warehouse>(blWarehouse);
 
+			dbCleaner.CleanDb();
 			warehouseRepo.Create(dalWarehouse);
 		}
 

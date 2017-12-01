@@ -15,21 +15,19 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		private readonly DBContext db;
 		ILogger<SqlWarehouseRepository> logger;
 		IExceptionHelper exceptionHelper;
-		IDbCleaner dbCleaner;
 
-		public SqlWarehouseRepository(DBContext context, ILogger<SqlWarehouseRepository> logger, IExceptionHelper exceptionHelper, IDbCleaner dbCleaner)
+		public SqlWarehouseRepository(DBContext context, ILogger<SqlWarehouseRepository> logger, IExceptionHelper exceptionHelper)
 		{
 			db = context;
 			this.logger = logger;
 			this.exceptionHelper = exceptionHelper;
-			this.dbCleaner = dbCleaner;
 		}
 
 		public int Create(Warehouse w)
 		{
 			try
 			{
-				dbCleaner.CleanDb();
+				
 				db.Add(w);
 				db.SaveChanges();
 				return w.Id;

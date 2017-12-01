@@ -16,15 +16,15 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			context.Database.EnsureCreated();
 
 			// Look for any recipients.
-			if (context.Recipients.Any())
+			if (context.Warehouses.Any())
 			{
 				return;   // DB has been seeded
 			}
 
 			var recipients = new Recipient[]
 			{
-				new Recipient{FirstName="Turanga",LastName="Leela", Street="Teststrasse 1", City="Wien", PostalCode="A-1010"},
-				new Recipient{FirstName="Hubert",LastName="Farnsworth", Street="Teststrasse 2", City="Wien", PostalCode="A-1020"}
+				new Recipient{FirstName="Turanga",LastName="Leela", Street="Schlagergasse 1", City="Wien", PostalCode="A-1090"},
+				new Recipient{FirstName="Hubert",LastName="Farnsworth", Street="Donatusgasse 2", City="Linz", PostalCode="A-4020"}
 			};
 			foreach (Recipient s in recipients)
 			{
@@ -89,9 +89,12 @@ namespace PLS.SKS.Package.DataAccess.Sql
 				new HopArrival{DateTime=DateTime.Parse("2017-11-09"), Code="WH01", Status = "visited", TrackingInformationId=1},
                 new HopArrival{DateTime=DateTime.Parse("2017-11-10"), Code="WH02", Status = "visited", TrackingInformationId=1},
                 new HopArrival{DateTime=DateTime.Parse("2017-11-11"), Code="WH03", Status = "future", TrackingInformationId=1},
-                new HopArrival{DateTime=DateTime.Parse("2017-10-02"), Code="TR01", Status = "future", TrackingInformationId=1},
-                new HopArrival{DateTime=DateTime.Parse("2017-10-02"), Code="WH01", Status = "future", TrackingInformationId=2}
-            };
+                new HopArrival{DateTime=DateTime.Parse("2017-11-12"), Code="TR01", Status = "future", TrackingInformationId=1},
+                new HopArrival{DateTime=DateTime.Parse("2018-10-02"), Code="WH01", Status = "future", TrackingInformationId=2},
+				new HopArrival{DateTime=DateTime.Parse("2018-10-03"), Code="WH02", Status = "future", TrackingInformationId=2},
+				new HopArrival{DateTime=DateTime.Parse("2018-10-04"), Code="WH03", Status = "future", TrackingInformationId=2},
+				new HopArrival{DateTime=DateTime.Parse("2018-10-05"), Code="TR01", Status = "future", TrackingInformationId=2},
+			};
 			foreach (HopArrival e in hopArrivals)
 			{
 				context.HopArrivals.Add(e);
