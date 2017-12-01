@@ -25,20 +25,20 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
         public WarehouseLogicTests()
         {
             mockTruckRepo = new MockTruckRepository();
-            wh2 = new IO.Swagger.Models.Warehouse("Reg1_1", "descr", 1.0m, new List<IO.Swagger.Models.Warehouse>(), new List<IO.Swagger.Models.Truck>());
+            wh2 = new IO.Swagger.Models.Warehouse("WH02", "descr", 1.0m, new List<IO.Swagger.Models.Warehouse>(), new List<IO.Swagger.Models.Truck>());
             var rootList = new List<IO.Swagger.Models.Warehouse>();
             rootList.Add(wh2);
-            validRoot = new IO.Swagger.Models.Warehouse("Root", "descr", 1.0m, rootList, new List<IO.Swagger.Models.Truck>());
+            validRoot = new IO.Swagger.Models.Warehouse("WH01", "descr", 1.0m, rootList, new List<IO.Swagger.Models.Truck>());
             invalidRoot = new IO.Swagger.Models.Warehouse("", "descr", 1.0m, new List<IO.Swagger.Models.Warehouse>(), new List<IO.Swagger.Models.Truck>());
-            validBLWarehouse2 = new Entities.Warehouse("Reg1_1", "descr", 1.0m, new List<Entities.Warehouse>(), new List<Entities.Truck>());
+            validBLWarehouse2 = new Entities.Warehouse("WH02", "descr", 1.0m, new List<Entities.Warehouse>(), new List<Entities.Truck>());
             var blList = new List<Entities.Warehouse>();
             blList.Add(validBLWarehouse2);
-            validDALWarehouse2 = new DataAccess.Entities.Warehouse("Reg1_1", "descr", 1.0m, new List<DataAccess.Entities.Warehouse>(), new List<DataAccess.Entities.Truck>());
+            validDALWarehouse2 = new DataAccess.Entities.Warehouse("WH02", "descr", 1.0m, new List<DataAccess.Entities.Warehouse>(), new List<DataAccess.Entities.Truck>());
             var dalList = new List<DataAccess.Entities.Warehouse>();
             dalList.Add(validDALWarehouse2);
 
-            validBLWarehouse = new Entities.Warehouse("Root", "descr", 1.0m, blList, new List<Entities.Truck>());
-            validDALWarehouse = new DataAccess.Entities.Warehouse("Root", "descr", 1.0m, dalList, new List<DataAccess.Entities.Truck>());
+            validBLWarehouse = new Entities.Warehouse("WH01", "descr", 1.0m, blList, new List<Entities.Truck>());
+            validDALWarehouse = new DataAccess.Entities.Warehouse("WH01", "descr", 1.0m, dalList, new List<DataAccess.Entities.Truck>());
 
             invalidBLWarehouse = new Entities.Warehouse("", "descr", 1.0m, new List<Entities.Warehouse>(), new List<Entities.Truck>());
         }
@@ -49,6 +49,8 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
             //Arrange
             mockWareRepo = new MockWarehouseRepository();
             var mockMapper = new Mock<AutoMapper.IMapper>();
+            mockMapper.Setup(m => m.Map<Entities.Warehouse>(It.IsAny<DataAccess.Entities.Warehouse>())).Returns(validBLWarehouse);
+            mockMapper.Setup(m => m.Map<IO.Swagger.Models.Warehouse>(It.IsAny<Entities.Warehouse>())).Returns(validRoot);
             var mapper = mockMapper.Object;
             var mockHopArrivalLogicLogger = new Mock<ILogger<WarehouseLogic>>();
             ILogger<WarehouseLogic> warehouseLogicLogger = mockHopArrivalLogicLogger.Object;
@@ -98,10 +100,8 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
             warehouseLogic.ImportWarehouses(validRoot);
 
             var root = mockWareRepo.GetById(1);
-            var other = mockWareRepo.GetById(2);
 
             Assert.IsNotNull(root);
-            //Assert.IsNotNull(other);
         }
 
         [TestMethod]
