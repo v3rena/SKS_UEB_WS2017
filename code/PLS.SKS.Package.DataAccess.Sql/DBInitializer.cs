@@ -34,13 +34,13 @@ namespace PLS.SKS.Package.DataAccess.Sql
 
 			var trucks = new Truck[]
 			{
-				new Truck{Code="TR01", Duration=1.3m, Latitude=48.2089816m, Longitude=16.373213299999975m, Radius=30m, NumberPlate="WR-2765"}, //Wien Stephansplatz
-				new Truck{Code="TR02", Duration=1.3m, Latitude=48.2089816m, Longitude=16.373213299999975m, Radius=30m, NumberPlate="WR-2788"}, //Wien Stephansplatz
+				new Truck{Code="TR01", Duration=1m, Latitude=48.2089816m, Longitude=16.373213299999975m, Radius=30m, NumberPlate="WR-2765"}, //Wien Stephansplatz
+				new Truck{Code="TR02", Duration=1m, Latitude=48.2089816m, Longitude=16.373213299999975m, Radius=30m, NumberPlate="WR-2788"}, //Wien Stephansplatz
 			};
 			var trucks2 = new Truck[]
 			{
-				new Truck{Code="TR03", Duration=1.3m, Latitude=48.3059826m, Longitude=14.287141199999951m, Radius=30m, NumberPlate="WR-2777"}, //Linz Hauptplatz
-				new Truck{Code="TR04", Duration=1.3m, Latitude=48.85661400000001m, Longitude=2.3522219000000177m, Radius=30m, NumberPlate="WR-2739"}, //Paris
+				new Truck{Code="TR03", Duration=1m, Latitude=48.3059826m, Longitude=14.287141199999951m, Radius=30m, NumberPlate="WR-2777"}, //Linz Hauptplatz
+				new Truck{Code="TR04", Duration=1m, Latitude=48.85661400000001m, Longitude=2.3522219000000177m, Radius=30m, NumberPlate="WR-2739"}, //Paris
 			};
 			foreach (Truck c in trucks)
 			{
@@ -52,10 +52,10 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			}
 			context.SaveChanges();
 
-			var w01 = new Warehouse { Code = "WH01", Description = "Superwarehouse 01", Duration = 1.5m, Trucks = new List<Truck>(), NextHops = new List<Warehouse>() };
-			var w02 = new Warehouse { Code = "WH02", Description = "Warehouse 02", Duration = 1.5m, Trucks = new List<Truck>(), NextHops = new List<Warehouse>() };
-			var w03 = new Warehouse { Code = "WH03", Description = "Warehouse 03", Duration = 1.5m, Trucks = trucks.ToList(), NextHops = new List<Warehouse>() };
-			var w04 = new Warehouse { Code = "WH04", Description = "Warehouse 04", Duration = 1.5m, Trucks = trucks2.ToList(), NextHops = new List<Warehouse>() };
+			var w01 = new Warehouse { Code = "WH01", Description = "Superwarehouse 01", Duration = 2m, Trucks = new List<Truck>(), NextHops = new List<Warehouse>() };
+			var w02 = new Warehouse { Code = "WH02", Description = "Warehouse 02", Duration = 3m, Trucks = new List<Truck>(), NextHops = new List<Warehouse>() };
+			var w03 = new Warehouse { Code = "WH03", Description = "Warehouse 03", Duration = 1m, Trucks = trucks.ToList(), NextHops = new List<Warehouse>() };
+			var w04 = new Warehouse { Code = "WH04", Description = "Warehouse 04", Duration = 2m, Trucks = trucks2.ToList(), NextHops = new List<Warehouse>() };
 
 			w01.NextHops.Add(w02);
 			w02.NextHops.Add(w03);
