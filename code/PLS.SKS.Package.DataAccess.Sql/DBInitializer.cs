@@ -15,7 +15,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		{
 			context.Database.EnsureCreated();
 
-			// Look for any recipients.
+			// Look for any warehouses
 			if (context.Warehouses.Any())
 			{
 				return;   // DB has been seeded

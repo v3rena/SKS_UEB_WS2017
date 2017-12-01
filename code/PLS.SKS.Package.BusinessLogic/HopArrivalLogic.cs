@@ -40,11 +40,10 @@ namespace PLS.SKS.Package.BusinessLogic
                 DataAccess.Entities.TrackingInformation dalInfo = trackingRepo.GetById(dalParcel.TrackingInformationId);
                 List<DataAccess.Entities.HopArrival> hopArr = hopArrivalRepo.GetByTrackingInformationId(dalInfo.Id);
 
-                DataAccess.Entities.HopArrival h = new DataAccess.Entities.HopArrival { Code = code };
-                int index = hopArr.FindIndex(a => a.Code == h.Code);
+                int index = hopArr.FindIndex(a => a.Code == code);
                 if (index == -1)
                 {
-                    throw new BLException("Wrong Hop for Parcel");
+                    throw new BLException("Wrong hop for parcel");
                 }
                 hopArr[index].Status = "visited";
                 hopArr[index].DateTime = DateTime.Now;

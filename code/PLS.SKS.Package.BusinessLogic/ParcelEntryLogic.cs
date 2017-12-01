@@ -111,6 +111,7 @@ namespace PLS.SKS.Package.BusinessLogic
 				}
 
 				var date = DateTime.Now.AddDays(1);
+				warehouses.Reverse();
 
 				foreach (var wh in warehouses)
 				{
