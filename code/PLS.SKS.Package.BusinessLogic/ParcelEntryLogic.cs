@@ -19,7 +19,7 @@ namespace PLS.SKS.Package.BusinessLogic
 		private ITrackingInformationRepository trackingRepo;
 		private IHopArrivalRepository hopArrivalRepo;
 		private ITruckRepository truckRepo;
-		IWarehouseRepository warehouseRepo;
+		private IWarehouseRepository warehouseRepo;
 		private IGeoEncodingAgent encodingAgent;
 		private ILogger<ParcelEntryLogic> logger;
 		private AutoMapper.IMapper mapper;
@@ -119,10 +119,9 @@ namespace PLS.SKS.Package.BusinessLogic
 					dalTrackInfo.futureHops.Add(hop);
 					date = date.AddDays(1);
 				}
-
 				var truckHop = new DataAccess.Entities.HopArrival { DateTime = date, Code = truck.Code, Status = "future", TrackingInformationId = trackInfoId };
-				hopArrivalRepo.Create(truckHop);
 
+				hopArrivalRepo.Create(truckHop);
 				return dalTrackInfo;
 			}
 		}
