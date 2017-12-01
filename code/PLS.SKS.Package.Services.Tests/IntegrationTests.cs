@@ -10,6 +10,9 @@ using System.Text;
 using Newtonsoft.Json;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
+using System.Data.SqlClient;
 
 namespace PLS.SKS.Package.Services.Tests
 {
@@ -25,7 +28,22 @@ namespace PLS.SKS.Package.Services.Tests
 
 
             _server = new TestServer(new WebHostBuilder()
-                          .UseStartup<Startup>());
+                          .UseStartup<Startup>()
+                          .ConfigureAppConfiguration((hostContext, config) =>
+                          {
+                              config.AddEnvironmentVariables();
+                          })
+                          .ConfigureServices(services =>
+                          {
+                              services.AddDbContext<DataAccess.Sql.DBContext>(options =>
+                              {
+                                  var connectionStringBuilder =
+                                        new SqlConnectionStringBuilder("Server = (localdb)\\mssqllocaldb; Database = ParcelLogisticsDB; Trusted_Connection = True; MultipleActiveResultSets = true");
+                                  var sqlConnection = new SqlConnection(connectionStringBuilder.ToString());
+                                  sqlConnection.Open();
+                                  options.UseSqlServer(sqlConnection);
+                              });
+                          }));
             _client = _server.CreateClient();
         }
 
