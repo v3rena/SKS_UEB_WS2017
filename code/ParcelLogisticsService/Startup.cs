@@ -28,14 +28,8 @@ namespace PLS.SKS.Package.Services
         public void ConfigureServices(IServiceCollection services)
         {
             //Add Database Context
-            var connectionString = Configuration.GetConnectionString("DefaultConnection");
-            if(Configuration.GetConnectionString("DefaultConnection") == null)
-            {
-                connectionString = "Server = (localdb)\\mssqllocaldb; Database = ParcelLogisticsDB; Trusted_Connection = True; MultipleActiveResultSets = true";
-            }
-
             services.AddDbContext<DataAccess.Sql.DBContext>(options =>
-			options.UseSqlServer(connectionString));
+			options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
 			//Add BusinessLogic Components
 			services.AddScoped<BusinessLogic.Interfaces.IHopArrivalLogic, BusinessLogic.HopArrivalLogic>();
