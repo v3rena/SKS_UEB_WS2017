@@ -58,7 +58,7 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
             validDALRec = new DataAccess.Entities.Recipient("Tobias", "Test", "Teststraße 9", "A-1140", "Wien");
             validDALParcel = new DataAccess.Entities.Parcel(1.5f, validDALRec, 1);
         }
-		//public void MethodUnderTest_Scenario_ExpectedOutcome()
+		
 		[TestMethod]
 		public void AddParcel_ValidInputArguments_ReturnsParcelTrackingNumber()
 		{
@@ -67,9 +67,11 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
             mockMapper.Setup(m => m.Map<Entities.Parcel>(It.IsAny<IO.Swagger.Models.Parcel>())).Returns(validBLParcel);
             mockMapper.Setup(m => m.Map<DataAccess.Entities.Parcel>(It.IsAny<Entities.Parcel>())).Returns(validDALParcel);
             var mapper = mockMapper.Object;
+
             encodingAgent = new GoogleEncodingAgent(googleEncodingAgentLogger, mapper);
             Interfaces.IParcelEntryLogic parcelLogic = new ParcelEntryLogic(mockWarehouseRepo, mockTruckRepo, mockParcelRepo, mockTrackRepo, mockHopRepo, encodingAgent, parcelEntryLogicLogger, mapper);
-            //Act
+            
+			//Act
             var trackNumber = parcelLogic.AddParcel(validSwagParcel);
             //Assert
             Assert.IsNotNull(trackNumber);

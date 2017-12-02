@@ -21,12 +21,11 @@ namespace PLS.SKS.Package.Services.Tests
     {
 		private readonly TestServer _server;
 		private readonly HttpClient _client;
+		private string _testTrackingNumber;
 
 		public IntegrationTests()
 		{
             // Arrange
-
-
             _server = new TestServer(new WebHostBuilder()
                           .UseStartup<Startup>()
                           .ConfigureAppConfiguration((hostContext, config) =>
@@ -54,7 +53,6 @@ namespace PLS.SKS.Package.Services.Tests
             var response = await _client.GetAsync("/api/warehouse");
             response.EnsureSuccessStatusCode();
 
-
             var statuscode = response.StatusCode;
             var responseString = await response.Content.ReadAsStringAsync();
 
@@ -66,8 +64,8 @@ namespace PLS.SKS.Package.Services.Tests
 		[TestMethod]
 		public async Task PostWarehouse()
 		{
-            //Assert
-            var warehouse = new Warehouse("WH01", "Test", 12, new List<Warehouse> { new Warehouse("WH02", "Test", 12, new List<Warehouse>(), new List<Truck>()) }, new List<Truck>());
+            //Arrange
+            var warehouse = new Warehouse("WH01", "Test", 12, new List<Warehouse> { new Warehouse("WH02", "Test", 12, new List<Warehouse>(), new List<Truck>() { new Truck("TR01", "WR-2765", 48.2089816m, 16.373213299999975m, 30m, 1m) }) }, new List<Truck>());
             var stringContent = new StringContent(JsonConvert.SerializeObject(warehouse), Encoding.UTF8, "application/json");
 
             // Act
@@ -82,26 +80,33 @@ namespace PLS.SKS.Package.Services.Tests
 		[TestMethod]
 		public async Task PostParcel()
 		{
-            //Assert
-            var parcel = new Parcel(12, new Recipient("Tobias", "Test", "Testgasse 7", "A-1160", "Wien"));
+            //Arrange
+            var parcel = new Parcel(12, new Recipient("Tobias", "Test", "Horvathgasse 2", "A-1160", "Wien"));
             var stringContent = new StringContent(JsonConvert.SerializeObject(parcel), Encoding.UTF8, "application/json");
 
             // Act
             var response = await _client.PostAsync("/api/parcel", stringContent);
-
             var responseStatus = response.StatusCode;
             var responseString = await response.Content.ReadAsStringAsync();
 
-            // Assert
-            StringAssert.Contains(responseString, "trackingId");
+			// Assert
+			StringAssert.Contains(responseString, "trackingId");
             Assert.AreEqual("OK", responseStatus.ToString());
         }
 
 		[TestMethod]
 		public async Task GetParcel()
 		{
-            // Act
-            var response = await _client.GetAsync("/api/parcel/TN000001");
+			//Arrange
+			var parcel = new Parcel(12, new Recipient("Tobias", "Test", "Horvathgasse 2", "A-1160", "Wien"));
+			var stringContent = new StringContent(JsonConvert.SerializeObject(parcel), Encoding.UTF8, "application/json");
+			var responseArr = await _client.PostAsync("/api/parcel", stringContent);
+			var responseStatusArr = responseArr.StatusCode;
+			var responseStringArr = await responseArr.Content.ReadAsStringAsync();
+			_testTrackingNumber = GetTrackingNumber(responseStringArr);
+
+			// Act
+			var response = await _client.GetAsync($"/api/parcel/{_testTrackingNumber}");
             response.EnsureSuccessStatusCode();
 
             var responseStatus = response.StatusCode;
@@ -117,16 +122,31 @@ namespace PLS.SKS.Package.Services.Tests
 		[TestMethod]
 		public async Task PostReportHop()
 		{
-            //Assert
+            //Arrange
             var stringContent = new StringContent("");
+			var parcel = new Parcel(12, new Recipient("Tobias", "Test", "Horvathgasse 2", "A-1160", "Wien"));
+			var stringContentArr = new StringContent(JsonConvert.SerializeObject(parcel), Encoding.UTF8, "application/json");
+			var responseArr = await _client.PostAsync("/api/parcel", stringContentArr);
+			var responseStatusArr = responseArr.StatusCode;
+			var responseStringArr = await responseArr.Content.ReadAsStringAsync();
+			_testTrackingNumber = GetTrackingNumber(responseStringArr);
 
-            // Act
-            var response = await _client.PostAsync("/api/parcel/TN000001/reportHop/WH03", stringContent);
+			// Act
+			var response = await _client.PostAsync($"/api/parcel/{_testTrackingNumber}/reportHop/WH02", stringContent);
 
             var responseStatus = response.StatusCode;
 
             // Assert
             Assert.AreEqual("OK", responseStatus.ToString());
         }
+
+		private string GetTrackingNumber(string input)
+		{
+			var inputs = input.Split("\"");
+			var answer = inputs[3];
+			answer = answer.Replace("\"", " ");
+			answer = answer.Trim();
+			return answer;
+		}
 	}
 }
