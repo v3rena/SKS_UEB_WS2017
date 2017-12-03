@@ -37,12 +37,11 @@ namespace PLS.SKS.Package.Services.Tests
                               services.AddDbContext<DataAccess.Sql.DBContext>(options =>
                               {
                                   var connectionStringBuilder =
-                                        //new SqlConnectionStringBuilder("Server = (localdb)\\mssqllocaldb; Database = ParcelLogisticsDB; Trusted_Connection = True; MultipleActiveResultSets = true");
-                                        new SqlConnectionStringBuilder("Server = (localdb)\\mssqllocaldb; Pooling = false");
+                                        new SqlConnectionStringBuilder("Server = (localdb)\\mssqllocaldb; Database = ParcelLogisticsDB; Trusted_Connection = True; MultipleActiveResultSets = true");
                                   var sqlConnection = new SqlConnection(connectionStringBuilder.ToString());
-                                  //sqlConnection.Open();
-                                  //options.UseSqlServer(sqlConnection);
-                                  options.UseInMemoryDatabase("ParcelLogisticsDB");
+                                  sqlConnection.Open();
+                                  options.UseSqlServer(sqlConnection);
+
                               });
                           }));
             _client = _server.CreateClient();

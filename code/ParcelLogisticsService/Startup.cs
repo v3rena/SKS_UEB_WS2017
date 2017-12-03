@@ -31,7 +31,6 @@ namespace PLS.SKS.Package.Services
             services.AddDbContext<DataAccess.Sql.DBContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-
 			//Add BusinessLogic Components
 			services.AddScoped<BusinessLogic.Interfaces.IHopArrivalLogic, BusinessLogic.HopArrivalLogic>();
 			services.AddScoped<BusinessLogic.Interfaces.IParcelEntryLogic, BusinessLogic.ParcelEntryLogic>();
