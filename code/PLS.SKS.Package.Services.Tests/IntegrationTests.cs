@@ -40,8 +40,9 @@ namespace PLS.SKS.Package.Services.Tests
                                         //new SqlConnectionStringBuilder("Server = (localdb)\\mssqllocaldb; Database = ParcelLogisticsDB; Trusted_Connection = True; MultipleActiveResultSets = true");
                                         new SqlConnectionStringBuilder("Server = (localdb)\\mssqllocaldb; Pooling = false");
                                   var sqlConnection = new SqlConnection(connectionStringBuilder.ToString());
-                                  sqlConnection.Open();
-                                  options.UseSqlServer(sqlConnection);
+                                  //sqlConnection.Open();
+                                  //options.UseSqlServer(sqlConnection);
+                                  options.UseInMemoryDatabase("ParcelLogisticsDB");
                               });
                           }));
             _client = _server.CreateClient();
