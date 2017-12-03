@@ -27,9 +27,7 @@ namespace PLS.SKS.Package.Services
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            SetupDB(services);
-
-            
+            SetupDB(services);            
 
             //Add BusinessLogic Components
             services.AddScoped<BusinessLogic.Interfaces.IHopArrivalLogic, BusinessLogic.HopArrivalLogic>();
@@ -44,7 +42,8 @@ namespace PLS.SKS.Package.Services
 			services.AddScoped<DataAccess.Interfaces.ITrackingInformationRepository, DataAccess.Sql.SqlTrackingInformationRepository>();
 			services.AddScoped<DataAccess.Interfaces.ITruckRepository, DataAccess.Sql.SqlTruckRepository>();
 			services.AddScoped<DataAccess.Interfaces.IWarehouseRepository, DataAccess.Sql.SqlWarehouseRepository>();
-			services.AddScoped<DataAccess.Interfaces.IDbCleaner, DataAccess.Sql.DbCleaner>();
+
+            AddDBCleaner(services);
 
 			//Add GeoEncodingAgent
 			services.AddScoped<ServiceAgents.Interfaces.IGeoEncodingAgent, ServiceAgents.GoogleEncodingAgent>();
@@ -65,6 +64,11 @@ namespace PLS.SKS.Package.Services
             {
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
             });
+        }
+
+        public virtual void AddDBCleaner(IServiceCollection services)
+        {
+            services.AddScoped<DataAccess.Interfaces.IDbCleaner, DataAccess.Sql.DbCleaner>();
         }
 
         // neu fuer tests

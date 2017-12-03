@@ -35,5 +35,10 @@ namespace PLS.SKS.Package.Services
             dbContext.Database.Migrate();
             DBInitializer.Initialize(dbContext);
         }
+
+        public override void AddDBCleaner(IServiceCollection services)
+        {
+            services.AddScoped<DataAccess.Interfaces.IDbCleaner, DataAccess.Sql.SQLiteCleaner>();
+        }
     }
 }
