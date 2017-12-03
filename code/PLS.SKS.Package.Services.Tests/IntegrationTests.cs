@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using System.Data.SqlClient;
+using PLS.SKS.Package.DataAccess.Sql;
 
 namespace PLS.SKS.Package.Services.Tests
 {
@@ -25,25 +26,32 @@ namespace PLS.SKS.Package.Services.Tests
 
 		public IntegrationTests()
 		{
+
             // Arrange
             _server = new TestServer(new WebHostBuilder()
-                          .UseStartup<Startup>()
-                          .ConfigureAppConfiguration((hostContext, config) =>
-                          {
-                              config.AddEnvironmentVariables();
-                          })
-                          .ConfigureServices(services =>
-                          {
-                              services.AddDbContext<DataAccess.Sql.DBContext>(options =>
-                              {
-                                  var connectionStringBuilder =
-                                        new SqlConnectionStringBuilder("Server = (localdb)\\mssqllocaldb; Database = ParcelLogisticsDB; Trusted_Connection = True; MultipleActiveResultSets = true");
-                                  var sqlConnection = new SqlConnection(connectionStringBuilder.ToString());
-                                  sqlConnection.Open();
-                                  options.UseSqlServer(sqlConnection);
+                          .UseStartup<TestStartup>());
+                          //.ConfigureAppConfiguration((hostContext, config) =>
+                          //{
+                          //    config.AddEnvironmentVariables();
+                          //})
+                          //.ConfigureServices(services =>
+                          //{
+                          //    services.AddDbContext<DataAccess.Sql.DBContext>(options =>
+                          //    {
+                          //        //var connectionStringBuilder =
+                          //        //      new SqlConnectionStringBuilder("Server = (localdb)\\mssqllocaldb; Database = ParcelLogisticsDB; Trusted_Connection = True; MultipleActiveResultSets = true");
+                          //        //var sqlConnection = new SqlConnection(connectionStringBuilder.ToString());
+                          //        //sqlConnection.Open();
+                          //        //options.UseSqlServer(sqlConnection);
 
-                              });
-                          }));
+                          //        var connectionStringBuilder = new SqliteConnectionStringBuilder { DataSource = "ParcelLogistics.db" };
+                          //        var sqliteConnection = new SqliteConnection(connectionStringBuilder.ToString());
+                          //        var test = sqliteConnection.ConnectionString;
+                          //        sqliteConnection.Open();
+                          //        options.UseSqlite(sqliteConnection);
+                          //    });
+                          //}));
+            
             _client = _server.CreateClient();
         }
 
