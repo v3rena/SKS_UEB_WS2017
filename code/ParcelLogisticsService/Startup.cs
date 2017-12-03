@@ -27,12 +27,10 @@ namespace PLS.SKS.Package.Services
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //Add Database Context
-            services.AddDbContext<DataAccess.Sql.DBContext>(options =>
-			options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            SetupDB(services);            
 
-			//Add BusinessLogic Components
-			services.AddScoped<BusinessLogic.Interfaces.IHopArrivalLogic, BusinessLogic.HopArrivalLogic>();
+            //Add BusinessLogic Components
+            services.AddScoped<BusinessLogic.Interfaces.IHopArrivalLogic, BusinessLogic.HopArrivalLogic>();
 			services.AddScoped<BusinessLogic.Interfaces.IParcelEntryLogic, BusinessLogic.ParcelEntryLogic>();
 			services.AddScoped<BusinessLogic.Interfaces.ITrackingLogic, BusinessLogic.TrackingLogic>();
 			services.AddScoped<BusinessLogic.Interfaces.IWarehouseLogic, BusinessLogic.WarehouseLogic>();
@@ -44,7 +42,8 @@ namespace PLS.SKS.Package.Services
 			services.AddScoped<DataAccess.Interfaces.ITrackingInformationRepository, DataAccess.Sql.SqlTrackingInformationRepository>();
 			services.AddScoped<DataAccess.Interfaces.ITruckRepository, DataAccess.Sql.SqlTruckRepository>();
 			services.AddScoped<DataAccess.Interfaces.IWarehouseRepository, DataAccess.Sql.SqlWarehouseRepository>();
-			services.AddScoped<DataAccess.Interfaces.IDbCleaner, DataAccess.Sql.DbCleaner>();
+
+            AddDBCleaner(services);
 
 			//Add GeoEncodingAgent
 			services.AddScoped<ServiceAgents.Interfaces.IGeoEncodingAgent, ServiceAgents.GoogleEncodingAgent>();
@@ -67,6 +66,26 @@ namespace PLS.SKS.Package.Services
             });
         }
 
+        public virtual void AddDBCleaner(IServiceCollection services)
+        {
+            services.AddScoped<DataAccess.Interfaces.IDbCleaner, DataAccess.Sql.DbCleaner>();
+        }
+
+        // neu fuer tests
+        public virtual void SetupDB(IServiceCollection services)
+        {
+            //Add Database Context
+            services.AddDbContext<DataAccess.Sql.DBContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+        }
+
+        public virtual void EnsureDatabaseCreated(DataAccess.Sql.DBContext dbContext)
+        {
+            // run Migrations
+            dbContext.Database.Migrate();
+        }
+        //-----------
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
@@ -85,6 +104,15 @@ namespace PLS.SKS.Package.Services
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            // neu fuer tests
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>()
+                .CreateScope())
+            {
+                var dbContext = serviceScope.ServiceProvider.GetService<DataAccess.Sql.DBContext>();
+                EnsureDatabaseCreated(dbContext);
+            }
+            //-----------
 
             app.UseMvc();
         }
