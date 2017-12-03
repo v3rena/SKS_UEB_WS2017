@@ -28,6 +28,7 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
 
 		ServiceAgents.DTOs.Recipient validSARecipient;
 		ServiceAgents.DTOs.Location validSALocation;
+        Entities.Location validBLLocation;
 
         ILogger<ParcelEntryLogic> parcelEntryLogicLogger;
         ILogger<GoogleEncodingAgent> googleEncodingAgentLogger;
@@ -41,7 +42,7 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
 			mockWarehouseRepo = new MockWarehouseRepository();
             mockParcelRepo = new MockParcelRepository(mockTrackRepo);
 
-            CreateParcels();
+            CreateTestData();
 
             var mockParcelEntryLogicLogger = new Mock<ILogger<ParcelEntryLogic>>();
             parcelEntryLogicLogger = mockParcelEntryLogicLogger.Object;
@@ -50,7 +51,7 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
             googleEncodingAgentLogger = mockGoogleEncodingAgentLogger.Object;            
 
         }
-        private void CreateParcels()
+        private void CreateTestData()
         {
             validSwagRec = new IO.Swagger.Models.Recipient("Tobias", "Test", "Horvathgasse 2", "A-1160", "Wien");
             validSwagParcel = new IO.Swagger.Models.Parcel(1.5f, validSwagRec);
@@ -60,9 +61,12 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
             invalidBLParcel = new Entities.Parcel(1.5f, invalidBLRec);
             validDALRec = new DataAccess.Entities.Recipient("Tobias", "Test", "Horvathgasse 2", "A-1160", "Wien");
             validDALParcel = new DataAccess.Entities.Parcel(1.5f, validDALRec, 1);
+
+            validSARecipient = new ServiceAgents.DTOs.Recipient("Tobias", "Test", "Horvathgasse 2", "A-1160", "Wien");
+            validBLLocation = new Entities.Location { Lat = 48.2057943, Lng = 16.3066716 };
 		}
 		
-		/*[TestMethod]
+		[TestMethod]
 		public void AddParcel_ValidInputArguments_ReturnsParcelTrackingNumber()
 		{
             //Arrange
@@ -71,8 +75,11 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
             mockMapper.Setup(m => m.Map<DataAccess.Entities.Parcel>(It.IsAny<Entities.Parcel>())).Returns(validDALParcel);
 			mockMapper.Setup(m => m.Map<Entities.Parcel>(It.IsAny<DataAccess.Entities.Parcel>())).Returns(validBLParcel);
 			mockMapper.Setup(m => m.Map<IO.Swagger.Models.Parcel>(It.IsAny<Entities.Parcel>())).Returns(validSwagParcel);
+            mockMapper.Setup(m => m.Map<Entities.Recipient>(It.IsAny<DataAccess.Entities.Recipient>())).Returns(validBLRec);
+            mockMapper.Setup(m => m.Map<ServiceAgents.DTOs.Recipient>(It.IsAny<Entities.Recipient>())).Returns(validSARecipient);
+            mockMapper.Setup(m => m.Map<Entities.Location>(It.IsAny<ServiceAgents.DTOs.Location>())).Returns(validBLLocation);
 
-			var mapper = mockMapper.Object;
+            var mapper = mockMapper.Object;
 
             encodingAgent = new GoogleEncodingAgent(googleEncodingAgentLogger, mapper);
             Interfaces.IParcelEntryLogic parcelLogic = new ParcelEntryLogic(mockWarehouseRepo, mockTruckRepo, mockParcelRepo, mockTrackRepo, mockHopRepo, encodingAgent, parcelEntryLogicLogger, mapper);
@@ -82,7 +89,7 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
             //Assert
             Assert.IsNotNull(trackNumber);
             Assert.AreEqual(trackNumber.Length, 8);
-		}*/
+		}
 
         [TestMethod]
         public void AddParcel_NullParcel_ThrowsException()
