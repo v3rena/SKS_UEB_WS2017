@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using PLS.SKS.Package.DataAccess.Sql;
+using Microsoft.EntityFrameworkCore;
 
 namespace PLS.SKS.Package.Services
 {
@@ -24,9 +25,10 @@ namespace PLS.SKS.Package.Services
 				try
 				{
 					var context = services.GetRequiredService <DBContext>();
-					DBInitializer.Initialize(context);
-				}
-				catch (Exception ex)
+                    //DBInitializer.Initialize(context);
+                    //context.Database.Migrate();
+                }
+                catch (Exception ex)
 				{
 					var logger = services.GetRequiredService<ILogger<Program>>();
 					logger.LogError(ex, "An error occurred while seeding the database.");
