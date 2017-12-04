@@ -84,6 +84,11 @@ namespace PLS.SKS.Package.DataAccess.Mock
             return null;
         }
 
+		public Warehouse GetRootWarehouse()
+		{
+			return warehouses.First();
+		}
+
 		private List<Entities.Warehouse> warehouses = new List<Entities.Warehouse>();
         private int m_id;
     }

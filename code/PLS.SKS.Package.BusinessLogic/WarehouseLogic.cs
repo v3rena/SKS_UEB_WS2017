@@ -2,7 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using PLS.SKS.Package.DataAccess.Interfaces;
-using PLS.SKS.Package.DataAccess.Sql.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -28,8 +27,7 @@ namespace PLS.SKS.Package.BusinessLogic
 		{
 			try
 			{
-				//Return root warehouse
-				var dalWarehouse = warehouseRepo.GetById(Constants.DbStartIndex);
+				var dalWarehouse = warehouseRepo.GetRootWarehouse();
 				if (dalWarehouse == null)
 				{
 					throw new BLException("No RootWarehouse found");

@@ -24,8 +24,8 @@ namespace PLS.SKS.Package.DataAccess.Sql.Migrations
 
             modelBuilder.Entity("PLS.SKS.Package.DataAccess.Entities.HopArrival", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
+					b.Property<int>("Id")
+						.ValueGeneratedOnAdd();
 
                     b.Property<string>("Code");
 

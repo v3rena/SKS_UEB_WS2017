@@ -133,6 +133,27 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			}
 		}
 
+		public Warehouse GetRootWarehouse()
+		{
+			try
+			{
+				Warehouse warehouse = db.Warehouses.Include(w => w.NextHops).Include(w => w.Trucks)
+				.First();
+				SearchWarehouseHierarchy(warehouse);
+				return warehouse;
+			}
+			catch (SqlException ex)
+			{
+				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
+				throw new DALException("Could not retrieve warehouse from database", ex);
+			}
+			catch (Exception ex)
+			{
+				logger.LogError("Could not retrieve warehouse from database", ex);
+				throw new DALException("Could not retrieve warehouse from database", ex);
+			}
+		}
+
 		public void Update(Warehouse w)
 		{
 			try
