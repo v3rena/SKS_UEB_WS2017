@@ -18,7 +18,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			this.logger = logger;
 		}
 
-		public void CleanDb()
+		public virtual void CleanDb()
 		{
 			try
 			{

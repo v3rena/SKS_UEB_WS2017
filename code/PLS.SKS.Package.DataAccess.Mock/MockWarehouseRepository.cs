@@ -12,6 +12,7 @@ namespace PLS.SKS.Package.DataAccess.Mock
         {
             var wh3 = new Warehouse("Bez1_1", "descr", 1.0m, new List<Warehouse>(), new List<Truck>());
             wh3.Id = 3;
+            wh3.Trucks.Add(new Truck("TR01", "WR-2765", 48.2089816m, 16.373213299999975m, 30m, 0.5m));
             var wh2List = new List<Warehouse>();
             wh2List.Add(wh3);
             var wh2 = new Warehouse("Reg1_1", "descr", 1.0m, wh2List, new List<Truck>());
@@ -58,13 +59,30 @@ namespace PLS.SKS.Package.DataAccess.Mock
 
 		public Warehouse GetParent(Truck truck)
 		{
-			throw new NotImplementedException();
-		}
+            foreach (var wh in warehouses)
+            {
+                var index = wh.Trucks.FindIndex(t => t.Code == truck.Code);
+                if (index != -1)
+                {
+                    return wh;
+                }
+            }
+            return null;
+
+        }
 
 		public Warehouse GetParent(Warehouse warehouse)
 		{
-			throw new NotImplementedException();
-		}
+            foreach (var wh in warehouses)
+            {
+                var index = wh.NextHops.FindIndex(w => w.Code == warehouse.Code);
+                if (index != -1)
+                {
+                    return wh;
+                }
+            }
+            return null;
+        }
 
 		private List<Entities.Warehouse> warehouses = new List<Entities.Warehouse>();
         private int m_id;

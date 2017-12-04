@@ -1,0 +1,2 @@
+		Lat	48.2057943	double
+		Lng	16.3066716	double
