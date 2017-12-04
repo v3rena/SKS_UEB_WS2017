@@ -27,6 +27,7 @@ namespace PLS.SKS.Package.Services
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+			//Add Database Context
             SetupDB(services);            
 
             //Add BusinessLogic Components
@@ -43,14 +44,11 @@ namespace PLS.SKS.Package.Services
 			services.AddScoped<DataAccess.Interfaces.ITruckRepository, DataAccess.Sql.SqlTruckRepository>();
 			services.AddScoped<DataAccess.Interfaces.IWarehouseRepository, DataAccess.Sql.SqlWarehouseRepository>();
 
+			//Add DbCleaner
             AddDBCleaner(services);
 
 			//Add GeoEncodingAgent
 			services.AddScoped<ServiceAgents.Interfaces.IGeoEncodingAgent, ServiceAgents.GoogleEncodingAgent>();
-
-			//Add ExceptionHelper
-			services.AddScoped<DataAccess.Interfaces.IExceptionHelper, DataAccess.Sql.ExceptionHelper>();
-
 
 			//Add Mapping
 			services.AddAutoMapper();
@@ -71,17 +69,16 @@ namespace PLS.SKS.Package.Services
             services.AddScoped<DataAccess.Interfaces.IDbCleaner, DataAccess.Sql.DbCleaner>();
         }
 
-        // neu fuer tests
+        // Enables Reuse in Testing
         public virtual void SetupDB(IServiceCollection services)
         {
-            //Add Database Context
             services.AddDbContext<DataAccess.Sql.DBContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         public virtual void EnsureDatabaseCreated(DataAccess.Sql.DBContext dbContext)
         {
-            // run Migrations
+            // Run Migrations
             dbContext.Database.Migrate();
         }
         //-----------
@@ -105,8 +102,8 @@ namespace PLS.SKS.Package.Services
                 app.UseDeveloperExceptionPage();
             }
 
-            // neu fuer tests
-            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>()
+			// Enables Reuse in Testing
+			using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>()
                 .CreateScope())
             {
                 var dbContext = serviceScope.ServiceProvider.GetService<DataAccess.Sql.DBContext>();

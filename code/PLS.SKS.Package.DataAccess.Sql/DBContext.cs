@@ -19,15 +19,5 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		public DbSet<HopArrival> HopArrivals { get; set; }
 		public DbSet<Truck> Trucks { get; set; }
 		public DbSet<Warehouse> Warehouses { get; set; }
-
-		protected override void OnModelCreating(ModelBuilder modelBuilder)
-		{
-			modelBuilder.Entity<Recipient>().ToTable("Recipients");
-			modelBuilder.Entity<Parcel>().ToTable("Parcels");
-			modelBuilder.Entity<TrackingInformation>().ToTable("TrackingInformations");
-			modelBuilder.Entity<HopArrival>().ToTable("HopArrivals");
-			modelBuilder.Entity<Truck>().ToTable("Trucks");
-			modelBuilder.Entity<Warehouse>().ToTable("Warehouses");
-		}
 	}
 }

@@ -13,7 +13,6 @@ namespace PLS.SKS.Package.DataAccess.Mock
             Create(new Truck("TR01", "WR-2765", 48.2089816m, 16.373213299999975m, 30m, 0.5m));
             Create(new Truck("TR02", "WR-2766", 48.3059826m, 14.287141199999951m, 30m, 0.5m));
             Create(new Truck("TR03", "WR-2767", 48.85661400000001m, 2.3522219000000177m, 30m, 0.5m));
-
         }
 
         public int Create(Truck t)

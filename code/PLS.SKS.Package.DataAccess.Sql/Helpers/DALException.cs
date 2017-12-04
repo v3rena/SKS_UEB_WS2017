@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using PLS.SKS.Package.DataAccess.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -8,8 +9,6 @@ namespace PLS.SKS.Package.DataAccess.Sql
 {
     public class DALException : Exception
     {
-		ExceptionHelper exceptionHelper = new ExceptionHelper();
-
 		public DALException()
 		{
 

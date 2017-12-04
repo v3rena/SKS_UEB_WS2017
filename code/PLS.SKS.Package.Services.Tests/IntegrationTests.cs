@@ -22,32 +22,15 @@ namespace PLS.SKS.Package.Services.Tests
     {
 		private readonly TestServer _server;
 		private readonly HttpClient _client;
-		private string _testTrackingNumber;
 
 		public IntegrationTests()
 		{
-
             // Arrange
             _server = new TestServer(new WebHostBuilder()
                           .UseStartup<TestStartup>());
             
             _client = _server.CreateClient();
         }
-
-		[TestMethod]
-        public async Task GetWarehouse()
-        {
-            // Act
-            var response = await _client.GetAsync("/api/warehouse");
-            response.EnsureSuccessStatusCode();
-
-            var statuscode = response.StatusCode;
-            var responseString = await response.Content.ReadAsStringAsync();
-
-            // Assert
-            Assert.AreEqual("OK", statuscode.ToString());
-            Assert.IsNotNull(responseString);
-		}
 
 		[TestMethod]
 		public async Task PostWarehouse()
@@ -58,12 +41,26 @@ namespace PLS.SKS.Package.Services.Tests
 
             // Act
             var response = await _client.PostAsync("/api/warehouse", stringContent);
-
             var responseStatus = response.StatusCode;
 
             // Assert
             Assert.AreEqual("OK", responseStatus.ToString());
         }
+
+		[TestMethod]
+		public async Task GetWarehouse()
+		{
+			// Act
+			var response = await _client.GetAsync("/api/warehouse");
+			response.EnsureSuccessStatusCode();
+
+			var statuscode = response.StatusCode;
+			var responseString = await response.Content.ReadAsStringAsync();
+
+			// Assert
+			Assert.AreEqual("OK", statuscode.ToString());
+			Assert.IsNotNull(responseString);
+		}
 
 		[TestMethod]
 		public async Task PostParcel()
@@ -91,10 +88,10 @@ namespace PLS.SKS.Package.Services.Tests
 			var responseArr = await _client.PostAsync("/api/parcel", stringContent);
 			var responseStatusArr = responseArr.StatusCode;
 			var responseStringArr = await responseArr.Content.ReadAsStringAsync();
-			_testTrackingNumber = GetTrackingNumber(responseStringArr);
+			var testTrackingNumber = GetTrackingNumber(responseStringArr);
 
 			// Act
-			var response = await _client.GetAsync($"/api/parcel/{_testTrackingNumber}");
+			var response = await _client.GetAsync($"/api/parcel/{testTrackingNumber}");
             response.EnsureSuccessStatusCode();
 
             var responseStatus = response.StatusCode;
@@ -117,10 +114,10 @@ namespace PLS.SKS.Package.Services.Tests
 			var responseArr = await _client.PostAsync("/api/parcel", stringContentArr);
 			var responseStatusArr = responseArr.StatusCode;
 			var responseStringArr = await responseArr.Content.ReadAsStringAsync();
-			_testTrackingNumber = GetTrackingNumber(responseStringArr);
+			var testTrackingNumber = GetTrackingNumber(responseStringArr);
 
 			// Act
-			var response = await _client.PostAsync($"/api/parcel/{_testTrackingNumber}/reportHop/WH02", stringContent);
+			var response = await _client.PostAsync($"/api/parcel/{testTrackingNumber}/reportHop/WH02", stringContent);
 
             var responseStatus = response.StatusCode;
 

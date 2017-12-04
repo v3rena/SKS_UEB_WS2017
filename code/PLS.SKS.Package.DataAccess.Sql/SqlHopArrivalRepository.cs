@@ -13,7 +13,6 @@ namespace PLS.SKS.Package.DataAccess.Sql
 	{
 		private readonly DBContext db;
 		ILogger<SqlHopArrivalRepository> logger;
-		ExceptionHelper exceptionHelper = new ExceptionHelper();
 
 		public SqlHopArrivalRepository(DBContext context, ILogger<SqlHopArrivalRepository> logger)
 		{
@@ -31,14 +30,32 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(exceptionHelper.BuildSqlExceptionMessage(ex));
+				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
+				throw new DALException("Could not save hopArrival to database", ex);
+			}
+			catch (Exception ex)
+			{
+				logger.LogError("Could not save hopArrival to database", ex);
 				throw new DALException("Could not save hopArrival to database", ex);
 			}
 		}
 
 		public void Delete(int id)
 		{
-			throw new NotImplementedException();
+			try
+			{
+				db.Remove(db.HopArrivals.Where(p => p.Id == id));
+			}
+			catch (SqlException ex)
+			{
+				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
+				throw new DALException("Could not delete hopArrival", ex);
+			}
+			catch (Exception ex)
+			{
+				logger.LogError("Could not delete hopArrival", ex);
+				throw new DALException("Could not delete hopArrival", ex);
+			}
 		}
 
 		public HopArrival GetById(int id)
@@ -49,7 +66,12 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(exceptionHelper.BuildSqlExceptionMessage(ex));
+				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
+				throw new DALException("Could not retrieve hopArrival from database", ex);
+			}
+			catch (Exception ex)
+			{
+				logger.LogError("Could not retrieve hopArrival from database", ex);
 				throw new DALException("Could not retrieve hopArrival from database", ex);
 			}
 		}
@@ -62,10 +84,15 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(exceptionHelper.BuildSqlExceptionMessage(ex));
+				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
 				throw new DALException("Could not retrieve hopArrival from database", ex);
 			}
-        }
+			catch (Exception ex)
+			{
+				logger.LogError("Could not retrieve hopArrival from database", ex);
+				throw new DALException("Could not retrieve hopArrival from database", ex);
+			}
+		}
 
 		public void Update(HopArrival h)
 		{
@@ -80,7 +107,12 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(exceptionHelper.BuildSqlExceptionMessage(ex));
+				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
+				throw new DALException("Could not update hopArrival in database", ex);
+			}
+			catch (Exception ex)
+			{
+				logger.LogError("Could not update hopArrival in database", ex);
 				throw new DALException("Could not update hopArrival in database", ex);
 			}
 		}

@@ -1,0 +1,1003 @@
+﻿2017-12-02 10:53:45,600 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-02 10:54:14,202 INFO [2] ?.? - Executed DbCommand (201ms) [Parameters=[], CommandType='Text', CommandTimeout='60']
+CREATE DATABASE [ParcelLogisticsDB];
+2017-12-02 10:54:14,862 INFO [2] ?.? - Executed DbCommand (633ms) [Parameters=[], CommandType='Text', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5 EXEC(N'ALTER DATABASE [ParcelLogisticsDB] SET READ_COMMITTED_SNAPSHOT ON;');
+2017-12-02 10:54:15,782 INFO [2] ?.? - Executed DbCommand (398ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Recipients] (
+    [Id] int NOT NULL IDENTITY,
+    [City] nvarchar(max) NULL,
+    [FirstName] nvarchar(max) NULL,
+    [LastName] nvarchar(max) NULL,
+    [PostalCode] nvarchar(max) NULL,
+    [Street] nvarchar(max) NULL,
+    CONSTRAINT [PK_Recipients] PRIMARY KEY ([Id])
+);
+2017-12-02 10:54:15,794 INFO [2] ?.? - Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [TrackingInformations] (
+    [Id] int NOT NULL IDENTITY,
+    [State] int NULL,
+    CONSTRAINT [PK_TrackingInformations] PRIMARY KEY ([Id])
+);
+2017-12-02 10:54:15,832 INFO [2] ?.? - Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Warehouses] (
+    [Id] int NOT NULL IDENTITY,
+    [Code] nvarchar(max) NULL,
+    [Description] nvarchar(max) NULL,
+    [Duration] decimal(18, 2) NOT NULL,
+    [WarehouseId] int NULL,
+    CONSTRAINT [PK_Warehouses] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Warehouses_Warehouses_WarehouseId] FOREIGN KEY ([WarehouseId]) REFERENCES [Warehouses] ([Id]) ON DELETE NO ACTION
+);
+2017-12-02 10:54:15,865 INFO [2] ?.? - Executed DbCommand (15ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [HopArrivals] (
+    [Id] int NOT NULL IDENTITY,
+    [Code] nvarchar(max) NULL,
+    [DateTime] datetime2 NOT NULL,
+    [Status] nvarchar(max) NULL,
+    [TrackingInformationId] int NOT NULL,
+    CONSTRAINT [PK_HopArrivals] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_HopArrivals_TrackingInformations_TrackingInformationId] FOREIGN KEY ([TrackingInformationId]) REFERENCES [TrackingInformations] ([Id]) ON DELETE CASCADE
+);
+2017-12-02 10:54:15,896 INFO [2] ?.? - Executed DbCommand (11ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Parcels] (
+    [Id] int NOT NULL IDENTITY,
+    [RecipientId] int NOT NULL,
+    [TrackingInformationId] int NOT NULL,
+    [TrackingNumber] nvarchar(max) NULL,
+    [Weight] real NOT NULL,
+    CONSTRAINT [PK_Parcels] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Parcels_Recipients_RecipientId] FOREIGN KEY ([RecipientId]) REFERENCES [Recipients] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Parcels_TrackingInformations_TrackingInformationId] FOREIGN KEY ([TrackingInformationId]) REFERENCES [TrackingInformations] ([Id]) ON DELETE CASCADE
+);
+2017-12-02 10:54:15,960 INFO [2] ?.? - Executed DbCommand (27ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Trucks] (
+    [Id] int NOT NULL IDENTITY,
+    [Code] nvarchar(max) NULL,
+    [Duration] decimal(18, 2) NOT NULL,
+    [Latitude] decimal(18, 2) NOT NULL,
+    [Longitude] decimal(18, 2) NOT NULL,
+    [NumberPlate] nvarchar(max) NULL,
+    [Radius] decimal(18, 2) NOT NULL,
+    [WarehouseId] int NULL,
+    CONSTRAINT [PK_Trucks] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Trucks_Warehouses_WarehouseId] FOREIGN KEY ([WarehouseId]) REFERENCES [Warehouses] ([Id]) ON DELETE NO ACTION
+);
+2017-12-02 10:54:15,984 INFO [2] ?.? - Executed DbCommand (11ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_HopArrivals_TrackingInformationId] ON [HopArrivals] ([TrackingInformationId]);
+2017-12-02 10:54:16,000 INFO [2] ?.? - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_Parcels_RecipientId] ON [Parcels] ([RecipientId]);
+2017-12-02 10:54:16,157 INFO [2] ?.? - Executed DbCommand (110ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_Parcels_TrackingInformationId] ON [Parcels] ([TrackingInformationId]);
+2017-12-02 10:54:16,203 INFO [2] ?.? - Executed DbCommand (33ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_Trucks_WarehouseId] ON [Trucks] ([WarehouseId]);
+2017-12-02 10:54:16,215 INFO [2] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_Warehouses_WarehouseId] ON [Warehouses] ([WarehouseId]);
+2017-12-02 10:54:17,155 INFO [2] ?.? - Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Warehouses] AS [w])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+2017-12-02 10:54:18,116 INFO [2] ?.? - Executed DbCommand (116ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+DECLARE @inserted0 TABLE ([Id] int, [_Position] [int]);
+MERGE [Recipients] USING (
+VALUES (@p0, @p1, @p2, @p3, @p4, 0),
+(@p5, @p6, @p7, @p8, @p9, 1)) AS i ([City], [FirstName], [LastName], [PostalCode], [Street], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([City], [FirstName], [LastName], [PostalCode], [Street])
+VALUES (i.[City], i.[FirstName], i.[LastName], i.[PostalCode], i.[Street])
+OUTPUT INSERTED.[Id], i._Position
+INTO @inserted0;
+
+SELECT [t].[Id] FROM [Recipients] t
+INNER JOIN @inserted0 i ON ([t].[Id] = [i].[Id])
+ORDER BY [i].[_Position];
+2017-12-02 10:54:18,329 INFO [2] ?.? - Executed DbCommand (38ms) [Parameters=[@p0='?' (Size = 4000), @p1='?', @p2='?', @p3='?', @p4='?' (Size = 4000), @p5='?', @p6='?', @p7='?' (Size = 4000), @p8='?', @p9='?', @p10='?', @p11='?' (Size = 4000), @p12='?', @p13='?', @p14='?' (Size = 4000), @p15='?', @p16='?', @p17='?', @p18='?' (Size = 4000), @p19='?', @p20='?', @p21='?' (Size = 4000), @p22='?', @p23='?', @p24='?', @p25='?' (Size = 4000), @p26='?', @p27='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+DECLARE @inserted0 TABLE ([Id] int, [_Position] [int]);
+MERGE [Trucks] USING (
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, 0),
+(@p7, @p8, @p9, @p10, @p11, @p12, @p13, 1),
+(@p14, @p15, @p16, @p17, @p18, @p19, @p20, 2),
+(@p21, @p22, @p23, @p24, @p25, @p26, @p27, 3)) AS i ([Code], [Duration], [Latitude], [Longitude], [NumberPlate], [Radius], [WarehouseId], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Code], [Duration], [Latitude], [Longitude], [NumberPlate], [Radius], [WarehouseId])
+VALUES (i.[Code], i.[Duration], i.[Latitude], i.[Longitude], i.[NumberPlate], i.[Radius], i.[WarehouseId])
+OUTPUT INSERTED.[Id], i._Position
+INTO @inserted0;
+
+SELECT [t].[Id] FROM [Trucks] t
+INNER JOIN @inserted0 i ON ([t].[Id] = [i].[Id])
+ORDER BY [i].[_Position];
+2017-12-02 10:54:18,648 INFO [2] ?.? - Executed DbCommand (7ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?', @p3='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Warehouses] ([Code], [Description], [Duration], [WarehouseId])
+VALUES (@p0, @p1, @p2, @p3);
+SELECT [Id]
+FROM [Warehouses]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-12-02 10:54:18,677 INFO [2] ?.? - Executed DbCommand (7ms) [Parameters=[@p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?', @p7='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Warehouses] ([Code], [Description], [Duration], [WarehouseId])
+VALUES (@p4, @p5, @p6, @p7);
+SELECT [Id]
+FROM [Warehouses]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-12-02 10:54:18,733 INFO [2] ?.? - Executed DbCommand (42ms) [Parameters=[@p8='?' (Size = 4000), @p9='?' (Size = 4000), @p10='?', @p11='?', @p12='?' (Size = 4000), @p13='?' (Size = 4000), @p14='?', @p15='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+DECLARE @inserted0 TABLE ([Id] int, [_Position] [int]);
+MERGE [Warehouses] USING (
+VALUES (@p8, @p9, @p10, @p11, 0),
+(@p12, @p13, @p14, @p15, 1)) AS i ([Code], [Description], [Duration], [WarehouseId], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Code], [Description], [Duration], [WarehouseId])
+VALUES (i.[Code], i.[Description], i.[Duration], i.[WarehouseId])
+OUTPUT INSERTED.[Id], i._Position
+INTO @inserted0;
+
+SELECT [t].[Id] FROM [Warehouses] t
+INNER JOIN @inserted0 i ON ([t].[Id] = [i].[Id])
+ORDER BY [i].[_Position];
+2017-12-02 10:54:18,792 INFO [2] ?.? - Executed DbCommand (17ms) [Parameters=[@p17='?', @p16='?', @p19='?', @p18='?', @p21='?', @p20='?', @p23='?', @p22='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Trucks] SET [WarehouseId] = @p16
+WHERE [Id] = @p17;
+SELECT @@ROWCOUNT;
+
+UPDATE [Trucks] SET [WarehouseId] = @p18
+WHERE [Id] = @p19;
+SELECT @@ROWCOUNT;
+
+UPDATE [Trucks] SET [WarehouseId] = @p20
+WHERE [Id] = @p21;
+SELECT @@ROWCOUNT;
+
+UPDATE [Trucks] SET [WarehouseId] = @p22
+WHERE [Id] = @p23;
+SELECT @@ROWCOUNT;
+2017-12-02 10:54:18,912 INFO [2] ?.? - Executed DbCommand (37ms) [Parameters=[@p0='?', @p1='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+DECLARE @inserted0 TABLE ([Id] int, [_Position] [int]);
+MERGE [TrackingInformations] USING (
+VALUES (@p0, 0),
+(@p1, 1)) AS i ([State], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([State])
+VALUES (i.[State])
+OUTPUT INSERTED.[Id], i._Position
+INTO @inserted0;
+
+SELECT [t].[Id] FROM [TrackingInformations] t
+INNER JOIN @inserted0 i ON ([t].[Id] = [i].[Id])
+ORDER BY [i].[_Position];
+2017-12-02 10:54:19,012 INFO [2] ?.? - Executed DbCommand (41ms) [Parameters=[@p0='?' (Size = 4000), @p1='?', @p2='?' (Size = 4000), @p3='?', @p4='?' (Size = 4000), @p5='?', @p6='?' (Size = 4000), @p7='?', @p8='?' (Size = 4000), @p9='?', @p10='?' (Size = 4000), @p11='?', @p12='?' (Size = 4000), @p13='?', @p14='?' (Size = 4000), @p15='?', @p16='?' (Size = 4000), @p17='?', @p18='?' (Size = 4000), @p19='?', @p20='?' (Size = 4000), @p21='?', @p22='?' (Size = 4000), @p23='?', @p24='?' (Size = 4000), @p25='?', @p26='?' (Size = 4000), @p27='?', @p28='?' (Size = 4000), @p29='?', @p30='?' (Size = 4000), @p31='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+DECLARE @inserted0 TABLE ([Id] int, [_Position] [int]);
+MERGE [HopArrivals] USING (
+VALUES (@p0, @p1, @p2, @p3, 0),
+(@p4, @p5, @p6, @p7, 1),
+(@p8, @p9, @p10, @p11, 2),
+(@p12, @p13, @p14, @p15, 3),
+(@p16, @p17, @p18, @p19, 4),
+(@p20, @p21, @p22, @p23, 5),
+(@p24, @p25, @p26, @p27, 6),
+(@p28, @p29, @p30, @p31, 7)) AS i ([Code], [DateTime], [Status], [TrackingInformationId], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Code], [DateTime], [Status], [TrackingInformationId])
+VALUES (i.[Code], i.[DateTime], i.[Status], i.[TrackingInformationId])
+OUTPUT INSERTED.[Id], i._Position
+INTO @inserted0;
+
+SELECT [t].[Id] FROM [HopArrivals] t
+INNER JOIN @inserted0 i ON ([t].[Id] = [i].[Id])
+ORDER BY [i].[_Position];
+2017-12-02 10:54:19,105 INFO [2] ?.? - Executed DbCommand (28ms) [Parameters=[@p0='?', @p1='?', @p2='?' (Size = 4000), @p3='?', @p4='?', @p5='?', @p6='?' (Size = 4000), @p7='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+DECLARE @inserted0 TABLE ([Id] int, [_Position] [int]);
+MERGE [Parcels] USING (
+VALUES (@p0, @p1, @p2, @p3, 0),
+(@p4, @p5, @p6, @p7, 1)) AS i ([RecipientId], [TrackingInformationId], [TrackingNumber], [Weight], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([RecipientId], [TrackingInformationId], [TrackingNumber], [Weight])
+VALUES (i.[RecipientId], i.[TrackingInformationId], i.[TrackingNumber], i.[Weight])
+OUTPUT INSERTED.[Id], i._Position
+INTO @inserted0;
+
+SELECT [t].[Id] FROM [Parcels] t
+INNER JOIN @inserted0 i ON ([t].[Id] = [i].[Id])
+ORDER BY [i].[_Position];
+2017-12-02 10:54:20,786 INFO [12] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/  
+2017-12-02 10:54:21,450 INFO [12] ?.? - Request finished in 496.2617ms 404 
+2017-12-02 10:54:32,521 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/swagge  
+2017-12-02 10:54:32,977 INFO [8] ?.? - Request finished in 16.8592ms 404 
+2017-12-02 10:54:34,743 INFO [16] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/swagger/  
+2017-12-02 10:54:34,769 INFO [16] ?.? - Sending file. Request path: '/index.html'. Physical path: 'N/A'
+2017-12-02 10:54:35,261 INFO [16] ?.? - Request finished in 48.099ms 200 text/html
+2017-12-02 10:54:36,958 INFO [16] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/swagger/v1/swagger.json  
+2017-12-02 10:54:38,044 INFO [16] ?.? - Request finished in 1018.0922ms 200 application/json
+2017-12-02 10:54:41,728 INFO [12] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/api/warehouse  
+2017-12-02 10:54:42,012 INFO [12] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.ExportWarehouses (PLS.SKS.Package.Services) with arguments ((null)) - ModelState is Valid
+2017-12-02 10:54:42,023 INFO [12] ?.? - Calling the ExportWarehouses action
+2017-12-02 10:54:42,033 INFO [12] ?.? - Calling the ExportWarehouses action
+2017-12-02 10:54:42,120 INFO [12] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-02 10:54:43,352 INFO [12] ?.? - Executed DbCommand (5ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__id_0
+ORDER BY [w].[Id]
+2017-12-02 10:54:43,465 INFO [12] ?.? - Executed DbCommand (4ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__id_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-12-02 10:54:43,501 INFO [12] ?.? - Executed DbCommand (6ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__id_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-12-02 10:54:43,568 INFO [12] ?.? - Executed DbCommand (1ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__whId_0
+ORDER BY [w].[Id]
+2017-12-02 10:54:43,587 INFO [12] ?.? - Executed DbCommand (6ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__whId_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-12-02 10:54:43,619 INFO [12] ?.? - Executed DbCommand (12ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__whId_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-12-02 10:54:43,644 INFO [12] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__whId_0
+ORDER BY [w].[Id]
+2017-12-02 10:54:43,653 INFO [12] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__whId_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-12-02 10:54:43,661 INFO [12] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__whId_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-12-02 10:54:43,672 INFO [12] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__whId_0
+ORDER BY [w].[Id]
+2017-12-02 10:54:43,681 INFO [12] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__whId_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-12-02 10:54:43,690 INFO [12] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__whId_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-12-02 10:54:43,702 INFO [12] ?.? - Executed DbCommand (0ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__id_0
+ORDER BY [w].[Id]
+2017-12-02 10:54:43,710 INFO [12] ?.? - Executed DbCommand (0ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__id_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-12-02 10:54:43,719 INFO [12] ?.? - Executed DbCommand (0ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__id_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-12-02 10:54:44,471 INFO [12] ?.? - Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+2017-12-02 10:54:44,726 INFO [12] ?.? - Executed action IO.Swagger.Controllers.DefaultApiController.ExportWarehouses (PLS.SKS.Package.Services) in 2593.0117ms
+2017-12-02 10:54:44,843 INFO [12] ?.? - Request finished in 3004.1718ms 200 application/json; charset=utf-8
+2017-12-02 10:54:57,354 INFO [16] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/api/parcel/TN000001  
+2017-12-02 10:54:57,502 INFO [16] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.TrackParcel (PLS.SKS.Package.Services) with arguments (TN000001) - ModelState is Valid
+2017-12-02 10:54:57,509 INFO [16] ?.? - Calling the TrackParcel action
+2017-12-02 10:54:57,517 INFO [16] ?.? - Calling the TrackParcel action
+2017-12-02 10:54:57,526 INFO [16] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-02 10:54:57,706 INFO [16] ?.? - Executed DbCommand (18ms) [Parameters=[@__TrackingNumber_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[RecipientId], [p].[TrackingInformationId], [p].[TrackingNumber], [p].[Weight], [p.TrackingInformation].[Id], [p.TrackingInformation].[State], [p.Recipient].[Id], [p.Recipient].[City], [p.Recipient].[FirstName], [p.Recipient].[LastName], [p.Recipient].[PostalCode], [p.Recipient].[Street]
+FROM [Parcels] AS [p]
+INNER JOIN [TrackingInformations] AS [p.TrackingInformation] ON [p].[TrackingInformationId] = [p.TrackingInformation].[Id]
+INNER JOIN [Recipients] AS [p.Recipient] ON [p].[RecipientId] = [p.Recipient].[Id]
+WHERE [p].[TrackingNumber] = @__TrackingNumber_0
+2017-12-02 10:54:57,755 INFO [16] ?.? - Executed DbCommand (6ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [h].[Id], [h].[Code], [h].[DateTime], [h].[Status], [h].[TrackingInformationId]
+FROM [HopArrivals] AS [h]
+WHERE [h].[TrackingInformationId] = @__id_0
+2017-12-02 10:54:58,041 INFO [16] ?.? - Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+2017-12-02 10:54:58,073 INFO [16] ?.? - Executed action IO.Swagger.Controllers.DefaultApiController.TrackParcel (PLS.SKS.Package.Services) in 648.9019ms
+2017-12-02 10:54:58,092 INFO [16] ?.? - Request finished in 730.0408ms 200 application/json; charset=utf-8
+2017-12-02 11:18:01,198 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-02 11:18:02,769 INFO [2] ?.? - Executed DbCommand (75ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-12-02 11:18:03,766 INFO [2] ?.? - Executed DbCommand (34ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Warehouses] AS [w])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+2017-12-02 11:18:04,999 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/  
+2017-12-02 11:18:05,646 INFO [8] ?.? - Request finished in 576.5218ms 404 
+2017-12-02 11:18:22,149 INFO [11] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/swagger/  
+2017-12-02 11:18:22,178 INFO [11] ?.? - Sending file. Request path: '/index.html'. Physical path: 'N/A'
+2017-12-02 11:18:22,717 INFO [11] ?.? - Request finished in 61.502ms 200 text/html
+2017-12-02 11:18:24,251 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/swagger/v1/swagger.json  
+2017-12-02 11:18:25,319 INFO [8] ?.? - Request finished in 1097.3982ms 200 application/json
+2017-12-02 11:18:33,596 INFO [11] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/api/warehouse  
+2017-12-02 11:18:33,915 INFO [11] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.ExportWarehouses (PLS.SKS.Package.Services) with arguments ((null)) - ModelState is Valid
+2017-12-02 11:18:33,925 INFO [11] ?.? - Calling the ExportWarehouses action
+2017-12-02 11:18:33,933 INFO [11] ?.? - Calling the ExportWarehouses action
+2017-12-02 11:18:33,981 INFO [11] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-02 11:18:35,361 INFO [11] ?.? - Executed DbCommand (138ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__id_0
+ORDER BY [w].[Id]
+2017-12-02 11:18:35,599 INFO [11] ?.? - Executed DbCommand (2ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__id_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-12-02 11:18:35,641 INFO [11] ?.? - Executed DbCommand (3ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__id_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-12-02 11:18:35,740 INFO [11] ?.? - Executed DbCommand (1ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__whId_0
+ORDER BY [w].[Id]
+2017-12-02 11:18:35,758 INFO [11] ?.? - Executed DbCommand (3ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__whId_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-12-02 11:18:35,769 INFO [11] ?.? - Executed DbCommand (2ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__whId_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-12-02 11:18:35,786 INFO [11] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__whId_0
+ORDER BY [w].[Id]
+2017-12-02 11:18:35,793 INFO [11] ?.? - Executed DbCommand (1ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__whId_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-12-02 11:18:35,799 INFO [11] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__whId_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-12-02 11:18:35,815 INFO [11] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__whId_0
+ORDER BY [w].[Id]
+2017-12-02 11:18:35,821 INFO [11] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__whId_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-12-02 11:18:35,829 INFO [11] ?.? - Executed DbCommand (1ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__whId_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-12-02 11:18:35,841 INFO [11] ?.? - Executed DbCommand (0ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__id_0
+ORDER BY [w].[Id]
+2017-12-02 11:18:35,848 INFO [11] ?.? - Executed DbCommand (0ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__id_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-12-02 11:18:35,855 INFO [11] ?.? - Executed DbCommand (0ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__id_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-12-02 11:18:36,495 INFO [11] ?.? - Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+2017-12-02 11:18:36,544 INFO [11] ?.? - Executed action IO.Swagger.Controllers.DefaultApiController.ExportWarehouses (PLS.SKS.Package.Services) in 2682.4518ms
+2017-12-02 11:18:36,606 INFO [11] ?.? - Request finished in 2959.736ms 200 application/json; charset=utf-8
+2017-12-02 11:18:46,313 INFO [11] ?.? - Request starting HTTP/1.1 POST http://localhost:56172/api/warehouse application/json-patch+json 1482
+2017-12-02 11:18:46,686 INFO [11] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.ImportWarehouses (PLS.SKS.Package.Services) with arguments (class Warehouse {
+  Code: WH01
+  Description: Superwarehouse 01
+  Duration: 2
+  NextHops: System.Collections.Generic.List`1[IO.Swagger.Models.Warehouse]
+  Trucks: System.Collections.Generic.List`1[IO.Swagger.Models.Truck]
+}
+) - ModelState is Valid
+2017-12-02 11:18:46,693 INFO [11] ?.? - Calling the ImportWarehouses action
+2017-12-02 11:18:46,701 INFO [11] ?.? - Calling the ImportWarehouses action
+2017-12-02 11:18:46,970 INFO [11] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-02 11:18:46,989 INFO [11] ?.? - Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ALTER TABLE [Recipients] NOCHECK CONSTRAINT ALL
+2017-12-02 11:18:47,011 INFO [11] ?.? - Executed DbCommand (11ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+DELETE FROM [Recipients]
+2017-12-02 11:18:47,019 INFO [11] ?.? - Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ALTER TABLE [Recipients] WITH CHECK CHECK CONSTRAINT ALL
+2017-12-02 11:18:47,030 INFO [11] ?.? - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+DBCC CHECKIDENT ('[Recipients]', RESEED, 0)
+2017-12-02 11:18:47,037 INFO [11] ?.? - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ALTER TABLE [Trucks] NOCHECK CONSTRAINT ALL
+2017-12-02 11:18:47,061 INFO [11] ?.? - Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+DELETE FROM [Trucks]
+2017-12-02 11:18:47,068 INFO [11] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+DBCC CHECKIDENT ('[Trucks]', RESEED, 0)
+2017-12-02 11:18:47,077 INFO [11] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+DBCC CHECKIDENT ('[Trucks]', RESEED, 0)
+2017-12-02 11:18:47,084 INFO [11] ?.? - Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ALTER TABLE [Warehouses] NOCHECK CONSTRAINT ALL
+2017-12-02 11:18:47,093 INFO [11] ?.? - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+DELETE FROM [Warehouses]
+2017-12-02 11:18:47,099 INFO [11] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+DBCC CHECKIDENT ('[Warehouses]', RESEED, 0)
+2017-12-02 11:18:47,114 INFO [11] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+DBCC CHECKIDENT ('[Warehouses]', RESEED, 0)
+2017-12-02 11:18:47,154 INFO [11] ?.? - Executed DbCommand (17ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ALTER TABLE [HopArrivals] NOCHECK CONSTRAINT ALL
+2017-12-02 11:18:47,169 INFO [11] ?.? - Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+DELETE FROM [HopArrivals]
+2017-12-02 11:18:47,176 INFO [11] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+DBCC CHECKIDENT ('[HopArrivals]', RESEED, 0)
+2017-12-02 11:18:47,184 INFO [11] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+DBCC CHECKIDENT ('[HopArrivals]', RESEED, 0)
+2017-12-02 11:18:47,194 INFO [11] ?.? - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ALTER TABLE [TrackingInformations] NOCHECK CONSTRAINT ALL
+2017-12-02 11:18:47,204 INFO [11] ?.? - Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+DELETE FROM [TrackingInformations]
+2017-12-02 11:18:47,213 INFO [11] ?.? - Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+DBCC CHECKIDENT ('[TrackingInformations]', RESEED, 0)
+2017-12-02 11:18:47,219 INFO [11] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+DBCC CHECKIDENT ('[TrackingInformations]', RESEED, 0)
+2017-12-02 11:18:47,231 INFO [11] ?.? - Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ALTER TABLE [Parcels] NOCHECK CONSTRAINT ALL
+2017-12-02 11:18:47,238 INFO [11] ?.? - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+DELETE FROM [Parcels]
+2017-12-02 11:18:47,247 INFO [11] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+DBCC CHECKIDENT ('[Parcels]', RESEED, 0)
+2017-12-02 11:18:47,253 INFO [11] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+DBCC CHECKIDENT ('[Parcels]', RESEED, 0)
+2017-12-02 11:18:47,843 INFO [11] ?.? - Executed DbCommand (7ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?', @p3='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Warehouses] ([Code], [Description], [Duration], [WarehouseId])
+VALUES (@p0, @p1, @p2, @p3);
+SELECT [Id]
+FROM [Warehouses]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-12-02 11:18:47,978 INFO [11] ?.? - Executed DbCommand (28ms) [Parameters=[@p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?', @p7='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Warehouses] ([Code], [Description], [Duration], [WarehouseId])
+VALUES (@p4, @p5, @p6, @p7);
+SELECT [Id]
+FROM [Warehouses]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-12-02 11:18:48,047 INFO [11] ?.? - Executed DbCommand (15ms) [Parameters=[@p8='?' (Size = 4000), @p9='?' (Size = 4000), @p10='?', @p11='?', @p12='?' (Size = 4000), @p13='?' (Size = 4000), @p14='?', @p15='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+DECLARE @inserted0 TABLE ([Id] int, [_Position] [int]);
+MERGE [Warehouses] USING (
+VALUES (@p8, @p9, @p10, @p11, 0),
+(@p12, @p13, @p14, @p15, 1)) AS i ([Code], [Description], [Duration], [WarehouseId], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Code], [Description], [Duration], [WarehouseId])
+VALUES (i.[Code], i.[Description], i.[Duration], i.[WarehouseId])
+OUTPUT INSERTED.[Id], i._Position
+INTO @inserted0;
+
+SELECT [t].[Id] FROM [Warehouses] t
+INNER JOIN @inserted0 i ON ([t].[Id] = [i].[Id])
+ORDER BY [i].[_Position];
+2017-12-02 11:18:48,077 INFO [11] ?.? - Executed DbCommand (19ms) [Parameters=[@p16='?' (Size = 4000), @p17='?', @p18='?', @p19='?', @p20='?' (Size = 4000), @p21='?', @p22='?', @p23='?' (Size = 4000), @p24='?', @p25='?', @p26='?', @p27='?' (Size = 4000), @p28='?', @p29='?', @p30='?' (Size = 4000), @p31='?', @p32='?', @p33='?', @p34='?' (Size = 4000), @p35='?', @p36='?', @p37='?' (Size = 4000), @p38='?', @p39='?', @p40='?', @p41='?' (Size = 4000), @p42='?', @p43='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+DECLARE @inserted0 TABLE ([Id] int, [_Position] [int]);
+MERGE [Trucks] USING (
+VALUES (@p16, @p17, @p18, @p19, @p20, @p21, @p22, 0),
+(@p23, @p24, @p25, @p26, @p27, @p28, @p29, 1),
+(@p30, @p31, @p32, @p33, @p34, @p35, @p36, 2),
+(@p37, @p38, @p39, @p40, @p41, @p42, @p43, 3)) AS i ([Code], [Duration], [Latitude], [Longitude], [NumberPlate], [Radius], [WarehouseId], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Code], [Duration], [Latitude], [Longitude], [NumberPlate], [Radius], [WarehouseId])
+VALUES (i.[Code], i.[Duration], i.[Latitude], i.[Longitude], i.[NumberPlate], i.[Radius], i.[WarehouseId])
+OUTPUT INSERTED.[Id], i._Position
+INTO @inserted0;
+
+SELECT [t].[Id] FROM [Trucks] t
+INNER JOIN @inserted0 i ON ([t].[Id] = [i].[Id])
+ORDER BY [i].[_Position];
+2017-12-02 11:18:48,101 INFO [11] ?.? - Executed action IO.Swagger.Controllers.DefaultApiController.ImportWarehouses (PLS.SKS.Package.Services) in 1737.6619ms
+2017-12-02 11:18:48,148 INFO [11] ?.? - Request finished in 1802.4052ms 200 
+2017-12-02 11:18:54,080 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/api/parcel/TN000001  
+2017-12-02 11:18:54,096 INFO [9] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.TrackParcel (PLS.SKS.Package.Services) with arguments (TN000001) - ModelState is Valid
+2017-12-02 11:18:54,101 INFO [9] ?.? - Calling the TrackParcel action
+2017-12-02 11:18:54,115 INFO [9] ?.? - Calling the TrackParcel action
+2017-12-02 11:18:54,129 INFO [9] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-02 11:18:54,382 INFO [9] ?.? - Executed DbCommand (6ms) [Parameters=[@__TrackingNumber_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[RecipientId], [p].[TrackingInformationId], [p].[TrackingNumber], [p].[Weight], [p.TrackingInformation].[Id], [p.TrackingInformation].[State], [p.Recipient].[Id], [p.Recipient].[City], [p.Recipient].[FirstName], [p.Recipient].[LastName], [p.Recipient].[PostalCode], [p.Recipient].[Street]
+FROM [Parcels] AS [p]
+INNER JOIN [TrackingInformations] AS [p.TrackingInformation] ON [p].[TrackingInformationId] = [p.TrackingInformation].[Id]
+INNER JOIN [Recipients] AS [p.Recipient] ON [p].[RecipientId] = [p.Recipient].[Id]
+WHERE [p].[TrackingNumber] = @__TrackingNumber_0
+2017-12-02 11:18:54,645 ERROR [9] ?.? - Could not find parcel
+2017-12-02 11:18:54,853 ERROR [9] ?.? - TrackParcel failed
+2017-12-02 11:18:59,811 INFO [9] ?.? - Executed action IO.Swagger.Controllers.DefaultApiController.TrackParcel (PLS.SKS.Package.Services) in 5712.3751ms
+2017-12-02 11:19:01,159 ERROR [9] ?.? - An unhandled exception has occurred while executing the request - PLS.SKS.Package.Services.ServiceException: TrackParcel failed ---> PLS.SKS.Package.BusinessLogic.BLException: Could not find parcel ---> PLS.SKS.Package.BusinessLogic.BLException: Parcel not found in Database
+   at PLS.SKS.Package.BusinessLogic.TrackingLogic.TrackParcel(String trackingNumber) in C:\Users\Verena\Desktop\SKS_UEB_WS2017\code\PLS.SKS.Package.BusinessLogic\TrackingLogic.cs:line 41
+   --- End of inner exception stack trace ---
+   at PLS.SKS.Package.BusinessLogic.TrackingLogic.TrackParcel(String trackingNumber) in C:\Users\Verena\Desktop\SKS_UEB_WS2017\code\PLS.SKS.Package.BusinessLogic\TrackingLogic.cs:line 66
+   at IO.Swagger.Controllers.DefaultApiController.TrackParcel(String trackingId) in C:\Users\Verena\Desktop\SKS_UEB_WS2017\code\ParcelLogisticsService\Controllers\DefaultApi.cs:line 175
+   --- End of inner exception stack trace ---
+   at IO.Swagger.Controllers.DefaultApiController.TrackParcel(String trackingId) in C:\Users\Verena\Desktop\SKS_UEB_WS2017\code\ParcelLogisticsService\Controllers\DefaultApi.cs:line 181
+   at lambda_method(Closure , Object , Object[] )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Execute(Object target, Object[] parameters)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeActionMethodAsync>d__12.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeNextActionFilterAsync>d__10.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeInnerFilterAsync>d__14.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeNextResourceFilter>d__22.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeFilterPipelineAsync>d__17.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeAsync>d__15.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.<Invoke>d__7.MoveNext()
+2017-12-02 11:19:02,308 INFO [9] ?.? - Request finished in 7887.0419ms 500 text/html; charset=utf-8
+2017-12-02 11:19:34,758 INFO [8] ?.? - Request starting HTTP/1.1 POST http://localhost:56172/api/parcel application/json-patch+json 178
+2017-12-02 11:19:34,828 INFO [8] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.SubmitParcel (PLS.SKS.Package.Services) with arguments (class Parcel {
+  Weight: 6.9
+  Recipient: class Receipient {
+  FirstName: Verena
+  LastName: Wunderbaum
+  Street: Tichtelgasse 29
+  PostalCode: A-1120
+  City: Wien
+}
+
+}
+) - ModelState is Valid
+2017-12-02 11:19:34,836 INFO [8] ?.? - Calling the SubmitParcel action
+2017-12-02 11:19:34,848 INFO [8] ?.? - Calling the AddParcel action
+2017-12-02 11:19:41,250 INFO [8] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-02 11:19:41,336 INFO [8] ?.? - Executed DbCommand (2ms) [Parameters=[@p0='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [TrackingInformations] ([State])
+VALUES (@p0);
+SELECT [Id]
+FROM [TrackingInformations]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-12-02 11:19:46,533 INFO [8] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [t].[Id], [t].[Code], [t].[Duration], [t].[Latitude], [t].[Longitude], [t].[NumberPlate], [t].[Radius], [t].[WarehouseId]
+FROM [Trucks] AS [t]
+2017-12-02 11:19:46,599 INFO [8] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+ORDER BY [w].[Id]
+2017-12-02 11:19:46,614 INFO [8] ?.? - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT [w0].[Id]
+    FROM [Warehouses] AS [w0]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-12-02 11:19:46,627 INFO [8] ?.? - Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT [w1].[Id]
+    FROM [Warehouses] AS [w1]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-12-02 11:19:46,642 INFO [8] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+ORDER BY [w].[Id]
+2017-12-02 11:19:46,648 INFO [8] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT [w0].[Id]
+    FROM [Warehouses] AS [w0]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-12-02 11:19:46,653 INFO [8] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT [w1].[Id]
+    FROM [Warehouses] AS [w1]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-12-02 11:19:46,663 INFO [8] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+ORDER BY [w].[Id]
+2017-12-02 11:19:46,671 INFO [8] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT [w0].[Id]
+    FROM [Warehouses] AS [w0]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-12-02 11:19:46,678 INFO [8] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT [w1].[Id]
+    FROM [Warehouses] AS [w1]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-12-02 11:19:46,684 INFO [8] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+ORDER BY [w].[Id]
+2017-12-02 11:19:46,692 INFO [8] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT [w0].[Id]
+    FROM [Warehouses] AS [w0]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-12-02 11:19:46,700 INFO [8] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT [w1].[Id]
+    FROM [Warehouses] AS [w1]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-12-02 11:19:46,780 INFO [8] ?.? - Executed DbCommand (9ms) [Parameters=[@p0='?' (Size = 4000), @p1='?', @p2='?' (Size = 4000), @p3='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [HopArrivals] ([Code], [DateTime], [Status], [TrackingInformationId])
+VALUES (@p0, @p1, @p2, @p3);
+SELECT [Id]
+FROM [HopArrivals]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-12-02 11:19:46,841 INFO [8] ?.? - Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 4000), @p1='?', @p2='?' (Size = 4000), @p3='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [HopArrivals] ([Code], [DateTime], [Status], [TrackingInformationId])
+VALUES (@p0, @p1, @p2, @p3);
+SELECT [Id]
+FROM [HopArrivals]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-12-02 11:19:46,850 INFO [8] ?.? - Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 4000), @p1='?', @p2='?' (Size = 4000), @p3='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [HopArrivals] ([Code], [DateTime], [Status], [TrackingInformationId])
+VALUES (@p0, @p1, @p2, @p3);
+SELECT [Id]
+FROM [HopArrivals]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-12-02 11:19:46,896 INFO [8] ?.? - Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 4000), @p1='?', @p2='?' (Size = 4000), @p3='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [HopArrivals] ([Code], [DateTime], [Status], [TrackingInformationId])
+VALUES (@p0, @p1, @p2, @p3);
+SELECT [Id]
+FROM [HopArrivals]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-12-02 11:19:47,096 INFO [8] ?.? - Executed DbCommand (13ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Recipients] ([City], [FirstName], [LastName], [PostalCode], [Street])
+VALUES (@p0, @p1, @p2, @p3, @p4);
+SELECT [Id]
+FROM [Recipients]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-12-02 11:19:47,177 INFO [8] ?.? - Executed DbCommand (4ms) [Parameters=[@p5='?', @p6='?', @p7='?' (Size = 4000), @p8='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Parcels] ([RecipientId], [TrackingInformationId], [TrackingNumber], [Weight])
+VALUES (@p5, @p6, @p7, @p8);
+SELECT [Id]
+FROM [Parcels]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-12-02 11:19:47,275 INFO [8] ?.? - Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+2017-12-02 11:19:47,298 INFO [8] ?.? - Executed action IO.Swagger.Controllers.DefaultApiController.SubmitParcel (PLS.SKS.Package.Services) in 12511.8977ms
+2017-12-02 11:19:47,553 INFO [8] ?.? - Request finished in 12585.3378ms 200 application/json; charset=utf-8
+2017-12-02 11:19:56,115 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/api/parcel/HSC02PBS  
+2017-12-02 11:19:56,121 INFO [9] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.TrackParcel (PLS.SKS.Package.Services) with arguments (HSC02PBS) - ModelState is Valid
+2017-12-02 11:19:56,127 INFO [9] ?.? - Calling the TrackParcel action
+2017-12-02 11:19:56,132 INFO [9] ?.? - Calling the TrackParcel action
+2017-12-02 11:19:56,233 INFO [9] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-02 11:19:56,279 INFO [9] ?.? - Executed DbCommand (24ms) [Parameters=[@__TrackingNumber_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[RecipientId], [p].[TrackingInformationId], [p].[TrackingNumber], [p].[Weight], [p.TrackingInformation].[Id], [p.TrackingInformation].[State], [p.Recipient].[Id], [p.Recipient].[City], [p.Recipient].[FirstName], [p.Recipient].[LastName], [p.Recipient].[PostalCode], [p.Recipient].[Street]
+FROM [Parcels] AS [p]
+INNER JOIN [TrackingInformations] AS [p.TrackingInformation] ON [p].[TrackingInformationId] = [p.TrackingInformation].[Id]
+INNER JOIN [Recipients] AS [p.Recipient] ON [p].[RecipientId] = [p.Recipient].[Id]
+WHERE [p].[TrackingNumber] = @__TrackingNumber_0
+2017-12-02 11:19:56,332 INFO [9] ?.? - Executed DbCommand (2ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [h].[Id], [h].[Code], [h].[DateTime], [h].[Status], [h].[TrackingInformationId]
+FROM [HopArrivals] AS [h]
+WHERE [h].[TrackingInformationId] = @__id_0
+2017-12-02 11:19:56,541 INFO [9] ?.? - Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+2017-12-02 11:19:56,564 INFO [9] ?.? - Executed action IO.Swagger.Controllers.DefaultApiController.TrackParcel (PLS.SKS.Package.Services) in 443.8199ms
+2017-12-02 11:19:56,592 INFO [9] ?.? - Request finished in 454.8034ms 200 application/json; charset=utf-8
+2017-12-02 11:25:58,392 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-02 11:25:58,950 INFO [2] ?.? - Executed DbCommand (78ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-12-02 11:26:00,464 INFO [2] ?.? - Executed DbCommand (130ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Warehouses] AS [w])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+2017-12-02 11:26:04,719 INFO [12] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/  
+2017-12-02 11:26:05,399 INFO [12] ?.? - Request finished in 1845.861ms 404 
+2017-12-02 11:26:17,589 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/swagger/  
+2017-12-02 11:26:17,610 INFO [9] ?.? - Sending file. Request path: '/index.html'. Physical path: 'N/A'
+2017-12-02 11:26:18,114 INFO [9] ?.? - Request finished in 40.7333ms 200 text/html
+2017-12-02 11:26:18,733 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/swagger/v1/swagger.json  
+2017-12-02 11:26:19,528 INFO [9] ?.? - Request finished in 753.0703ms 200 application/json
+2017-12-02 11:26:26,013 INFO [12] ?.? - Request starting HTTP/1.1 GET http://localhost:56172/api/warehouse  
+2017-12-02 11:26:26,243 INFO [12] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.ExportWarehouses (PLS.SKS.Package.Services) with arguments ((null)) - ModelState is Valid
+2017-12-02 11:26:26,252 INFO [12] ?.? - Calling the ExportWarehouses action
+2017-12-02 11:26:26,314 INFO [12] ?.? - Calling the ExportWarehouses action
+2017-12-02 11:26:26,351 INFO [12] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-02 11:26:27,507 INFO [12] ?.? - Executed DbCommand (67ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__id_0
+ORDER BY [w].[Id]
+2017-12-02 11:26:27,789 INFO [12] ?.? - Executed DbCommand (3ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__id_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-12-02 11:26:27,846 INFO [12] ?.? - Executed DbCommand (8ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__id_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-12-02 11:26:27,924 INFO [12] ?.? - Executed DbCommand (2ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__whId_0
+ORDER BY [w].[Id]
+2017-12-02 11:26:27,936 INFO [12] ?.? - Executed DbCommand (2ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__whId_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-12-02 11:26:27,949 INFO [12] ?.? - Executed DbCommand (4ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__whId_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-12-02 11:26:27,967 INFO [12] ?.? - Executed DbCommand (1ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__whId_0
+ORDER BY [w].[Id]
+2017-12-02 11:26:27,977 INFO [12] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__whId_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-12-02 11:26:27,983 INFO [12] ?.? - Executed DbCommand (1ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__whId_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-12-02 11:26:28,011 INFO [12] ?.? - Executed DbCommand (0ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__whId_0
+ORDER BY [w].[Id]
+2017-12-02 11:26:28,018 INFO [12] ?.? - Executed DbCommand (1ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__whId_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-12-02 11:26:28,028 INFO [12] ?.? - Executed DbCommand (4ms) [Parameters=[@__whId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__whId_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-12-02 11:26:28,038 INFO [12] ?.? - Executed DbCommand (0ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+WHERE [w].[Id] = @__id_0
+ORDER BY [w].[Id]
+2017-12-02 11:26:28,044 INFO [12] ?.? - Executed DbCommand (0ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT TOP(1) [w0].[Id]
+    FROM [Warehouses] AS [w0]
+    WHERE [w0].[Id] = @__id_0
+    ORDER BY [w0].[Id]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-12-02 11:26:28,052 INFO [12] ?.? - Executed DbCommand (0ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT TOP(1) [w1].[Id]
+    FROM [Warehouses] AS [w1]
+    WHERE [w1].[Id] = @__id_0
+    ORDER BY [w1].[Id]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-12-02 11:26:28,757 INFO [12] ?.? - Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+2017-12-02 11:26:28,814 INFO [12] ?.? - Executed action IO.Swagger.Controllers.DefaultApiController.ExportWarehouses (PLS.SKS.Package.Services) in 2624.2456ms
+2017-12-02 11:26:28,834 INFO [12] ?.? - Request finished in 2814.4156ms 200 application/json; charset=utf-8

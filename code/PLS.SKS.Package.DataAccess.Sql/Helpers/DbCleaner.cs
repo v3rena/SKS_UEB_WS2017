@@ -2,15 +2,13 @@
 using Microsoft.Extensions.Logging;
 using PLS.SKS.Package.DataAccess.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PLS.SKS.Package.DataAccess.Sql
 {
-    public class DbCleaner : IDbCleaner
+	public class DbCleaner : IDbCleaner
     {
 		private readonly DBContext db;
-		ILogger<DbCleaner> logger;
+		private ILogger<DbCleaner> logger;
 
 		public DbCleaner(DBContext context, ILogger<DbCleaner> logger)
 		{
@@ -23,34 +21,33 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			try
 			{
 				db.Database.ExecuteSqlCommand("ALTER TABLE [Recipients] NOCHECK CONSTRAINT ALL");
-				db.Database.ExecuteSqlCommand("DELETE FROM [Recipients]");
-				db.Database.ExecuteSqlCommand("ALTER TABLE [Recipients] WITH CHECK CHECK CONSTRAINT ALL");
-				db.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('[Recipients]', RESEED, 0)");
-
 				db.Database.ExecuteSqlCommand("ALTER TABLE [Trucks] NOCHECK CONSTRAINT ALL");
-				db.Database.ExecuteSqlCommand("DELETE FROM [Trucks]");
-				db.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('[Trucks]', RESEED, 0)");
-				db.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('[Trucks]', RESEED, 0)");
-
 				db.Database.ExecuteSqlCommand("ALTER TABLE [Warehouses] NOCHECK CONSTRAINT ALL");
-				db.Database.ExecuteSqlCommand("DELETE FROM [Warehouses]");
-				db.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('[Warehouses]', RESEED, 0)");
-				db.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('[Warehouses]', RESEED, 0)");
-
 				db.Database.ExecuteSqlCommand("ALTER TABLE [HopArrivals] NOCHECK CONSTRAINT ALL");
-				db.Database.ExecuteSqlCommand("DELETE FROM [HopArrivals]");
-				db.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('[HopArrivals]', RESEED, 0)");
-				db.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('[HopArrivals]', RESEED, 0)");
-
 				db.Database.ExecuteSqlCommand("ALTER TABLE [TrackingInformations] NOCHECK CONSTRAINT ALL");
-				db.Database.ExecuteSqlCommand("DELETE FROM [TrackingInformations]");
-				db.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('[TrackingInformations]', RESEED, 0)");
-				db.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('[TrackingInformations]', RESEED, 0)");
-
 				db.Database.ExecuteSqlCommand("ALTER TABLE [Parcels] NOCHECK CONSTRAINT ALL");
+
+				db.Database.ExecuteSqlCommand("DELETE FROM [Recipients]");
+				db.Database.ExecuteSqlCommand("DELETE FROM [Trucks]");
+				db.Database.ExecuteSqlCommand("DELETE FROM [Warehouses]");
+				db.Database.ExecuteSqlCommand("DELETE FROM [HopArrivals]");
+				db.Database.ExecuteSqlCommand("DELETE FROM [TrackingInformations]");
 				db.Database.ExecuteSqlCommand("DELETE FROM [Parcels]");
-				db.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('[Parcels]', RESEED, 0)");
-				db.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('[Parcels]', RESEED, 0)");
+
+				db.Database.ExecuteSqlCommand("ALTER TABLE [Recipients] WITH CHECK CHECK CONSTRAINT ALL");
+				db.Database.ExecuteSqlCommand("ALTER TABLE [Trucks] WITH CHECK CHECK CONSTRAINT ALL");
+				db.Database.ExecuteSqlCommand("ALTER TABLE [Warehouses] WITH CHECK CHECK CONSTRAINT ALL");
+				db.Database.ExecuteSqlCommand("ALTER TABLE [HopArrivals] WITH CHECK CHECK CONSTRAINT ALL");
+				db.Database.ExecuteSqlCommand("ALTER TABLE [TrackingInformations] WITH CHECK CHECK CONSTRAINT ALL");
+				db.Database.ExecuteSqlCommand("ALTER TABLE [Parcels] WITH CHECK CHECK CONSTRAINT ALL");
+
+				db.Database.ExecuteSqlCommand($"DBCC CHECKIDENT ('[Recipients]', RESEED, 0)");
+				db.Database.ExecuteSqlCommand($"DBCC CHECKIDENT ('[Trucks]', RESEED, 0)");
+				db.Database.ExecuteSqlCommand($"DBCC CHECKIDENT ('[Warehouses]', RESEED, 0)");
+				db.Database.ExecuteSqlCommand($"DBCC CHECKIDENT ('[HopArrivals]', RESEED, 0)");
+				db.Database.ExecuteSqlCommand($"DBCC CHECKIDENT ('[TrackingInformations]', RESEED, 0)");
+				db.Database.ExecuteSqlCommand($"DBCC CHECKIDENT ('[Parcels]', RESEED, 0)");
+
 			}
 			catch (Exception ex)
 			{
