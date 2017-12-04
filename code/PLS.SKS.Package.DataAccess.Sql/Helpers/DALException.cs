@@ -9,8 +9,6 @@ namespace PLS.SKS.Package.DataAccess.Sql
 {
     public class DALException : Exception
     {
-		IExceptionHelper exceptionHelper = new ExceptionHelper();
-
 		public DALException()
 		{
 
