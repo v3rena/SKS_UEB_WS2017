@@ -29,7 +29,6 @@ namespace PLS.SKS.Package.BusinessLogic
 
 		public void ScanParcel(string trackingNumber, string code)
         {
-			logger.LogInformation("Calling the ScanParcel action");
             try
             {
                 DataAccess.Entities.Parcel dalParcel = parcelRepo.GetByTrackingNumber(trackingNumber);

@@ -13,7 +13,6 @@ namespace PLS.SKS.Package.DataAccess.Sql
 	{
 		private readonly DBContext db;
 		ILogger<SqlTrackingInformationRepository> logger;
-		ExceptionHelper exceptionHelper = new ExceptionHelper();
 
 		public SqlTrackingInformationRepository(DBContext context, ILogger<SqlTrackingInformationRepository> logger)
 		{
@@ -31,14 +30,32 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(exceptionHelper.BuildSqlExceptionMessage(ex));
+				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
+				throw new DALException("Could not save tracking information to database", ex);
+			}
+			catch (Exception ex)
+			{
+				logger.LogError("Could not save tracking information to database", ex);
 				throw new DALException("Could not save tracking information to database", ex);
 			}
 		}
 
 		public void Delete(int id)
 		{
-			throw new NotImplementedException();
+			try
+			{
+				db.Remove(db.TrackingInformations.Where(p => p.Id == id));
+			}
+			catch (SqlException ex)
+			{
+				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
+				throw new DALException("Could not delete tracking information from database", ex);
+			}
+			catch (Exception ex)
+			{
+				logger.LogError("Could not delete tracking information", ex);
+				throw new DALException("Could not delete tracking information", ex);
+			}
 		}
 
 		public TrackingInformation GetById(int id)
@@ -49,7 +66,12 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(exceptionHelper.BuildSqlExceptionMessage(ex));
+				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
+				throw new DALException("Could not retrieve tracking information from database", ex);
+			}
+			catch (Exception ex)
+			{
+				logger.LogError("Could not retrieve tracking information from database", ex);
 				throw new DALException("Could not retrieve tracking information from database", ex);
 			}
 		}
@@ -67,8 +89,13 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(exceptionHelper.BuildSqlExceptionMessage(ex));
+				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
 				throw new DALException("Could not update tracking information", ex);
+			}
+			catch (Exception ex)
+			{
+				logger.LogError("Could not update tracking information in database", ex);
+				throw new DALException("Could not update tracking information in database", ex);
 			}
 		}
 	}

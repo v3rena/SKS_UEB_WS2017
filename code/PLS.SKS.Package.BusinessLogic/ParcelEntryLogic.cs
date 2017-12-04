@@ -38,12 +38,11 @@ namespace PLS.SKS.Package.BusinessLogic
 
 		public string AddParcel(IO.Swagger.Models.Parcel serviceParcel)
         {
-			logger.LogInformation("Calling the AddParcel action");
 			try
 			{
                 if (serviceParcel == null)
                 {
-					throw new BLException("Received Service Parcel was null", new ArgumentNullException("serviceParcel", "Received Service Parcel was null"));
+					throw new BLException("Received Service Parcel was null");
                 }
 				Entities.Parcel blParcel = mapper.Map<Entities.Parcel>(serviceParcel);
 				if (blParcel != null)

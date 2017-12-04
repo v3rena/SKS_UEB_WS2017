@@ -49,10 +49,6 @@ namespace PLS.SKS.Package.Services
 			//Add GeoEncodingAgent
 			services.AddScoped<ServiceAgents.Interfaces.IGeoEncodingAgent, ServiceAgents.GoogleEncodingAgent>();
 
-			//Add ExceptionHelper
-			services.AddScoped<DataAccess.Interfaces.IExceptionHelper, DataAccess.Sql.ExceptionHelper>();
-
-
 			//Add Mapping
 			services.AddAutoMapper();
 

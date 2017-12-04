@@ -18,17 +18,17 @@ namespace PLS.SKS.Package.DataAccess
             //warehouseRepo = new Sql.SqlWarehouseRepository();
         }
 
-        public IHopArrivalRepository hopArrivalRepo { get; }
+        public IHopArrivalRepository HopArrivalRepo { get; }
 
-        public IParcelRepository parcelRepo { get; }
+        public IParcelRepository ParcelRepo { get; }
 
-        public IRecipientRepository recipientRepo { get; }
+        public IRecipientRepository RecipientRepo { get; }
 
-        public ITrackingInformationRepository trackingRepo { get; }
+        public ITrackingInformationRepository TrackingRepo { get; }
 
-        public ITruckRepository truckRepo { get; }
+        public ITruckRepository TruckRepo { get; }
 
-        public IWarehouseRepository warehouseRepo { get; }
+        public IWarehouseRepository WarehouseRepo { get; }
 
 
     }

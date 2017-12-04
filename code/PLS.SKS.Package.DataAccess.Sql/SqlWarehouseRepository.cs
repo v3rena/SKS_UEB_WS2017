@@ -14,13 +14,11 @@ namespace PLS.SKS.Package.DataAccess.Sql
 	{
 		private readonly DBContext db;
 		ILogger<SqlWarehouseRepository> logger;
-		IExceptionHelper exceptionHelper;
 
-		public SqlWarehouseRepository(DBContext context, ILogger<SqlWarehouseRepository> logger, IExceptionHelper exceptionHelper)
+		public SqlWarehouseRepository(DBContext context, ILogger<SqlWarehouseRepository> logger)
 		{
 			db = context;
 			this.logger = logger;
-			this.exceptionHelper = exceptionHelper;
 		}
 
 		public int Create(Warehouse w)
@@ -33,14 +31,32 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(exceptionHelper.BuildSqlExceptionMessage(ex));
+				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
+				throw new DALException("Could not save warehouse to database", ex);
+			}
+			catch (Exception ex)
+			{
+				logger.LogError("Could not save warehouse to database", ex);
 				throw new DALException("Could not save warehouse to database", ex);
 			}
 		}
 
 		public void Delete(int id)
 		{
-			throw new NotImplementedException();
+			try
+			{
+				db.Remove(db.Warehouses.Where(p => p.Id == id));
+			}
+			catch (SqlException ex)
+			{
+				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
+				throw new DALException("Could not delete warehouse from database", ex);
+			}
+			catch (Exception ex)
+			{
+				logger.LogError("Could not delete warehouse", ex);
+				throw new DALException("Could not delete warehouse", ex);
+			}
 		}
 
 		public Warehouse GetById(int id)
@@ -55,7 +71,12 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(exceptionHelper.BuildSqlExceptionMessage(ex));
+				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
+				throw new DALException("Could not retrieve warehouse from database", ex);
+			}
+			catch (Exception ex)
+			{
+				logger.LogError("Could not retrieve warehouse from database", ex);
 				throw new DALException("Could not retrieve warehouse from database", ex);
 			}
 		}
@@ -76,8 +97,13 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(exceptionHelper.BuildSqlExceptionMessage(ex));
+				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
 				throw new DALException("Could not get parent warehouse from database", ex);
+			}
+			catch (Exception ex)
+			{
+				logger.LogError("Could not retrieve parent warehouse from database", ex);
+				throw new DALException("Could not retrieve parent warehouse from database", ex);
 			}
 		}
 
@@ -97,8 +123,13 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(exceptionHelper.BuildSqlExceptionMessage(ex));
+				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
 				throw new DALException("Could not get parent warehouse from database", ex);
+			}
+			catch (Exception ex)
+			{
+				logger.LogError("Could not retrieve parent warehouse from database", ex);
+				throw new DALException("Could not retrieve parent warehouse from database", ex);
 			}
 		}
 
@@ -115,8 +146,13 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(exceptionHelper.BuildSqlExceptionMessage(ex));
+				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
 				throw new DALException("Could not update warehouse", ex);
+			}
+			catch (Exception ex)
+			{
+				logger.LogError("Could not update warehouse in database", ex);
+				throw new DALException("Could not update warehouse in database", ex);
 			}
 		}
 

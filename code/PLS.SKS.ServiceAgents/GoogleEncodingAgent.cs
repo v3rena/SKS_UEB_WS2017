@@ -36,22 +36,22 @@ namespace PLS.SKS.ServiceAgents
 
 		public Location EncodeAddress(Recipient recipient)
 		{
-			var root = new GeoEncodingRoot();
-			string address = GetAddress(recipient);
-			HttpClient client = GetClient();
-			HttpResponseMessage response = client.GetAsync($"/maps/api/geocode/json?address={address}&key={apiKey}").Result;
-			if (response.IsSuccessStatusCode)
-			{
-				root = response.Content.ReadAsAsync<GeoEncodingRoot>().Result;
-			}
 			try
 			{
+				var root = new GeoEncodingRoot();
+				string address = GetAddress(recipient);
+				HttpClient client = GetClient();
+				HttpResponseMessage response = client.GetAsync($"/maps/api/geocode/json?address={address}&key={apiKey}").Result;
+				if (response.IsSuccessStatusCode)
+				{
+					root = response.Content.ReadAsAsync<GeoEncodingRoot>().Result;
+				}
 				return root.Results.FirstOrDefault().Geometry.Location;
 			}
-			catch(Exception ex)
+			catch (Exception ex)
 			{
-				logger.LogError(ex.ToString());
-				throw new Exception();
+				logger.LogError("Failed trying to encode the given address", ex);
+				throw new SAException("Failed trying to encode the given address", ex);
 			}
 		}
 

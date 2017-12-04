@@ -27,8 +27,7 @@ namespace PLS.SKS.Package.BusinessLogic
 		{
 			try
 			{
-				logger.LogInformation("Calling the ExportWarehouses action");
-				//Should return root warehouse
+				//Return root warehouse
 				var dalWarehouse = warehouseRepo.GetById(1);
 				if (dalWarehouse == null)
 				{
@@ -37,7 +36,12 @@ namespace PLS.SKS.Package.BusinessLogic
 				Entities.Warehouse blWarehouse = mapper.Map<Entities.Warehouse>(dalWarehouse);
 				if (blWarehouse != null)
 				{
-					logger.LogError(ValidateWarehouse(blWarehouse));
+					string validationResults = ValidateWarehouse(blWarehouse);
+					if (validationResults != "")
+					{
+						logger.LogError(validationResults);
+						throw new BLException("Given Warehouse is not valid");
+					}
 				}
 				IO.Swagger.Models.Warehouse serviceWarehouse = mapper.Map<IO.Swagger.Models.Warehouse>(blWarehouse);
 				return serviceWarehouse;
@@ -53,7 +57,6 @@ namespace PLS.SKS.Package.BusinessLogic
 		{
 			try
 			{
-				logger.LogInformation("Calling the ImportWarehouses action");
 				Entities.Warehouse blWarehouse = mapper.Map<Entities.Warehouse>(warehouse);
 				if (blWarehouse != null)
 				{
