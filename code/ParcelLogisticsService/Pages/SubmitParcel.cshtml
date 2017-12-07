@@ -1,0 +1,20 @@
+﻿@page
+@model PLS.SKS.Package.Services.Pages.SubmitParcelModel
+@{
+    ViewData["Title"] = "SubmitParcel";
+}
+
+<h2>SubmitParcel</h2>
+<form action="">
+	Gewicht: <input type="text" name="gewicht"><br>
+	Vorname: <input type="text" name="vorname"><br>
+	Nachname: <input type="text" name="nachname"><br>
+	Straße: <input type="text" name="strasse"><br>
+	Postleitzahl: <input type="text" name="plz"><br>
+	Stadt: <input type="text" name="stadt"><br>
+	<input type="submit" value="Submit">
+</form> 
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
