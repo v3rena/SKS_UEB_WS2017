@@ -97,6 +97,8 @@ namespace IO.Swagger.Models
             
         }
 
+		public TrackingInformation() { }
+
         /// <summary>
         /// Hops visited in the past - either &#x60;warehouse&#x60; or &#x60;truck&#x60;.
         /// </summary>

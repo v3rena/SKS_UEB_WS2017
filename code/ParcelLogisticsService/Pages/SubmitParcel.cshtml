@@ -5,15 +5,25 @@
 }
 
 <h2>SubmitParcel</h2>
-<form action="">
-	Gewicht: <input type="text" name="gewicht"><br>
-	Vorname: <input type="text" name="vorname"><br>
-	Nachname: <input type="text" name="nachname"><br>
-	Straße: <input type="text" name="strasse"><br>
-	Postleitzahl: <input type="text" name="plz"><br>
-	Stadt: <input type="text" name="stadt"><br>
-	<input type="submit" value="Submit">
-</form> 
+<html>
+<body>
+	<div asp-validation-summary="All"></div>
+	<form method="POST">
+		<div>Weight: <input asp-for="Parcel.Weight" /></div>
+		<div>Recipient:</div>
+		<div>First Name: <input asp-for="Parcel.Recipient.FirstName" /></div>
+		<div>Last Name: <input asp-for="Parcel.Recipient.LastName" /></div>
+		<div>Street: <input asp-for="Parcel.Recipient.Street" /></div>
+		<div>Postcode: <input asp-for="Parcel.Recipient.PostalCode" /></div>
+		<div>City: <input asp-for="Parcel.Recipient.City" /></div>
+		<input type="submit" />
+	</form>
+	<form>
+		<div>Tracking Number: @Html.DisplayFor(model => model.InlineResponse200.TrackingId)</div>
+	</form>
+</body>
+</html>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

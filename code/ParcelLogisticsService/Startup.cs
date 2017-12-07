@@ -64,12 +64,12 @@ namespace PLS.SKS.Package.Services
             });
         }
 
-        public virtual void AddDBCleaner(IServiceCollection services)
+		// Enables Reuse in Testing
+		public virtual void AddDBCleaner(IServiceCollection services)
         {
             services.AddScoped<DataAccess.Interfaces.IDbCleaner, DataAccess.Sql.DbCleaner>();
         }
-
-        // Enables Reuse in Testing
+        
         public virtual void SetupDB(IServiceCollection services)
         {
             services.AddDbContext<DataAccess.Sql.DBContext>(options =>
