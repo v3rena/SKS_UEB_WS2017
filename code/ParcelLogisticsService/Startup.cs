@@ -109,9 +109,15 @@ namespace PLS.SKS.Package.Services
                 var dbContext = serviceScope.ServiceProvider.GetService<DataAccess.Sql.DBContext>();
                 EnsureDatabaseCreated(dbContext);
             }
-            //-----------
+			//-----------
+			app.UseStaticFiles();
 
-            app.UseMvc();
-        }
+			app.UseMvc(routes =>
+			{
+				routes.MapRoute(
+					name: "default",
+					template: "{controller}/{action=Index}/{id?}");
+			});
+		}
     }
 }
