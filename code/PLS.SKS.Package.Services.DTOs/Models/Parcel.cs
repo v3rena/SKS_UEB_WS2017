@@ -56,6 +56,8 @@ namespace IO.Swagger.Models
             
         }
 
+		public Parcel() { }
+
 
         /// <summary>
         /// Gets or Sets Weight

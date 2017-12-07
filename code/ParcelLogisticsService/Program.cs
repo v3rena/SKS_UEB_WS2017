@@ -25,10 +25,10 @@ namespace PLS.SKS.Package.Services
 				try
 				{
 					var context = services.GetRequiredService <DBContext>();
-                    //DBInitializer.Initialize(context);
-                    //context.Database.Migrate();
-                }
-                catch (Exception ex)
+					//context.Database.Migrate();
+					//DBInitializer.Initialize(context);
+				}
+				catch (Exception ex)
 				{
 					var logger = services.GetRequiredService<ILogger<Program>>();
 					logger.LogError(ex, "An error occurred while seeding the database.");

@@ -85,6 +85,8 @@ namespace IO.Swagger.Models
             
         }
 
+		public Recipient() { }
+
         /// <summary>
         /// Gets or Sets FirstName
         /// </summary>

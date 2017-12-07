@@ -56,6 +56,8 @@ namespace IO.Swagger.Models
             
         }
 
+		public HopArrival() { }
+
         /// <summary>
         /// The code of the &#x60;warehouse&#x60; or &#x60;truck&#x60;.
         /// </summary>
