@@ -4,14 +4,27 @@
     ViewData["Title"] = "Home page";
 }
 
+<div class="h1">
+	<div class="row">
+		<div class="col-md-10">
+		</div>
+	</div>
+</div>
 
 <div class="row">
-    <div class="col-md-3">
-        <h2>Application uses</h2>
-        <ul>
-            <li>Submit parcel</li>
-            <li>Track Parcel</li>
-            <li>Report Hop</li>
-        </ul>
-    </div>
+    <div class="col-md-4">
+        <h2>Submit Parcel</h2>
+		<a asp-page="/SubmitParcel"><img class="img-icon" src="~/images/archive.png" /></a>
+		<p>Submit a new parcel to the system. Be sure to enter valid data - Imaginary places will not be served.</p>
+	</div>
+	<div class="col-md-4">
+		<h2>Track Parcel</h2>
+		<a asp-page="/TrackParcel"><img class="img-icon" src="~/images/zoom-in.png" /></a>
+		<p>Enter your tracking code in order to get the current status of your parcel.</p>
+	</div>
+	<div class="col-md-4">
+		<h2>Report Parcel Hop</h2>
+		<a asp-page="/ReportParcelHop"><img class="img-icon" src="~/images/placeholder.png" /></a>
+		<p>Enter a valid tracking number as well as a code belonging to a warehouse or truck. The current hop will then be reported as visited.</p>
+	</div>
 </div>
