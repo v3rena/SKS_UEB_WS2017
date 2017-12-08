@@ -25,7 +25,7 @@ namespace PLS.SKS.Package.Services.Pages
 			this.logger = logger;
 		}
 
-		public async Task<IActionResult> OnGetAsync()
+		public async Task<IActionResult> OnPostAsync()
 		{
 			if (!ModelState.IsValid)
 			{
@@ -45,12 +45,12 @@ namespace PLS.SKS.Package.Services.Pages
 
 			try
 			{
-				var stringTask = client.GetStringAsync($"/api/parcel{TrackingNumber}");
+				var stringTask = client.GetAsync($"/api/parcel/{TrackingNumber}");
 				var msg = await stringTask;
-				/*if (msg.IsSuccessStatusCode)
+				if (msg.IsSuccessStatusCode)
 				{
-					InlineResponse200 = msg.Content.ReadAsAsync<InlineResponse200>().Result;
-				}*/
+					TrackingInformation = msg.Content.ReadAsAsync<TrackingInformation>().Result;
+				}
 				return Page();
 			}
 			catch (Exception ex)
