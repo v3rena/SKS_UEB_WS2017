@@ -1,7 +1,7 @@
 ﻿@page
 @model PLS.SKS.Package.Services.Pages.SubmitParcelModel
 @{
-    ViewData["Title"] = "SubmitParcel";
+    ViewData["Title"] = "Submit Parcel";
 }
 
 <h2>SubmitParcel</h2>
@@ -44,16 +44,15 @@
 				<input type="submit" />
 			</form>
 		</div>
-		<div class="col-md-5">
-			<div class="center-div">
-				<form>
-					<div>
-						<h4>Your tracking number</h4>
-						<h1>@Html.DisplayFor(model => model.InlineResponse200.TrackingId)</h1>
-					</div>
-				</form>
+		@if (Model.InlineResponse200 != null && Model.InlineResponse200.TrackingId != null)
+		{
+			<div class="col-md-5">
+				<div class="center-div">
+					<h4>Your tracking number is</h4>
+					<h1>@Html.DisplayFor(model => model.InlineResponse200.TrackingId)</h1>
+				</div>
 			</div>
-		</div>
+		}
 	</div>
 </body>
 </html>
