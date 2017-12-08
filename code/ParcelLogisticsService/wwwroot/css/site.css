@@ -33,3 +33,19 @@ body {
         display: none;
     }
 }
+
+.col-md-4 {
+	text-align: center;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.img-icon {
+	padding: 15px;
+}
+
+.center-div {
+	text-align: center;
+	border: solid;
+	border-color: black;
+}
