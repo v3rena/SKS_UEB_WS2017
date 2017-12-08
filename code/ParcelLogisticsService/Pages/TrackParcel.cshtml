@@ -26,7 +26,7 @@
 					<table class="table">
 						<thead>
 							<tr>
-								<th>Hop</th>
+								<th>Visited Hops</th>
 								<th>Time of Arrival</th>
 							</tr>
 						</thead>
@@ -38,6 +38,16 @@
 									<td>@hop.DateTime</td>
 								</tr>
 							}
+						</tbody>
+					</table>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Future Hops</th>
+								<th>Time of Arrival</th>
+							</tr>
+						</thead>
+						<tbody>
 							@foreach (var hop in Model.TrackingInformation.FutureHops)
 							{
 								<tr>
@@ -45,10 +55,14 @@
 									<td>@hop.DateTime</td>
 								</tr>
 							}
-							<tr>
-								<td>@Html.DisplayFor(model => model.TrackingInformation.State)</td>
-							</tr>
 						</tbody>
+					</table>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>@Html.DisplayFor(model => model.TrackingInformation.State)</th>
+							</tr>
+						</thead>
 					</table>
 				}
 			</div>
