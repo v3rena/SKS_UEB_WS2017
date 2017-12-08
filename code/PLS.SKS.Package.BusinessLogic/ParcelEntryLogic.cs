@@ -38,12 +38,11 @@ namespace PLS.SKS.Package.BusinessLogic
 
 		public string AddParcel(IO.Swagger.Models.Parcel serviceParcel)
         {
-			logger.LogInformation("Calling the AddParcel action");
 			try
 			{
                 if (serviceParcel == null)
                 {
-					throw new BLException("Received Service Parcel was null", new ArgumentNullException("serviceParcel", "Received Service Parcel was null"));
+					throw new BLException("Received Service Parcel was null");
                 }
 				Entities.Parcel blParcel = mapper.Map<Entities.Parcel>(serviceParcel);
 				if (blParcel != null)
@@ -132,12 +131,7 @@ namespace PLS.SKS.Package.BusinessLogic
 		{
 			var trucks = truckRepo.GetAll();
 			var nearestTruck = trucks.FirstOrDefault();
-            var blLocLat = (double)blLocation.Lat;
-            var blLocLng = (double)blLocation.Lng;
-            var trLocLat = (double)nearestTruck.Latitude;
-            var trLocLng = (double)nearestTruck.Longitude;
-            //var smallestDistance = DistanceCalculator.GetDistanceBetweenTwoPoints((double)nearestTruck.Latitude, (double)nearestTruck.Longitude, blLocation.Lat, blLocation.Lng);
-            var smallestDistance = DistanceCalculator.GetDistanceBetweenTwoPoints(blLocLat, blLocLng, trLocLat, trLocLng);
+			var smallestDistance = DistanceCalculator.GetDistanceBetweenTwoPoints((double)nearestTruck.Latitude, (double)nearestTruck.Longitude, blLocation.Lat, blLocation.Lng);
 
 			foreach (var truck in trucks)
 			{

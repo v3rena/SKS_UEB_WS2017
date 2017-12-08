@@ -37,17 +37,17 @@ namespace PLS.SKS.Package.DataAccess
 
         ITrackingInformationRepository trackingRepo => throw new NotImplementedException();
 
-        ITruckRepository IDatabase.truckRepo => throw new NotImplementedException();
+        ITruckRepository IDatabase.TruckRepo => throw new NotImplementedException();
 
-        IWarehouseRepository IDatabase.warehouseRepo => throw new NotImplementedException();
+        IWarehouseRepository IDatabase.WarehouseRepo => throw new NotImplementedException();
 
-		IParcelRepository IDatabase.parcelRepo => throw new NotImplementedException();
+		IParcelRepository IDatabase.ParcelRepo => throw new NotImplementedException();
 
-		IRecipientRepository IDatabase.recipientRepo => throw new NotImplementedException();
+		IRecipientRepository IDatabase.RecipientRepo => throw new NotImplementedException();
 
-		ITrackingInformationRepository IDatabase.trackingRepo => throw new NotImplementedException();
+		ITrackingInformationRepository IDatabase.TrackingRepo => throw new NotImplementedException();
 
-		IHopArrivalRepository IDatabase.hopArrivalRepo => throw new NotImplementedException();
+		IHopArrivalRepository IDatabase.HopArrivalRepo => throw new NotImplementedException();
 
 		public Mock.MockParcelRepository _parcelRepo;
         public Mock.MockRecipientRepository _recRepo;

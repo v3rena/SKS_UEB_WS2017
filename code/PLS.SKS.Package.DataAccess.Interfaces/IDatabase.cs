@@ -6,11 +6,11 @@ namespace PLS.SKS.Package.DataAccess.Interfaces
 {
     public interface IDatabase
     {
-        IHopArrivalRepository hopArrivalRepo { get; }
-        IParcelRepository parcelRepo { get; }
-        IRecipientRepository recipientRepo { get; }
-        ITrackingInformationRepository trackingRepo { get; }
-        ITruckRepository truckRepo { get; }
-        IWarehouseRepository warehouseRepo { get; }
+        IHopArrivalRepository HopArrivalRepo { get; }
+        IParcelRepository ParcelRepo { get; }
+        IRecipientRepository RecipientRepo { get; }
+        ITrackingInformationRepository TrackingRepo { get; }
+        ITruckRepository TruckRepo { get; }
+        IWarehouseRepository WarehouseRepo { get; }
     }
 }

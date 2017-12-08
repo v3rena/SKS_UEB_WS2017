@@ -14,7 +14,6 @@ namespace PLS.SKS.Package.DataAccess.Sql
 	{
 		private readonly DBContext db;
 		ILogger<SqlParcelRepository> logger;
-		ExceptionHelper exceptionHelper = new ExceptionHelper();
 
 		public SqlParcelRepository(DBContext context, ILogger<SqlParcelRepository> logger)
 		{
@@ -32,7 +31,12 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(exceptionHelper.BuildSqlExceptionMessage(ex));
+				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
+				throw new DALException("Could not save parcel to database", ex);
+			}
+			catch (Exception ex)
+			{
+				logger.LogError("Could not save parcel to database", ex);
 				throw new DALException("Could not save parcel to database", ex);
 			}
 		}
@@ -42,12 +46,16 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			try
 			{
 				db.Remove(db.Parcels.Where(p => p.Id == id));
-
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(exceptionHelper.BuildSqlExceptionMessage(ex));
+				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
 				throw new DALException("Could not delete parcel from database", ex);
+			}
+			catch (Exception ex)
+			{
+				logger.LogError("Could not delete parcel", ex);
+				throw new DALException("Could not delete parcel", ex);
 			}
 		}
 
@@ -64,7 +72,12 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(exceptionHelper.BuildSqlExceptionMessage(ex));
+				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
+				throw new DALException("Could not retrieve parcel from database", ex);
+			}
+			catch (Exception ex)
+			{
+				logger.LogError("Could not retrieve parcel from database", ex);
 				throw new DALException("Could not retrieve parcel from database", ex);
 			}
 		}
@@ -78,7 +91,12 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(exceptionHelper.BuildSqlExceptionMessage(ex));
+				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
+				throw new DALException("Could not retrieve parcel from database", ex);
+			}
+			catch (Exception ex)
+			{
+				logger.LogError("Could not retrieve parcel from database", ex);
 				throw new DALException("Could not retrieve parcel from database", ex);
 			}
 		}
@@ -101,8 +119,13 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(exceptionHelper.BuildSqlExceptionMessage(ex));
+				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
 				throw new DALException("Could not update parcel", ex);
+			}
+			catch (Exception ex)
+			{
+				logger.LogError("Could not update parcel in database", ex);
+				throw new DALException("Could not update parcel in database", ex);
 			}
 		}
 	}

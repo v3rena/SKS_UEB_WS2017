@@ -6,9 +6,9 @@ using System.Text;
 
 namespace PLS.SKS.Package.DataAccess.Sql
 {
-    public class ExceptionHelper : IExceptionHelper
+    public static class ExceptionHelper
     {
-		public string BuildSqlExceptionMessage(SqlException ex)
+		public static string BuildSqlExceptionMessage(SqlException ex)
 		{
 			StringBuilder errorMessages = new StringBuilder();
 			for (int i = 0; i < ex.Errors.Count; i++)

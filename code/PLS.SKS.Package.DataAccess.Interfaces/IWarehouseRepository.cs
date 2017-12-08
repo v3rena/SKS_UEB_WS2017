@@ -13,5 +13,6 @@ namespace PLS.SKS.Package.DataAccess.Interfaces
         Warehouse GetById(int id);
 		Warehouse GetParent(Truck truck);
 		Warehouse GetParent(Warehouse warehouse);
+		Warehouse GetRootWarehouse();
 	}
 }

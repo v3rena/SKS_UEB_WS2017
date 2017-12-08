@@ -96,6 +96,8 @@ namespace IO.Swagger.Models
             
         }
 
+		public Truck() { }
+
         /// <summary>
         /// Gets or Sets Code
         /// </summary>
