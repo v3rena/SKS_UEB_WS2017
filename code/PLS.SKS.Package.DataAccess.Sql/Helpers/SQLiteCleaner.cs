@@ -8,10 +8,10 @@ namespace PLS.SKS.Package.DataAccess.Sql
 {
     public class SQLiteCleaner : DataAccess.Interfaces.IDbCleaner
     {
-        private readonly DBContext db;
+        private readonly DbContext db;
         private ILogger<DbCleaner> logger;
 
-        public SQLiteCleaner(DBContext context, ILogger<DbCleaner> logger)
+        public SQLiteCleaner(DbContext context, ILogger<DbCleaner> logger)
         {
             db = context;
             this.logger = logger;

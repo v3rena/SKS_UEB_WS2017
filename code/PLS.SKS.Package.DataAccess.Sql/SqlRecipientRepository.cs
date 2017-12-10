@@ -9,31 +9,31 @@ namespace PLS.SKS.Package.DataAccess.Sql
 {
 	public class SqlRecipientRepository : IRecipientRepository
 	{
-		private readonly DBContext db;
-		ILogger<SqlRecipientRepository> logger;
+		private readonly DbContext _db;
+		private readonly ILogger<SqlRecipientRepository> _logger;
 
-		public SqlRecipientRepository(DBContext context, ILogger<SqlRecipientRepository> logger)
+		public SqlRecipientRepository(DbContext context, ILogger<SqlRecipientRepository> logger)
 		{
-			db = context;
-			this.logger = logger;
+			_db = context;
+			_logger = logger;
 		}
 
 		public int Create(Recipient r)
 		{
 			try
 			{
-				db.Add(r);
-				db.SaveChanges();
+				_db.Add(r);
+				_db.SaveChanges();
 				return r.Id;
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
+				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
 				throw new DALException("Could not save recipient to database", ex);
 			}
 			catch (Exception ex)
 			{
-				logger.LogError("Could not save recipient to database", ex);
+				_logger.LogError("Could not save recipient to database", ex);
 				throw new DALException("Could not save recipient to database", ex);
 			}
 		}
@@ -42,16 +42,16 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		{
 			try
 			{
-				db.Remove(db.Recipients.Where(p => p.Id == id));
+				_db.Remove(_db.Recipients.Where(p => p.Id == id));
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
+				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
 				throw new DALException("Could not delete recipient from database", ex);
 			}
 			catch (Exception ex)
 			{
-				logger.LogError("Could not delete recipient", ex);
+				_logger.LogError("Could not delete recipient", ex);
 				throw new DALException("Could not delete recipient", ex);
 			}
 		}
@@ -60,16 +60,16 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		{
 			try
 			{
-				return db.Recipients.Find(id);
+				return _db.Recipients.Find(id);
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
+				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
 				throw new DALException("Could not retrieve recipient from database", ex);
 			}
 			catch (Exception ex)
 			{
-				logger.LogError("Could not retrieve recipient from database", ex);
+				_logger.LogError("Could not retrieve recipient from database", ex);
 				throw new DALException("Could not retrieve recipient from database", ex);
 			}
 		}
@@ -78,21 +78,21 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		{
 			try
 			{
-				var RecipientToUpdate = db.Recipients.SingleOrDefault(b => b.Id == p.Id);
+				var RecipientToUpdate = _db.Recipients.SingleOrDefault(b => b.Id == p.Id);
 				if (RecipientToUpdate != null)
 				{
 					RecipientToUpdate = p;
-					db.SaveChanges();
+					_db.SaveChanges();
 				}
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
+				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
 				throw new DALException("Could not update recipient", ex);
 			}
 			catch (Exception ex)
 			{
-				logger.LogError("Could not update recipient in database", ex);
+				_logger.LogError("Could not update recipient in database", ex);
 				throw new DALException("Could not update recipient in database", ex);
 			}
 		}

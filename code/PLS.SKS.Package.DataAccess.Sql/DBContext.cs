@@ -6,9 +6,9 @@ using PLS.SKS.Package.DataAccess.Entities;
 
 namespace PLS.SKS.Package.DataAccess.Sql
 {
-    public class DBContext : DbContext
+    public class DbContext : Microsoft.EntityFrameworkCore.DbContext
 	{
-		public DBContext(DbContextOptions<DBContext> options) : base(options)
+		public DbContext(DbContextOptions<DbContext> options) : base(options)
         {
 			//this.Database.EnsureCreated();
 		}

@@ -12,31 +12,31 @@ namespace PLS.SKS.Package.DataAccess.Sql
 {
 	public class SqlParcelRepository : IParcelRepository
 	{
-		private readonly DBContext db;
-		ILogger<SqlParcelRepository> logger;
+		private readonly DbContext _db;
+		private readonly ILogger<SqlParcelRepository> _logger;
 
-		public SqlParcelRepository(DBContext context, ILogger<SqlParcelRepository> logger)
+		public SqlParcelRepository(DbContext context, ILogger<SqlParcelRepository> logger)
 		{
-			db = context;
-			this.logger = logger;
+			_db = context;
+			_logger = logger;
 		}
 
 		public int Create(Parcel p)
 		{
 			try
 			{
-				db.Add(p);
-				db.SaveChanges();
+				_db.Add(p);
+				_db.SaveChanges();
 				return p.Id;
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
+				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
 				throw new DALException("Could not save parcel to database", ex);
 			}
 			catch (Exception ex)
 			{
-				logger.LogError("Could not save parcel to database", ex);
+				_logger.LogError("Could not save parcel to database", ex);
 				throw new DALException("Could not save parcel to database", ex);
 			}
 		}
@@ -45,16 +45,16 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		{
 			try
 			{
-				db.Remove(db.Parcels.Where(p => p.Id == id));
+				_db.Remove(_db.Parcels.Where(p => p.Id == id));
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
+				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
 				throw new DALException("Could not delete parcel from database", ex);
 			}
 			catch (Exception ex)
 			{
-				logger.LogError("Could not delete parcel", ex);
+				_logger.LogError("Could not delete parcel", ex);
 				throw new DALException("Could not delete parcel", ex);
 			}
 		}
@@ -68,16 +68,16 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		{
 			try
 			{
-				return db.Parcels.Find(id);
+				return _db.Parcels.Find(id);
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
+				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
 				throw new DALException("Could not retrieve parcel from database", ex);
 			}
 			catch (Exception ex)
 			{
-				logger.LogError("Could not retrieve parcel from database", ex);
+				_logger.LogError("Could not retrieve parcel from database", ex);
 				throw new DALException("Could not retrieve parcel from database", ex);
 			}
 		}
@@ -86,17 +86,17 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		{
 			try
 			{
-				return db.Parcels.Include(p => p.Recipient).Include(p => p.TrackingInformation)
+				return _db.Parcels.Include(p => p.Recipient).Include(p => p.TrackingInformation)
 				.Where(p => p.TrackingNumber == TrackingNumber).FirstOrDefault();
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
+				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
 				throw new DALException("Could not retrieve parcel from database", ex);
 			}
 			catch (Exception ex)
 			{
-				logger.LogError("Could not retrieve parcel from database", ex);
+				_logger.LogError("Could not retrieve parcel from database", ex);
 				throw new DALException("Could not retrieve parcel from database", ex);
 			}
 		}
@@ -110,21 +110,21 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		{
 			try
 			{
-				var ParcelToUpdate = db.Parcels.SingleOrDefault(b => b.Id == p.Id);
+				var ParcelToUpdate = _db.Parcels.SingleOrDefault(b => b.Id == p.Id);
 				if (ParcelToUpdate != null)
 				{
 					ParcelToUpdate = p;
-					db.SaveChanges();
+					_db.SaveChanges();
 				}
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
+				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
 				throw new DALException("Could not update parcel", ex);
 			}
 			catch (Exception ex)
 			{
-				logger.LogError("Could not update parcel in database", ex);
+				_logger.LogError("Could not update parcel in database", ex);
 				throw new DALException("Could not update parcel in database", ex);
 			}
 		}
