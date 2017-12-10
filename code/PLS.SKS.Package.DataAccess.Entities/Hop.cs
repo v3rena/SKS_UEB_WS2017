@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PLS.SKS.Package.DataAccess.Entities
+﻿namespace PLS.SKS.Package.DataAccess.Entities
 {
     public abstract class Hop
     {
@@ -10,8 +6,8 @@ namespace PLS.SKS.Package.DataAccess.Entities
 
 	    protected Hop(string code, decimal duration)
         {
-            this.Code = code;
-            this.Duration = duration;
+            Code = code;
+            Duration = duration;
         }
 
         public int Id { get; set; }

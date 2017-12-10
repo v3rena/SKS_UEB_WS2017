@@ -1,30 +1,26 @@
-﻿using Microsoft.Extensions.Logging;
-using PLS.SKS.Package.DataAccess.Interfaces;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Data.SqlClient;
-using System.Text;
 
-namespace PLS.SKS.Package.DataAccess.Sql
+namespace PLS.SKS.Package.DataAccess.Sql.Helpers
 {
-    public class DALException : Exception
+    public class DalException : Exception
     {
-		public DALException()
+		public DalException()
 		{
 
 		}
 
-		public DALException(string message) : base(message)
+		public DalException(string message) : base(message)
 		{
 
 		}
 
-		public DALException(string message, Exception inner) : base(message, inner)
+		public DalException(string message, Exception inner) : base(message, inner)
 		{
 
 		}
 
-        public DALException(string message, SqlException inner) : base(message, inner)
+        public DalException(string message, SqlException inner) : base(message, inner)
         {
 
         }

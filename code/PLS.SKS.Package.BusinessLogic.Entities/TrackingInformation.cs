@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
-using System.Text;
 
 namespace PLS.SKS.Package.BusinessLogic.Entities
 {
@@ -12,7 +10,7 @@ namespace PLS.SKS.Package.BusinessLogic.Entities
         public TrackingInformation(StateEnum state, List<HopArrival> futureHops)
         {
             State = state;
-            this.FutureHops = futureHops;
+            FutureHops = futureHops;
             VisitedHops = new List<HopArrival>();
         }
 

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace PLS.SKS.Package.DataAccess.Entities
 {
@@ -10,11 +8,11 @@ namespace PLS.SKS.Package.DataAccess.Entities
 
         public Warehouse(string code, string description, decimal duration, List<Warehouse> nextHops, List<Truck> trucks)
         {
-            this.Code = code;
-            this.Description = description;
-            this.Duration = duration;
-            this.NextHops = nextHops;
-            this.Trucks = trucks;
+            Code = code;
+            Description = description;
+            Duration = duration;
+            NextHops = nextHops;
+            Trucks = trucks;
         }
 
 		public string Description { get; set; }

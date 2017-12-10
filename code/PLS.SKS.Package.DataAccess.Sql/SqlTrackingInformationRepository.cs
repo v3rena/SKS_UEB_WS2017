@@ -6,6 +6,7 @@ using PLS.SKS.Package.DataAccess.Entities;
 using System.Linq;
 using Microsoft.Extensions.Logging;
 using System.Data.SqlClient;
+using PLS.SKS.Package.DataAccess.Sql.Helpers;
 
 namespace PLS.SKS.Package.DataAccess.Sql
 {
@@ -31,12 +32,12 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			catch (SqlException ex)
 			{
 				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
-				throw new DALException("Could not save tracking information to database", ex);
+				throw new DalException("Could not save tracking information to database", ex);
 			}
 			catch (Exception ex)
 			{
 				_logger.LogError("Could not save tracking information to database", ex);
-				throw new DALException("Could not save tracking information to database", ex);
+				throw new DalException("Could not save tracking information to database", ex);
 			}
 		}
 
@@ -49,12 +50,12 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			catch (SqlException ex)
 			{
 				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
-				throw new DALException("Could not delete tracking information from database", ex);
+				throw new DalException("Could not delete tracking information from database", ex);
 			}
 			catch (Exception ex)
 			{
 				_logger.LogError("Could not delete tracking information", ex);
-				throw new DALException("Could not delete tracking information", ex);
+				throw new DalException("Could not delete tracking information", ex);
 			}
 		}
 
@@ -67,12 +68,12 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			catch (SqlException ex)
 			{
 				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
-				throw new DALException("Could not retrieve tracking information from database", ex);
+				throw new DalException("Could not retrieve tracking information from database", ex);
 			}
 			catch (Exception ex)
 			{
 				_logger.LogError("Could not retrieve tracking information from database", ex);
-				throw new DALException("Could not retrieve tracking information from database", ex);
+				throw new DalException("Could not retrieve tracking information from database", ex);
 			}
 		}
 
@@ -80,22 +81,22 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		{
 			try
 			{
-				var TrToUpdate = _db.TrackingInformations.SingleOrDefault(b => b.Id == t.Id);
-				if (TrToUpdate != null)
+				var trToUpdate = _db.TrackingInformations.Single(b => b.Id == t.Id);
+				if (trToUpdate != null)
 				{
-					TrToUpdate = t;
+					trToUpdate = t;
 					_db.SaveChanges();
 				}
 			}
 			catch (SqlException ex)
 			{
 				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
-				throw new DALException("Could not update tracking information", ex);
+				throw new DalException("Could not update tracking information", ex);
 			}
 			catch (Exception ex)
 			{
 				_logger.LogError("Could not update tracking information in database", ex);
-				throw new DALException("Could not update tracking information in database", ex);
+				throw new DalException("Could not update tracking information in database", ex);
 			}
 		}
 	}

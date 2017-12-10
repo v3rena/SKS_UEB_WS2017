@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using PLS.SKS.Package.DataAccess.Sql;
+using PLS.SKS.Package.DataAccess.Sql.Helpers;
 using DbContext = PLS.SKS.Package.DataAccess.Sql.DbContext;
 
 namespace PLS.SKS.Package.Services
@@ -39,7 +40,7 @@ namespace PLS.SKS.Package.Services
 
         public override void AddDbCleaner(IServiceCollection services)
         {
-            services.AddScoped<DataAccess.Interfaces.IDbCleaner, DataAccess.Sql.SQLiteCleaner>();
+            services.AddScoped<DataAccess.Interfaces.IDbCleaner, SqLiteCleaner>();
         }
     }
 }

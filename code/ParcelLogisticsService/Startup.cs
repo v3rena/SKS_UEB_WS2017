@@ -12,6 +12,7 @@ using PLS.SKS.Package;
 using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore.Swagger;
 using AutoMapper;
+using PLS.SKS.Package.DataAccess.Sql.Helpers;
 
 namespace PLS.SKS.Package.Services
 {
@@ -67,7 +68,7 @@ namespace PLS.SKS.Package.Services
 		// Enables Reuse in Testing
 		public virtual void AddDbCleaner(IServiceCollection services)
         {
-            services.AddScoped<DataAccess.Interfaces.IDbCleaner, DataAccess.Sql.DbCleaner>();
+            services.AddScoped<DataAccess.Interfaces.IDbCleaner, DbCleaner>();
         }
         
         public virtual void SetupDb(IServiceCollection services)

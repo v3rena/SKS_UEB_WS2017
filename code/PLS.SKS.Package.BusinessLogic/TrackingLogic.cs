@@ -22,8 +22,8 @@ namespace PLS.SKS.Package.BusinessLogic
 		{
 			_parcelRepo = parcelRepository;
             _hopRepo = hopRepository;
-			this._logger = logger;
-			this._mapper = mapper;
+			_logger = logger;
+			_mapper = mapper;
 		}
 
 		public IO.Swagger.Models.TrackingInformation TrackParcel(string trackingNumber)

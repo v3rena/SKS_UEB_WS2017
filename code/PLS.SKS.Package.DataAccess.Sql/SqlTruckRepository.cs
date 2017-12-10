@@ -7,6 +7,7 @@ using System.Linq;
 using Microsoft.Extensions.Logging;
 using System.Data.SqlClient;
 using System.Diagnostics.CodeAnalysis;
+using PLS.SKS.Package.DataAccess.Sql.Helpers;
 
 namespace PLS.SKS.Package.DataAccess.Sql
 {
@@ -21,8 +22,6 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			_logger = logger;
 		}
 
-		public object WarehouseToUpdate { get; private set; }
-
 		public int Create(Truck t)
 		{
 			try
@@ -34,12 +33,12 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			catch (SqlException ex)
 			{
 				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
-				throw new DALException("Could not save truck to database", ex);
+				throw new DalException("Could not save truck to database", ex);
 			}
 			catch (Exception ex)
 			{
 				_logger.LogError("Could not save truck to database", ex);
-				throw new DALException("Could not save truck to database", ex);
+				throw new DalException("Could not save truck to database", ex);
 			}
 		}
 
@@ -52,12 +51,12 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			catch (SqlException ex)
 			{
 				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
-				throw new DALException("Could not delete truck from database", ex);
+				throw new DalException("Could not delete truck from database", ex);
 			}
 			catch (Exception ex)
 			{
 				_logger.LogError("Could not delete truck", ex);
-				throw new DALException("Could not delete truck", ex);
+				throw new DalException("Could not delete truck", ex);
 			}
 		}
 
@@ -71,12 +70,12 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			catch (SqlException ex)
 			{
 				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
-				throw new DALException("Could not retrieve truck from database", ex);
+				throw new DalException("Could not retrieve truck from database", ex);
 			}
 			catch (Exception ex)
 			{
 				_logger.LogError("Could not retrieve truck from database", ex);
-				throw new DALException("Could not retrieve truck from database", ex);
+				throw new DalException("Could not retrieve truck from database", ex);
 			}
 		}
 
@@ -89,12 +88,12 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			catch (SqlException ex)
 			{
 				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
-				throw new DALException("Could not retrieve truck list from database", ex);
+				throw new DalException("Could not retrieve truck list from database", ex);
 			}
 			catch (Exception ex)
 			{
 				_logger.LogError("Could not retrieve truck list from database", ex);
-				throw new DALException("Could not retrieve truck list from database", ex);
+				throw new DalException("Could not retrieve truck list from database", ex);
 			}
 		}
 
@@ -112,12 +111,12 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			catch (SqlException ex)
 			{
 				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
-				throw new DALException("Could not upadate truck", ex);
+				throw new DalException("Could not upadate truck", ex);
 			}
 			catch (Exception ex)
 			{
 				_logger.LogError("Could not update truck in database", ex);
-				throw new DALException("Could not update truck in database", ex);
+				throw new DalException("Could not update truck in database", ex);
 			}
 		}
 	}

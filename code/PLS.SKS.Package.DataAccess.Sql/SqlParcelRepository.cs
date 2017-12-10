@@ -7,6 +7,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.Data.SqlClient;
+using PLS.SKS.Package.DataAccess.Sql.Helpers;
 
 namespace PLS.SKS.Package.DataAccess.Sql
 {
@@ -32,12 +33,12 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			catch (SqlException ex)
 			{
 				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
-				throw new DALException("Could not save parcel to database", ex);
+				throw new DalException("Could not save parcel to database", ex);
 			}
 			catch (Exception ex)
 			{
 				_logger.LogError("Could not save parcel to database", ex);
-				throw new DALException("Could not save parcel to database", ex);
+				throw new DalException("Could not save parcel to database", ex);
 			}
 		}
 
@@ -50,12 +51,12 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			catch (SqlException ex)
 			{
 				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
-				throw new DALException("Could not delete parcel from database", ex);
+				throw new DalException("Could not delete parcel from database", ex);
 			}
 			catch (Exception ex)
 			{
 				_logger.LogError("Could not delete parcel", ex);
-				throw new DALException("Could not delete parcel", ex);
+				throw new DalException("Could not delete parcel", ex);
 			}
 		}
 
@@ -73,31 +74,31 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			catch (SqlException ex)
 			{
 				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
-				throw new DALException("Could not retrieve parcel from database", ex);
+				throw new DalException("Could not retrieve parcel from database", ex);
 			}
 			catch (Exception ex)
 			{
 				_logger.LogError("Could not retrieve parcel from database", ex);
-				throw new DALException("Could not retrieve parcel from database", ex);
+				throw new DalException("Could not retrieve parcel from database", ex);
 			}
 		}
 
-		public Parcel GetByTrackingNumber(string TrackingNumber)
+		public Parcel GetByTrackingNumber(string trackingNumber)
 		{
 			try
 			{
-				return _db.Parcels.Include(p => p.Recipient).Include(p => p.TrackingInformation)
-				.Where(p => p.TrackingNumber == TrackingNumber).FirstOrDefault();
+				return _db.Parcels.Include(p => p.Recipient)
+					.Include(p => p.TrackingInformation).First(p => p.TrackingNumber == trackingNumber);
 			}
 			catch (SqlException ex)
 			{
 				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
-				throw new DALException("Could not retrieve parcel from database", ex);
+				throw new DalException("Could not retrieve parcel from database", ex);
 			}
 			catch (Exception ex)
 			{
 				_logger.LogError("Could not retrieve parcel from database", ex);
-				throw new DALException("Could not retrieve parcel from database", ex);
+				throw new DalException("Could not retrieve parcel from database", ex);
 			}
 		}
 
@@ -110,22 +111,22 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		{
 			try
 			{
-				var ParcelToUpdate = _db.Parcels.SingleOrDefault(b => b.Id == p.Id);
-				if (ParcelToUpdate != null)
+				var parcelToUpdate = _db.Parcels.Single(b => b.Id == p.Id);
+				if (parcelToUpdate != null)
 				{
-					ParcelToUpdate = p;
+					parcelToUpdate = p;
 					_db.SaveChanges();
 				}
 			}
 			catch (SqlException ex)
 			{
 				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
-				throw new DALException("Could not update parcel", ex);
+				throw new DalException("Could not update parcel", ex);
 			}
 			catch (Exception ex)
 			{
 				_logger.LogError("Could not update parcel in database", ex);
-				throw new DALException("Could not update parcel in database", ex);
+				throw new DalException("Could not update parcel in database", ex);
 			}
 		}
 	}

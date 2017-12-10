@@ -19,7 +19,7 @@ namespace PLS.SKS.ServiceAgents
 
 		public GoogleEncodingAgent(ILogger<GoogleEncodingAgent> logger)
 		{
-			this._logger = logger;
+			_logger = logger;
 		}
 
 		private HttpClient GetClient()

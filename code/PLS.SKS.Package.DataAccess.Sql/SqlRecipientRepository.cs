@@ -4,6 +4,7 @@ using PLS.SKS.Package.DataAccess.Entities;
 using System.Linq;
 using Microsoft.Extensions.Logging;
 using System.Data.SqlClient;
+using PLS.SKS.Package.DataAccess.Sql.Helpers;
 
 namespace PLS.SKS.Package.DataAccess.Sql
 {
@@ -29,12 +30,12 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			catch (SqlException ex)
 			{
 				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
-				throw new DALException("Could not save recipient to database", ex);
+				throw new DalException("Could not save recipient to database", ex);
 			}
 			catch (Exception ex)
 			{
 				_logger.LogError("Could not save recipient to database", ex);
-				throw new DALException("Could not save recipient to database", ex);
+				throw new DalException("Could not save recipient to database", ex);
 			}
 		}
 
@@ -47,12 +48,12 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			catch (SqlException ex)
 			{
 				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
-				throw new DALException("Could not delete recipient from database", ex);
+				throw new DalException("Could not delete recipient from database", ex);
 			}
 			catch (Exception ex)
 			{
 				_logger.LogError("Could not delete recipient", ex);
-				throw new DALException("Could not delete recipient", ex);
+				throw new DalException("Could not delete recipient", ex);
 			}
 		}
 
@@ -65,12 +66,12 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			catch (SqlException ex)
 			{
 				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
-				throw new DALException("Could not retrieve recipient from database", ex);
+				throw new DalException("Could not retrieve recipient from database", ex);
 			}
 			catch (Exception ex)
 			{
 				_logger.LogError("Could not retrieve recipient from database", ex);
-				throw new DALException("Could not retrieve recipient from database", ex);
+				throw new DalException("Could not retrieve recipient from database", ex);
 			}
 		}
 
@@ -78,22 +79,22 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		{
 			try
 			{
-				var RecipientToUpdate = _db.Recipients.SingleOrDefault(b => b.Id == p.Id);
-				if (RecipientToUpdate != null)
+				var recipientToUpdate = _db.Recipients.Single(b => b.Id == p.Id);
+				if (recipientToUpdate != null)
 				{
-					RecipientToUpdate = p;
+					recipientToUpdate = p;
 					_db.SaveChanges();
 				}
 			}
 			catch (SqlException ex)
 			{
 				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
-				throw new DALException("Could not update recipient", ex);
+				throw new DalException("Could not update recipient", ex);
 			}
 			catch (Exception ex)
 			{
 				_logger.LogError("Could not update recipient in database", ex);
-				throw new DALException("Could not update recipient in database", ex);
+				throw new DalException("Could not update recipient in database", ex);
 			}
 		}
 	}

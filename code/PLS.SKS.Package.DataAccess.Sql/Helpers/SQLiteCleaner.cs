@@ -1,39 +1,37 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
-namespace PLS.SKS.Package.DataAccess.Sql
+namespace PLS.SKS.Package.DataAccess.Sql.Helpers
 {
-    public class SQLiteCleaner : DataAccess.Interfaces.IDbCleaner
+    public class SqLiteCleaner : DataAccess.Interfaces.IDbCleaner
     {
-        private readonly DbContext db;
-        private ILogger<DbCleaner> logger;
+        private readonly DbContext _db;
+        private readonly ILogger<DbCleaner> _logger;
 
-        public SQLiteCleaner(DbContext context, ILogger<DbCleaner> logger)
+        public SqLiteCleaner(DbContext context, ILogger<DbCleaner> logger)
         {
-            db = context;
-            this.logger = logger;
+            _db = context;
+            _logger = logger;
         }
 
         public void CleanDb()
         {
             try
             {
-                db.Database.ExecuteSqlCommand("PRAGMA foreign_keys=OFF");
-                db.Database.ExecuteSqlCommand("DELETE FROM [Recipients]");
-                db.Database.ExecuteSqlCommand("DELETE FROM [Trucks]");
-                db.Database.ExecuteSqlCommand("DELETE FROM [Warehouses]");
-                db.Database.ExecuteSqlCommand("DELETE FROM [HopArrivals]");
-                db.Database.ExecuteSqlCommand("DELETE FROM [TrackingInformations]");
-                db.Database.ExecuteSqlCommand("DELETE FROM [Parcels]");
-                db.Database.ExecuteSqlCommand("PRAGMA foreign_keys=ON");
+                _db.Database.ExecuteSqlCommand("PRAGMA foreign_keys=OFF");
+                _db.Database.ExecuteSqlCommand("DELETE FROM [Recipients]");
+                _db.Database.ExecuteSqlCommand("DELETE FROM [Trucks]");
+                _db.Database.ExecuteSqlCommand("DELETE FROM [Warehouses]");
+                _db.Database.ExecuteSqlCommand("DELETE FROM [HopArrivals]");
+                _db.Database.ExecuteSqlCommand("DELETE FROM [TrackingInformations]");
+                _db.Database.ExecuteSqlCommand("DELETE FROM [Parcels]");
+                _db.Database.ExecuteSqlCommand("PRAGMA foreign_keys=ON");
             }
             catch (Exception ex)
             {
-                logger.LogError("An error occured while cleaning the database", ex);
-                throw new DALException("An error occured while cleaning the database", ex);
+                _logger.LogError("An error occured while cleaning the database", ex);
+                throw new DalException("An error occured while cleaning the database", ex);
             }
         }
     }
