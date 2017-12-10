@@ -8,12 +8,13 @@ using Microsoft.Extensions.Logging;
 using IO.Swagger.Models;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using PLS.SKS.Package.Services.Helpers;
 
 namespace PLS.SKS.Package.Services.Pages
 {
     public class TrackParcelModel : PageModel
     {
-		ILogger<TrackParcelModel> logger;
+	    readonly ILogger<TrackParcelModel> _logger;
 
 		[BindProperty]
 		public TrackingInformation TrackingInformation { get; set; }
@@ -22,7 +23,7 @@ namespace PLS.SKS.Package.Services.Pages
 
 		public TrackParcelModel(ILogger<TrackParcelModel> logger)
 		{
-			this.logger = logger;
+			_logger = logger;
 		}
 
 		public async Task<IActionResult> OnPostAsync()
@@ -55,7 +56,7 @@ namespace PLS.SKS.Package.Services.Pages
 			}
 			catch (Exception ex)
 			{
-				logger.LogError("Api call failed", ex);
+				_logger.LogError("Api call failed", ex);
 				throw new ServiceException("Api call failed", ex);
 			}
 		}

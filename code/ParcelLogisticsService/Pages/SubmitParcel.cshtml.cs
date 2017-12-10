@@ -8,12 +8,13 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using IO.Swagger.Models;
 using Microsoft.Extensions.Logging;
+using PLS.SKS.Package.Services.Helpers;
 
 namespace PLS.SKS.Package.Services.Pages
 {
 	public class SubmitParcelModel : PageModel
     {
-		ILogger<SubmitParcelModel> logger;
+	    readonly ILogger<SubmitParcelModel> _logger;
 
 		[BindProperty]
 		public Parcel Parcel { get; set; }
@@ -22,7 +23,7 @@ namespace PLS.SKS.Package.Services.Pages
 
 		public SubmitParcelModel(ILogger<SubmitParcelModel> logger)
 		{
-			this.logger = logger;
+			_logger = logger;
 		}
 
 		public async Task<IActionResult> OnPostAsync()
@@ -55,7 +56,7 @@ namespace PLS.SKS.Package.Services.Pages
 			}
 			catch(Exception ex)
 			{
-				logger.LogError("Api call failed", ex);
+				_logger.LogError("Api call failed", ex);
 				throw new ServiceException("Api call failed", ex);
 			}
 		}

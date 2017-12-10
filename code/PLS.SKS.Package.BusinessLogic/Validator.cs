@@ -55,8 +55,8 @@ namespace PLS.SKS.Package.BusinessLogic
 			public TrackingInformationValidator()
 			{
 				RuleFor(trackingInformation => trackingInformation.State).NotEmpty().WithMessage("Please specify a state");
-				RuleFor(trackingInformation => trackingInformation.visitedHops).SetCollectionValidator(new HopArrivalValidator());
-				RuleFor(trackingInformation => trackingInformation.futureHops).SetCollectionValidator(new HopArrivalValidator());
+				RuleFor(trackingInformation => trackingInformation.VisitedHops).SetCollectionValidator(new HopArrivalValidator());
+				RuleFor(trackingInformation => trackingInformation.FutureHops).SetCollectionValidator(new HopArrivalValidator());
 			}
 		}
 
