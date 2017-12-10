@@ -20,6 +20,8 @@ namespace PLS.SKS.Package.Services.Pages
 		public TrackingInformation TrackingInformation { get; set; }
 		[BindProperty]
 		public string TrackingNumber { get; set; }
+	    [BindProperty]
+	    public string Message { get; set; }
 
 		public TrackParcelModel(ILogger<TrackParcelModel> logger)
 		{
@@ -36,8 +38,8 @@ namespace PLS.SKS.Package.Services.Pages
 			var client = new HttpClient
 			{
 #if DEBUG
-				//BaseAddress = new Uri("http://localhost:56172")
-                BaseAddress = new Uri("http://localhost:50074")
+				BaseAddress = new Uri("http://localhost:56172")
+                //BaseAddress = new Uri("http://localhost:50074")
 #else
 				BaseAddress = new Uri("http://parcellogisticsservice.azurewebsites.net")
 #endif
@@ -52,6 +54,10 @@ namespace PLS.SKS.Package.Services.Pages
 				if (msg.IsSuccessStatusCode)
 				{
 					TrackingInformation = msg.Content.ReadAsAsync<TrackingInformation>().Result;
+				}
+				else
+				{
+					Message = "Could not track parcel, please check for correct input!";
 				}
 				return Page();
 			}
