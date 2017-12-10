@@ -24,6 +24,5 @@ namespace PLS.SKS.Package.BusinessLogic.Entities
 		public decimal Longitude { get; set; }
 		public decimal Radius { get; set; }
 		public decimal Duration { get; set; }
-		//public int? test { get; set; }
     }
 }

@@ -35,8 +35,9 @@ namespace IO.Swagger.Models
         public InlineResponse200(string TrackingId)
         {
             this.TrackingId = TrackingId;
-            
         }
+
+		public InlineResponse200() { }
 
         /// <summary>
         /// The tracking ID of the parcel.

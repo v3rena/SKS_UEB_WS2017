@@ -5,6 +5,7 @@ using PLS.SKS.Package.DataAccess.Mock;
 using Microsoft.Extensions.Logging;
 using PLS.SKS.ServiceAgents;
 using System;
+using PLS.SKS.Package.BusinessLogic.Helpers;
 
 namespace PLS.SKS.Package.BusinessLogic.Tests
 {
@@ -101,7 +102,7 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
             encodingAgent = new GoogleEncodingAgent(googleEncodingAgentLogger, mapper);
             Interfaces.IParcelEntryLogic parcelLogic = new ParcelEntryLogic(mockWarehouseRepo, mockTruckRepo, mockParcelRepo, mockTrackRepo, mockHopRepo, encodingAgent, parcelEntryLogicLogger, mapper);
 
-            Assert.ThrowsException<BLException>( () => parcelLogic.AddParcel(null));
+            Assert.ThrowsException<BlException>( () => parcelLogic.AddParcel(null));
         }
 
         [TestMethod]
@@ -114,7 +115,7 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
             encodingAgent = new GoogleEncodingAgent(googleEncodingAgentLogger, mapper);
             Interfaces.IParcelEntryLogic parcelLogic = new ParcelEntryLogic(mockWarehouseRepo, mockTruckRepo, mockParcelRepo, mockTrackRepo, mockHopRepo, encodingAgent, parcelEntryLogicLogger, mapper);
 
-            Assert.ThrowsException<BLException>(() => parcelLogic.AddParcel(validSwagParcel));
+            Assert.ThrowsException<BlException>(() => parcelLogic.AddParcel(validSwagParcel));
         }
     }
 }

@@ -1,0 +1,76 @@
+﻿@page
+@model PLS.SKS.Package.Services.Pages.TrackParcelModel
+@{
+	ViewData["Title"] = "Track Parcel";
+}
+
+<h2>TrackParcel</h2>
+<html>
+<body>
+	<div class="row">
+		<div class="col-md-5">
+			<form method="POST">
+				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+				<div class="form-group">
+					<label asp-for="TrackingNumber" class="control-label"></label>
+					<input asp-for="TrackingNumber" class="form-control" />
+					<span asp-validation-for="TrackingNumber" class="text-danger"></span>
+				</div>
+				<input type="submit" />
+			</form>
+		</div>
+		<div class="col-md-5">
+			<div>
+				@if(Model.TrackingInformation != null && Model.TrackingInformation.FutureHops!=null)
+				{
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Visited Hops</th>
+								<th>Time of Arrival</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var hop in Model.TrackingInformation.VisitedHops)
+							{
+								<tr>
+									<td>@hop.Code</td>
+									<td>@hop.DateTime</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Future Hops</th>
+								<th>Time of Arrival</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var hop in Model.TrackingInformation.FutureHops)
+							{
+								<tr>
+									<td>@hop.Code</td>
+									<td>@hop.DateTime</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>@Html.DisplayFor(model => model.TrackingInformation.State)</th>
+							</tr>
+						</thead>
+					</table>
+				}
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
+@section Scripts {
+	@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

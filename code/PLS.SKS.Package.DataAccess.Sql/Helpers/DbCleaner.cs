@@ -7,10 +7,10 @@ namespace PLS.SKS.Package.DataAccess.Sql
 {
 	public class DbCleaner : IDbCleaner
     {
-		private readonly DBContext db;
+		private readonly DbContext db;
 		private ILogger<DbCleaner> logger;
 
-		public DbCleaner(DBContext context, ILogger<DbCleaner> logger)
+		public DbCleaner(DbContext context, ILogger<DbCleaner> logger)
 		{
 			db = context;
 			this.logger = logger;

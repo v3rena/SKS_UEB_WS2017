@@ -9,45 +9,34 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using IO.Swagger.Models;
-using PLS.SKS.Package;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Microsoft.Extensions.Logging;
-using log4net;
 using PLS.SKS.Package.BusinessLogic.Interfaces;
-using PLS.SKS.Package.BusinessLogic;
-using PLS.SKS.Package.Services;
+using PLS.SKS.Package.Services.Helpers;
 
 namespace IO.Swagger.Controllers
 {
 
+    /// <inheritdoc />
     /// <summary>
-    /// 
     /// </summary>
     public class DefaultApiController : Controller
     {
-		private IHopArrivalLogic hopArrivalLogic;
-		private IParcelEntryLogic parcelEntryLogic;
-		private ITrackingLogic trackingLogic;
-		private IWarehouseLogic warehouseLogic;
-		ILogger<DefaultApiController> logger;
+		private readonly IHopArrivalLogic _hopArrivalLogic;
+		private readonly IParcelEntryLogic _parcelEntryLogic;
+		private readonly ITrackingLogic _trackingLogic;
+		private readonly IWarehouseLogic _warehouseLogic;
+	    private readonly ILogger<DefaultApiController> _logger;
 
-		public DefaultApiController(ILogger<DefaultApiController> logger, IHopArrivalLogic hopArrivalLogic, IParcelEntryLogic parcelEntryLogic, ITrackingLogic trackingLogic, IWarehouseLogic warehouseLogic) //ITrackingLogic, IMapper
+		public DefaultApiController(ILogger<DefaultApiController> logger, IHopArrivalLogic hopArrivalLogic, IParcelEntryLogic parcelEntryLogic, ITrackingLogic trackingLogic, IWarehouseLogic warehouseLogic)
 		{
-			this.hopArrivalLogic = hopArrivalLogic;
-			this.parcelEntryLogic = parcelEntryLogic;
-			this.trackingLogic = trackingLogic;
-			this.warehouseLogic = warehouseLogic;
-			this.logger = logger;
+			_hopArrivalLogic = hopArrivalLogic;
+			_parcelEntryLogic = parcelEntryLogic;
+			_trackingLogic = trackingLogic;
+			_warehouseLogic = warehouseLogic;
+			_logger = logger;
 		}
 
 		/// <summary>
@@ -65,13 +54,13 @@ namespace IO.Swagger.Controllers
         {
 			try
 			{
-				logger.LogInformation("Calling the ExportWarehouses action");
-				Warehouse warehouse = warehouseLogic.ExportWarehouses();
+				_logger.LogInformation("Calling the ExportWarehouses action");
+				Warehouse warehouse = _warehouseLogic.ExportWarehouses();
 				return new ObjectResult(warehouse);
 			}
 			catch (Exception ex)
 			{
-				logger.LogError("ExportWarehouses failed", ex);
+				_logger.LogError("ExportWarehouses failed", ex);
 				throw new ServiceException("ExportWarehouses failed", ex);
 			}
         }
@@ -91,12 +80,12 @@ namespace IO.Swagger.Controllers
         {
 			try
 			{
-				logger.LogInformation("Calling the ImportWarehouses action");
-				warehouseLogic.ImportWarehouses(warehouseRoot);
+				_logger.LogInformation("Calling the ImportWarehouses action");
+				_warehouseLogic.ImportWarehouses(warehouseRoot);
 			}
 			catch (Exception ex)
 			{
-				logger.LogError("ImportWarehouses failed", ex);
+				_logger.LogError("ImportWarehouses failed", ex);
 				throw new ServiceException("ImportWarehouses failed", ex);
 			}
 		}
@@ -117,12 +106,12 @@ namespace IO.Swagger.Controllers
         {
 			try
 			{
-				logger.LogInformation("Calling the ReportParcelHop action");
-				hopArrivalLogic.ScanParcel(trackingId, code);
+				_logger.LogInformation("Calling the ReportParcelHop action");
+				_hopArrivalLogic.ScanParcel(trackingId, code);
 			}
 			catch (Exception ex)
 			{
-				logger.LogError("ReportParcelHop failed", ex);
+				_logger.LogError("ReportParcelHop failed", ex);
 				throw new ServiceException("ReportParcelHop failed", ex);
 			}
 		}
@@ -143,14 +132,14 @@ namespace IO.Swagger.Controllers
         {
 			try
 			{
-				logger.LogInformation("Calling the SubmitParcel action");
-				string trNr = parcelEntryLogic.AddParcel(newParcel);
+				_logger.LogInformation("Calling the SubmitParcel action");
+				string trNr = _parcelEntryLogic.AddParcel(newParcel);
 				InlineResponse200 inlineR = new InlineResponse200(trNr);
 				return new ObjectResult(inlineR);
 			}
 			catch (Exception ex)
 			{
-				logger.LogError("SubmitParcel failed", ex);
+				_logger.LogError("SubmitParcel failed", ex);
 				throw new ServiceException("SubmitParcel failed", ex);
 			}
 		}
@@ -171,13 +160,13 @@ namespace IO.Swagger.Controllers
         {
 			try
 			{
-				logger.LogInformation("Calling the TrackParcel action");
-				TrackingInformation trInfo = trackingLogic.TrackParcel(trackingId);
+				_logger.LogInformation("Calling the TrackParcel action");
+				TrackingInformation trInfo = _trackingLogic.TrackParcel(trackingId);
 				return new ObjectResult(trInfo);
 			}
 			catch (Exception ex)
 			{
-				logger.LogError("TrackParcel failed", ex);
+				_logger.LogError("TrackParcel failed", ex);
 				throw new ServiceException("TrackParcel failed", ex);
 			}
 		}

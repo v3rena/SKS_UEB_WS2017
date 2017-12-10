@@ -2,6 +2,6 @@
 {
     public interface ITrackingLogic
     {
-		IO.Swagger.Models.TrackingInformation TrackParcel(string trackingID);
+		IO.Swagger.Models.TrackingInformation TrackParcel(string trackingId);
     }
 }

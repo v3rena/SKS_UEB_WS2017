@@ -11,7 +11,7 @@ using System;
 
 namespace PLS.SKS.Package.DataAccess.Sql.Migrations
 {
-    [DbContext(typeof(DBContext))]
+    [DbContext(typeof(DbContext))]
     [Migration("20171128144952_InitialCreate")]
     partial class InitialCreate
     {
