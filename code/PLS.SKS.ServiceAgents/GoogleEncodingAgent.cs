@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using PLS.SKS.ServiceAgents.DTOs;
 using Microsoft.Extensions.Logging;
+using PLS.SKS.ServiceAgents.Helpers;
 
 namespace PLS.SKS.ServiceAgents
 {
@@ -49,7 +50,7 @@ namespace PLS.SKS.ServiceAgents
 			catch (Exception ex)
 			{
 				_logger.LogError("Failed trying to encode the given address", ex);
-				throw new SAException("Failed trying to encode the given address", ex);
+				throw new SaException("Failed trying to encode the given address", ex);
 			}
 		}
 

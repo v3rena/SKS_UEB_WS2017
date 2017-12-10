@@ -28,7 +28,7 @@ namespace PLS.SKS.Package.Services
         public void ConfigureServices(IServiceCollection services)
         {
 			//Add Database Context
-            SetupDB(services);            
+            SetupDb(services);            
 
             //Add BusinessLogic Components
             services.AddScoped<BusinessLogic.Interfaces.IHopArrivalLogic, BusinessLogic.HopArrivalLogic>();
@@ -45,7 +45,7 @@ namespace PLS.SKS.Package.Services
 			services.AddScoped<DataAccess.Interfaces.IWarehouseRepository, DataAccess.Sql.SqlWarehouseRepository>();
 
 			//Add DbCleaner
-            AddDBCleaner(services);
+            AddDbCleaner(services);
 
 			//Add GeoEncodingAgent
 			services.AddScoped<ServiceAgents.Interfaces.IGeoEncodingAgent, ServiceAgents.GoogleEncodingAgent>();
@@ -65,12 +65,12 @@ namespace PLS.SKS.Package.Services
         }
 
 		// Enables Reuse in Testing
-		public virtual void AddDBCleaner(IServiceCollection services)
+		public virtual void AddDbCleaner(IServiceCollection services)
         {
             services.AddScoped<DataAccess.Interfaces.IDbCleaner, DataAccess.Sql.DbCleaner>();
         }
         
-        public virtual void SetupDB(IServiceCollection services)
+        public virtual void SetupDb(IServiceCollection services)
         {
             services.AddDbContext<DataAccess.Sql.DBContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

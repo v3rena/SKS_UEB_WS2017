@@ -16,7 +16,7 @@ namespace PLS.SKS.Package.Services
         {
         }
 
-        public override void SetupDB(IServiceCollection services)
+        public override void SetupDb(IServiceCollection services)
         {
             //Add Database Context
             var connectionStringBuilder = new SqliteConnectionStringBuilder { DataSource = "ParcelLogistics.db" };
@@ -36,7 +36,7 @@ namespace PLS.SKS.Package.Services
             DBInitializer.Initialize(dbContext);
         }
 
-        public override void AddDBCleaner(IServiceCollection services)
+        public override void AddDbCleaner(IServiceCollection services)
         {
             services.AddScoped<DataAccess.Interfaces.IDbCleaner, DataAccess.Sql.SQLiteCleaner>();
         }
