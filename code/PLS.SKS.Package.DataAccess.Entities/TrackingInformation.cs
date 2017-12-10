@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
-using System.Text;
 
 namespace PLS.SKS.Package.DataAccess.Entities
 {
-    public class TrackingInformation
+	public class TrackingInformation
     {
         public TrackingInformation() { }
 
         public TrackingInformation(StateEnum state, List<HopArrival> futureHops)
         {
             State = state;
-            this.FutureHops = futureHops;
+            FutureHops = futureHops;
         }
 
 		public TrackingInformation(StateEnum state)

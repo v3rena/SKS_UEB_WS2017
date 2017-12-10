@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PLS.SKS.Package.BusinessLogic.Entities
 {
@@ -10,8 +8,8 @@ namespace PLS.SKS.Package.BusinessLogic.Entities
 
         public HopArrival(string code, DateTime dateTime)
         {
-            this.Code = code;
-            this.DateTime = dateTime;
+            Code = code;
+            DateTime = dateTime;
         }
 
         public string Code { get; set; }

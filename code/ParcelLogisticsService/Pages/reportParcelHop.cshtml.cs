@@ -53,14 +53,7 @@ namespace PLS.SKS.Package.Services.Pages
                 var stringContent = new StringContent("");
                 var stringTask = client.PostAsync($"/api/parcel/{TrackingNumber}/reportHop/{Code}", stringContent);
                 var msg = await stringTask;
-                if (msg.IsSuccessStatusCode)
-                {
-                    Message = "Hop was successfully reported!";
-                }
-                else
-                {
-                    Message = "Hop was not reported, check for correct Input!";
-                }
+                Message = msg.IsSuccessStatusCode ? "Hop was successfully reported!" : "Hop was not reported, check for correct Input!";
                 return Page();
             }
             catch (Exception ex)

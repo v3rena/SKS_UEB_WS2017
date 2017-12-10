@@ -1,18 +1,16 @@
-﻿using System;
-
-namespace PLS.SKS.Package.DataAccess.Entities
+﻿namespace PLS.SKS.Package.DataAccess.Entities
 {
     public class Parcel
     {
         public Parcel()
         {
-            this.Recipient = new Recipient();
+            Recipient = new Recipient();
         }
 
         public Parcel(float weight, Recipient recipient, int trId)
         {
             Weight = weight;
-            this.Recipient = recipient;
+            Recipient = recipient;
             TrackingInformationId = trId;
         }
 

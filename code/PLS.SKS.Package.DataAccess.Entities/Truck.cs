@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PLS.SKS.Package.DataAccess.Entities
+﻿namespace PLS.SKS.Package.DataAccess.Entities
 {
     public class Truck : Hop
     {
@@ -10,12 +6,12 @@ namespace PLS.SKS.Package.DataAccess.Entities
 
         public Truck(string code, string numberPlate, decimal latitude, decimal longitude, decimal radius, decimal duration)
         {
-            this.Code = code;
-            this.NumberPlate = numberPlate;
-            this.Latitude = latitude;
-            this.Longitude = longitude;
-            this.Radius = radius;
-            this.Duration = duration;
+            Code = code;
+            NumberPlate = numberPlate;
+            Latitude = latitude;
+            Longitude = longitude;
+            Radius = radius;
+            Duration = duration;
         }
 
         public string NumberPlate { get; set; }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PLS.SKS.Package.BusinessLogic.Entities
+﻿namespace PLS.SKS.Package.BusinessLogic.Entities
 {
     public class Parcel
     {
@@ -13,8 +9,8 @@ namespace PLS.SKS.Package.BusinessLogic.Entities
 
         public Parcel(float weight, Recipient recipient)
         {
-            this.Weight = weight;
-            this.Recipient = recipient;
+            Weight = weight;
+            Recipient = recipient;
         }
 
         public float Weight { get; set; }

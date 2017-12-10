@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Data.SqlClient;
 using Microsoft.Extensions.Logging;
+using PLS.SKS.Package.DataAccess.Sql.Helpers;
 
 namespace PLS.SKS.Package.DataAccess.Sql
 {
@@ -18,7 +19,7 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		public SqlWarehouseRepository(DbContext context, ILogger<SqlWarehouseRepository> logger)
 		{
 			_db = context;
-			this._logger = logger;
+			_logger = logger;
 		}
 
 		public int Create(Warehouse w)
@@ -32,12 +33,12 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			catch (SqlException ex)
 			{
 				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
-				throw new DALException("Could not save warehouse to database", ex);
+				throw new DalException("Could not save warehouse to database", ex);
 			}
 			catch (Exception ex)
 			{
 				_logger.LogError("Could not save warehouse to database", ex);
-				throw new DALException("Could not save warehouse to database", ex);
+				throw new DalException("Could not save warehouse to database", ex);
 			}
 		}
 
@@ -50,12 +51,12 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			catch (SqlException ex)
 			{
 				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
-				throw new DALException("Could not delete warehouse from database", ex);
+				throw new DalException("Could not delete warehouse from database", ex);
 			}
 			catch (Exception ex)
 			{
 				_logger.LogError("Could not delete warehouse", ex);
-				throw new DALException("Could not delete warehouse", ex);
+				throw new DalException("Could not delete warehouse", ex);
 			}
 		}
 
@@ -63,21 +64,21 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		{
 			try
 			{
-				Warehouse warehouse = _db.Warehouses.Include(w => w.NextHops).Include(w => w.Trucks)
-				.Where(w => w.Id == id).First();
+				Warehouse warehouse = _db.Warehouses.Include(w => w.NextHops)
+				.Include(w => w.Trucks).First(w => w.Id == id);
 				SearchWarehouseHierarchy(warehouse);
-				return _db.Warehouses.Include(w => w.NextHops).Include(w => w.Trucks)
-					.Where(w => w.Id == id).First();
+				return _db.Warehouses.Include(w => w.NextHops)
+					.Include(w => w.Trucks).First(w => w.Id == id);
 			}
 			catch (SqlException ex)
 			{
 				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
-				throw new DALException("Could not retrieve warehouse from database", ex);
+				throw new DalException("Could not retrieve warehouse from database", ex);
 			}
 			catch (Exception ex)
 			{
 				_logger.LogError("Could not retrieve warehouse from database", ex);
-				throw new DALException("Could not retrieve warehouse from database", ex);
+				throw new DalException("Could not retrieve warehouse from database", ex);
 			}
 		}
 
@@ -98,12 +99,12 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			catch (SqlException ex)
 			{
 				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
-				throw new DALException("Could not get parent warehouse from database", ex);
+				throw new DalException("Could not get parent warehouse from database", ex);
 			}
 			catch (Exception ex)
 			{
 				_logger.LogError("Could not retrieve parent warehouse from database", ex);
-				throw new DALException("Could not retrieve parent warehouse from database", ex);
+				throw new DalException("Could not retrieve parent warehouse from database", ex);
 			}
 		}
 
@@ -124,12 +125,12 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			catch (SqlException ex)
 			{
 				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
-				throw new DALException("Could not get parent warehouse from database", ex);
+				throw new DalException("Could not get parent warehouse from database", ex);
 			}
 			catch (Exception ex)
 			{
 				_logger.LogError("Could not retrieve parent warehouse from database", ex);
-				throw new DALException("Could not retrieve parent warehouse from database", ex);
+				throw new DalException("Could not retrieve parent warehouse from database", ex);
 			}
 		}
 
@@ -145,12 +146,12 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			catch (SqlException ex)
 			{
 				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
-				throw new DALException("Could not retrieve root warehouse from database", ex);
+				throw new DalException("Could not retrieve root warehouse from database", ex);
 			}
 			catch (Exception ex)
 			{
 				_logger.LogError("Could not retrieve root warehouse from database", ex);
-				throw new DALException("Could not retrieve root warehouse from database", ex);
+				throw new DalException("Could not retrieve root warehouse from database", ex);
 			}
 		}
 
@@ -158,22 +159,22 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		{
 			try
 			{
-				var WarehouseToUpdate = _db.Warehouses.Single(b => b.Id == w.Id);
-				if (WarehouseToUpdate != null)
+				var warehouseToUpdate = _db.Warehouses.Single(b => b.Id == w.Id);
+				if (warehouseToUpdate != null)
 				{
-					WarehouseToUpdate = w;
+					warehouseToUpdate = w;
 					_db.SaveChanges();
 				}
 			}
 			catch (SqlException ex)
 			{
 				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
-				throw new DALException("Could not update warehouse", ex);
+				throw new DalException("Could not update warehouse", ex);
 			}
 			catch (Exception ex)
 			{
 				_logger.LogError("Could not update warehouse in database", ex);
-				throw new DALException("Could not update warehouse in database", ex);
+				throw new DalException("Could not update warehouse in database", ex);
 			}
 		}
 
@@ -184,8 +185,8 @@ namespace PLS.SKS.Package.DataAccess.Sql
 				foreach (var wh in warehouse.NextHops)
 				{
 					int whId = wh.Id;
-					_db.Warehouses.Include(w => w.NextHops).Include(w => w.Trucks)
-					.Where(w => w.Id == whId).First();
+					_db.Warehouses.Include(w => w.NextHops)
+					.Include(w => w.Trucks).First(w => w.Id == whId);
 					SearchWarehouseHierarchy(wh);
 				}
 			}
