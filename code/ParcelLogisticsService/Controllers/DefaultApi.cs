@@ -28,7 +28,7 @@ namespace IO.Swagger.Controllers
 		private readonly IParcelEntryLogic _parcelEntryLogic;
 		private readonly ITrackingLogic _trackingLogic;
 		private readonly IWarehouseLogic _warehouseLogic;
-	    readonly ILogger<DefaultApiController> _logger;
+	    private readonly ILogger<DefaultApiController> _logger;
 
 		public DefaultApiController(ILogger<DefaultApiController> logger, IHopArrivalLogic hopArrivalLogic, IParcelEntryLogic parcelEntryLogic, ITrackingLogic trackingLogic, IWarehouseLogic warehouseLogic)
 		{

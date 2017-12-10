@@ -1,23 +1,20 @@
-﻿using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 
-namespace PLS.SKS.Package.BusinessLogic
+namespace PLS.SKS.Package.BusinessLogic.Helpers
 {
-	public class BLException : Exception
+	public class BlException : Exception
 	{
-		public BLException()
+		public BlException()
 		{
 
 		}
 
-		public BLException(string message) : base(message)
+		public BlException(string message) : base(message)
 		{
 
 		}
 
-		public BLException(string message, Exception inner) : base(message, inner)
+		public BlException(string message, Exception inner) : base(message, inner)
 		{
 
 		}

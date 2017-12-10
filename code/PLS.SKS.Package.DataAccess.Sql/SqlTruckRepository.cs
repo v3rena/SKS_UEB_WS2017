@@ -12,13 +12,13 @@ namespace PLS.SKS.Package.DataAccess.Sql
 {
 	public class SqlTruckRepository : ITruckRepository
 	{
-		private readonly DBContext _db;
-		ILogger<SqlTruckRepository> _logger;
+		private readonly DbContext _db;
+		private readonly ILogger<SqlTruckRepository> _logger;
 
-		public SqlTruckRepository(DBContext context, ILogger<SqlTruckRepository> logger)
+		public SqlTruckRepository(DbContext context, ILogger<SqlTruckRepository> logger)
 		{
 			_db = context;
-			this._logger = logger;
+			_logger = logger;
 		}
 
 		public object WarehouseToUpdate { get; private set; }

@@ -5,6 +5,7 @@ using PLS.SKS.Package.DataAccess.Mock;
 using System.Collections.Generic;
 using Moq;
 using Microsoft.Extensions.Logging;
+using PLS.SKS.Package.BusinessLogic.Helpers;
 
 namespace PLS.SKS.Package.BusinessLogic.Tests
 {
@@ -51,7 +52,7 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
 
             Interfaces.IHopArrivalLogic hopArrivalLogic = new HopArrivalLogic(mockParcelRepo, mockTrackRepo, mockHopRepo, hopArrivalLogicLogger, mapper);
 
-            Assert.ThrowsException<BLException>(() => hopArrivalLogic.ScanParcel("12", "WH02"));
+            Assert.ThrowsException<BlException>(() => hopArrivalLogic.ScanParcel("12", "WH02"));
         }
 
         [TestMethod]
@@ -64,7 +65,7 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
 
             Interfaces.IHopArrivalLogic hopArrivalLogic = new HopArrivalLogic(mockParcelRepo, mockTrackRepo, mockHopRepo, hopArrivalLogicLogger, mapper);
 
-            Assert.ThrowsException<BLException>(() => hopArrivalLogic.ScanParcel("TN000001", "WH06"));
+            Assert.ThrowsException<BlException>(() => hopArrivalLogic.ScanParcel("TN000001", "WH06"));
         }
     }
 }

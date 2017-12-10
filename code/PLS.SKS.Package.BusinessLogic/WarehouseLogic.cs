@@ -5,50 +5,51 @@ using PLS.SKS.Package.DataAccess.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using PLS.SKS.Package.BusinessLogic.Helpers;
 
 namespace PLS.SKS.Package.BusinessLogic
 {
     public class WarehouseLogic : Interfaces.IWarehouseLogic
 	{
-		private IWarehouseRepository warehouseRepo;
-		private ILogger<WarehouseLogic> logger;
-		private IDbCleaner dbCleaner;
-		private AutoMapper.IMapper mapper;
+		private readonly IWarehouseRepository _warehouseRepo;
+		private readonly ILogger<WarehouseLogic> _logger;
+		private readonly IDbCleaner _dbCleaner;
+		private readonly AutoMapper.IMapper _mapper;
 
 		public WarehouseLogic(IWarehouseRepository warehouseRepository, ILogger<WarehouseLogic> logger, AutoMapper.IMapper mapper, IDbCleaner dbCleaner)
 		{
-			warehouseRepo = warehouseRepository;
-			this.logger = logger;
-			this.mapper = mapper;
-			this.dbCleaner = dbCleaner;
+			_warehouseRepo = warehouseRepository;
+			_logger = logger;
+			_mapper = mapper;
+			_dbCleaner = dbCleaner;
 		}
 
 		public IO.Swagger.Models.Warehouse ExportWarehouses()
 		{
 			try
 			{
-				var dalWarehouse = warehouseRepo.GetRootWarehouse();
+				var dalWarehouse = _warehouseRepo.GetRootWarehouse();
 				if (dalWarehouse == null)
 				{
-					throw new BLException("No RootWarehouse found");
+					throw new BlException("No RootWarehouse found");
 				}
-				Entities.Warehouse blWarehouse = mapper.Map<Entities.Warehouse>(dalWarehouse);
+				Entities.Warehouse blWarehouse = _mapper.Map<Entities.Warehouse>(dalWarehouse);
 				if (blWarehouse != null)
 				{
 					string validationResults = ValidateWarehouse(blWarehouse);
 					if (validationResults != "")
 					{
-						logger.LogError(validationResults);
-						throw new BLException("Given Warehouse is not valid");
+						_logger.LogError(validationResults);
+						throw new BlException("Given Warehouse is not valid");
 					}
 				}
-				IO.Swagger.Models.Warehouse serviceWarehouse = mapper.Map<IO.Swagger.Models.Warehouse>(blWarehouse);
+				IO.Swagger.Models.Warehouse serviceWarehouse = _mapper.Map<IO.Swagger.Models.Warehouse>(blWarehouse);
 				return serviceWarehouse;
 			}
 			catch(Exception ex)
 			{
-				logger.LogError("Cannot export warehouses", ex);
-				throw new BLException("Cannot export warehouses", ex);
+				_logger.LogError("Cannot export warehouses", ex);
+				throw new BlException("Cannot export warehouses", ex);
 			}
 		}
 
@@ -56,24 +57,24 @@ namespace PLS.SKS.Package.BusinessLogic
 		{
 			try
 			{
-				Entities.Warehouse blWarehouse = mapper.Map<Entities.Warehouse>(warehouse);
+				Entities.Warehouse blWarehouse = _mapper.Map<Entities.Warehouse>(warehouse);
 				if (blWarehouse != null)
 				{
 					string validationResults = ValidateWarehouse(blWarehouse);
 					if (validationResults != "")
 					{
-						logger.LogError(validationResults);
-						throw new BLException("Given Warehouse is not valid");
+						_logger.LogError(validationResults);
+						throw new BlException("Given Warehouse is not valid");
 					}
 				}
-				DataAccess.Entities.Warehouse dalWarehouse = mapper.Map<DataAccess.Entities.Warehouse>(blWarehouse);
-				dbCleaner.CleanDb();
-				warehouseRepo.Create(dalWarehouse);
+				DataAccess.Entities.Warehouse dalWarehouse = _mapper.Map<DataAccess.Entities.Warehouse>(blWarehouse);
+				_dbCleaner.CleanDb();
+				_warehouseRepo.Create(dalWarehouse);
 			}
 			catch (Exception ex)
 			{
-				logger.LogError("Cannot import warehouses", ex);
-				throw new BLException("Cannot import warehouses", ex);
+				_logger.LogError("Cannot import warehouses", ex);
+				throw new BlException("Cannot import warehouses", ex);
 			}
 		}
 

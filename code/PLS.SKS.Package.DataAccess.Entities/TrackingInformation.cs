@@ -12,7 +12,7 @@ namespace PLS.SKS.Package.DataAccess.Entities
         public TrackingInformation(StateEnum state, List<HopArrival> futureHops)
         {
             State = state;
-            this.futureHops = futureHops;
+            this.FutureHops = futureHops;
         }
 
 		public TrackingInformation(StateEnum state)
@@ -34,8 +34,8 @@ namespace PLS.SKS.Package.DataAccess.Entities
 
 		public int Id { get; set; }
 		public StateEnum? State { get; set; }
-		public List<HopArrival> visitedHops = new List<HopArrival>();
-        public List<HopArrival> futureHops = new List<HopArrival>();
+		public List<HopArrival> VisitedHops = new List<HopArrival>();
+        public List<HopArrival> FutureHops = new List<HopArrival>();
 
         public void AddVisited(HopArrival visited)
         {

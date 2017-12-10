@@ -72,11 +72,11 @@ namespace PLS.SKS.Package.Services
         
         public virtual void SetupDb(IServiceCollection services)
         {
-            services.AddDbContext<DataAccess.Sql.DBContext>(options =>
+            services.AddDbContext<DataAccess.Sql.DbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 
-        public virtual void EnsureDatabaseCreated(DataAccess.Sql.DBContext dbContext)
+        public virtual void EnsureDatabaseCreated(DataAccess.Sql.DbContext dbContext)
         {
             // Run Migrations
             dbContext.Database.Migrate();
@@ -106,7 +106,7 @@ namespace PLS.SKS.Package.Services
 			using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>()
                 .CreateScope())
             {
-                var dbContext = serviceScope.ServiceProvider.GetService<DataAccess.Sql.DBContext>();
+                var dbContext = serviceScope.ServiceProvider.GetService<DataAccess.Sql.DbContext>();
                 EnsureDatabaseCreated(dbContext);
             }
 			//-----------

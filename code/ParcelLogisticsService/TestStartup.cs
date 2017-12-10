@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using PLS.SKS.Package.DataAccess.Sql;
+using DbContext = PLS.SKS.Package.DataAccess.Sql.DbContext;
 
 namespace PLS.SKS.Package.Services
 {
@@ -24,16 +25,16 @@ namespace PLS.SKS.Package.Services
             var test = sqliteConnection.ConnectionString;
             sqliteConnection.Open();
 
-            services.AddDbContext<DataAccess.Sql.DBContext>(options =>
+            services.AddDbContext<DataAccess.Sql.DbContext>(options =>
             options.UseSqlite(sqliteConnection));
         }
 
-        public override void EnsureDatabaseCreated(DBContext dbContext)
+        public override void EnsureDatabaseCreated(DbContext dbContext)
         {
             dbContext.Database.OpenConnection();
             //var created = dbContext.Database.EnsureCreated();
             dbContext.Database.Migrate();
-            DBInitializer.Initialize(dbContext);
+            DbInitializer.Initialize(dbContext);
         }
 
         public override void AddDbCleaner(IServiceCollection services)

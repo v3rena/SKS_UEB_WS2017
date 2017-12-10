@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace PLS.SKS.Package.DataAccess.Sql
 {
-    public class DBInitializer
+    public class DbInitializer
     {
-		public static void Initialize(DBContext context)
+		public static void Initialize(DbContext context)
 		{
 			context.Database.EnsureCreated();
 
