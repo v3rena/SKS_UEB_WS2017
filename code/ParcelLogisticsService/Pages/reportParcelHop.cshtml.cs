@@ -39,8 +39,8 @@ namespace PLS.SKS.Package.Services.Pages
             var client = new HttpClient
             {
 #if DEBUG
-                //BaseAddress = new Uri("http://localhost:56172")
-                BaseAddress = new Uri("http://localhost:50074")
+                BaseAddress = new Uri("http://localhost:56172")
+                //BaseAddress = new Uri("http://localhost:50074")
 #else
 				BaseAddress = new Uri("http://parcellogisticsservice.azurewebsites.net")
 #endif

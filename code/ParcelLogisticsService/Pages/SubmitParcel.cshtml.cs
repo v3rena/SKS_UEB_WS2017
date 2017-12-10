@@ -20,6 +20,8 @@ namespace PLS.SKS.Package.Services.Pages
 		public Parcel Parcel { get; set; }
 		[BindProperty]
 		public InlineResponse200 InlineResponse200 { get; set; }
+	    [BindProperty]
+	    public string Message { get; set; }
 
 		public SubmitParcelModel(ILogger<SubmitParcelModel> logger)
 		{
@@ -36,8 +38,8 @@ namespace PLS.SKS.Package.Services.Pages
 			var client = new HttpClient
 			{
 #if DEBUG
-                //BaseAddress = new Uri("http://localhost:56172")
-                BaseAddress = new Uri("http://localhost:50074")
+                BaseAddress = new Uri("http://localhost:56172")
+                //BaseAddress = new Uri("http://localhost:50074")
 #else
 				BaseAddress = new Uri("http://parcellogisticsservice.azurewebsites.net")
 #endif
@@ -52,6 +54,10 @@ namespace PLS.SKS.Package.Services.Pages
 				if (msg.IsSuccessStatusCode)
 				{
 					InlineResponse200 = msg.Content.ReadAsAsync<InlineResponse200>().Result;
+				}
+				else
+				{
+					Message = "Could not submit parcel, please check for correct input!";
 				}
 				return Page();
 			}

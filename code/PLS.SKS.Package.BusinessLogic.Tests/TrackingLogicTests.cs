@@ -100,7 +100,7 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
 			var mockTrackingLogicLogger = new Mock<ILogger<TrackingLogic>>();
 			ILogger<TrackingLogic> trackingLogicLogger = mockTrackingLogicLogger.Object;
 
-			TrackingLogic trLogic = new TrackingLogic(mockParcelRepo, mockHopRepo, mockTrackRepo, trackingLogicLogger, mapper);
+			TrackingLogic trLogic = new TrackingLogic(mockParcelRepo, mockHopRepo, trackingLogicLogger, mapper);
 
             IO.Swagger.Models.TrackingInformation swagTrInfo = trLogic.TrackParcel("TN000001");
 
@@ -115,7 +115,7 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
 			var mockTrackingLogicLogger = new Mock<ILogger<TrackingLogic>>();
 			ILogger<TrackingLogic> trackingLogicLogger = mockTrackingLogicLogger.Object;
 
-			TrackingLogic trLogic = new TrackingLogic(mockParcelRepo, mockHopRepo, mockTrackRepo, trackingLogicLogger, mapper);
+			TrackingLogic trLogic = new TrackingLogic(mockParcelRepo, mockHopRepo, trackingLogicLogger, mapper);
             Assert.ThrowsException<BlException>(() => trLogic.TrackParcel("12"));
             
 		}

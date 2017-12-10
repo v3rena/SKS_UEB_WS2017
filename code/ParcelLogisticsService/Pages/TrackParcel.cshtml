@@ -65,6 +65,10 @@
 						</thead>
 					</table>
 				}
+				else if (!string.IsNullOrEmpty(Model.Message))
+				{
+					<span>@Model.Message</span>
+				}
 			</div>
 		</div>
 	</div>
