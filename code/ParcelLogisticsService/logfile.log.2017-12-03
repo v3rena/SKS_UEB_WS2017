@@ -1,0 +1,340 @@
+﻿2017-12-03 13:10:51,519 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-03 13:10:52,973 INFO [2] ?.? - Executed DbCommand (331ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-12-03 13:10:53,173 INFO [2] ?.? - Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Warehouses] AS [w])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+2017-12-03 13:50:14,304 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-03 14:03:35,662 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-03 19:53:04,776 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-03 20:11:26,466 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-03 20:11:35,509 INFO [2] ?.? - Executed DbCommand (492ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-12-03 20:11:35,522 INFO [2] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-03 20:11:35,605 INFO [2] ?.? - Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [__EFMigrationsHistory] (
+    [MigrationId] nvarchar(150) NOT NULL,
+    [ProductVersion] nvarchar(32) NOT NULL,
+    CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+);
+2017-12-03 20:11:35,608 INFO [2] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-03 20:11:35,612 INFO [2] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2017-12-03 20:11:35,626 INFO [2] ?.? - Applying migration '20171128144952_InitialCreate'.
+2017-12-03 20:11:35,744 ERROR [2] ?.? - Failed executing DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Recipients] (
+    [Id] int NOT NULL IDENTITY,
+    [City] nvarchar(max) NULL,
+    [FirstName] nvarchar(max) NULL,
+    [LastName] nvarchar(max) NULL,
+    [PostalCode] nvarchar(max) NULL,
+    [Street] nvarchar(max) NULL,
+    CONSTRAINT [PK_Recipients] PRIMARY KEY ([Id])
+); - System.Data.SqlClient.SqlException (0x80131904): There is already an object named 'Recipients' in the database.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite, String methodName)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+ClientConnectionId:33e8da4c-d498-4e7c-8468-41e5e0eca46c
+Error Number:2714,State:6,Class:16
+2017-12-03 20:11:35,803 ERROR [2] ?.? - An error occurred while seeding the database. - System.Data.SqlClient.SqlException (0x80131904): There is already an object named 'Recipients' in the database.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite, String methodName)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteNonQuery(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.MigrationCommandExecutor.ExecuteNonQuery(IEnumerable`1 migrationCommands, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.Migrate(String targetMigration)
+   at PLS.SKS.Package.Services.Program.Main(String[] args) in E:\FH\WS2017\SKS\SKS_UEB_WS2017\code\ParcelLogisticsService\Program.cs:line 28
+ClientConnectionId:33e8da4c-d498-4e7c-8468-41e5e0eca46c
+Error Number:2714,State:6,Class:16
+2017-12-03 20:11:36,115 INFO [10] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger  
+2017-12-03 20:11:36,127 INFO [10] ?.? - Request finished in 26.2039ms 301 
+2017-12-03 20:11:36,136 INFO [10] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/  
+2017-12-03 20:11:36,151 INFO [10] ?.? - Sending file. Request path: '/index.html'. Physical path: 'N/A'
+2017-12-03 20:11:36,157 INFO [10] ?.? - Request finished in 21.9393ms 200 text/html
+2017-12-03 20:11:36,179 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/css/typography.css  
+2017-12-03 20:11:36,202 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/css/screen.css  
+2017-12-03 20:11:36,204 INFO [9] ?.? - Sending file. Request path: '/css/typography.css'. Physical path: 'N/A'
+2017-12-03 20:11:36,206 INFO [10] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/css/reset.css  
+2017-12-03 20:11:36,232 INFO [8] ?.? - Sending file. Request path: '/css/screen.css'. Physical path: 'N/A'
+2017-12-03 20:11:36,255 INFO [11] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/css/print.css  
+2017-12-03 20:11:36,257 INFO [13] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/object-assign-pollyfill.js  
+2017-12-03 20:11:36,279 INFO [8] ?.? - Request finished in 76.3122ms 200 text/css
+2017-12-03 20:11:36,281 INFO [9] ?.? - Request finished in 31.0195ms 200 text/css
+2017-12-03 20:11:36,302 INFO [11] ?.? - Sending file. Request path: '/css/print.css'. Physical path: 'N/A'
+2017-12-03 20:11:36,328 INFO [10] ?.? - Sending file. Request path: '/css/reset.css'. Physical path: 'N/A'
+2017-12-03 20:11:36,330 INFO [11] ?.? - Request finished in 97.365ms 200 text/css
+2017-12-03 20:11:36,352 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/jquery.slideto.min.js  
+2017-12-03 20:11:36,375 INFO [13] ?.? - Sending file. Request path: '/lib/object-assign-pollyfill.js'. Physical path: 'N/A'
+2017-12-03 20:11:36,396 INFO [24] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/jquery.wiggle.min.js  
+2017-12-03 20:11:36,418 INFO [12] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/jquery-1.8.0.min.js  
+2017-12-03 20:11:36,440 INFO [24] ?.? - Sending file. Request path: '/lib/jquery.wiggle.min.js'. Physical path: 'N/A'
+2017-12-03 20:11:36,461 INFO [9] ?.? - Sending file. Request path: '/lib/jquery.slideto.min.js'. Physical path: 'N/A'
+2017-12-03 20:11:36,483 INFO [24] ?.? - Request finished in 135.3535ms 200 application/javascript
+2017-12-03 20:11:36,487 INFO [12] ?.? - Sending file. Request path: '/lib/jquery-1.8.0.min.js'. Physical path: 'N/A'
+2017-12-03 20:11:36,508 INFO [10] ?.? - Request finished in 148.834ms 200 text/css
+2017-12-03 20:11:36,511 INFO [9] ?.? - Request finished in 176.2455ms 200 application/javascript
+2017-12-03 20:11:36,513 INFO [11] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/jquery.ba-bbq.min.js  
+2017-12-03 20:11:36,559 INFO [11] ?.? - Sending file. Request path: '/lib/jquery.ba-bbq.min.js'. Physical path: 'N/A'
+2017-12-03 20:11:36,561 INFO [13] ?.? - Request finished in 163.624ms 200 application/javascript
+2017-12-03 20:11:36,584 INFO [24] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/backbone-min.js  
+2017-12-03 20:11:36,607 INFO [24] ?.? - Sending file. Request path: '/lib/backbone-min.js'. Physical path: 'N/A'
+2017-12-03 20:11:36,609 INFO [10] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/handlebars-4.0.5.js  
+2017-12-03 20:11:36,631 INFO [24] ?.? - Request finished in 72.8486ms 200 application/javascript
+2017-12-03 20:11:36,633 INFO [10] ?.? - Sending file. Request path: '/lib/handlebars-4.0.5.js'. Physical path: 'N/A'
+2017-12-03 20:11:36,655 INFO [11] ?.? - Request finished in 206.6705ms 200 application/javascript
+2017-12-03 20:11:36,658 INFO [12] ?.? - Request finished in 352.4208ms 200 application/javascript
+2017-12-03 20:11:36,708 INFO [11] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/highlight.9.1.0.pack.js  
+2017-12-03 20:11:36,710 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/swagger-ui.min.js  
+2017-12-03 20:11:36,712 INFO [11] ?.? - Sending file. Request path: '/lib/highlight.9.1.0.pack.js'. Physical path: 'N/A'
+2017-12-03 20:11:36,713 INFO [9] ?.? - Sending file. Request path: '/swagger-ui.min.js'. Physical path: 'N/A'
+2017-12-03 20:11:36,715 INFO [13] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/lodash.min.js  
+2017-12-03 20:11:36,718 INFO [11] ?.? - Request finished in 52.0264ms 200 application/javascript
+2017-12-03 20:11:36,740 INFO [13] ?.? - Sending file. Request path: '/lib/lodash.min.js'. Physical path: 'N/A'
+2017-12-03 20:11:36,751 INFO [24] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/jsoneditor.min.js  
+2017-12-03 20:11:36,774 INFO [12] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/highlight.9.1.0.pack_extended.js  
+2017-12-03 20:11:36,776 INFO [24] ?.? - Sending file. Request path: '/lib/jsoneditor.min.js'. Physical path: 'N/A'
+2017-12-03 20:11:36,778 INFO [12] ?.? - Sending file. Request path: '/lib/highlight.9.1.0.pack_extended.js'. Physical path: 'N/A'
+2017-12-03 20:11:36,781 INFO [11] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/marked.js  
+2017-12-03 20:11:36,805 INFO [12] ?.? - Request finished in 93.1312ms 200 application/javascript
+2017-12-03 20:11:36,807 INFO [11] ?.? - Sending file. Request path: '/lib/marked.js'. Physical path: 'N/A'
+2017-12-03 20:11:36,814 INFO [13] ?.? - Request finished in 57.7078ms 200 application/javascript
+2017-12-03 20:11:36,838 INFO [11] ?.? - Request finished in 65.6408ms 200 application/javascript
+2017-12-03 20:11:36,861 INFO [9] ?.? - Request finished in 89.9392ms 200 application/javascript
+2017-12-03 20:11:36,889 INFO [24] ?.? - Request finished in 325.0129ms 200 application/javascript
+2017-12-03 20:11:36,891 INFO [10] ?.? - Request finished in 252.6284ms 200 application/javascript
+2017-12-03 20:11:36,898 INFO [10] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/swagger-oauth.js  
+2017-12-03 20:11:36,901 INFO [10] ?.? - Sending file. Request path: '/lib/swagger-oauth.js'. Physical path: 'N/A'
+2017-12-03 20:11:36,903 INFO [10] ?.? - Request finished in 5.5309ms 200 application/javascript
+2017-12-03 20:11:36,927 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/images/logo_small.png  
+2017-12-03 20:11:36,929 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/images/favicon-16x16.png  
+2017-12-03 20:11:36,952 INFO [8] ?.? - Sending file. Request path: '/images/favicon-16x16.png'. Physical path: 'N/A'
+2017-12-03 20:11:36,954 INFO [9] ?.? - Sending file. Request path: '/images/logo_small.png'. Physical path: 'N/A'
+2017-12-03 20:11:36,976 INFO [8] ?.? - Request finished in 47.5081ms 200 image/png
+2017-12-03 20:11:36,977 INFO [9] ?.? - Request finished in 47.6138ms 200 image/png
+2017-12-03 20:11:37,006 INFO [10] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/v1/swagger.json  
+2017-12-03 20:11:37,192 INFO [10] ?.? - Request finished in 189.2496ms 200 application/json
+2017-12-03 20:12:08,371 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-03 20:12:09,972 INFO [2] ?.? - Executed DbCommand (568ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-12-03 20:12:09,984 INFO [2] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-03 20:12:09,987 INFO [2] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-03 20:12:10,002 INFO [2] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2017-12-03 20:12:10,017 INFO [2] ?.? - Applying migration '20171128144952_InitialCreate'.
+2017-12-03 20:12:10,163 ERROR [2] ?.? - Failed executing DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Recipients] (
+    [Id] int NOT NULL IDENTITY,
+    [City] nvarchar(max) NULL,
+    [FirstName] nvarchar(max) NULL,
+    [LastName] nvarchar(max) NULL,
+    [PostalCode] nvarchar(max) NULL,
+    [Street] nvarchar(max) NULL,
+    CONSTRAINT [PK_Recipients] PRIMARY KEY ([Id])
+); - System.Data.SqlClient.SqlException (0x80131904): There is already an object named 'Recipients' in the database.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite, String methodName)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+ClientConnectionId:abf9afd6-1244-4ef9-a120-1ce8b7832ed3
+Error Number:2714,State:6,Class:16
+2017-12-03 20:12:10,256 ERROR [2] ?.? - An error occurred while seeding the database. - System.Data.SqlClient.SqlException (0x80131904): There is already an object named 'Recipients' in the database.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite, String methodName)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteNonQuery(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.MigrationCommandExecutor.ExecuteNonQuery(IEnumerable`1 migrationCommands, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.Migrate(String targetMigration)
+   at PLS.SKS.Package.Services.Program.Main(String[] args) in E:\FH\WS2017\SKS\SKS_UEB_WS2017\code\ParcelLogisticsService\Program.cs:line 28
+ClientConnectionId:abf9afd6-1244-4ef9-a120-1ce8b7832ed3
+Error Number:2714,State:6,Class:16
+2017-12-03 20:12:10,454 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/  
+2017-12-03 20:12:10,554 INFO [8] ?.? - Request finished in 111.4605ms 404 
+2017-12-03 20:12:10,637 INFO [10] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/favicon.ico  
+2017-12-03 20:12:10,641 INFO [10] ?.? - Request finished in 3.4316ms 404 
+2017-12-03 20:12:10,650 INFO [10] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/favicon.ico  
+2017-12-03 20:12:10,656 INFO [10] ?.? - Request finished in 5.1495ms 404 
+2017-12-03 20:36:28,680 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-03 20:36:33,415 INFO [2] ?.? - Executed DbCommand (301ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-12-03 20:36:33,616 INFO [2] ?.? - Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Warehouses] AS [w])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+2017-12-03 20:36:33,640 INFO [2] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-03 20:36:33,644 INFO [2] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-03 20:36:33,657 INFO [2] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2017-12-03 20:36:33,671 INFO [2] ?.? - Applying migration '20171128144952_InitialCreate'.
+2017-12-03 20:36:33,824 ERROR [2] ?.? - Failed executing DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Recipients] (
+    [Id] int NOT NULL IDENTITY,
+    [City] nvarchar(max) NULL,
+    [FirstName] nvarchar(max) NULL,
+    [LastName] nvarchar(max) NULL,
+    [PostalCode] nvarchar(max) NULL,
+    [Street] nvarchar(max) NULL,
+    CONSTRAINT [PK_Recipients] PRIMARY KEY ([Id])
+); - System.Data.SqlClient.SqlException (0x80131904): There is already an object named 'Recipients' in the database.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite, String methodName)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+ClientConnectionId:b4fa219c-8750-4d72-b510-3f1e79936ffa
+Error Number:2714,State:6,Class:16
+2017-12-03 20:36:33,900 ERROR [2] ?.? - An error occurred while seeding the database. - System.Data.SqlClient.SqlException (0x80131904): There is already an object named 'Recipients' in the database.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite, String methodName)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteNonQuery(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.MigrationCommandExecutor.ExecuteNonQuery(IEnumerable`1 migrationCommands, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.Migrate(String targetMigration)
+   at PLS.SKS.Package.Services.Program.Main(String[] args) in E:\FH\WS2017\SKS\SKS_UEB_WS2017\code\ParcelLogisticsService\Program.cs:line 29
+ClientConnectionId:b4fa219c-8750-4d72-b510-3f1e79936ffa
+Error Number:2714,State:6,Class:16
+2017-12-03 20:36:34,227 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/  
+2017-12-03 20:36:34,256 INFO [8] ?.? - Sending file. Request path: '/index.html'. Physical path: 'N/A'
+2017-12-03 20:36:34,266 INFO [8] ?.? - Request finished in 58.0157ms 200 text/html
+2017-12-03 20:36:34,493 INFO [10] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/v1/swagger.json  
+2017-12-03 20:36:34,714 INFO [10] ?.? - Request finished in 220.5632ms 200 application/json
+2017-12-03 20:36:41,829 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/images/throbber.gif  
+2017-12-03 20:36:41,831 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/api/parcel/TN000001  
+2017-12-03 20:36:41,833 INFO [9] ?.? - Sending file. Request path: '/images/throbber.gif'. Physical path: 'N/A'
+2017-12-03 20:36:41,836 INFO [9] ?.? - Request finished in 6.3993ms 200 image/gif
+2017-12-03 20:36:41,994 INFO [8] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.TrackParcel (PLS.SKS.Package.Services) with arguments (TN000001) - ModelState is Valid
+2017-12-03 20:36:41,997 INFO [8] ?.? - Calling the TrackParcel action
+2017-12-03 20:36:42,000 INFO [8] ?.? - Calling the TrackParcel action
+2017-12-03 20:36:42,011 INFO [8] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-03 20:36:42,317 INFO [8] ?.? - Executed DbCommand (72ms) [Parameters=[@__TrackingNumber_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[RecipientId], [p].[TrackingInformationId], [p].[TrackingNumber], [p].[Weight], [p.TrackingInformation].[Id], [p.TrackingInformation].[State], [p.Recipient].[Id], [p.Recipient].[City], [p.Recipient].[FirstName], [p.Recipient].[LastName], [p.Recipient].[PostalCode], [p.Recipient].[Street]
+FROM [Parcels] AS [p]
+INNER JOIN [TrackingInformations] AS [p.TrackingInformation] ON [p].[TrackingInformationId] = [p.TrackingInformation].[Id]
+INNER JOIN [Recipients] AS [p.Recipient] ON [p].[RecipientId] = [p.Recipient].[Id]
+WHERE [p].[TrackingNumber] = @__TrackingNumber_0
+2017-12-03 20:36:42,363 ERROR [8] ?.? - Could not find parcel
+2017-12-03 20:36:42,391 ERROR [8] ?.? - TrackParcel failed
+2017-12-03 20:38:47,758 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-03 20:38:47,954 INFO [2] ?.? - Executed DbCommand (87ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+2017-12-03 20:38:48,216 INFO [2] ?.? - Executed DbCommand (80ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Warehouses] AS [w])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+2017-12-03 20:38:48,250 INFO [2] ?.? - Executed DbCommand (11ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-03 20:38:48,254 INFO [2] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-03 20:38:48,274 INFO [2] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2017-12-03 20:38:48,298 INFO [2] ?.? - Applying migration '20171128144952_InitialCreate'.
+2017-12-03 20:38:48,478 ERROR [2] ?.? - Failed executing DbCommand (12ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Recipients] (
+    [Id] int NOT NULL IDENTITY,
+    [City] nvarchar(max) NULL,
+    [FirstName] nvarchar(max) NULL,
+    [LastName] nvarchar(max) NULL,
+    [PostalCode] nvarchar(max) NULL,
+    [Street] nvarchar(max) NULL,
+    CONSTRAINT [PK_Recipients] PRIMARY KEY ([Id])
+); - System.Data.SqlClient.SqlException (0x80131904): There is already an object named 'Recipients' in the database.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite, String methodName)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+ClientConnectionId:557f4b7f-a2f4-4bc1-85c2-f018b3642b8e
+Error Number:2714,State:6,Class:16
+2017-12-03 20:38:48,566 ERROR [2] ?.? - An error occurred while seeding the database. - System.Data.SqlClient.SqlException (0x80131904): There is already an object named 'Recipients' in the database.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite, String methodName)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteNonQuery(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.MigrationCommandExecutor.ExecuteNonQuery(IEnumerable`1 migrationCommands, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.Migrate(String targetMigration)
+   at PLS.SKS.Package.Services.Program.Main(String[] args) in E:\FH\WS2017\SKS\SKS_UEB_WS2017\code\ParcelLogisticsService\Program.cs:line 29
+ClientConnectionId:557f4b7f-a2f4-4bc1-85c2-f018b3642b8e
+Error Number:2714,State:6,Class:16
+2017-12-03 20:38:48,985 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/  
+2017-12-03 20:38:49,122 INFO [8] ?.? - Request finished in 162.915ms 404 
+2017-12-03 20:38:49,727 INFO [11] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/  
+2017-12-03 20:38:49,737 INFO [11] ?.? - Sending file. Request path: '/index.html'. Physical path: 'N/A'
+2017-12-03 20:38:49,743 INFO [11] ?.? - Request finished in 15.3958ms 200 text/html
+2017-12-03 20:38:49,926 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/v1/swagger.json  
+2017-12-03 20:38:50,073 INFO [8] ?.? - Request finished in 147.3415ms 200 application/json
+2017-12-03 20:38:55,495 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/api/parcel/47LPTV5L  
+2017-12-03 20:38:55,587 INFO [8] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.TrackParcel (PLS.SKS.Package.Services) with arguments (47LPTV5L) - ModelState is Valid
+2017-12-03 20:38:55,590 INFO [8] ?.? - Calling the TrackParcel action
+2017-12-03 20:38:55,593 INFO [8] ?.? - Calling the TrackParcel action
+2017-12-03 20:38:55,605 INFO [8] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-03 20:38:55,884 INFO [8] ?.? - Executed DbCommand (52ms) [Parameters=[@__TrackingNumber_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[RecipientId], [p].[TrackingInformationId], [p].[TrackingNumber], [p].[Weight], [p.TrackingInformation].[Id], [p.TrackingInformation].[State], [p.Recipient].[Id], [p.Recipient].[City], [p.Recipient].[FirstName], [p.Recipient].[LastName], [p.Recipient].[PostalCode], [p.Recipient].[Street]
+FROM [Parcels] AS [p]
+INNER JOIN [TrackingInformations] AS [p.TrackingInformation] ON [p].[TrackingInformationId] = [p.TrackingInformation].[Id]
+INNER JOIN [Recipients] AS [p.Recipient] ON [p].[RecipientId] = [p.Recipient].[Id]
+WHERE [p].[TrackingNumber] = @__TrackingNumber_0
+2017-12-03 20:38:55,986 INFO [8] ?.? - Executed DbCommand (11ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [h].[Id], [h].[Code], [h].[DateTime], [h].[Status], [h].[TrackingInformationId]
+FROM [HopArrivals] AS [h]
+WHERE [h].[TrackingInformationId] = @__id_0
+2017-12-03 20:38:56,120 INFO [8] ?.? - Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+2017-12-03 20:38:56,140 INFO [8] ?.? - Executed action IO.Swagger.Controllers.DefaultApiController.TrackParcel (PLS.SKS.Package.Services) in 589.4051ms
+2017-12-03 20:38:56,143 INFO [8] ?.? - Request finished in 647.9178ms 200 application/json; charset=utf-8
