@@ -6,18 +6,19 @@ using PLS.SKS.Package.DataAccess.Entities;
 using System.Linq;
 using Microsoft.Extensions.Logging;
 using System.Data.SqlClient;
+using System.Diagnostics.CodeAnalysis;
 
 namespace PLS.SKS.Package.DataAccess.Sql
 {
 	public class SqlTruckRepository : ITruckRepository
 	{
-		private readonly DBContext db;
-		ILogger<SqlTruckRepository> logger;
+		private readonly DBContext _db;
+		ILogger<SqlTruckRepository> _logger;
 
 		public SqlTruckRepository(DBContext context, ILogger<SqlTruckRepository> logger)
 		{
-			db = context;
-			this.logger = logger;
+			_db = context;
+			this._logger = logger;
 		}
 
 		public object WarehouseToUpdate { get; private set; }
@@ -26,18 +27,18 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		{
 			try
 			{
-				db.Add(t);
-				db.SaveChanges();
+				_db.Add(t);
+				_db.SaveChanges();
 				return t.Id;
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
+				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
 				throw new DALException("Could not save truck to database", ex);
 			}
 			catch (Exception ex)
 			{
-				logger.LogError("Could not save truck to database", ex);
+				_logger.LogError("Could not save truck to database", ex);
 				throw new DALException("Could not save truck to database", ex);
 			}
 		}
@@ -46,16 +47,16 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		{
 			try
 			{
-				db.Remove(db.Trucks.Where(p => p.Id == id));
+				_db.Remove(_db.Trucks.Where(p => p.Id == id));
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
+				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
 				throw new DALException("Could not delete truck from database", ex);
 			}
 			catch (Exception ex)
 			{
-				logger.LogError("Could not delete truck", ex);
+				_logger.LogError("Could not delete truck", ex);
 				throw new DALException("Could not delete truck", ex);
 			}
 		}
@@ -64,17 +65,17 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		{
 			try
 			{
-				return db.Trucks.Find(id);
+				return _db.Trucks.Find(id);
 
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
+				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
 				throw new DALException("Could not retrieve truck from database", ex);
 			}
 			catch (Exception ex)
 			{
-				logger.LogError("Could not retrieve truck from database", ex);
+				_logger.LogError("Could not retrieve truck from database", ex);
 				throw new DALException("Could not retrieve truck from database", ex);
 			}
 		}
@@ -83,16 +84,16 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		{
 			try
 			{
-				return db.Trucks.ToList();
+				return _db.Trucks.ToList();
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
+				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
 				throw new DALException("Could not retrieve truck list from database", ex);
 			}
 			catch (Exception ex)
 			{
-				logger.LogError("Could not retrieve truck list from database", ex);
+				_logger.LogError("Could not retrieve truck list from database", ex);
 				throw new DALException("Could not retrieve truck list from database", ex);
 			}
 		}
@@ -101,21 +102,21 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		{
 			try
 			{
-				var TruckToUpdate = db.Trucks.SingleOrDefault(b => b.Id == t.Id);
-				if (WarehouseToUpdate != null)
+				var truckToUpdate = _db.Trucks.SingleOrDefault(b => b.Id == t.Id);
+				if (truckToUpdate != null)
 				{
-					WarehouseToUpdate = t;
-					db.SaveChanges();
+					truckToUpdate = t;
+					_db.SaveChanges();
 				}
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
+				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
 				throw new DALException("Could not upadate truck", ex);
 			}
 			catch (Exception ex)
 			{
-				logger.LogError("Could not update truck in database", ex);
+				_logger.LogError("Could not update truck in database", ex);
 				throw new DALException("Could not update truck in database", ex);
 			}
 		}

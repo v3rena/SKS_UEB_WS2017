@@ -152,22 +152,6 @@ namespace PLS.SKS.Package.BusinessLogic
 			}
 		}
 
-		private string ValidateParcel(Entities.Parcel blParcel)
-		{
-			StringBuilder validationResults = new StringBuilder();
-
-			Validator.ParcelValidator validator = new Validator.ParcelValidator();
-			ValidationResult results = validator.Validate(blParcel);
-			bool validationSucceeded = results.IsValid;
-			IList<ValidationFailure> failures = results.Errors;
-
-			foreach (var failure in failures)
-			{
-				validationResults.Append(failure);
-			}
-			return validationResults.ToString();
-		}
-
         private string ValidatePreAddedParcel(Entities.Parcel blParcel)
         {
             StringBuilder validationResults = new StringBuilder();
