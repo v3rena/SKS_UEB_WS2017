@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2002
+VisualStudioVersion = 15.0.27004.2008
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PLS.SKS.Package.Services", "ParcelLogisticsService\PLS.SKS.Package.Services.csproj", "{054B8554-6346-41FA-9B27-BBD8087DBCFF}"
 EndProject
@@ -39,11 +39,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PLS.SKS.Package.DataAccess.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceAgents", "ServiceAgents", "{8744EE67-0F53-4785-B894-28C2B593CB82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PLS.SKS.ServiceAgents", "PLS.SKS.ServiceAgents\PLS.SKS.ServiceAgents.csproj", "{B4AE49AF-E41E-4018-8FDD-5987939BF5B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PLS.SKS.ServiceAgents", "PLS.SKS.ServiceAgents\PLS.SKS.ServiceAgents.csproj", "{B4AE49AF-E41E-4018-8FDD-5987939BF5B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PLS.SKS.ServiceAgents.Interfaces", "PLS.SKS.ServiceAgents.Interfaces\PLS.SKS.ServiceAgents.Interfaces.csproj", "{188E81CE-CE20-4D10-A40B-BD9112DC97C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PLS.SKS.ServiceAgents.Interfaces", "PLS.SKS.ServiceAgents.Interfaces\PLS.SKS.ServiceAgents.Interfaces.csproj", "{188E81CE-CE20-4D10-A40B-BD9112DC97C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PLS.SKS.ServiceAgents.DTOs", "PLS.SKS.ServiceAgents.DTOs\PLS.SKS.ServiceAgents.DTOs.csproj", "{55DA0F3E-B22A-4E36-8C32-7057125BF4EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PLS.SKS.ServiceAgents.DTOs", "PLS.SKS.ServiceAgents.DTOs\PLS.SKS.ServiceAgents.DTOs.csproj", "{55DA0F3E-B22A-4E36-8C32-7057125BF4EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

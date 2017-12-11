@@ -1,0 +1,728 @@
+﻿2017-12-07 10:42:06,873 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-07 10:42:16,584 INFO [2] ?.? - Executed DbCommand (12ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-07 10:42:16,588 INFO [2] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-07 10:42:16,606 INFO [2] ?.? - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2017-12-07 10:42:16,622 INFO [2] ?.? - Applying migration '20171128144952_InitialCreate'.
+2017-12-07 10:42:16,793 ERROR [2] ?.? - Failed executing DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Recipients] (
+    [Id] int NOT NULL IDENTITY,
+    [City] nvarchar(max) NULL,
+    [FirstName] nvarchar(max) NULL,
+    [LastName] nvarchar(max) NULL,
+    [PostalCode] nvarchar(max) NULL,
+    [Street] nvarchar(max) NULL,
+    CONSTRAINT [PK_Recipients] PRIMARY KEY ([Id])
+); - System.Data.SqlClient.SqlException (0x80131904): There is already an object named 'Recipients' in the database.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite, String methodName)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+ClientConnectionId:0a96d715-f4c2-45c0-930e-4884ef1f4e1f
+Error Number:2714,State:6,Class:16
+2017-12-07 10:43:10,749 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-07 10:43:10,884 INFO [2] ?.? - Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-07 10:43:10,887 INFO [2] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-07 10:43:10,904 INFO [2] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2017-12-07 10:43:10,919 INFO [2] ?.? - Applying migration '20171128144952_InitialCreate'.
+2017-12-07 10:43:11,059 ERROR [2] ?.? - Failed executing DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Recipients] (
+    [Id] int NOT NULL IDENTITY,
+    [City] nvarchar(max) NULL,
+    [FirstName] nvarchar(max) NULL,
+    [LastName] nvarchar(max) NULL,
+    [PostalCode] nvarchar(max) NULL,
+    [Street] nvarchar(max) NULL,
+    CONSTRAINT [PK_Recipients] PRIMARY KEY ([Id])
+); - System.Data.SqlClient.SqlException (0x80131904): There is already an object named 'Recipients' in the database.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite, String methodName)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+ClientConnectionId:8fda0b40-fa98-41f9-ab1b-54d24279c533
+Error Number:2714,State:6,Class:16
+2017-12-07 10:43:57,102 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-07 10:43:57,257 INFO [2] ?.? - Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-07 10:43:57,261 INFO [2] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-07 10:43:57,279 INFO [2] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2017-12-07 10:43:57,296 INFO [2] ?.? - Applying migration '20171128144952_InitialCreate'.
+2017-12-07 10:43:57,446 ERROR [2] ?.? - Failed executing DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Recipients] (
+    [Id] int NOT NULL IDENTITY,
+    [City] nvarchar(max) NULL,
+    [FirstName] nvarchar(max) NULL,
+    [LastName] nvarchar(max) NULL,
+    [PostalCode] nvarchar(max) NULL,
+    [Street] nvarchar(max) NULL,
+    CONSTRAINT [PK_Recipients] PRIMARY KEY ([Id])
+); - System.Data.SqlClient.SqlException (0x80131904): There is already an object named 'Recipients' in the database.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite, String methodName)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+ClientConnectionId:8082e2b0-9a02-425f-bab0-01165efd1135
+Error Number:2714,State:6,Class:16
+2017-12-07 10:45:42,556 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-07 10:45:53,011 INFO [2] ?.? - Executed DbCommand (277ms) [Parameters=[], CommandType='Text', CommandTimeout='60']
+CREATE DATABASE [ParcelLogisticsDB];
+2017-12-07 10:45:53,063 INFO [2] ?.? - Executed DbCommand (49ms) [Parameters=[], CommandType='Text', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5 EXEC(N'ALTER DATABASE [ParcelLogisticsDB] SET READ_COMMITTED_SNAPSHOT ON;');
+2017-12-07 10:45:53,155 INFO [2] ?.? - Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [__EFMigrationsHistory] (
+    [MigrationId] nvarchar(150) NOT NULL,
+    [ProductVersion] nvarchar(32) NOT NULL,
+    CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+);
+2017-12-07 10:45:53,161 INFO [2] ?.? - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-07 10:45:53,167 INFO [2] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2017-12-07 10:45:53,183 INFO [2] ?.? - Applying migration '20171128144952_InitialCreate'.
+2017-12-07 10:45:53,240 INFO [2] ?.? - Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Recipients] (
+    [Id] int NOT NULL IDENTITY,
+    [City] nvarchar(max) NULL,
+    [FirstName] nvarchar(max) NULL,
+    [LastName] nvarchar(max) NULL,
+    [PostalCode] nvarchar(max) NULL,
+    [Street] nvarchar(max) NULL,
+    CONSTRAINT [PK_Recipients] PRIMARY KEY ([Id])
+);
+2017-12-07 10:45:53,242 INFO [2] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [TrackingInformations] (
+    [Id] int NOT NULL IDENTITY,
+    [State] int NULL,
+    CONSTRAINT [PK_TrackingInformations] PRIMARY KEY ([Id])
+);
+2017-12-07 10:45:53,246 INFO [2] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Warehouses] (
+    [Id] int NOT NULL IDENTITY,
+    [Code] nvarchar(max) NULL,
+    [Description] nvarchar(max) NULL,
+    [Duration] decimal(18, 2) NOT NULL,
+    [WarehouseId] int NULL,
+    CONSTRAINT [PK_Warehouses] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Warehouses_Warehouses_WarehouseId] FOREIGN KEY ([WarehouseId]) REFERENCES [Warehouses] ([Id]) ON DELETE NO ACTION
+);
+2017-12-07 10:45:53,250 INFO [2] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [HopArrivals] (
+    [Id] int NOT NULL IDENTITY,
+    [Code] nvarchar(max) NULL,
+    [DateTime] datetime2 NOT NULL,
+    [Status] nvarchar(max) NULL,
+    [TrackingInformationId] int NOT NULL,
+    CONSTRAINT [PK_HopArrivals] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_HopArrivals_TrackingInformations_TrackingInformationId] FOREIGN KEY ([TrackingInformationId]) REFERENCES [TrackingInformations] ([Id]) ON DELETE CASCADE
+);
+2017-12-07 10:45:53,254 INFO [2] ?.? - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Parcels] (
+    [Id] int NOT NULL IDENTITY,
+    [RecipientId] int NOT NULL,
+    [TrackingInformationId] int NOT NULL,
+    [TrackingNumber] nvarchar(max) NULL,
+    [Weight] real NOT NULL,
+    CONSTRAINT [PK_Parcels] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Parcels_Recipients_RecipientId] FOREIGN KEY ([RecipientId]) REFERENCES [Recipients] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Parcels_TrackingInformations_TrackingInformationId] FOREIGN KEY ([TrackingInformationId]) REFERENCES [TrackingInformations] ([Id]) ON DELETE CASCADE
+);
+2017-12-07 10:45:53,257 INFO [2] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Trucks] (
+    [Id] int NOT NULL IDENTITY,
+    [Code] nvarchar(max) NULL,
+    [Duration] decimal(18, 2) NOT NULL,
+    [Latitude] decimal(18, 2) NOT NULL,
+    [Longitude] decimal(18, 2) NOT NULL,
+    [NumberPlate] nvarchar(max) NULL,
+    [Radius] decimal(18, 2) NOT NULL,
+    [WarehouseId] int NULL,
+    CONSTRAINT [PK_Trucks] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Trucks_Warehouses_WarehouseId] FOREIGN KEY ([WarehouseId]) REFERENCES [Warehouses] ([Id]) ON DELETE NO ACTION
+);
+2017-12-07 10:45:53,259 INFO [2] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_HopArrivals_TrackingInformationId] ON [HopArrivals] ([TrackingInformationId]);
+2017-12-07 10:45:53,261 INFO [2] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_Parcels_RecipientId] ON [Parcels] ([RecipientId]);
+2017-12-07 10:45:53,263 INFO [2] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_Parcels_TrackingInformationId] ON [Parcels] ([TrackingInformationId]);
+2017-12-07 10:45:53,266 INFO [2] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_Trucks_WarehouseId] ON [Trucks] ([WarehouseId]);
+2017-12-07 10:45:53,269 INFO [2] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_Warehouses_WarehouseId] ON [Warehouses] ([WarehouseId]);
+2017-12-07 10:45:53,272 INFO [2] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20171128144952_InitialCreate', N'2.0.1-rtm-125');
+2017-12-07 10:45:53,563 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/  
+2017-12-07 10:45:53,661 INFO [8] ?.? - Request finished in 113.6818ms 404 
+2017-12-07 10:45:53,731 INFO [10] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/favicon.ico  
+2017-12-07 10:45:53,737 INFO [10] ?.? - Request finished in 3.3376ms 404 
+2017-12-07 10:45:53,741 INFO [10] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/favicon.ico  
+2017-12-07 10:45:53,744 INFO [10] ?.? - Request finished in 2.1372ms 404 
+2017-12-07 10:45:56,357 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger  
+2017-12-07 10:45:56,361 INFO [9] ?.? - Request finished in 4.0059ms 301 
+2017-12-07 10:45:56,371 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/  
+2017-12-07 10:45:56,377 INFO [8] ?.? - Sending file. Request path: '/index.html'. Physical path: 'N/A'
+2017-12-07 10:45:56,385 INFO [8] ?.? - Request finished in 13.3356ms 200 text/html
+2017-12-07 10:45:56,426 INFO [10] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/css/typography.css  
+2017-12-07 10:45:56,431 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/css/reset.css  
+2017-12-07 10:45:56,442 INFO [10] ?.? - Sending file. Request path: '/css/typography.css'. Physical path: 'N/A'
+2017-12-07 10:45:56,465 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/css/screen.css  
+2017-12-07 10:45:56,466 INFO [8] ?.? - Sending file. Request path: '/css/reset.css'. Physical path: 'N/A'
+2017-12-07 10:45:56,495 INFO [10] ?.? - Request finished in 43.2692ms 200 text/css
+2017-12-07 10:45:56,518 INFO [9] ?.? - Sending file. Request path: '/css/screen.css'. Physical path: 'N/A'
+2017-12-07 10:45:56,520 INFO [12] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/css/print.css  
+2017-12-07 10:45:56,522 INFO [12] ?.? - Sending file. Request path: '/css/print.css'. Physical path: 'N/A'
+2017-12-07 10:45:56,523 INFO [8] ?.? - Request finished in 39.5332ms 200 text/css
+2017-12-07 10:45:56,545 INFO [13] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/object-assign-pollyfill.js  
+2017-12-07 10:45:56,567 INFO [9] ?.? - Request finished in 91.7207ms 200 text/css
+2017-12-07 10:45:56,568 INFO [11] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/jquery-1.8.0.min.js  
+2017-12-07 10:45:56,590 INFO [13] ?.? - Sending file. Request path: '/lib/object-assign-pollyfill.js'. Physical path: 'N/A'
+2017-12-07 10:45:56,614 INFO [12] ?.? - Request finished in 57.6308ms 200 text/css
+2017-12-07 10:45:56,616 INFO [13] ?.? - Request finished in 117.1639ms 200 application/javascript
+2017-12-07 10:45:56,660 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/lodash.min.js  
+2017-12-07 10:45:56,684 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/jquery.slideto.min.js  
+2017-12-07 10:45:56,686 INFO [12] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/jquery.ba-bbq.min.js  
+2017-12-07 10:45:56,708 INFO [9] ?.? - Sending file. Request path: '/lib/lodash.min.js'. Physical path: 'N/A'
+2017-12-07 10:45:56,710 INFO [8] ?.? - Sending file. Request path: '/lib/jquery.slideto.min.js'. Physical path: 'N/A'
+2017-12-07 10:45:56,733 INFO [11] ?.? - Sending file. Request path: '/lib/jquery-1.8.0.min.js'. Physical path: 'N/A'
+2017-12-07 10:45:56,758 INFO [9] ?.? - Request finished in 115.7906ms 200 application/javascript
+2017-12-07 10:45:56,759 INFO [13] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/handlebars-4.0.5.js  
+2017-12-07 10:45:56,784 INFO [10] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/jquery.wiggle.min.js  
+2017-12-07 10:45:56,785 INFO [8] ?.? - Request finished in 93.1107ms 200 application/javascript
+2017-12-07 10:45:56,807 INFO [10] ?.? - Sending file. Request path: '/lib/jquery.wiggle.min.js'. Physical path: 'N/A'
+2017-12-07 10:45:56,828 INFO [12] ?.? - Sending file. Request path: '/lib/jquery.ba-bbq.min.js'. Physical path: 'N/A'
+2017-12-07 10:45:56,830 INFO [13] ?.? - Sending file. Request path: '/lib/handlebars-4.0.5.js'. Physical path: 'N/A'
+2017-12-07 10:45:56,851 INFO [10] ?.? - Request finished in 168.8513ms 200 application/javascript
+2017-12-07 10:45:56,855 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/swagger-ui.min.js  
+2017-12-07 10:45:56,855 INFO [11] ?.? - Request finished in 316.5947ms 200 application/javascript
+2017-12-07 10:45:56,922 INFO [11] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/highlight.9.1.0.pack.js  
+2017-12-07 10:45:56,924 INFO [10] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/highlight.9.1.0.pack_extended.js  
+2017-12-07 10:45:56,946 INFO [9] ?.? - Sending file. Request path: '/swagger-ui.min.js'. Physical path: 'N/A'
+2017-12-07 10:45:56,947 INFO [11] ?.? - Sending file. Request path: '/lib/highlight.9.1.0.pack.js'. Physical path: 'N/A'
+2017-12-07 10:45:56,951 INFO [11] ?.? - Request finished in 47.8993ms 200 application/javascript
+2017-12-07 10:45:56,953 INFO [12] ?.? - Request finished in 145.7214ms 200 application/javascript
+2017-12-07 10:45:56,976 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/backbone-min.js  
+2017-12-07 10:45:57,000 INFO [10] ?.? - Sending file. Request path: '/lib/highlight.9.1.0.pack_extended.js'. Physical path: 'N/A'
+2017-12-07 10:45:57,024 INFO [11] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/marked.js  
+2017-12-07 10:45:57,029 INFO [8] ?.? - Sending file. Request path: '/lib/backbone-min.js'. Physical path: 'N/A'
+2017-12-07 10:45:57,051 INFO [10] ?.? - Request finished in 122.0408ms 200 application/javascript
+2017-12-07 10:45:57,054 INFO [11] ?.? - Sending file. Request path: '/lib/marked.js'. Physical path: 'N/A'
+2017-12-07 10:45:57,061 INFO [12] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/jsoneditor.min.js  
+2017-12-07 10:45:57,066 INFO [11] ?.? - Request finished in 100.4397ms 200 application/javascript
+2017-12-07 10:45:57,088 INFO [8] ?.? - Request finished in 130.6259ms 200 application/javascript
+2017-12-07 10:45:57,111 INFO [10] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/lib/swagger-oauth.js  
+2017-12-07 10:45:57,116 INFO [12] ?.? - Sending file. Request path: '/lib/jsoneditor.min.js'. Physical path: 'N/A'
+2017-12-07 10:45:57,118 INFO [10] ?.? - Sending file. Request path: '/lib/swagger-oauth.js'. Physical path: 'N/A'
+2017-12-07 10:45:57,120 INFO [10] ?.? - Request finished in 52.043ms 200 application/javascript
+2017-12-07 10:45:57,144 INFO [10] ?.? - Request finished in 386.8625ms 200 application/javascript
+2017-12-07 10:45:57,146 INFO [8] ?.? - Request finished in 124.6272ms 200 application/javascript
+2017-12-07 10:45:57,171 INFO [11] ?.? - Request finished in 361.3719ms 200 application/javascript
+2017-12-07 10:45:57,173 INFO [10] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/images/logo_small.png  
+2017-12-07 10:45:57,177 INFO [10] ?.? - Sending file. Request path: '/images/logo_small.png'. Physical path: 'N/A'
+2017-12-07 10:45:57,179 INFO [10] ?.? - Request finished in 28.1358ms 200 image/png
+2017-12-07 10:45:57,211 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/v1/swagger.json  
+2017-12-07 10:45:57,236 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/images/favicon-16x16.png  
+2017-12-07 10:45:57,239 INFO [8] ?.? - Sending file. Request path: '/images/favicon-16x16.png'. Physical path: 'N/A'
+2017-12-07 10:45:57,241 INFO [8] ?.? - Request finished in 5.4496ms 200 image/png
+2017-12-07 10:45:57,391 INFO [9] ?.? - Request finished in 181.3102ms 200 application/json
+2017-12-07 10:46:22,043 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-07 10:46:22,232 INFO [2] ?.? - Executed DbCommand (13ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-07 10:46:22,236 INFO [2] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-07 10:46:22,254 INFO [2] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2017-12-07 10:46:22,268 INFO [2] ?.? - No migrations were applied. The database is already up to date.
+2017-12-07 10:46:22,593 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/  
+2017-12-07 10:46:22,694 INFO [8] ?.? - Request finished in 116.1707ms 404 
+2017-12-07 10:46:29,543 INFO [10] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/  
+2017-12-07 10:46:29,550 INFO [10] ?.? - Sending file. Request path: '/index.html'. Physical path: 'N/A'
+2017-12-07 10:46:29,557 INFO [10] ?.? - Request finished in 14.0991ms 200 text/html
+2017-12-07 10:46:29,755 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/v1/swagger.json  
+2017-12-07 10:46:29,927 INFO [8] ?.? - Request finished in 171.4216ms 200 application/json
+2017-12-07 10:48:16,933 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/swagger/images/throbber.gif  
+2017-12-07 10:48:16,936 INFO [8] ?.? - Sending file. Request path: '/images/throbber.gif'. Physical path: 'N/A'
+2017-12-07 10:48:16,941 INFO [8] ?.? - Request finished in 5.8108ms 200 image/gif
+2017-12-07 10:48:16,945 INFO [9] ?.? - Request starting HTTP/1.1 POST http://localhost:50074/api/warehouse application/json-patch+json 1499
+2017-12-07 10:48:17,090 INFO [9] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.ImportWarehouses (PLS.SKS.Package.Services) with arguments (class Warehouse {
+  Code: WH01
+  Description: Superwarehouse 01
+  Duration: 1,5
+  NextHops: System.Collections.Generic.List`1[IO.Swagger.Models.Warehouse]
+  Trucks: System.Collections.Generic.List`1[IO.Swagger.Models.Truck]
+}
+) - ModelState is Valid
+2017-12-07 10:48:17,093 INFO [9] ?.? - Calling the ImportWarehouses action
+2017-12-07 10:48:21,427 INFO [9] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-07 10:48:21,437 INFO [9] ?.? - Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ALTER TABLE [Recipients] NOCHECK CONSTRAINT ALL
+2017-12-07 10:48:21,442 INFO [9] ?.? - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ALTER TABLE [Trucks] NOCHECK CONSTRAINT ALL
+2017-12-07 10:48:21,445 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ALTER TABLE [Warehouses] NOCHECK CONSTRAINT ALL
+2017-12-07 10:48:21,449 INFO [9] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ALTER TABLE [HopArrivals] NOCHECK CONSTRAINT ALL
+2017-12-07 10:48:21,452 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ALTER TABLE [TrackingInformations] NOCHECK CONSTRAINT ALL
+2017-12-07 10:48:21,455 INFO [9] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ALTER TABLE [Parcels] NOCHECK CONSTRAINT ALL
+2017-12-07 10:48:21,459 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+DELETE FROM [Recipients]
+2017-12-07 10:48:21,462 INFO [9] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+DELETE FROM [Trucks]
+2017-12-07 10:48:21,464 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+DELETE FROM [Warehouses]
+2017-12-07 10:48:21,467 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+DELETE FROM [HopArrivals]
+2017-12-07 10:48:21,469 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+DELETE FROM [TrackingInformations]
+2017-12-07 10:48:21,472 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+DELETE FROM [Parcels]
+2017-12-07 10:48:21,475 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ALTER TABLE [Recipients] WITH CHECK CHECK CONSTRAINT ALL
+2017-12-07 10:48:21,478 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ALTER TABLE [Trucks] WITH CHECK CHECK CONSTRAINT ALL
+2017-12-07 10:48:21,481 INFO [9] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ALTER TABLE [Warehouses] WITH CHECK CHECK CONSTRAINT ALL
+2017-12-07 10:48:21,484 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ALTER TABLE [HopArrivals] WITH CHECK CHECK CONSTRAINT ALL
+2017-12-07 10:48:21,487 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ALTER TABLE [TrackingInformations] WITH CHECK CHECK CONSTRAINT ALL
+2017-12-07 10:48:21,490 INFO [9] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ALTER TABLE [Parcels] WITH CHECK CHECK CONSTRAINT ALL
+2017-12-07 10:48:21,493 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+DBCC CHECKIDENT ('[Recipients]', RESEED, 0)
+2017-12-07 10:48:21,496 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+DBCC CHECKIDENT ('[Trucks]', RESEED, 0)
+2017-12-07 10:48:21,498 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+DBCC CHECKIDENT ('[Warehouses]', RESEED, 0)
+2017-12-07 10:48:21,501 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+DBCC CHECKIDENT ('[HopArrivals]', RESEED, 0)
+2017-12-07 10:48:21,503 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+DBCC CHECKIDENT ('[TrackingInformations]', RESEED, 0)
+2017-12-07 10:48:21,505 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+DBCC CHECKIDENT ('[Parcels]', RESEED, 0)
+2017-12-07 10:48:21,742 INFO [9] ?.? - Executed DbCommand (28ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?', @p3='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Warehouses] ([Code], [Description], [Duration], [WarehouseId])
+VALUES (@p0, @p1, @p2, @p3);
+SELECT [Id]
+FROM [Warehouses]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-12-07 10:48:21,767 INFO [9] ?.? - Executed DbCommand (1ms) [Parameters=[@p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?', @p7='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Warehouses] ([Code], [Description], [Duration], [WarehouseId])
+VALUES (@p4, @p5, @p6, @p7);
+SELECT [Id]
+FROM [Warehouses]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-12-07 10:48:21,791 INFO [9] ?.? - Executed DbCommand (8ms) [Parameters=[@p8='?' (Size = 4000), @p9='?' (Size = 4000), @p10='?', @p11='?', @p12='?' (Size = 4000), @p13='?' (Size = 4000), @p14='?', @p15='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+DECLARE @inserted0 TABLE ([Id] int, [_Position] [int]);
+MERGE [Warehouses] USING (
+VALUES (@p8, @p9, @p10, @p11, 0),
+(@p12, @p13, @p14, @p15, 1)) AS i ([Code], [Description], [Duration], [WarehouseId], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Code], [Description], [Duration], [WarehouseId])
+VALUES (i.[Code], i.[Description], i.[Duration], i.[WarehouseId])
+OUTPUT INSERTED.[Id], i._Position
+INTO @inserted0;
+
+SELECT [t].[Id] FROM [Warehouses] t
+INNER JOIN @inserted0 i ON ([t].[Id] = [i].[Id])
+ORDER BY [i].[_Position];
+2017-12-07 10:48:21,805 INFO [9] ?.? - Executed DbCommand (8ms) [Parameters=[@p16='?' (Size = 4000), @p17='?', @p18='?', @p19='?', @p20='?' (Size = 4000), @p21='?', @p22='?', @p23='?' (Size = 4000), @p24='?', @p25='?', @p26='?', @p27='?' (Size = 4000), @p28='?', @p29='?', @p30='?' (Size = 4000), @p31='?', @p32='?', @p33='?', @p34='?' (Size = 4000), @p35='?', @p36='?', @p37='?' (Size = 4000), @p38='?', @p39='?', @p40='?', @p41='?' (Size = 4000), @p42='?', @p43='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+DECLARE @inserted0 TABLE ([Id] int, [_Position] [int]);
+MERGE [Trucks] USING (
+VALUES (@p16, @p17, @p18, @p19, @p20, @p21, @p22, 0),
+(@p23, @p24, @p25, @p26, @p27, @p28, @p29, 1),
+(@p30, @p31, @p32, @p33, @p34, @p35, @p36, 2),
+(@p37, @p38, @p39, @p40, @p41, @p42, @p43, 3)) AS i ([Code], [Duration], [Latitude], [Longitude], [NumberPlate], [Radius], [WarehouseId], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Code], [Duration], [Latitude], [Longitude], [NumberPlate], [Radius], [WarehouseId])
+VALUES (i.[Code], i.[Duration], i.[Latitude], i.[Longitude], i.[NumberPlate], i.[Radius], i.[WarehouseId])
+OUTPUT INSERTED.[Id], i._Position
+INTO @inserted0;
+
+SELECT [t].[Id] FROM [Trucks] t
+INNER JOIN @inserted0 i ON ([t].[Id] = [i].[Id])
+ORDER BY [i].[_Position];
+2017-12-07 10:48:21,821 INFO [9] ?.? - Executed action IO.Swagger.Controllers.DefaultApiController.ImportWarehouses (PLS.SKS.Package.Services) in 4821.2931ms
+2017-12-07 10:48:21,825 INFO [9] ?.? - Request finished in 4880.3656ms 200 
+2017-12-07 10:49:31,977 INFO [8] ?.? - Request starting HTTP/1.1 POST http://localhost:50074/api/parcel application/json-patch+json 173
+2017-12-07 10:49:31,997 INFO [8] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.SubmitParcel (PLS.SKS.Package.Services) with arguments (class Parcel {
+  Weight: 12
+  Recipient: class Receipient {
+  FirstName: String
+  LastName: String
+  Street: Schlagergasse 1
+  PostalCode: A-1234
+  City: Wien
+}
+
+}
+) - ModelState is Valid
+2017-12-07 10:49:32,000 INFO [8] ?.? - Calling the SubmitParcel action
+2017-12-07 10:49:32,063 INFO [8] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-07 10:49:32,076 INFO [8] ?.? - Executed DbCommand (1ms) [Parameters=[@p0='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [TrackingInformations] ([State])
+VALUES (@p0);
+SELECT [Id]
+FROM [TrackingInformations]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-12-07 10:49:33,452 INFO [8] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [t].[Id], [t].[Code], [t].[Duration], [t].[Latitude], [t].[Longitude], [t].[NumberPlate], [t].[Radius], [t].[WarehouseId]
+FROM [Trucks] AS [t]
+2017-12-07 10:49:33,674 INFO [8] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+ORDER BY [w].[Id]
+2017-12-07 10:49:33,683 INFO [8] ?.? - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT [w0].[Id]
+    FROM [Warehouses] AS [w0]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-12-07 10:49:33,695 INFO [8] ?.? - Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT [w1].[Id]
+    FROM [Warehouses] AS [w1]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-12-07 10:49:33,703 INFO [8] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+ORDER BY [w].[Id]
+2017-12-07 10:49:33,705 INFO [8] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT [w0].[Id]
+    FROM [Warehouses] AS [w0]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-12-07 10:49:33,708 INFO [8] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT [w1].[Id]
+    FROM [Warehouses] AS [w1]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-12-07 10:49:33,710 INFO [8] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+ORDER BY [w].[Id]
+2017-12-07 10:49:33,713 INFO [8] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT [w0].[Id]
+    FROM [Warehouses] AS [w0]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-12-07 10:49:33,715 INFO [8] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT [w1].[Id]
+    FROM [Warehouses] AS [w1]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-12-07 10:49:33,717 INFO [8] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+ORDER BY [w].[Id]
+2017-12-07 10:49:33,719 INFO [8] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT [w0].[Id]
+    FROM [Warehouses] AS [w0]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-12-07 10:49:33,721 INFO [8] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT [w1].[Id]
+    FROM [Warehouses] AS [w1]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-12-07 10:49:33,739 INFO [8] ?.? - Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 4000), @p1='?', @p2='?' (Size = 4000), @p3='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [HopArrivals] ([Code], [DateTime], [Status], [TrackingInformationId])
+VALUES (@p0, @p1, @p2, @p3);
+SELECT [Id]
+FROM [HopArrivals]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-12-07 10:49:33,746 INFO [8] ?.? - Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 4000), @p1='?', @p2='?' (Size = 4000), @p3='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [HopArrivals] ([Code], [DateTime], [Status], [TrackingInformationId])
+VALUES (@p0, @p1, @p2, @p3);
+SELECT [Id]
+FROM [HopArrivals]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-12-07 10:49:33,749 INFO [8] ?.? - Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 4000), @p1='?', @p2='?' (Size = 4000), @p3='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [HopArrivals] ([Code], [DateTime], [Status], [TrackingInformationId])
+VALUES (@p0, @p1, @p2, @p3);
+SELECT [Id]
+FROM [HopArrivals]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-12-07 10:49:33,752 INFO [8] ?.? - Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 4000), @p1='?', @p2='?' (Size = 4000), @p3='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [HopArrivals] ([Code], [DateTime], [Status], [TrackingInformationId])
+VALUES (@p0, @p1, @p2, @p3);
+SELECT [Id]
+FROM [HopArrivals]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-12-07 10:49:33,781 INFO [8] ?.? - Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Recipients] ([City], [FirstName], [LastName], [PostalCode], [Street])
+VALUES (@p0, @p1, @p2, @p3, @p4);
+SELECT [Id]
+FROM [Recipients]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-12-07 10:49:33,786 INFO [8] ?.? - Executed DbCommand (2ms) [Parameters=[@p5='?', @p6='?', @p7='?' (Size = 4000), @p8='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Parcels] ([RecipientId], [TrackingInformationId], [TrackingNumber], [Weight])
+VALUES (@p5, @p6, @p7, @p8);
+SELECT [Id]
+FROM [Parcels]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-12-07 10:49:33,795 INFO [8] ?.? - Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+2017-12-07 10:49:33,802 INFO [8] ?.? - Executed action IO.Swagger.Controllers.DefaultApiController.SubmitParcel (PLS.SKS.Package.Services) in 1818.9463ms
+2017-12-07 10:49:33,804 INFO [8] ?.? - Request finished in 1828.0687ms 200 application/json; charset=utf-8
+2017-12-07 10:49:54,183 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/api/parcel/1HFBMFFQ  
+2017-12-07 10:49:54,189 INFO [8] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.TrackParcel (PLS.SKS.Package.Services) with arguments (1HFBMFFQ) - ModelState is Valid
+2017-12-07 10:49:54,191 INFO [8] ?.? - Calling the TrackParcel action
+2017-12-07 10:49:54,195 INFO [8] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-07 10:49:54,277 INFO [8] ?.? - Executed DbCommand (9ms) [Parameters=[@__TrackingNumber_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[RecipientId], [p].[TrackingInformationId], [p].[TrackingNumber], [p].[Weight], [p.TrackingInformation].[Id], [p.TrackingInformation].[State], [p.Recipient].[Id], [p.Recipient].[City], [p.Recipient].[FirstName], [p.Recipient].[LastName], [p.Recipient].[PostalCode], [p.Recipient].[Street]
+FROM [Parcels] AS [p]
+INNER JOIN [TrackingInformations] AS [p.TrackingInformation] ON [p].[TrackingInformationId] = [p.TrackingInformation].[Id]
+INNER JOIN [Recipients] AS [p.Recipient] ON [p].[RecipientId] = [p.Recipient].[Id]
+WHERE [p].[TrackingNumber] = @__TrackingNumber_0
+2017-12-07 10:49:54,294 INFO [8] ?.? - Executed DbCommand (1ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [h].[Id], [h].[Code], [h].[DateTime], [h].[Status], [h].[TrackingInformationId]
+FROM [HopArrivals] AS [h]
+WHERE [h].[TrackingInformationId] = @__id_0
+2017-12-07 10:49:54,348 INFO [8] ?.? - Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+2017-12-07 10:49:54,359 INFO [8] ?.? - Executed action IO.Swagger.Controllers.DefaultApiController.TrackParcel (PLS.SKS.Package.Services) in 171.8144ms
+2017-12-07 10:49:54,361 INFO [8] ?.? - Request finished in 178.1415ms 200 application/json; charset=utf-8
+2017-12-07 11:11:49,861 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-07 11:11:50,894 INFO [2] ?.? - Executed DbCommand (10ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-07 11:11:50,899 INFO [2] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-07 11:11:50,917 INFO [2] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2017-12-07 11:11:50,947 INFO [2] ?.? - No migrations were applied. The database is already up to date.
+2017-12-07 11:11:51,419 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/  
+2017-12-07 11:11:51,521 INFO [8] ?.? - Request finished in 116.4088ms 404 
+2017-12-07 11:12:30,205 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-07 11:12:31,229 INFO [2] ?.? - Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-07 11:12:31,234 INFO [2] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-07 11:12:31,253 INFO [2] ?.? - Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2017-12-07 11:12:31,268 INFO [2] ?.? - No migrations were applied. The database is already up to date.
+2017-12-07 11:12:31,658 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/  
+2017-12-07 11:12:31,747 INFO [8] ?.? - Request finished in 102.6859ms 404 
+2017-12-07 11:15:40,709 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-07 11:15:41,757 INFO [2] ?.? - Executed DbCommand (10ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-07 11:15:41,762 INFO [2] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-07 11:15:41,785 INFO [2] ?.? - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2017-12-07 11:15:41,800 INFO [2] ?.? - No migrations were applied. The database is already up to date.
+2017-12-07 11:15:42,308 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/  
+2017-12-07 11:15:42,405 INFO [8] ?.? - Request finished in 112.9322ms 404 
+2017-12-07 11:15:46,103 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/index  
+2017-12-07 11:15:46,107 INFO [9] ?.? - Request finished in 7.7139ms 404 
+2017-12-07 11:15:58,569 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/RazorPages/Index  
+2017-12-07 11:15:58,572 INFO [8] ?.? - Request finished in 2.1928ms 404 
+2017-12-07 11:21:07,742 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-07 11:21:08,741 INFO [2] ?.? - Executed DbCommand (10ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-07 11:21:08,746 INFO [2] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-07 11:21:08,768 INFO [2] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2017-12-07 11:21:08,783 INFO [2] ?.? - No migrations were applied. The database is already up to date.
+2017-12-07 11:21:09,294 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/  
+2017-12-07 11:21:12,660 INFO [8] ?.? - Executing handler method OnGet with arguments ((null)) - ModelState is Valid
+2017-12-07 11:21:12,698 INFO [8] ?.? - Executed action /Index in 45.8674ms
+2017-12-07 11:21:12,704 INFO [8] ?.? - Request finished in 3424.2885ms 200 text/html; charset=utf-8
+2017-12-07 11:23:27,356 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-07 11:23:28,415 INFO [2] ?.? - Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-07 11:23:28,419 INFO [2] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-07 11:23:28,437 INFO [2] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2017-12-07 11:23:28,454 INFO [2] ?.? - No migrations were applied. The database is already up to date.
+2017-12-07 11:23:28,901 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/  
+2017-12-07 11:23:31,855 INFO [8] ?.? - Executing handler method OnGet with arguments ((null)) - ModelState is Valid
+2017-12-07 11:23:31,900 INFO [8] ?.? - Executed action /Index in 52.3122ms
+2017-12-07 11:23:31,906 INFO [8] ?.? - Request finished in 3020.626ms 200 text/html; charset=utf-8
+2017-12-07 11:23:36,901 INFO [10] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/Pages/submitParcel.cshtml  
+2017-12-07 11:23:36,905 INFO [10] ?.? - Request finished in 4.0494ms 404 
+2017-12-07 11:24:19,653 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-07 11:24:20,704 INFO [2] ?.? - Executed DbCommand (10ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-07 11:24:20,707 INFO [2] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-07 11:24:20,725 INFO [2] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2017-12-07 11:24:20,739 INFO [2] ?.? - No migrations were applied. The database is already up to date.
+2017-12-07 11:24:21,090 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/  
+2017-12-07 11:24:23,573 INFO [8] ?.? - Executing handler method OnGet with arguments ((null)) - ModelState is Valid
+2017-12-07 11:24:23,608 INFO [8] ?.? - Executed action /Index in 40.2923ms
+2017-12-07 11:24:23,613 INFO [8] ?.? - Request finished in 2537.7311ms 200 text/html; charset=utf-8
+2017-12-07 11:24:24,905 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/submitParcel.cshtml  
+2017-12-07 11:24:24,909 INFO [9] ?.? - Request finished in 4.4725ms 404 
+2017-12-07 11:24:30,784 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/Pages/submitParcel.cshtml  
+2017-12-07 11:24:30,786 INFO [9] ?.? - Request finished in 2.603ms 404 
+2017-12-07 11:25:52,588 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-07 11:25:53,478 INFO [2] ?.? - Executed DbCommand (11ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-07 11:25:53,482 INFO [2] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-07 11:25:53,504 INFO [2] ?.? - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2017-12-07 11:25:53,523 INFO [2] ?.? - No migrations were applied. The database is already up to date.
+2017-12-07 11:25:53,859 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/  
+2017-12-07 11:25:56,640 INFO [8] ?.? - Executing handler method OnGet with arguments ((null)) - ModelState is Valid
+2017-12-07 11:25:56,672 INFO [8] ?.? - Executed action /Index in 39.0958ms
+2017-12-07 11:25:56,678 INFO [8] ?.? - Request finished in 2831.8619ms 200 text/html; charset=utf-8
+2017-12-07 11:26:01,476 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/submitParcel.cshtml  
+2017-12-07 11:26:01,480 INFO [8] ?.? - Request finished in 4.0529ms 404 
+2017-12-07 11:28:00,621 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-07 11:28:01,601 INFO [2] ?.? - Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-07 11:28:01,604 INFO [2] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-07 11:28:01,628 INFO [2] ?.? - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2017-12-07 11:28:01,642 INFO [2] ?.? - No migrations were applied. The database is already up to date.
+2017-12-07 11:28:02,015 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/  
+2017-12-07 11:28:04,846 INFO [8] ?.? - Executing handler method OnGet with arguments ((null)) - ModelState is Valid
+2017-12-07 11:28:04,879 INFO [8] ?.? - Executed action /Index in 41.5168ms
+2017-12-07 11:28:04,884 INFO [8] ?.? - Request finished in 2886.0714ms 200 text/html; charset=utf-8
+2017-12-07 11:29:38,236 INFO [26] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/submitParcel.cshtml  
+2017-12-07 11:29:38,240 INFO [26] ?.? - Request finished in 4.0825ms 404 
+2017-12-07 11:32:49,617 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-07 11:32:50,693 INFO [2] ?.? - Executed DbCommand (13ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-07 11:32:50,698 INFO [2] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-07 11:32:50,721 INFO [2] ?.? - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2017-12-07 11:32:50,739 INFO [2] ?.? - No migrations were applied. The database is already up to date.
+2017-12-07 11:32:51,058 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/  
+2017-12-07 11:32:54,375 INFO [8] ?.? - Executing handler method OnGet with arguments ((null)) - ModelState is Valid
+2017-12-07 11:32:54,418 INFO [8] ?.? - Executed action /Index in 51.1789ms
+2017-12-07 11:32:54,424 INFO [8] ?.? - Request finished in 3386.3532ms 200 text/html; charset=utf-8
+2017-12-07 11:32:56,126 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/  
+2017-12-07 11:32:56,128 INFO [9] ?.? - Executing handler method OnGet with arguments ((null)) - ModelState is Valid
+2017-12-07 11:32:56,136 INFO [9] ?.? - Executed action /Index in 5.9375ms
+2017-12-07 11:32:56,139 INFO [9] ?.? - Request finished in 12.7845ms 200 text/html; charset=utf-8
+2017-12-07 11:40:53,389 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-07 11:40:54,424 INFO [2] ?.? - Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-07 11:40:54,427 INFO [2] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-07 11:40:54,450 INFO [2] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2017-12-07 11:40:54,464 INFO [2] ?.? - No migrations were applied. The database is already up to date.
+2017-12-07 11:40:54,850 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/  
+2017-12-07 11:40:57,726 INFO [8] ?.? - Executing handler method OnGet with arguments ((null)) - ModelState is Valid
+2017-12-07 11:40:57,760 INFO [8] ?.? - Executed action /Index in 40.4778ms
+2017-12-07 11:40:57,766 INFO [8] ?.? - Request finished in 2930.3824ms 200 text/html; charset=utf-8
+2017-12-07 11:44:21,633 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-07 11:44:22,503 INFO [2] ?.? - Executed DbCommand (10ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-07 11:44:22,508 INFO [2] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-07 11:44:22,528 INFO [2] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2017-12-07 11:44:22,542 INFO [2] ?.? - No migrations were applied. The database is already up to date.
+2017-12-07 11:44:22,987 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/  
+2017-12-07 11:44:25,916 INFO [8] ?.? - Executing handler method OnGet with arguments ((null)) - ModelState is Valid
+2017-12-07 11:44:25,951 INFO [8] ?.? - Executed action /Index in 42.8251ms
+2017-12-07 11:44:25,957 INFO [8] ?.? - Request finished in 2984.7707ms 200 text/html; charset=utf-8
+2017-12-07 11:45:14,137 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-07 11:45:15,058 INFO [2] ?.? - Executed DbCommand (17ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-07 11:45:15,063 INFO [2] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-07 11:45:15,090 INFO [2] ?.? - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2017-12-07 11:45:15,110 INFO [2] ?.? - No migrations were applied. The database is already up to date.
+2017-12-07 11:45:15,561 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/  
+2017-12-07 11:45:18,465 INFO [8] ?.? - Executing handler method OnGet with arguments ((null)) - ModelState is Valid
+2017-12-07 11:45:18,497 INFO [8] ?.? - Executed action /Index in 38.3777ms
+2017-12-07 11:45:18,502 INFO [8] ?.? - Request finished in 2955.7146ms 200 text/html; charset=utf-8
