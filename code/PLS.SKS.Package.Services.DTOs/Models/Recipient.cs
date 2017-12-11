@@ -28,9 +28,9 @@ namespace IO.Swagger.Models
     {
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Receipient" /> class.
+        /// Initializes a new instance of the <see cref="Recipient" /> class.
         /// </summary>
-        /// <param name="FirstName">FirstName (required).</param>
+        /// <param name="FirstName">FirstName (required).</param>s
         /// <param name="LastName">LastName (required).</param>
         /// <param name="Street">Street (required).</param>
         /// <param name="PostalCode">PostalCode (required).</param>
@@ -84,6 +84,8 @@ namespace IO.Swagger.Models
             }
             
         }
+
+		public Recipient() { }
 
         /// <summary>
         /// Gets or Sets FirstName

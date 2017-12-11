@@ -7,52 +7,53 @@ using PLS.SKS.Package;
 using Microsoft.Extensions.DependencyInjection;
 using PLS.SKS.Package.DataAccess.Interfaces;
 using Microsoft.Extensions.Logging;
+using PLS.SKS.Package.BusinessLogic.Helpers;
 
 namespace PLS.SKS.Package.BusinessLogic
 {
     public class HopArrivalLogic : Interfaces.IHopArrivalLogic
     {
-		private IParcelRepository parcelRepo;
-        private ITrackingInformationRepository trackingRepo;
-        private IHopArrivalRepository hopArrivalRepo;
-		private ILogger<HopArrivalLogic> logger;
-		private AutoMapper.IMapper mapper;
+		private readonly IParcelRepository _parcelRepo;
+        private readonly ITrackingInformationRepository _trackingRepo;
+        private readonly IHopArrivalRepository _hopArrivalRepo;
+		private readonly ILogger<HopArrivalLogic> _logger;
+		private readonly AutoMapper.IMapper _mapper;
 
 		public HopArrivalLogic(IParcelRepository parcelRepository, ITrackingInformationRepository trackingInformationRepository, IHopArrivalRepository hopArrivalRepository, ILogger<HopArrivalLogic> logger, AutoMapper.IMapper mapper)
 		{
-			parcelRepo = parcelRepository;
-			trackingRepo = trackingInformationRepository;
-			hopArrivalRepo = hopArrivalRepository;
-			this.logger = logger;
-			this.mapper = mapper;
+			_parcelRepo = parcelRepository;
+			_trackingRepo = trackingInformationRepository;
+			_hopArrivalRepo = hopArrivalRepository;
+			_logger = logger;
+			_mapper = mapper;
 		}
 
 		public void ScanParcel(string trackingNumber, string code)
         {
             try
             {
-                DataAccess.Entities.Parcel dalParcel = parcelRepo.GetByTrackingNumber(trackingNumber);
+                DataAccess.Entities.Parcel dalParcel = _parcelRepo.GetByTrackingNumber(trackingNumber);
                 if(dalParcel == null)
                 {
-                    throw new BLException("Parcel not found in Database");
+                    throw new BlException("Parcel not found in Database");
                 }
-                DataAccess.Entities.TrackingInformation dalInfo = trackingRepo.GetById(dalParcel.TrackingInformationId);
-                List<DataAccess.Entities.HopArrival> hopArr = hopArrivalRepo.GetByTrackingInformationId(dalInfo.Id);
+                DataAccess.Entities.TrackingInformation dalInfo = _trackingRepo.GetById(dalParcel.TrackingInformationId);
+                List<DataAccess.Entities.HopArrival> hopArr = _hopArrivalRepo.GetByTrackingInformationId(dalInfo.Id);
 
                 int index = hopArr.FindIndex(a => a.Code == code);
                 if (index == -1)
                 {
-                    throw new BLException("Wrong hop for parcel");
+                    throw new BlException("Wrong hop for parcel");
                 }
                 hopArr[index].Status = "visited";
                 hopArr[index].DateTime = DateTime.Now;
 
-                hopArrivalRepo.Update(hopArr[index]);
+                _hopArrivalRepo.Update(hopArr[index]);
             }
 			catch (Exception ex)
 			{
-				logger.LogError("Could not update parcel information", ex);
-				throw new BLException("Could not update parcel information", ex);
+				_logger.LogError("Could not update parcel information", ex);
+				throw new BlException("Could not update parcel information", ex);
 			}
 		}
     }

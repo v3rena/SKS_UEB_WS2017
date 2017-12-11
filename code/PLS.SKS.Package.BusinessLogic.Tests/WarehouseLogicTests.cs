@@ -5,6 +5,7 @@ using System.Text;
 using PLS.SKS.Package.DataAccess.Mock;
 using Moq;
 using Microsoft.Extensions.Logging;
+using PLS.SKS.Package.BusinessLogic.Helpers;
 
 namespace PLS.SKS.Package.BusinessLogic.Tests
 {
@@ -80,7 +81,7 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
 
             //Act
             //Assert
-            Assert.ThrowsException<BLException>(() => warehouseLogic.ExportWarehouses());
+            Assert.ThrowsException<BlException>(() => warehouseLogic.ExportWarehouses());
         }
 
         [TestMethod]
@@ -117,7 +118,7 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
 			var cleaner = mockCleaner.Object;
 			Interfaces.IWarehouseLogic warehouseLogic = new WarehouseLogic(mockWareRepo, warehouseLogicLogger, mapper, cleaner);
 
-            Assert.ThrowsException<BLException>(() => warehouseLogic.ImportWarehouses(invalidRoot));
+            Assert.ThrowsException<BlException>(() => warehouseLogic.ImportWarehouses(invalidRoot));
         }
     }
 }

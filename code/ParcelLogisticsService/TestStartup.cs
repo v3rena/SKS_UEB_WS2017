@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using PLS.SKS.Package.DataAccess.Sql;
+using DbContext = PLS.SKS.Package.DataAccess.Sql.DbContext;
 
 namespace PLS.SKS.Package.Services
 {
@@ -16,7 +17,7 @@ namespace PLS.SKS.Package.Services
         {
         }
 
-        public override void SetupDB(IServiceCollection services)
+        public override void SetupDb(IServiceCollection services)
         {
             //Add Database Context
             var connectionStringBuilder = new SqliteConnectionStringBuilder { DataSource = "ParcelLogistics.db" };
@@ -24,19 +25,19 @@ namespace PLS.SKS.Package.Services
             var test = sqliteConnection.ConnectionString;
             sqliteConnection.Open();
 
-            services.AddDbContext<DataAccess.Sql.DBContext>(options =>
+            services.AddDbContext<DataAccess.Sql.DbContext>(options =>
             options.UseSqlite(sqliteConnection));
         }
 
-        public override void EnsureDatabaseCreated(DBContext dbContext)
+        public override void EnsureDatabaseCreated(DbContext dbContext)
         {
             dbContext.Database.OpenConnection();
             //var created = dbContext.Database.EnsureCreated();
             dbContext.Database.Migrate();
-            DBInitializer.Initialize(dbContext);
+            DbInitializer.Initialize(dbContext);
         }
 
-        public override void AddDBCleaner(IServiceCollection services)
+        public override void AddDbCleaner(IServiceCollection services)
         {
             services.AddScoped<DataAccess.Interfaces.IDbCleaner, DataAccess.Sql.SQLiteCleaner>();
         }

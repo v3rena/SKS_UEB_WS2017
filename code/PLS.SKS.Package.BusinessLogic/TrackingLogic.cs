@@ -6,63 +6,62 @@ using PLS.SKS.Package.DataAccess.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using PLS.SKS.Package.BusinessLogic.Helpers;
 
 namespace PLS.SKS.Package.BusinessLogic
 {
     public class TrackingLogic : Interfaces.ITrackingLogic
     {
-		private IParcelRepository parcelRepo;
-        private IHopArrivalRepository hopRepo;
-        private ITrackingInformationRepository trackRepo;
-		private ILogger<TrackingLogic> logger;
-		private AutoMapper.IMapper mapper;
+		private readonly IParcelRepository _parcelRepo;
+        private readonly IHopArrivalRepository _hopRepo;
+		private readonly ILogger<TrackingLogic> _logger;
+		private readonly AutoMapper.IMapper _mapper;
 
 
-		public TrackingLogic(IParcelRepository parcelRepository, IHopArrivalRepository hopRepository, ITrackingInformationRepository trackRepository, ILogger<TrackingLogic> logger, AutoMapper.IMapper mapper)
+		public TrackingLogic(IParcelRepository parcelRepository, IHopArrivalRepository hopRepository, ILogger<TrackingLogic> logger, AutoMapper.IMapper mapper)
 		{
-			parcelRepo = parcelRepository;
-            hopRepo = hopRepository;
-            trackRepo = trackRepository;
-			this.logger = logger;
-			this.mapper = mapper;
+			_parcelRepo = parcelRepository;
+            _hopRepo = hopRepository;
+			this._logger = logger;
+			this._mapper = mapper;
 		}
 
 		public IO.Swagger.Models.TrackingInformation TrackParcel(string trackingNumber)
         {
 			try
 			{
-				DataAccess.Entities.Parcel dalParcel = parcelRepo.GetByTrackingNumber(trackingNumber);
+				DataAccess.Entities.Parcel dalParcel = _parcelRepo.GetByTrackingNumber(trackingNumber);
 				if (dalParcel == null)
 				{
-					throw new BLException("Parcel not found in Database");
+					throw new BlException("Parcel not found in Database");
 				}
 
-				List<DataAccess.Entities.HopArrival> hopArr = hopRepo.GetByTrackingInformationId(dalParcel.TrackingInformationId);
+				List<DataAccess.Entities.HopArrival> hopArr = _hopRepo.GetByTrackingInformationId(dalParcel.TrackingInformationId);
 
 				foreach (var h in hopArr)
 				{
 					if (h.Status == "visited")
 					{
-						dalParcel.TrackingInformation.visitedHops.Add(h);
+						dalParcel.TrackingInformation.VisitedHops.Add(h);
 					}
 					else if (h.Status == "future")
 					{
-						dalParcel.TrackingInformation.futureHops.Add(h);
+						dalParcel.TrackingInformation.FutureHops.Add(h);
 					}
 				}
 	
-				Entities.Parcel blParcel = mapper.Map<Entities.Parcel>(dalParcel);
+				Entities.Parcel blParcel = _mapper.Map<Entities.Parcel>(dalParcel);
 				if (blParcel != null)
 				{
-					logger.LogError(ValidateParcel(blParcel));
+					_logger.LogError(ValidateParcel(blParcel));
 				}
-				IO.Swagger.Models.TrackingInformation info = mapper.Map<IO.Swagger.Models.TrackingInformation>(blParcel.TrackingInformation);
+				IO.Swagger.Models.TrackingInformation info = _mapper.Map<IO.Swagger.Models.TrackingInformation>(blParcel.TrackingInformation);
 				return info;
 			}
 			catch (Exception ex)
 			{
-				logger.LogError("Could not find parcel", ex);
-				throw new BLException("Could not find parcel", ex);
+				_logger.LogError("Could not find parcel", ex);
+				throw new BlException("Could not find parcel", ex);
 			}
 		}
 

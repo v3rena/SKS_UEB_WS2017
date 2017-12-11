@@ -12,8 +12,8 @@ namespace PLS.SKS.Package.BusinessLogic.Entities
         public TrackingInformation(StateEnum state, List<HopArrival> futureHops)
         {
             State = state;
-            this.futureHops = futureHops;
-            visitedHops = new List<HopArrival>();
+            this.FutureHops = futureHops;
+            VisitedHops = new List<HopArrival>();
         }
 
 		public TrackingInformation(StateEnum state)
@@ -34,8 +34,8 @@ namespace PLS.SKS.Package.BusinessLogic.Entities
 		}
 
 		public StateEnum State { get; set; }
-		public List<HopArrival> visitedHops = new List<HopArrival>();
-		public List<HopArrival> futureHops = new List<HopArrival>();
+		public List<HopArrival> VisitedHops = new List<HopArrival>();
+		public List<HopArrival> FutureHops = new List<HopArrival>();
 
         public void AddVisited(HopArrival visited)
         {

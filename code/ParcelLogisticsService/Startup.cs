@@ -28,7 +28,7 @@ namespace PLS.SKS.Package.Services
         public void ConfigureServices(IServiceCollection services)
         {
 			//Add Database Context
-            SetupDB(services);            
+            SetupDb(services);            
 
             //Add BusinessLogic Components
             services.AddScoped<BusinessLogic.Interfaces.IHopArrivalLogic, BusinessLogic.HopArrivalLogic>();
@@ -45,7 +45,7 @@ namespace PLS.SKS.Package.Services
 			services.AddScoped<DataAccess.Interfaces.IWarehouseRepository, DataAccess.Sql.SqlWarehouseRepository>();
 
 			//Add DbCleaner
-            AddDBCleaner(services);
+            AddDbCleaner(services);
 
 			//Add GeoEncodingAgent
 			services.AddScoped<ServiceAgents.Interfaces.IGeoEncodingAgent, ServiceAgents.GoogleEncodingAgent>();
@@ -64,19 +64,19 @@ namespace PLS.SKS.Package.Services
             });
         }
 
-        public virtual void AddDBCleaner(IServiceCollection services)
+		// Enables Reuse in Testing
+		public virtual void AddDbCleaner(IServiceCollection services)
         {
             services.AddScoped<DataAccess.Interfaces.IDbCleaner, DataAccess.Sql.DbCleaner>();
         }
-
-        // Enables Reuse in Testing
-        public virtual void SetupDB(IServiceCollection services)
+        
+        public virtual void SetupDb(IServiceCollection services)
         {
-            services.AddDbContext<DataAccess.Sql.DBContext>(options =>
+            services.AddDbContext<DataAccess.Sql.DbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 
-        public virtual void EnsureDatabaseCreated(DataAccess.Sql.DBContext dbContext)
+        public virtual void EnsureDatabaseCreated(DataAccess.Sql.DbContext dbContext)
         {
             // Run Migrations
             dbContext.Database.Migrate();
@@ -106,12 +106,18 @@ namespace PLS.SKS.Package.Services
 			using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>()
                 .CreateScope())
             {
-                var dbContext = serviceScope.ServiceProvider.GetService<DataAccess.Sql.DBContext>();
+                var dbContext = serviceScope.ServiceProvider.GetService<DataAccess.Sql.DbContext>();
                 EnsureDatabaseCreated(dbContext);
             }
-            //-----------
+			//-----------
+			app.UseStaticFiles();
 
-            app.UseMvc();
-        }
+			app.UseMvc(routes =>
+			{
+				routes.MapRoute(
+					name: "default",
+					template: "{controller}/{action=Index}/{id?}");
+			});
+		}
     }
 }

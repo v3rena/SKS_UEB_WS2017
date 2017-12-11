@@ -24,13 +24,13 @@ namespace PLS.SKS.Package.BusinessLogic.MapperProfiles
                 .ForMember(model => model.Id, option => option.Ignore());
             CreateMap<Entities.TrackingInformation, DataAccess.Entities.TrackingInformation>()
                 .ForMember(model => model.Id, option => option.Ignore())
-                .AfterMap((s, d) => d.visitedHops.ForEach(
+                .AfterMap((s, d) => d.VisitedHops.ForEach(
                     delegate (DataAccess.Entities.HopArrival h)
                     {
                         h.Status = "visited";
                     })
                 )
-                .AfterMap((s, d) => d.futureHops.ForEach(
+                .AfterMap((s, d) => d.FutureHops.ForEach(
                     delegate (DataAccess.Entities.HopArrival h)
                     {
                         h.Status = "future";

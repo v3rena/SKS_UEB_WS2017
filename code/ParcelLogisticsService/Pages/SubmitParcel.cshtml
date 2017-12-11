@@ -1,0 +1,63 @@
+﻿@page
+@model PLS.SKS.Package.Services.Pages.SubmitParcelModel
+@{
+    ViewData["Title"] = "Submit Parcel";
+}
+
+<h2>SubmitParcel</h2>
+<html>
+<body>
+	<div class="row">
+		<div class="col-md-5">
+			<form method="POST">
+				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+				<div class="form-group">
+					<label asp-for="Parcel.Weight" class="control-label"></label>
+					<input asp-for="Parcel.Weight" class="form-control" />
+					<span asp-validation-for="Parcel.Weight" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="Parcel.Recipient.FirstName" class="control-label"></label>
+					<input asp-for="Parcel.Recipient.FirstName" class="form-control" />
+					<span asp-validation-for="Parcel.Recipient.FirstName" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="Parcel.Recipient.LastName" class="control-label"></label>
+					<input asp-for="Parcel.Recipient.LastName" class="form-control" />
+					<span asp-validation-for="Parcel.Recipient.LastName" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="Parcel.Recipient.Street" class="control-label"></label>
+					<input asp-for="Parcel.Recipient.Street" class="form-control" />
+					<span asp-validation-for="Parcel.Recipient.Street" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="Parcel.Recipient.PostalCode" class="control-label"></label>
+					<input asp-for="Parcel.Recipient.PostalCode" class="form-control" />
+					<span asp-validation-for="Parcel.Recipient.PostalCode" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="Parcel.Recipient.City" class="control-label"></label>
+					<input asp-for="Parcel.Recipient.City" class="form-control" />
+					<span asp-validation-for="Parcel.Recipient.City" class="text-danger"></span>
+				</div>
+				<input type="submit" />
+			</form>
+		</div>
+		@if (Model.InlineResponse200 != null && Model.InlineResponse200.TrackingId != null)
+		{
+			<div class="col-md-5">
+				<div class="center-div">
+					<h4>Your tracking number is</h4>
+					<h1>@Html.DisplayFor(model => model.InlineResponse200.TrackingId)</h1>
+				</div>
+			</div>
+		}
+	</div>
+</body>
+</html>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

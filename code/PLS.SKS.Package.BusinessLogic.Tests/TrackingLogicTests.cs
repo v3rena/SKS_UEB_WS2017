@@ -5,6 +5,7 @@ using PLS.SKS.Package.BusinessLogic;
 using PLS.SKS.Package.DataAccess.Mock;
 using System;
 using System.Collections.Generic;
+using PLS.SKS.Package.BusinessLogic.Helpers;
 
 namespace PLS.SKS.Package.BusinessLogic.Tests
 {
@@ -52,10 +53,10 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
             var hop4 = new DataAccess.Entities.HopArrival { DateTime = DateTime.Now.AddDays(3), Code = "TR01", Status = "future", TrackingInformationId = 1 };
 
             validDALInfo.Id = 1;
-            validDALInfo.visitedHops.Add(hop1);
-            validDALInfo.futureHops.Add(hop2);
-            validDALInfo.futureHops.Add(hop3);
-            validDALInfo.futureHops.Add(hop4);
+            validDALInfo.VisitedHops.Add(hop1);
+            validDALInfo.FutureHops.Add(hop2);
+            validDALInfo.FutureHops.Add(hop3);
+            validDALInfo.FutureHops.Add(hop4);
         }
         private void SetupBLTrackingInfo()
         {
@@ -66,10 +67,10 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
             var hop3 = new Entities.HopArrival { DateTime = DateTime.Now.AddDays(2), Code = "WH03", Status = "future" };
             var hop4 = new Entities.HopArrival { DateTime = DateTime.Now.AddDays(3), Code = "TR01", Status = "future" };
 
-            validBLInfo.visitedHops.Add(hop1);
-            validBLInfo.futureHops.Add(hop2);
-            validBLInfo.futureHops.Add(hop3);
-            validBLInfo.futureHops.Add(hop4);
+            validBLInfo.VisitedHops.Add(hop1);
+            validBLInfo.FutureHops.Add(hop2);
+            validBLInfo.FutureHops.Add(hop3);
+            validBLInfo.FutureHops.Add(hop4);
         }
         private void SetupSwagTrackingInfo()
         {
@@ -99,7 +100,7 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
 			var mockTrackingLogicLogger = new Mock<ILogger<TrackingLogic>>();
 			ILogger<TrackingLogic> trackingLogicLogger = mockTrackingLogicLogger.Object;
 
-			TrackingLogic trLogic = new TrackingLogic(mockParcelRepo, mockHopRepo, mockTrackRepo, trackingLogicLogger, mapper);
+			TrackingLogic trLogic = new TrackingLogic(mockParcelRepo, mockHopRepo, trackingLogicLogger, mapper);
 
             IO.Swagger.Models.TrackingInformation swagTrInfo = trLogic.TrackParcel("TN000001");
 
@@ -114,8 +115,8 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
 			var mockTrackingLogicLogger = new Mock<ILogger<TrackingLogic>>();
 			ILogger<TrackingLogic> trackingLogicLogger = mockTrackingLogicLogger.Object;
 
-			TrackingLogic trLogic = new TrackingLogic(mockParcelRepo, mockHopRepo, mockTrackRepo, trackingLogicLogger, mapper);
-            Assert.ThrowsException<BLException>(() => trLogic.TrackParcel("12"));
+			TrackingLogic trLogic = new TrackingLogic(mockParcelRepo, mockHopRepo, trackingLogicLogger, mapper);
+            Assert.ThrowsException<BlException>(() => trLogic.TrackParcel("12"));
             
 		}
 	}

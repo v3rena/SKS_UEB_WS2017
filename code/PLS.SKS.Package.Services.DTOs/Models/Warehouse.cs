@@ -70,6 +70,7 @@ namespace IO.Swagger.Models
             
         }
 
+		public Warehouse() { }
         /// <summary>
         /// Gets or Sets Code
         /// </summary>

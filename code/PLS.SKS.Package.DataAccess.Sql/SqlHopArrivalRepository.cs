@@ -11,31 +11,31 @@ namespace PLS.SKS.Package.DataAccess.Sql
 {
 	public class SqlHopArrivalRepository : IHopArrivalRepository
 	{
-		private readonly DBContext db;
-		ILogger<SqlHopArrivalRepository> logger;
+		private readonly DbContext _db;
+		private readonly ILogger<SqlHopArrivalRepository> _logger;
 
-		public SqlHopArrivalRepository(DBContext context, ILogger<SqlHopArrivalRepository> logger)
+		public SqlHopArrivalRepository(DbContext context, ILogger<SqlHopArrivalRepository> logger)
 		{
-			db = context;
-			this.logger = logger;
+			_db = context;
+			_logger = logger;
 		}
 
 		public int Create(HopArrival h)
 		{
 			try
 			{
-				db.Add(h);
-				db.SaveChanges();
+				_db.Add(h);
+				_db.SaveChanges();
 				return h.Id;
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
+				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
 				throw new DALException("Could not save hopArrival to database", ex);
 			}
 			catch (Exception ex)
 			{
-				logger.LogError("Could not save hopArrival to database", ex);
+				_logger.LogError("Could not save hopArrival to database", ex);
 				throw new DALException("Could not save hopArrival to database", ex);
 			}
 		}
@@ -44,16 +44,16 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		{
 			try
 			{
-				db.Remove(db.HopArrivals.Where(p => p.Id == id));
+				_db.Remove(_db.HopArrivals.Where(p => p.Id == id));
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
+				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
 				throw new DALException("Could not delete hopArrival", ex);
 			}
 			catch (Exception ex)
 			{
-				logger.LogError("Could not delete hopArrival", ex);
+				_logger.LogError("Could not delete hopArrival", ex);
 				throw new DALException("Could not delete hopArrival", ex);
 			}
 		}
@@ -62,16 +62,16 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		{
 			try
 			{
-				return db.HopArrivals.Find(id);
+				return _db.HopArrivals.Find(id);
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
+				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
 				throw new DALException("Could not retrieve hopArrival from database", ex);
 			}
 			catch (Exception ex)
 			{
-				logger.LogError("Could not retrieve hopArrival from database", ex);
+				_logger.LogError("Could not retrieve hopArrival from database", ex);
 				throw new DALException("Could not retrieve hopArrival from database", ex);
 			}
 		}
@@ -80,16 +80,16 @@ namespace PLS.SKS.Package.DataAccess.Sql
         {
 			try
 			{
-				return db.HopArrivals.Where(h => h.TrackingInformationId == id).ToList();
+				return _db.HopArrivals.Where(h => h.TrackingInformationId == id).ToList();
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
+				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
 				throw new DALException("Could not retrieve hopArrival from database", ex);
 			}
 			catch (Exception ex)
 			{
-				logger.LogError("Could not retrieve hopArrival from database", ex);
+				_logger.LogError("Could not retrieve hopArrival from database", ex);
 				throw new DALException("Could not retrieve hopArrival from database", ex);
 			}
 		}
@@ -98,21 +98,21 @@ namespace PLS.SKS.Package.DataAccess.Sql
 		{
 			try
 			{
-				var HopArrivalToUpdate = db.HopArrivals.SingleOrDefault(b => b.Id == h.Id);
+				var HopArrivalToUpdate = _db.HopArrivals.SingleOrDefault(b => b.Id == h.Id);
 				if (HopArrivalToUpdate != null)
 				{
 					HopArrivalToUpdate = h;
-					db.SaveChanges();
+					_db.SaveChanges();
 				}
 			}
 			catch (SqlException ex)
 			{
-				logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
+				_logger.LogError(ExceptionHelper.BuildSqlExceptionMessage(ex));
 				throw new DALException("Could not update hopArrival in database", ex);
 			}
 			catch (Exception ex)
 			{
-				logger.LogError("Could not update hopArrival in database", ex);
+				_logger.LogError("Could not update hopArrival in database", ex);
 				throw new DALException("Could not update hopArrival in database", ex);
 			}
 		}

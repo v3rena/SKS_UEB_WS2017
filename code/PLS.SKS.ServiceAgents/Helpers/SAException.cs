@@ -1,22 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace PLS.SKS.ServiceAgents
+namespace PLS.SKS.ServiceAgents.Helpers
 {
-    public class SAException : Exception
+    public class SaException : Exception
     {
-		public SAException()
+		public SaException()
 		{
 
 		}
 
-		public SAException(string message) : base(message)
+		public SaException(string message) : base(message)
 		{
 
 		}
 
-		public SAException(string message, Exception inner) : base(message, inner)
+		public SaException(string message, Exception inner) : base(message, inner)
 		{
 
 		}

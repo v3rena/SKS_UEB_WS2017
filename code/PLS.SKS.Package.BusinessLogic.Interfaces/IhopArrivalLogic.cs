@@ -4,6 +4,6 @@ namespace PLS.SKS.Package.BusinessLogic.Interfaces
 {
     public interface IHopArrivalLogic
     {
-        void ScanParcel(string TrackingNumber, string code);
+        void ScanParcel(string trackingNumber, string code);
     }
 }

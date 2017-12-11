@@ -6,13 +6,13 @@ namespace PLS.SKS.Package.DataAccess.Entities
     {
         public Parcel()
         {
-            Recipient = new Recipient();
+            this.Recipient = new Recipient();
         }
 
         public Parcel(float weight, Recipient recipient, int trId)
         {
             Weight = weight;
-            Recipient = recipient;
+            this.Recipient = recipient;
             TrackingInformationId = trId;
         }
 
