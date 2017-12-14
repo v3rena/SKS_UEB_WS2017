@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using static PLS.SKS.Package.BusinessLogic.Validator;
 using PLS.SKS.Package;
 using Microsoft.Extensions.DependencyInjection;
 using PLS.SKS.Package.DataAccess.Interfaces;
@@ -32,13 +31,13 @@ namespace PLS.SKS.Package.BusinessLogic
         {
             try
             {
-                DataAccess.Entities.Parcel dalParcel = _parcelRepo.GetByTrackingNumber(trackingNumber);
+                var dalParcel = _parcelRepo.GetByTrackingNumber(trackingNumber);
                 if(dalParcel == null)
                 {
                     throw new BlException("Parcel not found in Database");
                 }
-                DataAccess.Entities.TrackingInformation dalInfo = _trackingRepo.GetById(dalParcel.TrackingInformationId);
-                List<DataAccess.Entities.HopArrival> hopArr = _hopArrivalRepo.GetByTrackingInformationId(dalInfo.Id);
+                var dalInfo = _trackingRepo.GetById(dalParcel.TrackingInformationId);
+                var hopArr = _hopArrivalRepo.GetByTrackingInformationId(dalInfo.Id);
 
                 int index = hopArr.FindIndex(a => a.Code == code);
                 if (index == -1)

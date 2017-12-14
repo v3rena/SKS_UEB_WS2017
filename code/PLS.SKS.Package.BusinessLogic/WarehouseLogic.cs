@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using PLS.SKS.Package.BusinessLogic.Helpers;
+using PLS.SKS.Package.BusinessLogic.Validators;
 
 namespace PLS.SKS.Package.BusinessLogic
 {
@@ -33,7 +34,7 @@ namespace PLS.SKS.Package.BusinessLogic
 				{
 					throw new BlException("No RootWarehouse found");
 				}
-				Entities.Warehouse blWarehouse = _mapper.Map<Entities.Warehouse>(dalWarehouse);
+				var blWarehouse = _mapper.Map<Entities.Warehouse>(dalWarehouse);
 				if (blWarehouse != null)
 				{
 					string validationResults = ValidateWarehouse(blWarehouse);
@@ -43,7 +44,7 @@ namespace PLS.SKS.Package.BusinessLogic
 						throw new BlException("Given Warehouse is not valid");
 					}
 				}
-				IO.Swagger.Models.Warehouse serviceWarehouse = _mapper.Map<IO.Swagger.Models.Warehouse>(blWarehouse);
+				var serviceWarehouse = _mapper.Map<IO.Swagger.Models.Warehouse>(blWarehouse);
 				return serviceWarehouse;
 			}
 			catch(Exception ex)
@@ -57,7 +58,7 @@ namespace PLS.SKS.Package.BusinessLogic
 		{
 			try
 			{
-				Entities.Warehouse blWarehouse = _mapper.Map<Entities.Warehouse>(warehouse);
+				var blWarehouse = _mapper.Map<Entities.Warehouse>(warehouse);
 				if (blWarehouse != null)
 				{
 					string validationResults = ValidateWarehouse(blWarehouse);
@@ -67,7 +68,7 @@ namespace PLS.SKS.Package.BusinessLogic
 						throw new BlException("Given Warehouse is not valid");
 					}
 				}
-				DataAccess.Entities.Warehouse dalWarehouse = _mapper.Map<DataAccess.Entities.Warehouse>(blWarehouse);
+				var dalWarehouse = _mapper.Map<DataAccess.Entities.Warehouse>(blWarehouse);
 				_dbCleaner.CleanDb();
 				_warehouseRepo.Create(dalWarehouse);
 			}
@@ -81,8 +82,7 @@ namespace PLS.SKS.Package.BusinessLogic
 		private string ValidateWarehouse(Entities.Warehouse blWarehouse)
 		{
 			StringBuilder validationResults = new StringBuilder();
-
-			Validator.WarehouseValidator validator = new Validator.WarehouseValidator();
+			var validator = new WarehouseValidator();
 			ValidationResult results = validator.Validate(blWarehouse);
 			bool validationSucceeded = results.IsValid;
 			IList<ValidationFailure> failures = results.Errors;

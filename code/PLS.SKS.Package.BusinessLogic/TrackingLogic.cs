@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using PLS.SKS.Package.BusinessLogic.Helpers;
+using PLS.SKS.Package.BusinessLogic.Validators;
 
 namespace PLS.SKS.Package.BusinessLogic
 {
@@ -30,13 +31,13 @@ namespace PLS.SKS.Package.BusinessLogic
         {
 			try
 			{
-				DataAccess.Entities.Parcel dalParcel = _parcelRepo.GetByTrackingNumber(trackingNumber);
+				var dalParcel = _parcelRepo.GetByTrackingNumber(trackingNumber);
 				if (dalParcel == null)
 				{
 					throw new BlException("Parcel not found in Database");
 				}
 
-				List<DataAccess.Entities.HopArrival> hopArr = _hopRepo.GetByTrackingInformationId(dalParcel.TrackingInformationId);
+				var hopArr = _hopRepo.GetByTrackingInformationId(dalParcel.TrackingInformationId);
 
 				foreach (var h in hopArr)
 				{
@@ -50,12 +51,12 @@ namespace PLS.SKS.Package.BusinessLogic
 					}
 				}
 	
-				Entities.Parcel blParcel = _mapper.Map<Entities.Parcel>(dalParcel);
+				var blParcel = _mapper.Map<Parcel>(dalParcel);
 				if (blParcel != null)
 				{
 					_logger.LogError(ValidateParcel(blParcel));
 				}
-				IO.Swagger.Models.TrackingInformation info = _mapper.Map<IO.Swagger.Models.TrackingInformation>(blParcel.TrackingInformation);
+				var info = _mapper.Map<IO.Swagger.Models.TrackingInformation>(blParcel.TrackingInformation);
 				return info;
 			}
 			catch (Exception ex)
@@ -68,8 +69,7 @@ namespace PLS.SKS.Package.BusinessLogic
 		public string ValidateParcel(Entities.Parcel blParcel)
 		{
 			StringBuilder validationResults = new StringBuilder();
-
-			Validator.ParcelValidator validator = new Validator.ParcelValidator();
+			var validator = new ParcelValidator();
 			ValidationResult results = validator.Validate(blParcel);
 			bool validationSucceeded = results.IsValid;
 			IList<ValidationFailure> failures = results.Errors;
