@@ -22,6 +22,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ParcelLogisticsService\PLS.SKS.Package.Services.csproj" />
+    <ProjectReference Include="..\PLS.SKS.Package.DataAccess.Entities\PLS.SKS.Package.DataAccess.Entities.csproj" />
+    <ProjectReference Include="..\PLS.SKS.Package.DataAccess.Sql\PLS.SKS.Package.DataAccess.Sql.csproj" />
   </ItemGroup>
 
 </Project>

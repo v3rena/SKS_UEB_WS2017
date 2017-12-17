@@ -16,14 +16,16 @@ namespace PLS.SKS.Package.BusinessLogic
 		private readonly IParcelRepository _parcelRepo;
         private readonly ITrackingInformationRepository _trackingRepo;
         private readonly IHopArrivalRepository _hopArrivalRepo;
+        private readonly ITruckRepository _truckRepository;
 		private readonly ILogger<HopArrivalLogic> _logger;
 		private readonly AutoMapper.IMapper _mapper;
 
-		public HopArrivalLogic(IParcelRepository parcelRepository, ITrackingInformationRepository trackingInformationRepository, IHopArrivalRepository hopArrivalRepository, ILogger<HopArrivalLogic> logger, AutoMapper.IMapper mapper)
+		public HopArrivalLogic(IParcelRepository parcelRepository, ITrackingInformationRepository trackingInformationRepository, IHopArrivalRepository hopArrivalRepository, ITruckRepository truckRepository, ILogger<HopArrivalLogic> logger, AutoMapper.IMapper mapper)
 		{
 			_parcelRepo = parcelRepository;
 			_trackingRepo = trackingInformationRepository;
 			_hopArrivalRepo = hopArrivalRepository;
+            _truckRepository = truckRepository;
 			_logger = logger;
 			_mapper = mapper;
 		}
@@ -47,6 +49,16 @@ namespace PLS.SKS.Package.BusinessLogic
                 }
                 hopArr[index].Status = "visited";
                 hopArr[index].DateTime = DateTime.Now;
+
+                var trucks = _truckRepository.GetAll();
+                foreach (var t in trucks)
+                {
+                    if(t.Code == hopArr[index].Code)
+                    {
+                        dalInfo.State = DataAccess.Entities.TrackingInformation.StateEnum.InTruckDeliveryEnum;
+                        break;
+                    }
+                }
 
                 _hopArrivalRepo.Update(hopArr[index]);
             }
