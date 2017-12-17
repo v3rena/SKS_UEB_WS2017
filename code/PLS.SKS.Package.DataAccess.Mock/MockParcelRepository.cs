@@ -42,19 +42,9 @@ namespace PLS.SKS.Package.DataAccess.Mock
 			parcels.Remove(p);
 		}
 
-		public IEnumerable<Parcel> GetByCode(int code)
-		{
-			throw new NotImplementedException();
-		}
-
 		public Parcel GetById(int id)
 		{
 			return parcels.SingleOrDefault(item => item.Id == id);
-		}
-
-		public IEnumerable<Parcel> GetByLengthRanking(int top)
-		{
-			throw new NotImplementedException();
 		}
 
 		public Parcel GetByTrackingNumber(string trackingNumber)

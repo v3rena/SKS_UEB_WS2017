@@ -10,8 +10,6 @@ namespace PLS.SKS.Package.DataAccess.Interfaces
         int Create(Parcel p); void
         Update(Parcel p); void
         Delete(int id);
-        IEnumerable<Parcel> GetByCode(int code);
-        IEnumerable<Parcel> GetByLengthRanking(int top);
         Parcel GetById(int id);
 		Parcel GetByTrackingNumber(string trackingNumber);
     }

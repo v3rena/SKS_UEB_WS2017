@@ -60,11 +60,6 @@ namespace PLS.SKS.Package.DataAccess.Sql
 			}
 		}
 
-		public IEnumerable<Parcel> GetByCode(int code)
-		{
-			throw new NotImplementedException();
-		}
-
 		public Parcel GetById(int id)
 		{
 			try
@@ -100,11 +95,6 @@ namespace PLS.SKS.Package.DataAccess.Sql
 				_logger.LogError("Could not retrieve parcel from database", ex);
 				throw new DalException("Could not retrieve parcel from database", ex);
 			}
-		}
-
-		public IEnumerable<Parcel> GetByLengthRanking(int top)
-		{
-			throw new NotImplementedException();
 		}
 
 		public void Update(Parcel p)
