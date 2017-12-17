@@ -1,0 +1,305 @@
+﻿2017-12-11 09:50:15,107 INFO [1] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-11 09:50:25,091 INFO [1] ?.? - Executed DbCommand (604ms) [Parameters=[], CommandType='Text', CommandTimeout='60']
+CREATE DATABASE [ParcelLogisticsDB];
+2017-12-11 09:50:25,619 INFO [1] ?.? - Executed DbCommand (328ms) [Parameters=[], CommandType='Text', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5 EXEC(N'ALTER DATABASE [ParcelLogisticsDB] SET READ_COMMITTED_SNAPSHOT ON;');
+2017-12-11 09:50:25,764 INFO [1] ?.? - Executed DbCommand (17ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [__EFMigrationsHistory] (
+    [MigrationId] nvarchar(150) NOT NULL,
+    [ProductVersion] nvarchar(32) NOT NULL,
+    CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+);
+2017-12-11 09:50:25,779 INFO [1] ?.? - Executed DbCommand (10ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-11 09:50:25,792 INFO [1] ?.? - Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2017-12-11 09:50:25,816 INFO [1] ?.? - Applying migration '20171128144952_InitialCreate'.
+2017-12-11 09:50:26,046 INFO [1] ?.? - Executed DbCommand (16ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Recipients] (
+    [Id] int NOT NULL IDENTITY,
+    [City] nvarchar(max) NULL,
+    [FirstName] nvarchar(max) NULL,
+    [LastName] nvarchar(max) NULL,
+    [PostalCode] nvarchar(max) NULL,
+    [Street] nvarchar(max) NULL,
+    CONSTRAINT [PK_Recipients] PRIMARY KEY ([Id])
+);
+2017-12-11 09:50:26,057 INFO [1] ?.? - Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [TrackingInformations] (
+    [Id] int NOT NULL IDENTITY,
+    [State] int NULL,
+    CONSTRAINT [PK_TrackingInformations] PRIMARY KEY ([Id])
+);
+2017-12-11 09:50:26,076 INFO [1] ?.? - Executed DbCommand (10ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Warehouses] (
+    [Id] int NOT NULL IDENTITY,
+    [Code] nvarchar(max) NULL,
+    [Description] nvarchar(max) NULL,
+    [Duration] decimal(18, 2) NOT NULL,
+    [WarehouseId] int NULL,
+    CONSTRAINT [PK_Warehouses] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Warehouses_Warehouses_WarehouseId] FOREIGN KEY ([WarehouseId]) REFERENCES [Warehouses] ([Id]) ON DELETE NO ACTION
+);
+2017-12-11 09:50:26,085 INFO [1] ?.? - Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [HopArrivals] (
+    [Id] int NOT NULL IDENTITY,
+    [Code] nvarchar(max) NULL,
+    [DateTime] datetime2 NOT NULL,
+    [Status] nvarchar(max) NULL,
+    [TrackingInformationId] int NOT NULL,
+    CONSTRAINT [PK_HopArrivals] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_HopArrivals_TrackingInformations_TrackingInformationId] FOREIGN KEY ([TrackingInformationId]) REFERENCES [TrackingInformations] ([Id]) ON DELETE CASCADE
+);
+2017-12-11 09:50:26,105 INFO [1] ?.? - Executed DbCommand (10ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Parcels] (
+    [Id] int NOT NULL IDENTITY,
+    [RecipientId] int NOT NULL,
+    [TrackingInformationId] int NOT NULL,
+    [TrackingNumber] nvarchar(max) NULL,
+    [Weight] real NOT NULL,
+    CONSTRAINT [PK_Parcels] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Parcels_Recipients_RecipientId] FOREIGN KEY ([RecipientId]) REFERENCES [Recipients] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Parcels_TrackingInformations_TrackingInformationId] FOREIGN KEY ([TrackingInformationId]) REFERENCES [TrackingInformations] ([Id]) ON DELETE CASCADE
+);
+2017-12-11 09:50:26,123 INFO [1] ?.? - Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Trucks] (
+    [Id] int NOT NULL IDENTITY,
+    [Code] nvarchar(max) NULL,
+    [Duration] decimal(18, 2) NOT NULL,
+    [Latitude] decimal(18, 2) NOT NULL,
+    [Longitude] decimal(18, 2) NOT NULL,
+    [NumberPlate] nvarchar(max) NULL,
+    [Radius] decimal(18, 2) NOT NULL,
+    [WarehouseId] int NULL,
+    CONSTRAINT [PK_Trucks] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Trucks_Warehouses_WarehouseId] FOREIGN KEY ([WarehouseId]) REFERENCES [Warehouses] ([Id]) ON DELETE NO ACTION
+);
+2017-12-11 09:50:26,155 INFO [1] ?.? - Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_HopArrivals_TrackingInformationId] ON [HopArrivals] ([TrackingInformationId]);
+2017-12-11 09:50:26,164 INFO [1] ?.? - Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_Parcels_RecipientId] ON [Parcels] ([RecipientId]);
+2017-12-11 09:50:26,194 INFO [1] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_Parcels_TrackingInformationId] ON [Parcels] ([TrackingInformationId]);
+2017-12-11 09:50:26,246 INFO [1] ?.? - Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_Trucks_WarehouseId] ON [Trucks] ([WarehouseId]);
+2017-12-11 09:50:26,279 INFO [1] ?.? - Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE INDEX [IX_Warehouses_WarehouseId] ON [Warehouses] ([WarehouseId]);
+2017-12-11 09:50:26,335 INFO [1] ?.? - Executed DbCommand (22ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20171128144952_InitialCreate', N'2.0.1-rtm-125');
+2017-12-11 09:50:35,262 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/  
+2017-12-11 09:50:36,749 INFO [8] ?.? - Request finished in 1481.5957ms 404 
+2017-12-11 09:50:37,121 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/favicon.ico  
+2017-12-11 09:50:37,179 INFO [9] ?.? - Request finished in 46.7841ms 404 
+2017-12-11 09:50:37,230 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/favicon.ico  
+2017-12-11 09:50:37,259 INFO [9] ?.? - Request finished in 32.0608ms 404 
+2017-12-11 09:54:06,760 INFO [1] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-11 09:54:08,589 INFO [1] ?.? - Executed DbCommand (25ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-11 09:54:08,601 INFO [1] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-11 09:54:08,624 INFO [1] ?.? - Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2017-12-11 09:54:08,640 INFO [1] ?.? - No migrations were applied. The database is already up to date.
+2017-12-11 09:54:09,669 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/  
+2017-12-11 09:54:16,883 INFO [8] ?.? - Executing handler method OnGet with arguments ((null)) - ModelState is Valid
+2017-12-11 09:54:17,685 INFO [8] ?.? - Executed action /Index in 825.7265ms
+2017-12-11 09:54:17,699 INFO [8] ?.? - Request finished in 8070.6081ms 200 text/html; charset=utf-8
+2017-12-11 09:54:17,763 INFO [10] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/lib/bootstrap/dist/css/bootstrap.css  
+2017-12-11 09:54:17,768 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/css/site.css  
+2017-12-11 09:54:17,774 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/lib/jquery/dist/jquery.js  
+2017-12-11 09:54:17,807 INFO [9] ?.? - Sending file. Request path: '/lib/jquery/dist/jquery.js'. Physical path: 'D:\FH\WS2017\SKS\SKS_UEB_WS2017\code\ParcelLogisticsService\wwwroot\lib\jquery\dist\jquery.js'
+2017-12-11 09:54:17,811 INFO [8] ?.? - Sending file. Request path: '/css/site.css'. Physical path: 'D:\FH\WS2017\SKS\SKS_UEB_WS2017\code\ParcelLogisticsService\wwwroot\css\site.css'
+2017-12-11 09:54:17,816 INFO [10] ?.? - Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.css'. Physical path: 'D:\FH\WS2017\SKS\SKS_UEB_WS2017\code\ParcelLogisticsService\wwwroot\lib\bootstrap\dist\css\bootstrap.css'
+2017-12-11 09:54:17,840 INFO [11] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/lib/bootstrap/dist/js/bootstrap.js  
+2017-12-11 09:54:17,846 INFO [14] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/js/site.js?v=EWaMeWsJBYWmL2g_KkgXZQ5nPe-a3Ichp0LEgzXczKo  
+2017-12-11 09:54:17,871 INFO [11] ?.? - Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.js'. Physical path: 'D:\FH\WS2017\SKS\SKS_UEB_WS2017\code\ParcelLogisticsService\wwwroot\lib\bootstrap\dist\js\bootstrap.js'
+2017-12-11 09:54:17,877 INFO [14] ?.? - Sending file. Request path: '/js/site.js'. Physical path: 'D:\FH\WS2017\SKS\SKS_UEB_WS2017\code\ParcelLogisticsService\wwwroot\js\site.js'
+2017-12-11 09:54:17,963 INFO [14] ?.? - Request finished in 112.0633ms 200 application/javascript
+2017-12-11 09:54:17,988 INFO [8] ?.? - Request finished in 164.9812ms 200 text/css
+2017-12-11 09:54:18,013 INFO [10] ?.? - Request finished in 184.4945ms 200 text/css
+2017-12-11 09:54:18,061 INFO [11] ?.? - Request finished in 112.1289ms 200 application/javascript
+2017-12-11 09:54:18,140 INFO [14] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/images/placeholder.png  
+2017-12-11 09:54:18,177 INFO [11] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/images/zoom-in.png  
+2017-12-11 09:54:18,210 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/images/archive.png  
+2017-12-11 09:54:18,214 INFO [14] ?.? - Sending file. Request path: '/images/placeholder.png'. Physical path: 'D:\FH\WS2017\SKS\SKS_UEB_WS2017\code\ParcelLogisticsService\wwwroot\images\placeholder.png'
+2017-12-11 09:54:18,221 INFO [8] ?.? - Sending file. Request path: '/images/archive.png'. Physical path: 'D:\FH\WS2017\SKS\SKS_UEB_WS2017\code\ParcelLogisticsService\wwwroot\images\archive.png'
+2017-12-11 09:54:18,267 INFO [11] ?.? - Sending file. Request path: '/images/zoom-in.png'. Physical path: 'D:\FH\WS2017\SKS\SKS_UEB_WS2017\code\ParcelLogisticsService\wwwroot\images\zoom-in.png'
+2017-12-11 09:54:18,277 INFO [26] ?.? - Request finished in 39.3017ms 200 image/png
+2017-12-11 09:54:18,301 INFO [9] ?.? - Request finished in 243.0542ms 200 application/javascript
+2017-12-11 09:54:18,350 INFO [14] ?.? - Request finished in 138.1217ms 200 image/png
+2017-12-11 09:54:18,370 INFO [11] ?.? - Request finished in 196.3372ms 200 image/png
+2017-12-11 09:54:27,760 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/SubmitParcel  
+2017-12-11 09:54:29,349 INFO [9] ?.? - Executed action /SubmitParcel in 543.3347ms
+2017-12-11 09:54:29,357 INFO [9] ?.? - Request finished in 1593.4534ms 200 text/html; charset=utf-8
+2017-12-11 09:54:29,488 INFO [10] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/css/site.css  
+2017-12-11 09:54:29,495 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/lib/jquery/dist/jquery.js  
+2017-12-11 09:54:29,501 INFO [14] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/lib/bootstrap/dist/js/bootstrap.js  
+2017-12-11 09:54:29,531 INFO [13] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/lib/bootstrap/dist/css/bootstrap.css  
+2017-12-11 09:54:29,556 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/js/site.js?v=EWaMeWsJBYWmL2g_KkgXZQ5nPe-a3Ichp0LEgzXczKo  
+2017-12-11 09:54:29,560 INFO [12] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/lib/jquery-validation/dist/jquery.validate.js  
+2017-12-11 09:54:29,585 INFO [9] ?.? - The file /js/site.js was not modified
+2017-12-11 09:54:29,626 INFO [12] ?.? - Sending file. Request path: '/lib/jquery-validation/dist/jquery.validate.js'. Physical path: 'D:\FH\WS2017\SKS\SKS_UEB_WS2017\code\ParcelLogisticsService\wwwroot\lib\jquery-validation\dist\jquery.validate.js'
+2017-12-11 09:54:29,632 INFO [14] ?.? - The file /lib/bootstrap/dist/js/bootstrap.js was not modified
+2017-12-11 09:54:29,669 INFO [9] ?.? - Request finished in 179.835ms 304 application/javascript
+2017-12-11 09:54:29,679 INFO [10] ?.? - The file /css/site.css was not modified
+2017-12-11 09:54:29,713 INFO [8] ?.? - The file /lib/jquery/dist/jquery.js was not modified
+2017-12-11 09:54:29,729 INFO [8] ?.? - Request finished in 262.1656ms 304 application/javascript
+2017-12-11 09:54:29,756 INFO [10] ?.? - Request finished in 232.8824ms 304 text/css
+2017-12-11 09:54:29,834 INFO [14] ?.? - Request finished in 175.4721ms 304 application/javascript
+2017-12-11 09:54:29,875 INFO [13] ?.? - The file /lib/bootstrap/dist/css/bootstrap.css was not modified
+2017-12-11 09:54:29,908 INFO [11] ?.? - Request finished in 131.2954ms 200 application/javascript
+2017-12-11 09:54:29,936 INFO [13] ?.? - Request finished in 423.7733ms 304 text/css
+2017-12-11 09:54:29,962 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js  
+2017-12-11 09:54:29,968 INFO [9] ?.? - Sending file. Request path: '/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js'. Physical path: 'D:\FH\WS2017\SKS\SKS_UEB_WS2017\code\ParcelLogisticsService\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js'
+2017-12-11 09:54:29,980 INFO [9] ?.? - Request finished in 259.3602ms 200 application/javascript
+2017-12-11 09:55:05,675 INFO [9] ?.? - Request starting HTTP/1.1 POST http://localhost:50074/SubmitParcel application/x-www-form-urlencoded 364
+2017-12-11 09:55:05,770 INFO [9] ?.? - Executing handler method OnPostAsync with arguments ((null)) - ModelState is Valid
+2017-12-11 09:55:06,167 INFO [10] ?.? - Request starting HTTP/1.1 POST http://localhost:50074/api/parcel application/json; charset=utf-8 
+2017-12-11 09:55:06,399 INFO [10] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.SubmitParcel (PLS.SKS.Package.Services) with arguments (class Parcel {
+  Weight: 12
+  Recipient: class Receipient {
+  FirstName: Test
+  LastName: Name
+  Street: Schlagergasse 1
+  PostalCode: A-1090
+  City: Wien
+}
+
+}
+) - ModelState is Valid
+2017-12-11 09:55:06,406 INFO [10] ?.? - Calling the SubmitParcel action
+2017-12-11 09:55:06,788 INFO [10] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-11 09:55:07,079 INFO [10] ?.? - Executed DbCommand (55ms) [Parameters=[@p0='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [TrackingInformations] ([State])
+VALUES (@p0);
+SELECT [Id]
+FROM [TrackingInformations]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-12-11 09:55:10,508 INFO [10] ?.? - Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [t].[Id], [t].[Code], [t].[Duration], [t].[Latitude], [t].[Longitude], [t].[NumberPlate], [t].[Radius], [t].[WarehouseId]
+FROM [Trucks] AS [t]
+2017-12-11 09:55:10,735 ERROR [10] ?.? - Could not add parcel
+2017-12-11 09:55:10,842 ERROR [10] ?.? - SubmitParcel failed
+2017-12-11 09:57:18,776 INFO [1] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-11 09:57:20,530 INFO [1] ?.? - Executed DbCommand (26ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-11 09:57:20,539 INFO [1] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-11 09:57:20,551 INFO [1] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2017-12-11 09:57:20,566 INFO [1] ?.? - No migrations were applied. The database is already up to date.
+2017-12-11 09:57:21,656 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/  
+2017-12-11 09:57:28,233 INFO [8] ?.? - Executing handler method OnGet with arguments ((null)) - ModelState is Valid
+2017-12-11 09:57:28,937 INFO [8] ?.? - Executed action /Index in 679.9656ms
+2017-12-11 09:57:28,982 INFO [8] ?.? - Request finished in 7340.2718ms 200 text/html; charset=utf-8
+2017-12-11 09:57:29,024 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/css/site.css  
+2017-12-11 09:57:29,054 INFO [13] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/lib/jquery/dist/jquery.js  
+2017-12-11 09:57:29,064 INFO [10] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/lib/bootstrap/dist/js/bootstrap.js  
+2017-12-11 09:57:29,068 INFO [12] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/js/site.js?v=EWaMeWsJBYWmL2g_KkgXZQ5nPe-a3Ichp0LEgzXczKo  
+2017-12-11 09:57:29,114 INFO [10] ?.? - The file /lib/bootstrap/dist/js/bootstrap.js was not modified
+2017-12-11 09:57:29,154 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/lib/bootstrap/dist/css/bootstrap.css  
+2017-12-11 09:57:29,192 INFO [12] ?.? - The file /js/site.js was not modified
+2017-12-11 09:57:29,218 INFO [10] ?.? - Request finished in 153.1181ms 304 application/javascript
+2017-12-11 09:57:29,236 INFO [12] ?.? - Request finished in 187.5449ms 304 application/javascript
+2017-12-11 09:57:29,268 INFO [9] ?.? - The file /css/site.css was not modified
+2017-12-11 09:57:29,275 INFO [8] ?.? - The file /lib/bootstrap/dist/css/bootstrap.css was not modified
+2017-12-11 09:57:29,305 INFO [9] ?.? - Request finished in 281.099ms 304 text/css
+2017-12-11 09:57:29,338 INFO [10] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/images/archive.png  
+2017-12-11 09:57:29,376 INFO [11] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/images/zoom-in.png  
+2017-12-11 09:57:29,401 INFO [8] ?.? - Request finished in 173.9875ms 304 text/css
+2017-12-11 09:57:29,406 INFO [11] ?.? - The file /images/zoom-in.png was not modified
+2017-12-11 09:57:29,449 INFO [11] ?.? - Request finished in 98.6405ms 304 image/png
+2017-12-11 09:57:29,489 INFO [13] ?.? - The file /lib/jquery/dist/jquery.js was not modified
+2017-12-11 09:57:29,524 INFO [13] ?.? - Request finished in 482.6073ms 304 application/javascript
+2017-12-11 09:57:29,585 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/images/placeholder.png  
+2017-12-11 09:57:29,589 INFO [10] ?.? - The file /images/archive.png was not modified
+2017-12-11 09:57:29,592 INFO [9] ?.? - The file /images/placeholder.png was not modified
+2017-12-11 09:57:29,599 INFO [10] ?.? - Request finished in 302.89ms 304 image/png
+2017-12-11 09:57:29,628 INFO [9] ?.? - Request finished in 37.617ms 304 image/png
+2017-12-11 09:57:31,237 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/SubmitParcel  
+2017-12-11 09:57:33,299 INFO [9] ?.? - Executed action /SubmitParcel in 1024.5985ms
+2017-12-11 09:57:33,355 INFO [9] ?.? - Request finished in 2067.9905ms 200 text/html; charset=utf-8
+2017-12-11 09:57:33,469 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/lib/jquery-validation/dist/jquery.validate.js  
+2017-12-11 09:57:33,479 INFO [11] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js  
+2017-12-11 09:57:33,511 INFO [9] ?.? - The file /lib/jquery-validation/dist/jquery.validate.js was not modified
+2017-12-11 09:57:33,563 INFO [11] ?.? - The file /lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js was not modified
+2017-12-11 09:57:33,589 INFO [11] ?.? - Request finished in 127.3806ms 304 application/javascript
+2017-12-11 09:57:33,611 INFO [9] ?.? - Request finished in 81.937ms 304 application/javascript
+2017-12-11 09:57:48,954 INFO [10] ?.? - Request starting HTTP/1.1 POST http://localhost:50074/SubmitParcel application/x-www-form-urlencoded 364
+2017-12-11 09:57:49,024 INFO [10] ?.? - Executing handler method OnPostAsync with arguments ((null)) - ModelState is Valid
+2017-12-11 09:57:49,219 INFO [11] ?.? - Request starting HTTP/1.1 POST http://localhost:50074/api/parcel application/json; charset=utf-8 
+2017-12-11 09:57:49,396 INFO [11] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.SubmitParcel (PLS.SKS.Package.Services) with arguments (class Parcel {
+  Weight: 12
+  Recipient: class Receipient {
+  FirstName: Test
+  LastName: Name
+  Street: Schlagergasse 1
+  PostalCode: A-1090
+  City: Wien
+}
+
+}
+) - ModelState is Valid
+2017-12-11 09:57:49,401 INFO [11] ?.? - Calling the SubmitParcel action
+2017-12-11 09:57:49,669 INFO [11] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-11 09:57:49,860 INFO [11] ?.? - Executed DbCommand (42ms) [Parameters=[@p0='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [TrackingInformations] ([State])
+VALUES (@p0);
+SELECT [Id]
+FROM [TrackingInformations]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-12-11 09:57:50,746 INFO [11] ?.? - Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [t].[Id], [t].[Code], [t].[Duration], [t].[Latitude], [t].[Longitude], [t].[NumberPlate], [t].[Radius], [t].[WarehouseId]
+FROM [Trucks] AS [t]
+2017-12-11 09:57:50,878 ERROR [11] ?.? - Could not add parcel
+2017-12-11 09:57:51,006 ERROR [11] ?.? - SubmitParcel failed
+2017-12-11 11:55:19,206 INFO [1] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-11 11:55:20,760 INFO [1] ?.? - Executed DbCommand (55ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-11 11:55:20,765 INFO [1] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-11 11:55:20,807 INFO [1] ?.? - Executed DbCommand (36ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2017-12-11 11:55:20,814 INFO [1] ?.? - No migrations were applied. The database is already up to date.
+2017-12-11 11:55:21,691 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/  
+2017-12-11 11:55:25,240 INFO [8] ?.? - Executing handler method OnGet with arguments ((null)) - ModelState is Valid
+2017-12-11 11:55:25,611 INFO [8] ?.? - Executed action /Index in 379.8417ms
+2017-12-11 11:55:25,622 INFO [8] ?.? - Request finished in 3958.6133ms 200 text/html; charset=utf-8
+2017-12-11 11:55:25,659 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/lib/bootstrap/dist/css/bootstrap.css  
+2017-12-11 11:55:25,665 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/css/site.css  
+2017-12-11 11:55:25,706 INFO [9] ?.? - The file /css/site.css was not modified
+2017-12-11 11:55:25,707 INFO [8] ?.? - The file /lib/bootstrap/dist/css/bootstrap.css was not modified
+2017-12-11 11:55:25,711 INFO [10] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/lib/jquery/dist/jquery.js  
+2017-12-11 11:55:25,716 INFO [12] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/lib/bootstrap/dist/js/bootstrap.js  
+2017-12-11 11:55:25,719 INFO [10] ?.? - The file /lib/jquery/dist/jquery.js was not modified
+2017-12-11 11:55:25,735 INFO [12] ?.? - The file /lib/bootstrap/dist/js/bootstrap.js was not modified
+2017-12-11 11:55:25,767 INFO [11] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/js/site.js?v=EWaMeWsJBYWmL2g_KkgXZQ5nPe-a3Ichp0LEgzXczKo  
+2017-12-11 11:55:25,805 INFO [12] ?.? - Request finished in 24.6215ms 304 application/javascript
+2017-12-11 11:55:25,808 INFO [10] ?.? - Request finished in 14.3764ms 304 application/javascript
+2017-12-11 11:55:25,868 INFO [8] ?.? - Request finished in 68.0864ms 304 text/css
+2017-12-11 11:55:25,870 INFO [11] ?.? - The file /js/site.js was not modified
+2017-12-11 11:55:25,907 INFO [11] ?.? - Request finished in 150.5246ms 304 application/javascript
+2017-12-11 11:55:25,939 INFO [10] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/images/archive.png  
+2017-12-11 11:55:25,944 INFO [10] ?.? - The file /images/archive.png was not modified
+2017-12-11 11:55:25,949 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/images/zoom-in.png  
+2017-12-11 11:55:25,953 INFO [10] ?.? - Request finished in 106.2939ms 304 image/png
+2017-12-11 11:55:25,992 INFO [8] ?.? - The file /images/zoom-in.png was not modified
+2017-12-11 11:55:25,996 INFO [8] ?.? - Request finished in 85.0039ms 304 image/png
+2017-12-11 11:55:26,008 INFO [9] ?.? - Request finished in 62.7239ms 304 text/css
+2017-12-11 11:55:26,015 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/images/placeholder.png  
+2017-12-11 11:55:26,018 INFO [9] ?.? - The file /images/placeholder.png was not modified
+2017-12-11 11:55:26,021 INFO [9] ?.? - Request finished in 6.5137ms 304 image/png
+2017-12-11 11:55:26,047 INFO [12] ?.? - Request starting HTTP/1.1 GET http://localhost:50074/favicon.ico  
+2017-12-11 11:55:26,052 INFO [12] ?.? - Sending file. Request path: '/favicon.ico'. Physical path: 'D:\FH\WS2017\SKS\SKS_UEB_WS2017\code\ParcelLogisticsService\wwwroot\favicon.ico'
+2017-12-11 11:55:26,076 INFO [8] ?.? - Request finished in 30.2714ms 200 image/x-icon

@@ -15,12 +15,14 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
         MockHopArrivalRepository mockHopRepo;
         MockTrackingInformationRepository mockTrackRepo;
         MockParcelRepository mockParcelRepo;
+        MockTruckRepository mockTruckRepo;
 
         public HopArrivalLogicTests()
         {
             mockHopRepo = new MockHopArrivalRepository();
             mockTrackRepo = new MockTrackingInformationRepository();
             mockParcelRepo = new MockParcelRepository(mockTrackRepo);
+            mockTruckRepo = new MockTruckRepository();
         }
 
         //public void MethodUnderTest_Scenario_ExpectedOutcome()
@@ -31,7 +33,7 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
             var mapper = mockMapper.Object;
             var mockHopArrivalLogicLogger = new Mock<ILogger<HopArrivalLogic>>();
             ILogger<HopArrivalLogic> hopArrivalLogicLogger = mockHopArrivalLogicLogger.Object;
-            Interfaces.IHopArrivalLogic hopArrivalLogic = new HopArrivalLogic(mockParcelRepo, mockTrackRepo, mockHopRepo, hopArrivalLogicLogger, mapper);
+            Interfaces.IHopArrivalLogic hopArrivalLogic = new HopArrivalLogic(mockParcelRepo, mockTrackRepo, mockHopRepo, mockTruckRepo, hopArrivalLogicLogger, mapper);
 
             hopArrivalLogic.ScanParcel("TN000001", "WH02");
 
@@ -50,7 +52,7 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
             var mockHopArrivalLogicLogger = new Mock<ILogger<HopArrivalLogic>>();
             ILogger<HopArrivalLogic> hopArrivalLogicLogger = mockHopArrivalLogicLogger.Object;
 
-            Interfaces.IHopArrivalLogic hopArrivalLogic = new HopArrivalLogic(mockParcelRepo, mockTrackRepo, mockHopRepo, hopArrivalLogicLogger, mapper);
+            Interfaces.IHopArrivalLogic hopArrivalLogic = new HopArrivalLogic(mockParcelRepo, mockTrackRepo, mockHopRepo, mockTruckRepo, hopArrivalLogicLogger, mapper);
 
             Assert.ThrowsException<BlException>(() => hopArrivalLogic.ScanParcel("12", "WH02"));
         }
@@ -63,7 +65,7 @@ namespace PLS.SKS.Package.BusinessLogic.Tests
             var mockHopArrivalLogicLogger = new Mock<ILogger<HopArrivalLogic>>();
             ILogger<HopArrivalLogic> hopArrivalLogicLogger = mockHopArrivalLogicLogger.Object;
 
-            Interfaces.IHopArrivalLogic hopArrivalLogic = new HopArrivalLogic(mockParcelRepo, mockTrackRepo, mockHopRepo, hopArrivalLogicLogger, mapper);
+            Interfaces.IHopArrivalLogic hopArrivalLogic = new HopArrivalLogic(mockParcelRepo, mockTrackRepo, mockHopRepo, mockTruckRepo, hopArrivalLogicLogger, mapper);
 
             Assert.ThrowsException<BlException>(() => hopArrivalLogic.ScanParcel("TN000001", "WH06"));
         }

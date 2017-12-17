@@ -26,8 +26,8 @@ namespace PLS.SKS.Package.Services
 				try
 				{
 					var context = services.GetRequiredService <DbContext>();
-					//context.Database.Migrate();
-					//DBInitializer.Initialize(context);
+                    //context.Database.Migrate();
+                    //DbInitializer.Initialize(context);
 				}
 				catch (Exception ex)
 				{
