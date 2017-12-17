@@ -1,0 +1,446 @@
+﻿2017-12-14 11:04:21,603 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-14 11:04:29,835 INFO [2] ?.? - Executed DbCommand (31ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-14 11:04:29,883 INFO [2] ?.? - Executed DbCommand (27ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-14 11:04:29,993 INFO [2] ?.? - Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2017-12-14 11:04:30,102 INFO [2] ?.? - No migrations were applied. The database is already up to date.
+2017-12-14 11:04:32,929 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:59409/  
+2017-12-14 11:04:44,456 INFO [8] ?.? - Executing handler method OnGet with arguments ((null)) - ModelState is Valid
+2017-12-14 11:04:45,886 INFO [8] ?.? - Executed action /Index in 1205.3869ms
+2017-12-14 11:04:45,902 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:59409/lib/bootstrap/dist/css/bootstrap.css  
+2017-12-14 11:04:45,955 INFO [9] ?.? - Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.css'. Physical path: 'C:\Users\Verena\Desktop\SKS_UEB_WS2017\code\ParcelLogisticsService\wwwroot\lib\bootstrap\dist\css\bootstrap.css'
+2017-12-14 11:04:45,966 INFO [8] ?.? - Request finished in 13334.8952ms 200 text/html; charset=utf-8
+2017-12-14 11:04:46,047 INFO [9] ?.? - Request finished in 154.2177ms 200 text/css
+2017-12-14 11:04:46,091 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:59409/css/site.css  
+2017-12-14 11:04:46,101 INFO [9] ?.? - Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\Verena\Desktop\SKS_UEB_WS2017\code\ParcelLogisticsService\wwwroot\css\site.css'
+2017-12-14 11:04:46,128 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:59409/lib/jquery/dist/jquery.js  
+2017-12-14 11:04:46,144 INFO [8] ?.? - Sending file. Request path: '/lib/jquery/dist/jquery.js'. Physical path: 'C:\Users\Verena\Desktop\SKS_UEB_WS2017\code\ParcelLogisticsService\wwwroot\lib\jquery\dist\jquery.js'
+2017-12-14 11:04:46,169 INFO [9] ?.? - Request finished in 21.8433ms 200 text/css
+2017-12-14 11:04:46,186 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:59409/images/placeholder.png  
+2017-12-14 11:04:46,197 INFO [9] ?.? - Sending file. Request path: '/images/placeholder.png'. Physical path: 'C:\Users\Verena\Desktop\SKS_UEB_WS2017\code\ParcelLogisticsService\wwwroot\images\placeholder.png'
+2017-12-14 11:04:46,220 INFO [9] ?.? - Request finished in 24.7108ms 200 image/png
+2017-12-14 11:04:46,345 INFO [11] ?.? - Request starting HTTP/1.1 GET http://localhost:59409/lib/bootstrap/dist/js/bootstrap.js  
+2017-12-14 11:04:46,543 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:59409/js/site.js?v=EWaMeWsJBYWmL2g_KkgXZQ5nPe-a3Ichp0LEgzXczKo  
+2017-12-14 11:04:46,560 INFO [9] ?.? - Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\Verena\Desktop\SKS_UEB_WS2017\code\ParcelLogisticsService\wwwroot\js\site.js'
+2017-12-14 11:04:46,670 INFO [14] ?.? - Request starting HTTP/1.1 GET http://localhost:59409/images/archive.png  
+2017-12-14 11:04:46,959 INFO [14] ?.? - Sending file. Request path: '/images/archive.png'. Physical path: 'C:\Users\Verena\Desktop\SKS_UEB_WS2017\code\ParcelLogisticsService\wwwroot\images\archive.png'
+2017-12-14 11:04:47,095 INFO [15] ?.? - Request starting HTTP/1.1 GET http://localhost:59409/images/zoom-in.png  
+2017-12-14 11:04:47,196 INFO [15] ?.? - Sending file. Request path: '/images/zoom-in.png'. Physical path: 'C:\Users\Verena\Desktop\SKS_UEB_WS2017\code\ParcelLogisticsService\wwwroot\images\zoom-in.png'
+2017-12-14 11:04:47,319 INFO [8] ?.? - Request finished in 653.7412ms 200 image/png
+2017-12-14 11:04:47,377 INFO [11] ?.? - Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.js'. Physical path: 'C:\Users\Verena\Desktop\SKS_UEB_WS2017\code\ParcelLogisticsService\wwwroot\lib\bootstrap\dist\js\bootstrap.js'
+2017-12-14 11:04:47,617 INFO [19] ?.? - Request finished in 1377.6431ms 200 application/javascript
+2017-12-14 11:04:48,135 INFO [9] ?.? - Request finished in 289.4557ms 200 application/javascript
+2017-12-14 11:04:48,665 INFO [19] ?.? - Request finished in 1592.3643ms 200 image/png
+2017-12-14 11:04:48,766 INFO [11] ?.? - Request finished in 1379.1071ms 200 application/javascript
+2017-12-14 11:04:48,791 INFO [18] ?.? - Request starting HTTP/1.1 GET http://localhost:59409/favicon.ico  
+2017-12-14 11:04:48,809 INFO [18] ?.? - Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\Verena\Desktop\SKS_UEB_WS2017\code\ParcelLogisticsService\wwwroot\favicon.ico'
+2017-12-14 11:04:48,837 INFO [18] ?.? - Request finished in 497.6368ms 200 image/x-icon
+2017-12-14 11:05:03,326 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:59409/SubmitParcel  
+2017-12-14 11:05:06,646 INFO [9] ?.? - Executed action /SubmitParcel in 1084.8181ms
+2017-12-14 11:05:06,733 INFO [9] ?.? - Request finished in 3364.2312ms 200 text/html; charset=utf-8
+2017-12-14 11:05:06,763 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:59409/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js  
+2017-12-14 11:05:06,896 INFO [9] ?.? - Sending file. Request path: '/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js'. Physical path: 'C:\Users\Verena\Desktop\SKS_UEB_WS2017\code\ParcelLogisticsService\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js'
+2017-12-14 11:05:06,945 INFO [9] ?.? - Request finished in 157.3803ms 200 application/javascript
+2017-12-14 11:05:07,445 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:59409/lib/jquery-validation/dist/jquery.validate.js  
+2017-12-14 11:05:07,475 INFO [8] ?.? - Sending file. Request path: '/lib/jquery-validation/dist/jquery.validate.js'. Physical path: 'C:\Users\Verena\Desktop\SKS_UEB_WS2017\code\ParcelLogisticsService\wwwroot\lib\jquery-validation\dist\jquery.validate.js'
+2017-12-14 11:05:08,047 INFO [8] ?.? - Request finished in 1055.3009ms 200 application/javascript
+2017-12-14 11:05:26,501 INFO [9] ?.? - Request starting HTTP/1.1 POST http://localhost:59409/SubmitParcel application/x-www-form-urlencoded 369
+2017-12-14 11:05:26,665 INFO [9] ?.? - Executing handler method OnPostAsync with arguments ((null)) - ModelState is Valid
+2017-12-14 11:05:31,804 ERROR [8] ?.? - Api call failed
+2017-12-14 11:05:31,972 INFO [8] ?.? - Executed action /SubmitParcel in 5446.901ms
+2017-12-14 11:05:32,491 ERROR [8] ?.? - An unhandled exception has occurred while executing the request - PLS.SKS.Package.Services.Helpers.ServiceException: Api call failed ---> System.Net.Http.HttpRequestException: An error occurred while sending the request. ---> System.Net.Http.WinHttpException: A connection with the server could not be established
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Threading.Tasks.RendezvousAwaitable`1.GetResult()
+   at System.Net.Http.WinHttpHandler.<StartRequest>d__105.MoveNext()
+   --- End of inner exception stack trace ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.ConfiguredTaskAwaitable`1.ConfiguredTaskAwaiter.GetResult()
+   at System.Net.Http.DiagnosticsHandler.<SendAsync>d__2.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.ConfiguredTaskAwaitable`1.ConfiguredTaskAwaiter.GetResult()
+   at System.Net.Http.HttpClient.<FinishSendAsyncBuffered>d__58.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at PLS.SKS.Package.Services.Pages.SubmitParcelModel.<OnPostAsync>d__14.MoveNext() in C:\Users\Verena\Desktop\SKS_UEB_WS2017\code\ParcelLogisticsService\Pages\SubmitParcel.cshtml.cs:line 53
+   --- End of inner exception stack trace ---
+   at PLS.SKS.Package.Services.Pages.SubmitParcelModel.<OnPostAsync>d__14.MoveNext() in C:\Users\Verena\Desktop\SKS_UEB_WS2017\code\ParcelLogisticsService\Pages\SubmitParcel.cshtml.cs:line 67
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Microsoft.AspNetCore.Mvc.RazorPages.Internal.ExecutorFactory.GenericTaskHandlerMethod.<Convert>d__4`1.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Microsoft.AspNetCore.Mvc.RazorPages.Internal.ExecutorFactory.GenericTaskHandlerMethod.<Execute>d__3.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Microsoft.AspNetCore.Mvc.RazorPages.Internal.PageActionInvoker.<InvokeHandlerMethodAsync>d__29.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.RazorPages.Internal.PageActionInvoker.<InvokeNextPageFilterAsync>d__31.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.RazorPages.Internal.PageActionInvoker.Rethrow(PageHandlerExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.RazorPages.Internal.PageActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.RazorPages.Internal.PageActionInvoker.<InvokeInnerFilterAsync>d__22.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeNextResourceFilter>d__22.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeFilterPipelineAsync>d__17.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeAsync>d__15.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.<Invoke>d__7.MoveNext()
+2017-12-14 11:05:33,763 INFO [8] ?.? - Request finished in 7014.3966ms 500 text/html; charset=utf-8
+2017-12-14 11:06:04,444 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:59409/SubmitParcel  
+2017-12-14 11:06:05,051 INFO [9] ?.? - Executed action /SubmitParcel in 113.1928ms
+2017-12-14 11:06:05,395 INFO [9] ?.? - Request finished in 625.7461ms 200 text/html; charset=utf-8
+2017-12-14 11:06:23,429 INFO [9] ?.? - Request starting HTTP/1.1 POST http://localhost:59409/SubmitParcel application/x-www-form-urlencoded 373
+2017-12-14 11:06:23,589 INFO [9] ?.? - Executing handler method OnPostAsync with arguments ((null)) - ModelState is Valid
+2017-12-14 11:06:25,840 ERROR [8] ?.? - Api call failed
+2017-12-14 11:06:25,924 INFO [8] ?.? - Executed action /SubmitParcel in 2488.8335ms
+2017-12-14 11:06:26,190 ERROR [8] ?.? - An unhandled exception has occurred while executing the request - PLS.SKS.Package.Services.Helpers.ServiceException: Api call failed ---> System.Net.Http.HttpRequestException: An error occurred while sending the request. ---> System.Net.Http.WinHttpException: A connection with the server could not be established
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Threading.Tasks.RendezvousAwaitable`1.GetResult()
+   at System.Net.Http.WinHttpHandler.<StartRequest>d__105.MoveNext()
+   --- End of inner exception stack trace ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.ConfiguredTaskAwaitable`1.ConfiguredTaskAwaiter.GetResult()
+   at System.Net.Http.DiagnosticsHandler.<SendAsync>d__2.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.ConfiguredTaskAwaitable`1.ConfiguredTaskAwaiter.GetResult()
+   at System.Net.Http.HttpClient.<FinishSendAsyncBuffered>d__58.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at PLS.SKS.Package.Services.Pages.SubmitParcelModel.<OnPostAsync>d__14.MoveNext() in C:\Users\Verena\Desktop\SKS_UEB_WS2017\code\ParcelLogisticsService\Pages\SubmitParcel.cshtml.cs:line 53
+   --- End of inner exception stack trace ---
+   at PLS.SKS.Package.Services.Pages.SubmitParcelModel.<OnPostAsync>d__14.MoveNext() in C:\Users\Verena\Desktop\SKS_UEB_WS2017\code\ParcelLogisticsService\Pages\SubmitParcel.cshtml.cs:line 67
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Microsoft.AspNetCore.Mvc.RazorPages.Internal.ExecutorFactory.GenericTaskHandlerMethod.<Convert>d__4`1.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Microsoft.AspNetCore.Mvc.RazorPages.Internal.ExecutorFactory.GenericTaskHandlerMethod.<Execute>d__3.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Microsoft.AspNetCore.Mvc.RazorPages.Internal.PageActionInvoker.<InvokeHandlerMethodAsync>d__29.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.RazorPages.Internal.PageActionInvoker.<InvokeNextPageFilterAsync>d__31.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.RazorPages.Internal.PageActionInvoker.Rethrow(PageHandlerExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.RazorPages.Internal.PageActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.RazorPages.Internal.PageActionInvoker.<InvokeInnerFilterAsync>d__22.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeNextResourceFilter>d__22.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeFilterPipelineAsync>d__17.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeAsync>d__15.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.<Invoke>d__7.MoveNext()
+2017-12-14 11:06:27,311 INFO [8] ?.? - Request finished in 3444.3002ms 500 text/html; charset=utf-8
+2017-12-14 11:08:53,655 INFO [2] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-14 11:08:55,632 INFO [2] ?.? - Executed DbCommand (50ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-14 11:08:55,671 INFO [2] ?.? - Executed DbCommand (17ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT OBJECT_ID(N'__EFMigrationsHistory');
+2017-12-14 11:08:55,900 INFO [2] ?.? - Executed DbCommand (112ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2017-12-14 11:08:56,049 INFO [2] ?.? - No migrations were applied. The database is already up to date.
+2017-12-14 11:09:00,462 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:59409/  
+2017-12-14 11:09:11,931 INFO [8] ?.? - Executing handler method OnGet with arguments ((null)) - ModelState is Valid
+2017-12-14 11:09:13,863 INFO [8] ?.? - Executed action /Index in 1396.6746ms
+2017-12-14 11:09:14,101 INFO [8] ?.? - Request finished in 13597.2669ms 200 text/html; charset=utf-8
+2017-12-14 11:09:27,997 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:59409/SubmitParcel  
+2017-12-14 11:09:31,863 INFO [9] ?.? - Executed action /SubmitParcel in 1170.4638ms
+2017-12-14 11:09:31,930 INFO [9] ?.? - Request finished in 3938.2816ms 200 text/html; charset=utf-8
+2017-12-14 11:09:45,693 INFO [8] ?.? - Request starting HTTP/1.1 POST http://localhost:59409/SubmitParcel application/x-www-form-urlencoded 373
+2017-12-14 11:09:45,790 INFO [8] ?.? - Executing handler method OnPostAsync with arguments ((null)) - ModelState is Valid
+2017-12-14 11:09:46,272 INFO [9] ?.? - Request starting HTTP/1.1 POST http://localhost:59409/api/parcel application/json; charset=utf-8 
+2017-12-14 11:09:46,788 INFO [9] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.SubmitParcel (PLS.SKS.Package.Services) with arguments (class Parcel {
+  Weight: 5.9
+  Recipient: class Receipient {
+  FirstName: Verena
+  LastName: Wunderbaum
+  Street: Tichtelgasse 29
+  PostalCode: A-1120
+  City: Wien
+}
+
+}
+) - ModelState is Valid
+2017-12-14 11:09:46,801 INFO [9] ?.? - Calling the SubmitParcel action
+2017-12-14 11:09:47,618 INFO [9] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-14 11:09:48,768 INFO [9] ?.? - Executed DbCommand (167ms) [Parameters=[@p0='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [TrackingInformations] ([State])
+VALUES (@p0);
+SELECT [Id]
+FROM [TrackingInformations]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-12-14 11:09:50,922 INFO [9] ?.? - Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [t].[Id], [t].[Code], [t].[Duration], [t].[Latitude], [t].[Longitude], [t].[NumberPlate], [t].[Radius], [t].[WarehouseId]
+FROM [Trucks] AS [t]
+2017-12-14 11:09:52,079 INFO [9] ?.? - Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+ORDER BY [w].[Id]
+2017-12-14 11:09:52,226 INFO [9] ?.? - Executed DbCommand (11ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT [w0].[Id]
+    FROM [Warehouses] AS [w0]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-12-14 11:09:52,470 INFO [9] ?.? - Executed DbCommand (29ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT [w1].[Id]
+    FROM [Warehouses] AS [w1]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-12-14 11:09:52,534 INFO [9] ?.? - Executed DbCommand (23ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+ORDER BY [w].[Id]
+2017-12-14 11:09:52,592 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT [w0].[Id]
+    FROM [Warehouses] AS [w0]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-12-14 11:09:52,601 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT [w1].[Id]
+    FROM [Warehouses] AS [w1]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-12-14 11:09:52,626 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+ORDER BY [w].[Id]
+2017-12-14 11:09:52,636 INFO [9] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT [w0].[Id]
+    FROM [Warehouses] AS [w0]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-12-14 11:09:52,648 INFO [9] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT [w1].[Id]
+    FROM [Warehouses] AS [w1]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-12-14 11:09:52,720 INFO [9] ?.? - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w].[Id], [w].[Code], [w].[Description], [w].[Duration], [w].[WarehouseId]
+FROM [Warehouses] AS [w]
+ORDER BY [w].[Id]
+2017-12-14 11:09:52,805 INFO [9] ?.? - Executed DbCommand (66ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w.NextHops].[Id], [w.NextHops].[Code], [w.NextHops].[Description], [w.NextHops].[Duration], [w.NextHops].[WarehouseId]
+FROM [Warehouses] AS [w.NextHops]
+INNER JOIN (
+    SELECT [w0].[Id]
+    FROM [Warehouses] AS [w0]
+) AS [t] ON [w.NextHops].[WarehouseId] = [t].[Id]
+ORDER BY [t].[Id]
+2017-12-14 11:09:52,822 INFO [9] ?.? - Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [w.Trucks].[Id], [w.Trucks].[Code], [w.Trucks].[Duration], [w.Trucks].[Latitude], [w.Trucks].[Longitude], [w.Trucks].[NumberPlate], [w.Trucks].[Radius], [w.Trucks].[WarehouseId]
+FROM [Trucks] AS [w.Trucks]
+INNER JOIN (
+    SELECT [w1].[Id]
+    FROM [Warehouses] AS [w1]
+) AS [t0] ON [w.Trucks].[WarehouseId] = [t0].[Id]
+ORDER BY [t0].[Id]
+2017-12-14 11:09:53,374 INFO [9] ?.? - Executed DbCommand (48ms) [Parameters=[@p0='?' (Size = 4000), @p1='?', @p2='?' (Size = 4000), @p3='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [HopArrivals] ([Code], [DateTime], [Status], [TrackingInformationId])
+VALUES (@p0, @p1, @p2, @p3);
+SELECT [Id]
+FROM [HopArrivals]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-12-14 11:09:53,659 INFO [9] ?.? - Executed DbCommand (41ms) [Parameters=[@p0='?' (Size = 4000), @p1='?', @p2='?' (Size = 4000), @p3='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [HopArrivals] ([Code], [DateTime], [Status], [TrackingInformationId])
+VALUES (@p0, @p1, @p2, @p3);
+SELECT [Id]
+FROM [HopArrivals]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-12-14 11:09:53,670 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 4000), @p1='?', @p2='?' (Size = 4000), @p3='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [HopArrivals] ([Code], [DateTime], [Status], [TrackingInformationId])
+VALUES (@p0, @p1, @p2, @p3);
+SELECT [Id]
+FROM [HopArrivals]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-12-14 11:09:53,717 INFO [9] ?.? - Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 4000), @p1='?', @p2='?' (Size = 4000), @p3='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [HopArrivals] ([Code], [DateTime], [Status], [TrackingInformationId])
+VALUES (@p0, @p1, @p2, @p3);
+SELECT [Id]
+FROM [HopArrivals]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-12-14 11:09:54,080 INFO [9] ?.? - Executed DbCommand (16ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Recipients] ([City], [FirstName], [LastName], [PostalCode], [Street])
+VALUES (@p0, @p1, @p2, @p3, @p4);
+SELECT [Id]
+FROM [Recipients]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-12-14 11:09:54,142 INFO [9] ?.? - Executed DbCommand (26ms) [Parameters=[@p5='?', @p6='?', @p7='?' (Size = 4000), @p8='?'], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Parcels] ([RecipientId], [TrackingInformationId], [TrackingNumber], [Weight])
+VALUES (@p5, @p6, @p7, @p8);
+SELECT [Id]
+FROM [Parcels]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2017-12-14 11:09:54,534 INFO [9] ?.? - Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+2017-12-14 11:09:54,853 INFO [9] ?.? - Executed action IO.Swagger.Controllers.DefaultApiController.SubmitParcel (PLS.SKS.Package.Services) in 8407.0494ms
+2017-12-14 11:09:55,669 INFO [11] ?.? - Executed action /SubmitParcel in 9254.965ms
+2017-12-14 11:09:56,410 INFO [11] ?.? - Request finished in 10011.531ms 200 text/html; charset=utf-8
+2017-12-14 11:09:56,883 INFO [9] ?.? - Request finished in 8596.5146ms 200 application/json; charset=utf-8
+2017-12-14 11:09:59,714 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:59409/TrackParcel  
+2017-12-14 11:10:01,711 INFO [9] ?.? - Executed action /TrackParcel in 733.8204ms
+2017-12-14 11:10:02,055 INFO [9] ?.? - Request finished in 2018.0784ms 200 text/html; charset=utf-8
+2017-12-14 11:10:03,900 INFO [9] ?.? - Request starting HTTP/1.1 POST http://localhost:59409/TrackParcel application/x-www-form-urlencoded 206
+2017-12-14 11:10:03,968 INFO [9] ?.? - Executing handler method OnPostAsync with arguments ((null)) - ModelState is Valid
+2017-12-14 11:10:03,997 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:59409/api/parcel/KLOLABEB  
+2017-12-14 11:10:04,053 INFO [9] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.TrackParcel (PLS.SKS.Package.Services) with arguments (KLOLABEB) - ModelState is Valid
+2017-12-14 11:10:04,071 INFO [9] ?.? - Calling the TrackParcel action
+2017-12-14 11:10:04,086 INFO [9] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-14 11:10:04,715 INFO [9] ?.? - Executed DbCommand (133ms) [Parameters=[@__trackingNumber_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[RecipientId], [p].[TrackingInformationId], [p].[TrackingNumber], [p].[Weight], [p.TrackingInformation].[Id], [p.TrackingInformation].[State], [p.Recipient].[Id], [p.Recipient].[City], [p.Recipient].[FirstName], [p.Recipient].[LastName], [p.Recipient].[PostalCode], [p.Recipient].[Street]
+FROM [Parcels] AS [p]
+INNER JOIN [TrackingInformations] AS [p.TrackingInformation] ON [p].[TrackingInformationId] = [p.TrackingInformation].[Id]
+INNER JOIN [Recipients] AS [p.Recipient] ON [p].[RecipientId] = [p.Recipient].[Id]
+WHERE [p].[TrackingNumber] = @__trackingNumber_0
+2017-12-14 11:10:04,835 INFO [9] ?.? - Executed DbCommand (29ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [h].[Id], [h].[Code], [h].[DateTime], [h].[Status], [h].[TrackingInformationId]
+FROM [HopArrivals] AS [h]
+WHERE [h].[TrackingInformationId] = @__id_0
+2017-12-14 11:10:05,333 INFO [9] ?.? - Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+2017-12-14 11:10:05,681 INFO [9] ?.? - Executed action IO.Swagger.Controllers.DefaultApiController.TrackParcel (PLS.SKS.Package.Services) in 1374.861ms
+2017-12-14 11:10:05,736 INFO [9] ?.? - Request finished in 1691.2455ms 200 application/json; charset=utf-8
+2017-12-14 11:10:06,956 INFO [11] ?.? - Executed action /TrackParcel in 2309.4408ms
+2017-12-14 11:10:07,526 INFO [11] ?.? - Request finished in 3075.6182ms 200 text/html; charset=utf-8
+2017-12-14 11:10:08,252 INFO [8] ?.? - Request starting HTTP/1.1 GET http://localhost:59409/reportParcelHop  
+2017-12-14 11:10:10,812 INFO [8] ?.? - Executed action /reportParcelHop in 122.3942ms
+2017-12-14 11:10:11,329 INFO [8] ?.? - Request finished in 2604.9569ms 200 text/html; charset=utf-8
+2017-12-14 11:10:14,738 INFO [8] ?.? - Request starting HTTP/1.1 POST http://localhost:59409/reportParcelHop application/x-www-form-urlencoded 216
+2017-12-14 11:10:14,838 INFO [8] ?.? - Executing handler method OnPostAsync with arguments ((null)) - ModelState is Valid
+2017-12-14 11:10:14,918 INFO [8] ?.? - Request starting HTTP/1.1 POST http://localhost:59409/api/parcel/KLOLABEB/reportHop/WH01 text/plain; charset=utf-8 0
+2017-12-14 11:10:14,934 INFO [8] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.ReportParcelHop (PLS.SKS.Package.Services) with arguments (KLOLABEB, WH01) - ModelState is Valid
+2017-12-14 11:10:14,942 INFO [8] ?.? - Calling the ReportParcelHop action
+2017-12-14 11:10:14,952 INFO [8] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-14 11:10:14,961 INFO [8] ?.? - Executed DbCommand (0ms) [Parameters=[@__trackingNumber_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[RecipientId], [p].[TrackingInformationId], [p].[TrackingNumber], [p].[Weight], [p.TrackingInformation].[Id], [p.TrackingInformation].[State], [p.Recipient].[Id], [p.Recipient].[City], [p.Recipient].[FirstName], [p.Recipient].[LastName], [p.Recipient].[PostalCode], [p.Recipient].[Street]
+FROM [Parcels] AS [p]
+INNER JOIN [TrackingInformations] AS [p.TrackingInformation] ON [p].[TrackingInformationId] = [p.TrackingInformation].[Id]
+INNER JOIN [Recipients] AS [p.Recipient] ON [p].[RecipientId] = [p.Recipient].[Id]
+WHERE [p].[TrackingNumber] = @__trackingNumber_0
+2017-12-14 11:10:14,991 INFO [8] ?.? - Executed DbCommand (0ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [h].[Id], [h].[Code], [h].[DateTime], [h].[Status], [h].[TrackingInformationId]
+FROM [HopArrivals] AS [h]
+WHERE [h].[TrackingInformationId] = @__id_0
+2017-12-14 11:10:15,034 INFO [8] ?.? - Executed DbCommand (7ms) [Parameters=[@__h_Id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(2) [b].[Id], [b].[Code], [b].[DateTime], [b].[Status], [b].[TrackingInformationId]
+FROM [HopArrivals] AS [b]
+WHERE [b].[Id] = @__h_Id_0
+2017-12-14 11:10:15,091 INFO [8] ?.? - Executed DbCommand (9ms) [Parameters=[@p2='?', @p0='?', @p1='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [HopArrivals] SET [DateTime] = @p0, [Status] = @p1
+WHERE [Id] = @p2;
+SELECT @@ROWCOUNT;
+2017-12-14 11:10:15,138 INFO [8] ?.? - Executed action IO.Swagger.Controllers.DefaultApiController.ReportParcelHop (PLS.SKS.Package.Services) in 203.4402ms
+2017-12-14 11:10:15,177 INFO [8] ?.? - Request finished in 240.5204ms 200 
+2017-12-14 11:10:16,320 INFO [14] ?.? - Executed action /reportParcelHop in 690.9543ms
+2017-12-14 11:10:16,418 INFO [14] ?.? - Request finished in 1701.9627ms 200 text/html; charset=utf-8
+2017-12-14 11:10:17,181 INFO [11] ?.? - Request starting HTTP/1.1 GET http://localhost:59409/TrackParcel  
+2017-12-14 11:10:17,884 INFO [11] ?.? - Executed action /TrackParcel in 5.2514ms
+2017-12-14 11:10:18,412 INFO [11] ?.? - Request finished in 1119.5111ms 200 text/html; charset=utf-8
+2017-12-14 11:10:19,902 INFO [14] ?.? - Request starting HTTP/1.1 POST http://localhost:59409/TrackParcel application/x-www-form-urlencoded 206
+2017-12-14 11:10:19,917 INFO [14] ?.? - Executing handler method OnPostAsync with arguments ((null)) - ModelState is Valid
+2017-12-14 11:10:20,066 INFO [9] ?.? - Request starting HTTP/1.1 GET http://localhost:59409/api/parcel/KLOLABEB  
+2017-12-14 11:10:20,085 INFO [9] ?.? - Executing action method IO.Swagger.Controllers.DefaultApiController.TrackParcel (PLS.SKS.Package.Services) with arguments (KLOLABEB) - ModelState is Valid
+2017-12-14 11:10:20,104 INFO [9] ?.? - Calling the TrackParcel action
+2017-12-14 11:10:20,121 INFO [9] ?.? - Entity Framework Core 2.0.1-rtm-125 initialized 'DbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2017-12-14 11:10:20,183 INFO [9] ?.? - Executed DbCommand (9ms) [Parameters=[@__trackingNumber_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[RecipientId], [p].[TrackingInformationId], [p].[TrackingNumber], [p].[Weight], [p.TrackingInformation].[Id], [p.TrackingInformation].[State], [p.Recipient].[Id], [p.Recipient].[City], [p.Recipient].[FirstName], [p.Recipient].[LastName], [p.Recipient].[PostalCode], [p.Recipient].[Street]
+FROM [Parcels] AS [p]
+INNER JOIN [TrackingInformations] AS [p.TrackingInformation] ON [p].[TrackingInformationId] = [p.TrackingInformation].[Id]
+INNER JOIN [Recipients] AS [p.Recipient] ON [p].[RecipientId] = [p.Recipient].[Id]
+WHERE [p].[TrackingNumber] = @__trackingNumber_0
+2017-12-14 11:10:20,211 INFO [9] ?.? - Executed DbCommand (3ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [h].[Id], [h].[Code], [h].[DateTime], [h].[Status], [h].[TrackingInformationId]
+FROM [HopArrivals] AS [h]
+WHERE [h].[TrackingInformationId] = @__id_0
+2017-12-14 11:10:20,246 INFO [9] ?.? - Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+2017-12-14 11:10:20,286 INFO [9] ?.? - Executed action IO.Swagger.Controllers.DefaultApiController.TrackParcel (PLS.SKS.Package.Services) in 200.8184ms
+2017-12-14 11:10:20,296 INFO [9] ?.? - Request finished in 233.997ms 200 application/json; charset=utf-8
+2017-12-14 11:10:20,434 INFO [8] ?.? - Executed action /TrackParcel in 413.2583ms
+2017-12-14 11:10:20,846 INFO [8] ?.? - Request finished in 562.0991ms 200 text/html; charset=utf-8

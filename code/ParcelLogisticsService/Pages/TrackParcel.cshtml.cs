@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -38,7 +36,7 @@ namespace PLS.SKS.Package.Services.Pages
 			var client = new HttpClient
 			{
 #if DEBUG
-				BaseAddress = new Uri("http://localhost:59409")
+				BaseAddress = new Uri("http://localhost:59408")
                 //BaseAddress = new Uri("http://localhost:50074")
 #else
 				BaseAddress = new Uri("http://parcellogisticsservice.azurewebsites.net")
